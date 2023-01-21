@@ -49,4 +49,25 @@ public class PersonaDAO {
         }
         return 1;
     }
+    
+    public int actualizar(Persona p){
+        int respuesta = 0;
+        String sql = "UPDATE persona SET nombres=?,correo=?,telefono=? WHERE id=?";
+        try {
+            con = conectar.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, p.getNombres());
+            ps.setString(2, p.getCorreo());
+            ps.setString(3, p.getTelefono());
+            ps.setInt(4, p.getId());
+            respuesta = ps.executeUpdate();
+            if(respuesta == 1){
+                return 1;
+            }else{
+                return 0;
+            }
+        } catch (Exception e) {
+        }
+        return respuesta;
+    }
 }
