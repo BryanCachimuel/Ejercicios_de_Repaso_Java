@@ -26,15 +26,40 @@ public class Controlador implements ActionListener{
         this.vista = v;
         this.vista.btnListar.addActionListener(this);
         this.vista.btnGuardar.addActionListener(this);
+        this.vista.btnEditar.addActionListener(this);
+        this.vista.btnOk.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
        if(e.getSource() == vista.btnListar){
+           limpiarTabla();
            listar(vista.tabla);
        }
        if(e.getSource() == vista.btnGuardar){
            agregar();
+           limpiarTabla();
+           listar(vista.tabla);
+       }
+       if(e.getSource() == vista.btnEditar){
+           int fila = vista.tabla.getSelectedRow();
+           if(fila == -1){
+               JOptionPane.showMessageDialog(vista, "Debe seleccionar una fila");
+           }else{
+               int id = Integer.parseInt((String)vista.tabla.getValueAt(fila, 0).toString());
+               String nombres = (String)vista.tabla.getValueAt(fila, 1);
+               String correo = (String)vista.tabla.getValueAt(fila, 2);
+               String telefono = (String)vista.tabla.getValueAt(fila, 3);
+               vista.txtId.setText(""+id);
+               vista.txtnombres.setText(nombres);
+               vista.txtcorreo.setText(correo);
+               vista.txtTelefono.setText(telefono);
+           }
+       }
+       if(e.getSource() == vista.btnOk){
+           actualizar();
+           limpiarTabla();
+           listar(vista.tabla);
        }
     }
     
@@ -63,8 +88,34 @@ public class Controlador implements ActionListener{
         if(respuesta == 1){
             JOptionPane.showMessageDialog(vista, "Usuario Agregado con Exito");
         }else{
-            JOptionPane.showMessageDialog(vista, "Error");
+            JOptionPane.showMessageDialog(vista, "Error no se puede agregar el registro");
         }
+    }
+    
+    /*método para limpiar la tabla una vez se haya actualizado un registro*/
+    public void limpiarTabla(){
+        for(int i = 0; i < vista.tabla.getRowCount(); i++){
+            modelo.removeRow(i);
+            i = i-1;
+        }
+    }
+    
+    public void actualizar(){
+        int id = Integer.parseInt(vista.txtId.getText());
+        String nombre = vista.txtnombres.getText();
+        String correo = vista.txtcorreo.getText();
+        String telefono = vista.txtTelefono.getText();
+        p.setId(id);
+        p.setNombres(nombre);
+        p.setCorreo(correo);
+        p.setTelefono(telefono);
+        int respuesta = dao.actualizar(p);
+        if(respuesta == 1){
+            JOptionPane.showMessageDialog(vista, "Usuario Actualizado con Exito");
+        }else{
+            JOptionPane.showMessageDialog(vista, "Error no se pudo actualizar el registro");
+        }
+        limpiarTabla();
     }
    
 }
