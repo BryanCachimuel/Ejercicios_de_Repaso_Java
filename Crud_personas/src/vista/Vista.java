@@ -32,7 +32,7 @@ public class Vista extends javax.swing.JFrame {
         txtId = new javax.swing.JTextField();
         txtnombres = new javax.swing.JTextField();
         txtcorreo = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
         btnListar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
@@ -54,13 +54,12 @@ public class Vista extends javax.swing.JFrame {
 
         jLabel4.setText("Teléfono:");
 
+        txtId.setEditable(false);
         txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdActionPerformed(evt);
             }
         });
-
-        jTextField4.setText("txttelefono");
 
         btnGuardar.setText("Guardar");
 
@@ -88,7 +87,7 @@ public class Vista extends javax.swing.JFrame {
                     .addComponent(txtId)
                     .addComponent(txtnombres)
                     .addComponent(txtcorreo)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
                 .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -122,7 +121,7 @@ public class Vista extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar))
                 .addGap(15, 15, 15))
         );
@@ -214,9 +213,9 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTextField jTextField4;
     public javax.swing.JTable tabla;
     public javax.swing.JTextField txtId;
+    public javax.swing.JTextField txtTelefono;
     public javax.swing.JTextField txtcorreo;
     public javax.swing.JTextField txtnombres;
     // End of variables declaration//GEN-END:variables
