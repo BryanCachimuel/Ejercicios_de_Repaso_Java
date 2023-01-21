@@ -3,6 +3,7 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Persona;
@@ -24,12 +25,16 @@ public class Controlador implements ActionListener{
     public Controlador(Vista v){
         this.vista = v;
         this.vista.btnListar.addActionListener(this);
+        this.vista.btnGuardar.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
        if(e.getSource() == vista.btnListar){
            listar(vista.tabla);
+       }
+       if(e.getSource() == vista.btnGuardar){
+           agregar();
        }
     }
     
@@ -45,6 +50,21 @@ public class Controlador implements ActionListener{
             modelo.addRow(object);
         }
         vista.tabla.setModel(modelo);
+    }
+    
+    public void agregar(){
+        String nombre = vista.txtnombres.getText();
+        String correo = vista.txtcorreo.getText();
+        String telefono = vista.txtTelefono.getText();
+        p.setNombres(nombre);
+        p.setCorreo(correo);
+        p.setTelefono(telefono);
+        int respuesta = dao.agregar(p);
+        if(respuesta == 1){
+            JOptionPane.showMessageDialog(vista, "Usuario Agregado con Exito");
+        }else{
+            JOptionPane.showMessageDialog(vista, "Error");
+        }
     }
    
 }
