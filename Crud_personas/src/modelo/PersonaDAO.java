@@ -70,4 +70,14 @@ public class PersonaDAO {
         }
         return respuesta;
     }
+    
+    public void eliminar(int id){
+        String sql = "DELETE FROM persona WHERE id="+id;
+        try {
+            con = conectar.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
 }
