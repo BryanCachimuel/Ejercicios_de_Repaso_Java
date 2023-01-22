@@ -28,6 +28,8 @@ public class Controlador implements ActionListener{
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnEditar.addActionListener(this);
         this.vista.btnOk.addActionListener(this);
+        this.vista.btnEliminar.addActionListener(this);
+        listar(vista.tabla);
     }
 
     @Override
@@ -58,6 +60,11 @@ public class Controlador implements ActionListener{
        }
        if(e.getSource() == vista.btnOk){
            actualizar();
+           limpiarTabla();
+           listar(vista.tabla);
+       }
+       if(e.getSource() == vista.btnEliminar){
+           eliminar();
            limpiarTabla();
            listar(vista.tabla);
        }
@@ -116,6 +123,17 @@ public class Controlador implements ActionListener{
             JOptionPane.showMessageDialog(vista, "Error no se pudo actualizar el registro");
         }
         limpiarTabla();
+    }
+    
+    public void eliminar(){
+        int fila = vista.tabla.getSelectedRow();
+        if(fila == -1){
+            JOptionPane.showMessageDialog(vista, "Debe selecccionar un Usuario");
+        }else{
+            int id = Integer.parseInt((String)vista.tabla.getValueAt(fila, 0).toString());
+            dao.eliminar(id);
+            JOptionPane.showMessageDialog(vista, "Usuario Eliminado");
+        }
     }
    
 }
