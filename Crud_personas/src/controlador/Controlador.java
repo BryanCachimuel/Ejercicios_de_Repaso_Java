@@ -22,6 +22,7 @@ public class Controlador implements ActionListener{
     Vista vista = new Vista();
     DefaultTableModel modelo = new DefaultTableModel();
     
+    /* mandamos a activar las opciones de los botones */
     public Controlador(Vista v){
         this.vista = v;
         this.vista.btnListar.addActionListener(this);
@@ -42,6 +43,7 @@ public class Controlador implements ActionListener{
            agregar();
            limpiarTabla();
            listar(vista.tabla);
+           limpiarCampos();
        }
        if(e.getSource() == vista.btnEditar){
            int fila = vista.tabla.getSelectedRow();
@@ -134,6 +136,12 @@ public class Controlador implements ActionListener{
             dao.eliminar(id);
             JOptionPane.showMessageDialog(vista, "Usuario Eliminado");
         }
+    }
+    
+    public void limpiarCampos(){
+        vista.txtnombres.setText("");
+        vista.txtcorreo.setText("");
+        vista.txtTelefono.setText("");
     }
    
 }
