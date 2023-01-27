@@ -27,6 +27,14 @@ public class VendedorDAO {
             ps.setString(1, dni);
             ps.setString(2, user);
             rs = ps.executeQuery();
+            while(rs.next()){
+                ev.setId(rs.getInt(1));
+                ev.setDni(rs.getString(2));
+                ev.setNombre(rs.getString(3));
+                ev.setTelefono(rs.getString(4));
+                ev.setEstado(rs.getString(5));
+                ev.setUser(rs.getString(6));
+            }
         } catch (Exception e) {
             System.out.println("Error en la consulta");
         }
