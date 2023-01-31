@@ -16,7 +16,9 @@ public class ClienteForm extends javax.swing.JInternalFrame {
     Cliente cl = new Cliente();
     
     DefaultTableModel modelo = new DefaultTableModel();
-    /** Creates new form ClienteForm */
+    
+    int id;
+    
     public ClienteForm() {
         initComponents();
         listar();
@@ -249,6 +251,7 @@ public class ClienteForm extends javax.swing.JInternalFrame {
         if(fila == -1){ // si la fila no fue seleccionada
             JOptionPane.showMessageDialog(this, "Debe Seleccionar una Fila");
         }else{
+            id = Integer.parseInt(tblTabla.getValueAt(fila,0).toString());
             String cedula = tblTabla.getValueAt(fila,1).toString();
             String nombres = tblTabla.getValueAt(fila,2).toString();
             String direccion = tblTabla.getValueAt(fila,3).toString();
@@ -276,7 +279,17 @@ public class ClienteForm extends javax.swing.JInternalFrame {
     }
     
     public void actualizar(){
-        
+        String cedula = txtDni.getText();
+        String nombres = txtNombres.getText();
+        String direccion = txtDireccion.getText();
+        String estado = cbxEstado.getSelectedItem().toString();
+        Object[] obj = new Object[5];
+        obj[0] = cedula;
+        obj[1] = nombres;
+        obj[2] = direccion;
+        obj[3] = estado;
+        obj[4] = id;    
+        cdao.actualizar(obj);
     }
     
     public void eliminar(){
