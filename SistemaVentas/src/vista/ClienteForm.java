@@ -227,18 +227,21 @@ public class ClienteForm extends javax.swing.JInternalFrame {
         agregar();
         limpiarTabla();
         listar();
+        nuevo();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         actualizar();
         limpiarTabla();
         listar();
+        nuevo();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         eliminar();
         limpiarTabla();
         listar();
+        nuevo();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
@@ -309,7 +312,11 @@ public class ClienteForm extends javax.swing.JInternalFrame {
     }
     
     public void nuevo(){
-        
+       txtDni.setText("");
+       txtNombres.setText("");
+       txtDireccion.setText("");
+       cbxEstado.setSelectedItem(0);
+       txtDni.requestFocus();
     }
     
     public void limpiarTabla(){
