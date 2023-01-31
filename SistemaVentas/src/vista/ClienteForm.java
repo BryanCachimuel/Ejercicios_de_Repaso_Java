@@ -1,6 +1,7 @@
 package vista;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
 import modelo.ClienteDAO;
@@ -172,6 +173,11 @@ public class ClienteForm extends javax.swing.JInternalFrame {
                 "ID", "CÉDULA", "NOMBRES", "DIRECCIÓN", "ESTADO"
             }
         ));
+        tblTabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTablaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblTabla);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -236,6 +242,25 @@ public class ClienteForm extends javax.swing.JInternalFrame {
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         nuevo();
     }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void tblTablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTablaMouseClicked
+        /* con este evento se podra seleccionar una fila de los registros para poder editar los atributos*/
+        int fila = tblTabla.getSelectedRow();
+        if(fila == -1){ // si la fila no fue seleccionada
+            JOptionPane.showMessageDialog(this, "Debe Seleccionar una Fila");
+        }else{
+            String cedula = tblTabla.getValueAt(fila,1).toString();
+            String nombres = tblTabla.getValueAt(fila,2).toString();
+            String direccion = tblTabla.getValueAt(fila,3).toString();
+            String estado = tblTabla.getValueAt(fila,4).toString();
+            
+            /* si se selecciono una fila los atributos se mostrarar en los textfields */
+            txtDni.setText(cedula);
+            txtNombres.setText(nombres);
+            txtDireccion.setText(direccion);
+            cbxEstado.setSelectedItem(estado);
+        }
+    }//GEN-LAST:event_tblTablaMouseClicked
     
     public void agregar(){
         String cedula = txtDni.getText();
