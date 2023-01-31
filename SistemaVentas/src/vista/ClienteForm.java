@@ -279,6 +279,10 @@ public class ClienteForm extends javax.swing.JInternalFrame {
     }
     
     public void actualizar(){
+        int fila = tblTabla.getSelectedRow();
+        if(fila == -1){
+            JOptionPane.showMessageDialog(this, "Debe Seleccionar una Fila");
+        }else{
         String cedula = txtDni.getText();
         String nombres = txtNombres.getText();
         String direccion = txtDireccion.getText();
@@ -290,10 +294,18 @@ public class ClienteForm extends javax.swing.JInternalFrame {
         obj[3] = estado;
         obj[4] = id;    
         cdao.actualizar(obj);
+        JOptionPane.showMessageDialog(this, "Registro Actualizado Correctamente");
+        }
     }
     
     public void eliminar(){
-        
+        int fila = tblTabla.getSelectedRow();
+        if(fila == -1){
+            JOptionPane.showMessageDialog(this, "Debe Seleccionar una Fila");
+        }else{
+            cdao.eliminar(id);
+            JOptionPane.showMessageDialog(this, "Registro Eliminado Satisfactoramiente");
+        }
     }
     
     public void nuevo(){
