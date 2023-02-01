@@ -61,12 +61,34 @@ public class ProductoDAO implements CRUD{
 
     @Override
     public int actualizar(Object[] o) {
-        
+        int r = 0;
+        String sql = "UPDATE producto SET Nombres=?,Precio=?,Stock=?,Estado=? WHERE idProducto=?";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, o[0]);
+            ps.setObject(2, o[1]);
+            ps.setObject(3, o[2]);
+            ps.setObject(4, o[3]);
+            ps.setObject(5, o[4]);
+            r = ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Ocurrio un error durante el proceso de la consulta");
+        }
+        return r;
     }
 
     @Override
     public void eliminar(int id) {
-        
+        String sql = "DELETE FROM producto WHERE idProducto=?";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Ocurrio un error durante el proceso de la consulta");
+        }
     }
     
 }
