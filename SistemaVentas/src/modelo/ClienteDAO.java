@@ -15,6 +15,28 @@ public class ClienteDAO implements CRUD{
     Conexion cn = new Conexion();
     PreparedStatement ps;
     ResultSet rs;
+    Cliente co = new Cliente();
+    
+    public Cliente listarID(String dni){
+        Cliente c = new Cliente();
+       String sql = "SELECT * FROM cliente WHERE Dni=?";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, dni);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                c.setId(rs.getInt(1));
+                c.setDni(rs.getString(2));
+                c.setNombres(rs.getString(3));
+                c.setDireccion(rs.getString(4));
+                c.setEstado(rs.getString(5));
+            }
+        } catch (Exception e) {
+            System.out.println("Ocurrio un error durante el proceso de la consulta");
+        }
+        return c;
+    }
 
     @Override
     public List listar() {
@@ -34,7 +56,7 @@ public class ClienteDAO implements CRUD{
                lista.add(c);
            }
         } catch (Exception e) {
-            System.out.println("Ocurrio un error en la consulta");
+            System.out.println("Ocurrio un error durante el proceso de la consulta");
         }
         return lista;
     }
@@ -52,7 +74,7 @@ public class ClienteDAO implements CRUD{
             ps.setObject(4, o[3]);
             r = ps.executeUpdate();
         } catch (Exception e) {
-            System.out.println("Ocurrio un error en la consulta");
+            System.out.println("Ocurrio un error durante el proceso de la consulta");
         }
         return r;
     }
@@ -71,7 +93,7 @@ public class ClienteDAO implements CRUD{
             ps.setObject(5, o[4]);
             r = ps.executeUpdate();
         } catch (Exception e) {
-            System.out.println("Ocurrio un error en la consulta");
+            System.out.println("Ocurrio un error durante el proceso de la consulta");
         }
         return r;
     }
@@ -85,6 +107,7 @@ public class ClienteDAO implements CRUD{
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (Exception e) {
+            System.out.println("Ocurrio un error durante el proceso de la consulta");
         }
     }
     
