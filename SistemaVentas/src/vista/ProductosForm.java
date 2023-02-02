@@ -168,6 +168,11 @@ public class ProductosForm extends javax.swing.JInternalFrame {
                 "ID", "PRODUCTOS", "PRECIO", "STOCK", "ESTADO"
             }
         ));
+        tblTablaProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTablaProductosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblTablaProductos);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -212,7 +217,10 @@ public class ProductosForm extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // TODO add your handling code here:
+        agregarProducto();
+        limpiarTabla();
+        listar();
+        borrarCampos();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -223,6 +231,37 @@ public class ProductosForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void tblTablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTablaProductosMouseClicked
+        
+    }//GEN-LAST:event_tblTablaProductosMouseClicked
+    
+    public void agregarProducto(){
+        String nombreproducto = txtNombreProductos.getText();
+        double precio = Double.parseDouble(txtPrecio.getText());
+        int stock = Integer.parseInt(txtStock.getText());
+        String estado = cbxEstado.getSelectedItem().toString();
+        Object[] obp = new Object[4];
+        obp[0] = nombreproducto;
+        obp[1] = precio;
+        obp[2] = stock;
+        obp[3] = estado;
+        pdao.aniadir(obp);
+    }
+    
+    public void borrarCampos(){
+        txtNombreProductos.setText("");
+        txtPrecio.setText("");
+        txtStock.setText("");
+        cbxEstado.setSelectedItem("Seleccionar");
+        txtNombreProductos.requestFocus();
+    }
+    
+    public void limpiarTabla(){
+        for(int i = 0; i < modelo.getRowCount(); i++){
+            modelo.removeRow(i);
+            i = i - 1;
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
