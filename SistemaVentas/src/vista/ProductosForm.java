@@ -225,7 +225,10 @@ public class ProductosForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        // TODO add your handling code here:
+        actualizar();
+        limpiarTabla();
+        listar();
+        borrarCampos();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -261,6 +264,27 @@ public class ProductosForm extends javax.swing.JInternalFrame {
         obp[2] = stock;
         obp[3] = estado;
         pdao.aniadir(obp);
+        JOptionPane.showMessageDialog(this, "Producto Registrado Satisfactoriamente");
+    }
+    
+    public void actualizar(){
+        int fila = tblTablaProductos.getSelectedRow();
+        if(fila == -1){
+            JOptionPane.showMessageDialog(this, "Debe Seleccionar una Fila");
+        }else{
+           String nombreproducto = txtNombreProductos.getText();
+           double precio = Double.parseDouble(txtPrecio.getText());
+           int stock = Integer.parseInt(txtStock.getText());
+           String estado = cbxEstado.getSelectedItem().toString(); 
+           Object[] obp = new Object[5];
+           obp[0] = nombreproducto;
+           obp[1] = precio;
+           obp[2] = stock;
+           obp[3] = estado;
+           obp[4] = id;
+           pdao.actualizar(obp);
+           JOptionPane.showMessageDialog(this, "Producto Actualizado Correctamente");
+        }
     }
     
     public void borrarCampos(){
