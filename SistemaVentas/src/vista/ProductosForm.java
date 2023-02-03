@@ -232,7 +232,10 @@ public class ProductosForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        eliminar();
+        limpiarTabla();
+        listar();
+        borrarCampos();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tblTablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTablaProductosMouseClicked
@@ -284,6 +287,16 @@ public class ProductosForm extends javax.swing.JInternalFrame {
            obp[4] = id;
            pdao.actualizar(obp);
            JOptionPane.showMessageDialog(this, "Producto Actualizado Correctamente");
+        }
+    }
+    
+    public void eliminar(){
+        int fila = tblTablaProductos.getSelectedRow();
+        if(fila == -1){
+            JOptionPane.showMessageDialog(this, "Debe Seleccionar una Fila");
+        }else{
+            pdao.eliminar(id);
+            JOptionPane.showMessageDialog(this, "Producto Eliminado Correctamente");
         }
     }
     
