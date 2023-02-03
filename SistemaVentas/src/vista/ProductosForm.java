@@ -6,6 +6,7 @@
 package vista;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Producto;
 import modelo.ProductoDAO;
@@ -232,7 +233,21 @@ public class ProductosForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tblTablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTablaProductosMouseClicked
-        
+        int fila = tblTablaProductos.getSelectedRow();
+        if(fila == -1){
+            JOptionPane.showMessageDialog(this, "Debe Seleccionar una fila");
+        }else{
+            id = Integer.parseInt(tblTablaProductos.getValueAt(fila,0).toString());
+            String nombreProductos = tblTablaProductos.getValueAt(fila,1).toString();
+            double precio = Double.parseDouble(tblTablaProductos.getValueAt(fila, 2).toString());
+            int stock = Integer.parseInt(tblTablaProductos.getValueAt(fila,3).toString());
+            String estado = tblTablaProductos.getValueAt(fila,4).toString();
+            
+            txtNombreProductos.setText(nombreProductos);
+            txtPrecio.setText(Double.toString(precio));
+            txtStock.setText(Integer.toString(stock));
+            cbxEstado.setSelectedItem(estado);
+        }
     }//GEN-LAST:event_tblTablaProductosMouseClicked
     
     public void agregarProducto(){
