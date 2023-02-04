@@ -260,7 +260,23 @@ public class VendedorForm extends javax.swing.JInternalFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarActionPerformed
-
+    
+    public void agregar(){
+        String cedula = txtDni.getText();
+        String nombres = txtNombres.getText();
+        String telefono = txtTelefono.getText();
+        String estado = cbxEstado.getSelectedItem().toString();
+        String usuario = txtUsuario.getText();
+        Object[] obv = new Object[5];
+        obv[0] = cedula;
+        obv[1] = nombres;
+        obv[2] = telefono;
+        obv[3] = estado;
+        obv[4] = usuario;
+        vdao.aniadir(obv);
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
