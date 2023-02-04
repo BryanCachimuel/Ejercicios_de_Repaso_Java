@@ -263,7 +263,10 @@ public class VendedorForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        // TODO add your handling code here:
+        actualizar();
+        limpiarTabla();
+        listar();
+        borrarCampos();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -304,6 +307,28 @@ public class VendedorForm extends javax.swing.JInternalFrame {
         obv[4] = usuario;
         vdao.aniadir(obv);   
         JOptionPane.showMessageDialog(this, "Vendedor Agregado Correctamente");
+    }
+    
+    public void actualizar(){
+        int fila = tblTablaVendedor.getSelectedRow();
+        if(fila == -1){
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un Registro");
+        }else{
+            String cedula = txtDni.getText();
+            String nombres = txtNombres.getText();
+            String telefono = txtTelefono.getText();
+            String estado = cbxEstado.getSelectedItem().toString();
+            String usuario = txtUsuario.getText();
+            Object[] obv = new Object[6];
+            obv[0] = cedula;
+            obv[1] = nombres;
+            obv[2] = telefono;
+            obv[3] = estado;
+            obv[4] = usuario;
+            obv[5] = id;
+            vdao.actualizar(obv);
+            JOptionPane.showMessageDialog(this, "Datos del Vendedor Actualizados Correctamente");
+        }
     }
     
     public void borrarCampos(){
