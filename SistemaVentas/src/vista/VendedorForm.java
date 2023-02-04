@@ -154,9 +154,14 @@ public class VendedorForm extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "CÉDULA", "NOMBRES", "TELÉFONO", "USUARIO"
+                "ID", "CÉDULA", "NOMBRES", "TELÉFONO", "USUARIO", "ESTADO"
             }
         ));
+        tblTablaVendedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTablaVendedorMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblTablaVendedor);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -233,7 +238,7 @@ public class VendedorForm extends javax.swing.JInternalFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,6 +269,26 @@ public class VendedorForm extends javax.swing.JInternalFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tblTablaVendedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTablaVendedorMouseClicked
+        int fila = tblTablaVendedor.getSelectedRow();
+        if(fila == -1){
+            JOptionPane.showMessageDialog(this, "Debe Seleccionar una Fila");
+        }else{
+            id = Integer.parseInt(tblTablaVendedor.getValueAt(fila,0).toString());
+            String cedula = tblTablaVendedor.getValueAt(fila, 1).toString();
+            String nombres = tblTablaVendedor.getValueAt(fila, 2).toString();
+            String telefono = tblTablaVendedor.getValueAt(fila, 3).toString();
+            String estado = tblTablaVendedor.getValueAt(fila, 4).toString();
+            String usuario = tblTablaVendedor.getValueAt(fila, 5).toString();
+            
+            txtDni.setText(cedula);
+            txtNombres.setText(nombres);
+            txtTelefono.setText(telefono);
+            cbxEstado.setSelectedItem(estado);
+            txtUsuario.setText(usuario);
+        }
+    }//GEN-LAST:event_tblTablaVendedorMouseClicked
     
     public void agregar(){
         String cedula = txtDni.getText();
