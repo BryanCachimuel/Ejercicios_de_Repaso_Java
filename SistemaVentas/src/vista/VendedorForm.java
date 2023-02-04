@@ -270,7 +270,10 @@ public class VendedorForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        eliminar();
+        limpiarTabla();
+        listar();
+        borrarCampos();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tblTablaVendedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTablaVendedorMouseClicked
@@ -328,6 +331,16 @@ public class VendedorForm extends javax.swing.JInternalFrame {
             obv[5] = id;
             vdao.actualizar(obv);
             JOptionPane.showMessageDialog(this, "Datos del Vendedor Actualizados Correctamente");
+        }
+    }
+    
+    public void eliminar(){
+        int fila = tblTablaVendedor.getSelectedRow();
+        if(fila == -1){
+            JOptionPane.showMessageDialog(this, "Debe Seleccionar un Registro");
+        }else{
+            vdao.eliminar(id);
+            JOptionPane.showMessageDialog(this, "Registro Eliminado Correctamente");
         }
     }
     
