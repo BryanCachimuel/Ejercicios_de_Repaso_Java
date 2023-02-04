@@ -1,6 +1,7 @@
 package vista;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Vendedor;
 import modelo.VendedorDAO;
@@ -250,7 +251,10 @@ public class VendedorForm extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // TODO add your handling code here:
+        agregar();
+        limpiarTabla();
+        listar();
+        borrarCampos();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -273,10 +277,25 @@ public class VendedorForm extends javax.swing.JInternalFrame {
         obv[2] = telefono;
         obv[3] = estado;
         obv[4] = usuario;
-        vdao.aniadir(obv);
+        vdao.aniadir(obv);   
+        JOptionPane.showMessageDialog(this, "Vendedor Agregado Correctamente");
     }
     
+    public void borrarCampos(){
+        txtDni.setText("");
+        txtNombres.setText("");
+        txtTelefono.setText("");
+        cbxEstado.setSelectedItem("Seleccionar");
+        txtUsuario.setText("");
+        txtDni.requestFocus();
+    }
     
+    public void limpiarTabla(){
+        for(int i = 0; i < modelo.getRowCount(); i++){
+            modelo.removeRow(i);
+            i = i - 1;
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
