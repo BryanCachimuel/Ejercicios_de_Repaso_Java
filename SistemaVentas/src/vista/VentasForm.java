@@ -1,6 +1,8 @@
 package vista;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
 import modelo.ClienteDAO;
 import modelo.Producto;
@@ -14,6 +16,11 @@ public class VentasForm extends javax.swing.JInternalFrame {
     
     ClienteDAO cdao = new ClienteDAO();
     ProductoDAO pdao = new ProductoDAO();
+    
+    Producto prod = new Producto();
+    
+    DefaultTableModel modelo = new DefaultTableModel();
+    int idproducto;
     
     public VentasForm() {
         initComponents();
@@ -33,7 +40,7 @@ public class VentasForm extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDetalle = new javax.swing.JTable();
+        tblTablaDetalle = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txtCodCliente = new javax.swing.JTextField();
@@ -125,7 +132,7 @@ public class VentasForm extends javax.swing.JInternalFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        tblDetalle.setModel(new javax.swing.table.DefaultTableModel(
+        tblTablaDetalle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -133,7 +140,7 @@ public class VentasForm extends javax.swing.JInternalFrame {
                 "NRO", "CÓDIGO", "PRODUCTO", "CANTIDAD", "PRECIO UNITARIO", "TOTAL"
             }
         ));
-        jScrollPane1.setViewportView(tblDetalle);
+        jScrollPane1.setViewportView(tblTablaDetalle);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -181,6 +188,11 @@ public class VentasForm extends javax.swing.JInternalFrame {
         jLabel11.setText("STOCK:");
 
         btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         jLabel12.setText("CANTIDAD:");
 
@@ -349,6 +361,10 @@ public class VentasForm extends javax.swing.JInternalFrame {
     private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
         buscarProducto();
     }//GEN-LAST:event_btnProductoActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        agregarProducto();
+    }//GEN-LAST:event_btnAgregarActionPerformed
     
     public void buscarCliente(){
         int r;
@@ -376,7 +392,7 @@ public class VentasForm extends javax.swing.JInternalFrame {
         if(txtCodProducto.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Debe ingresar un código de un producto");
         }else{
-            Producto prod = pdao.listarID(idProducto);
+            prod = pdao.listarID(idProducto);
             if(prod.getId() != 0){
                 txtProducto.setText(prod.getNombres());
                 txtPrecio.setText(""+prod.getPrecio());
@@ -385,6 +401,40 @@ public class VentasForm extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Producto no Registrado");
                 txtCodProducto.requestFocus();
             }
+        }
+    }
+    
+    public void agregarProducto(){
+        int item = 0;
+        double total = 0;
+        modelo = (DefaultTableModel)tblTablaDetalle.getModel();
+        item = item + 1; // para que cada vez que el usuario precione agregar este pueda incrementarse
+        idproducto = prod.getId();
+        String nombresProducto = txtProducto.getText();
+        double precioProducto = Double.parseDouble(txtPrecio.getText());
+        int cantidadProductos = Integer.parseInt(spnCantidad.getValue().toString());
+        int stock = Integer.parseInt(txtStock.getText());
+        total = cantidadProductos * precioProducto;
+        ArrayList listaProductos = new ArrayList();
+        if(stock > 0){
+            listaProductos.add(item);
+            listaProductos.add(idproducto);
+            listaProductos.add(nombresProducto);
+            listaProductos.add(precioProducto);
+            listaProductos.add(cantidadProductos);
+            listaProductos.add(stock);
+            listaProductos.add(total);
+            Object[] obp = new Object[6];
+            obp[0] = listaProductos.get(0);
+            obp[1] = listaProductos.get(1);
+            obp[2] = listaProductos.get(2);
+            obp[3] = listaProductos.get(3);
+            obp[4] = listaProductos.get(4);
+            obp[5] = listaProductos.get(5);
+            modelo.addRow(obp);
+            tblTablaDetalle.setModel(modelo);
+        }else{
+            JOptionPane.showMessageDialog(this, "El stock del producto es insuficiente");
         }
     }
 
@@ -415,7 +465,7 @@ public class VentasForm extends javax.swing.JInternalFrame {
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner spnCantidad;
-    private javax.swing.JTable tblDetalle;
+    private javax.swing.JTable tblTablaDetalle;
     private javax.swing.JTextField txtCliente;
     private javax.swing.JTextField txtCodCliente;
     private javax.swing.JTextField txtCodProducto;
