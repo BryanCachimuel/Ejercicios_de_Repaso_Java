@@ -3,6 +3,8 @@ package vista;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
 import modelo.ClienteDAO;
+import modelo.Producto;
+import modelo.ProductoDAO;
 
 /**
  *
@@ -11,6 +13,7 @@ import modelo.ClienteDAO;
 public class VentasForm extends javax.swing.JInternalFrame {
     
     ClienteDAO cdao = new ClienteDAO();
+    ProductoDAO pdao = new ProductoDAO();
     
     public VentasForm() {
         initComponents();
@@ -165,6 +168,11 @@ public class VentasForm extends javax.swing.JInternalFrame {
         jLabel8.setText("COD. PRODUCTO:");
 
         btnProducto.setText("Buscar");
+        btnProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductoActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("PRODUCTO:");
 
@@ -337,6 +345,10 @@ public class VentasForm extends javax.swing.JInternalFrame {
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
         buscarCliente();
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
+
+    private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
+        buscarProducto();
+    }//GEN-LAST:event_btnProductoActionPerformed
     
     public void buscarCliente(){
         int r;
@@ -355,6 +367,23 @@ public class VentasForm extends javax.swing.JInternalFrame {
                      Principal.VentanaPrincipal.add(cf);
                      cf.setVisible(true);
                  }
+            }
+        }
+    }
+    
+    public void buscarProducto(){
+        int idProducto = Integer.parseInt(txtCodProducto.getText());
+        if(txtCodProducto.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Debe ingresar un código de un producto");
+        }else{
+            Producto prod = pdao.listarID(idProducto);
+            if(prod.getId() != 0){
+                txtProducto.setText(prod.getNombres());
+                txtPrecio.setText(""+prod.getPrecio());
+                txtStock.setText(""+prod.getStock());
+            }else{
+                JOptionPane.showMessageDialog(this, "Producto no Registrado");
+                txtCodProducto.requestFocus();
             }
         }
     }
