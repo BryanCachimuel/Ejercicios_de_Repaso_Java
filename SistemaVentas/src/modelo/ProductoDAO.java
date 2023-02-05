@@ -18,6 +18,27 @@ public class ProductoDAO implements CRUD{
     ResultSet rs;
     Producto prod = new Producto();
     
+    public Producto listarID(int id){
+        Producto p = new Producto();
+        String sql = "SELECT * FROM producto WHERE idProducto=?";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while(rs.next()){
+               p.setId(rs.getInt(1));
+               p.setNombres(rs.getString(2));
+               p.setPrecio(rs.getDouble(3));
+               p.setStock(rs.getInt(4));
+               p.setEstado(rs.getString(5));
+            }
+        } catch (Exception e) {
+            System.out.println("Ocurrio un error durante el proceso de la consulta");
+        }
+        return p;
+    }
+    
     @Override
     public List listar() {
         List<Producto> listaproducto = new ArrayList<>();
