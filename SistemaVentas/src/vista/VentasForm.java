@@ -21,6 +21,9 @@ public class VentasForm extends javax.swing.JInternalFrame {
     
     DefaultTableModel modelo = new DefaultTableModel();
     int idproducto;
+    int cantidadProductos;
+    double precioProducto;
+    double totalPagar;
     
     public VentasForm() {
         initComponents();
@@ -58,7 +61,7 @@ public class VentasForm extends javax.swing.JInternalFrame {
         txtStock = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
-        spnCantidad = new javax.swing.JSpinner();
+        txtCantidad = new javax.swing.JSpinner();
         jLabel13 = new javax.swing.JLabel();
         txtVendedor = new javax.swing.JTextField();
         txtFecha = new javax.swing.JTextField();
@@ -155,8 +158,8 @@ public class VentasForm extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -218,7 +221,7 @@ public class VentasForm extends javax.swing.JInternalFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCodProducto)
                             .addComponent(txtPrecio)
-                            .addComponent(spnCantidad))))
+                            .addComponent(txtCantidad))))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtFecha)
@@ -284,7 +287,7 @@ public class VentasForm extends javax.swing.JInternalFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(spnCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
@@ -346,9 +349,9 @@ public class VentasForm extends javax.swing.JInternalFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -411,8 +414,8 @@ public class VentasForm extends javax.swing.JInternalFrame {
         item = item + 1; // para que cada vez que el usuario precione agregar este pueda incrementarse
         idproducto = prod.getId();
         String nombresProducto = txtProducto.getText();
-        double precioProducto = Double.parseDouble(txtPrecio.getText());
-        int cantidadProductos = Integer.parseInt(spnCantidad.getValue().toString());
+        precioProducto = Double.parseDouble(txtPrecio.getText());
+        cantidadProductos = Integer.parseInt(txtCantidad.getValue().toString());
         int stock = Integer.parseInt(txtStock.getText());
         total = cantidadProductos * precioProducto;
         ArrayList listaProductos = new ArrayList();
@@ -422,7 +425,6 @@ public class VentasForm extends javax.swing.JInternalFrame {
             listaProductos.add(nombresProducto);
             listaProductos.add(precioProducto);
             listaProductos.add(cantidadProductos);
-            listaProductos.add(stock);
             listaProductos.add(total);
             Object[] obp = new Object[6];
             obp[0] = listaProductos.get(0);
@@ -433,9 +435,20 @@ public class VentasForm extends javax.swing.JInternalFrame {
             obp[5] = listaProductos.get(5);
             modelo.addRow(obp);
             tblTablaDetalle.setModel(modelo);
+            calcularTotal();
         }else{
             JOptionPane.showMessageDialog(this, "El stock del producto es insuficiente");
         }
+    }
+    
+    public void calcularTotal(){
+        totalPagar = 0;
+        for(int i = 0; i < tblTablaDetalle.getRowCount(); i++){
+            cantidadProductos = Integer.parseInt(tblTablaDetalle.getValueAt(i, 3).toString());
+            precioProducto = Double.parseDouble(tblTablaDetalle.getValueAt(i, 4).toString());
+            totalPagar = cantidadProductos * precioProducto;
+        }
+        txtTotalPagar.setText(""+totalPagar);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -464,8 +477,8 @@ public class VentasForm extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner spnCantidad;
     private javax.swing.JTable tblTablaDetalle;
+    private javax.swing.JSpinner txtCantidad;
     private javax.swing.JTextField txtCliente;
     private javax.swing.JTextField txtCodCliente;
     private javax.swing.JTextField txtCodProducto;
