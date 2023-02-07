@@ -441,14 +441,17 @@ public class VentasForm extends javax.swing.JInternalFrame {
         }
     }
     
-    public void calcularTotal(){
+  public void calcularTotal(){
         totalPagar = 0;
+        double cantidad = Double.valueOf(cantidadProductos);
         for(int i = 0; i < tblTablaDetalle.getRowCount(); i++){
-            cantidadProductos = Integer.parseInt(tblTablaDetalle.getValueAt(i, 3).toString());
+            cantidad = Double.parseDouble(tblTablaDetalle.getValueAt(i, 3).toString());
             precioProducto = Double.parseDouble(tblTablaDetalle.getValueAt(i, 4).toString());
-            totalPagar = cantidadProductos * precioProducto;
+            totalPagar = totalPagar+(cantidad * precioProducto);
         }
-        txtTotalPagar.setText(""+totalPagar);
+        String total = String.valueOf(totalPagar);
+        txtTotalPagar.setText(total);
+        //txtTotalPagar.setText(totalPagar+"");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
