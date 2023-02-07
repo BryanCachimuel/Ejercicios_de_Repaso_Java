@@ -1,6 +1,8 @@
 package vista;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
@@ -13,20 +15,21 @@ import modelo.ProductoDAO;
  * @author Bryan
  */
 public class VentasForm extends javax.swing.JInternalFrame {
-    
+
     ClienteDAO cdao = new ClienteDAO();
     ProductoDAO pdao = new ProductoDAO();
-    
+
     Producto prod = new Producto();
-    
+
     DefaultTableModel modelo = new DefaultTableModel();
     int idproducto;
     int cantidadProductos;
     double precioProducto;
     double totalPagar;
-    
+
     public VentasForm() {
         initComponents();
+        fecha();
     }
 
     @SuppressWarnings("unchecked")
@@ -297,6 +300,11 @@ public class VentasForm extends javax.swing.JInternalFrame {
         jLabel14.setText("TOTAL A PAGAR:");
 
         btnGenerarVenta.setText("Generar Venta");
+        btnGenerarVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarVentaActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
 
@@ -368,49 +376,54 @@ public class VentasForm extends javax.swing.JInternalFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         agregarProducto();
     }//GEN-LAST:event_btnAgregarActionPerformed
-    
-    public void buscarCliente(){
+
+    private void btnGenerarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarVentaActionPerformed
+        guardarVenta();
+        guardarDetalle();
+    }//GEN-LAST:event_btnGenerarVentaActionPerformed
+
+    public void buscarCliente() {
         int r;
         String codigo = txtCodCliente.getText();
-        if(txtCodCliente.getText().equals("")){
+        if (txtCodCliente.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Debe ingresar el código del cliente");
-        }else{
+        } else {
             Cliente cliente = cdao.listarID(codigo);
-            if(cliente.getDni() != null){
+            if (cliente.getDni() != null) {
                 txtCliente.setText(cliente.getNombres());
                 txtCodProducto.requestFocus();
-            }else{
-                 r = JOptionPane.showConfirmDialog(this, "Cliente No Registrado, Desea Registrar?");
-                 if(r == 0){
-                     ClienteForm cf = new ClienteForm();
-                     Principal.VentanaPrincipal.add(cf);
-                     cf.setVisible(true);
-                 }
+            } else {
+                r = JOptionPane.showConfirmDialog(this, "Cliente No Registrado, Desea Registrar?");
+                if (r == 0) {
+                    ClienteForm cf = new ClienteForm();
+                    Principal.VentanaPrincipal.add(cf);
+                    cf.setVisible(true);
+                }
             }
         }
     }
-    
-    public void buscarProducto(){
+
+    public void buscarProducto() {
         int idProducto = Integer.parseInt(txtCodProducto.getText());
-        if(txtCodProducto.getText().equals("")){
+        if (txtCodProducto.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Debe ingresar un código de un producto");
-        }else{
+        } else {
             prod = pdao.listarID(idProducto);
-            if(prod.getId() != 0){
+            if (prod.getId() != 0) {
                 txtProducto.setText(prod.getNombres());
-                txtPrecio.setText(""+prod.getPrecio());
-                txtStock.setText(""+prod.getStock());
-            }else{
+                txtPrecio.setText("" + prod.getPrecio());
+                txtStock.setText("" + prod.getStock());
+            } else {
                 JOptionPane.showMessageDialog(this, "Producto no Registrado");
                 txtCodProducto.requestFocus();
             }
         }
     }
-    
-    public void agregarProducto(){
+
+    public void agregarProducto() {
         int item = 0;
         double total = 0;
-        modelo = (DefaultTableModel)tblTablaDetalle.getModel();
+        modelo = (DefaultTableModel) tblTablaDetalle.getModel();
         item = item + 1; // para que cada vez que el usuario precione agregar este pueda incrementarse
         idproducto = prod.getId();
         String nombresProducto = txtProducto.getText();
@@ -419,7 +432,7 @@ public class VentasForm extends javax.swing.JInternalFrame {
         int stock = Integer.parseInt(txtStock.getText());
         total = cantidadProductos * precioProducto;
         ArrayList listaProductos = new ArrayList();
-        if(stock > 0){
+        if (stock > 0) {
             listaProductos.add(item);
             listaProductos.add(idproducto);
             listaProductos.add(nombresProducto);
@@ -436,22 +449,49 @@ public class VentasForm extends javax.swing.JInternalFrame {
             modelo.addRow(obp);
             tblTablaDetalle.setModel(modelo);
             calcularTotal();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "El stock del producto es insuficiente");
         }
     }
-    
-  public void calcularTotal(){
+
+    public void calcularTotal() {
         totalPagar = 0;
         double cantidad = Double.valueOf(cantidadProductos);
-        for(int i = 0; i < tblTablaDetalle.getRowCount(); i++){
+        for (int i = 0; i < tblTablaDetalle.getRowCount(); i++) {
             cantidad = Double.parseDouble(tblTablaDetalle.getValueAt(i, 3).toString());
             precioProducto = Double.parseDouble(tblTablaDetalle.getValueAt(i, 4).toString());
-            totalPagar = totalPagar+(cantidad * precioProducto);
+            totalPagar = totalPagar + (cantidad * precioProducto);
         }
         String total = String.valueOf(totalPagar);
         txtTotalPagar.setText(total);
         //txtTotalPagar.setText(totalPagar+"");
+    }
+
+    public void guardarVenta() {
+
+    }
+
+    public void guardarDetalle() {
+
+    }
+
+    public void fecha() {
+        Calendar calendar = new GregorianCalendar();     
+        int anio = calendar.get(Calendar.YEAR);
+        int mes = calendar.get(Calendar.MONTH) + 1;
+        int dia = calendar.get(Calendar.DATE);
+
+        if(mes < 10) {
+            txtFecha.setText(anio + "/0" + mes + "/" + dia);
+        }
+        if(dia < 10) {
+            txtFecha.setText(anio + "/" + mes + "/0" + dia);
+        }
+        if(dia > 10 && mes > 10) {
+            txtFecha.setText(anio + "/" + mes + "/" + dia);
+        }else if (dia < 10 && mes < 10) {
+            txtFecha.setText(anio + "/0" + mes + "/0" + dia);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
