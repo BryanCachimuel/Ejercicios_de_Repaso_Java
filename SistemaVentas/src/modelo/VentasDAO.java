@@ -32,4 +32,22 @@ public class VentasDAO {
         return idv;
     }
     
+    public int GuardarVentas(Ventas v){
+        Ventas ventas = new Ventas();
+        String sql = "INSERT INTO ventas(IdCliente,IdVendedor,NumeroSerie,FechaVentas,Monto,Estado) VALUES(?,?,?,?,?,?)";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, v.getIdCliente());
+            ps.setInt(2, v.getIdVendedor());
+            ps.setString(3, v.getSerie());
+            ps.setString(4, v.getFecha());
+            ps.setDouble(5, v.getMonto());
+            ps.setString(6, v.getEstado());
+            respuesta = ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Ocurrio un error durante el proceso de la consulta");
+        }
+        return respuesta;
+    }
 }
