@@ -50,4 +50,20 @@ public class VentasDAO {
         }
         return respuesta;
     }
+    
+    public int GuardarDetalleVentas(DetalleVentas dv){
+        String sql = "INSERT INTO detalle_ventas(IdVentas,IdProducto,Cantidad,PrecioVenta) VALUES(?,?,?,?)";
+        try {
+           con = cn.getConnection();
+           ps = con.prepareStatement(sql);
+           ps.setInt(1, dv.getIdVentas());
+           ps.setInt(2, dv.getIdProducto());
+           ps.setInt(3, dv.getCantidad());
+           ps.setDouble(4, dv.getPrecioVenta());                     
+           ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Ocurrio un error durante el proceso de la consulta");
+        }
+        return respuesta;
+    }
 }
