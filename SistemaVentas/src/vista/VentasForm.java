@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
 import modelo.ClienteDAO;
+import modelo.DetalleVentas;
 import modelo.Producto;
 import modelo.ProductoDAO;
 import modelo.Ventas;
@@ -20,6 +21,7 @@ public class VentasForm extends javax.swing.JInternalFrame {
     
     VentasDAO vdao = new VentasDAO();
     ClienteDAO cdao = new ClienteDAO();
+    Cliente cliente = new Cliente();
     ProductoDAO pdao = new ProductoDAO();
 
     Producto prod = new Producto();
@@ -30,6 +32,7 @@ public class VentasForm extends javax.swing.JInternalFrame {
     double precioProducto;
     double totalPagar;
     Ventas v = new Ventas();
+    DetalleVentas dv = new DetalleVentas();
 
     public VentasForm() {
         initComponents();
@@ -392,7 +395,7 @@ public class VentasForm extends javax.swing.JInternalFrame {
         if (txtCodCliente.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Debe ingresar el código del cliente");
         } else {
-            Cliente cliente = cdao.listarID(codigo);
+            cliente = cdao.listarID(codigo);
             if (cliente.getDni() != null) {
                 txtCliente.setText(cliente.getNombres());
                 txtCodProducto.requestFocus();
@@ -472,8 +475,8 @@ public class VentasForm extends javax.swing.JInternalFrame {
     }
 
     public void guardarVenta() {
-        int idv = 0;
-        int idc = 0;
+        int idv = 1;
+        int idc = cliente.getId();
         String serie = txtSerie.getText();
         String fecha = txtFecha.getText();
         double monto = totalPagar;
@@ -489,7 +492,19 @@ public class VentasForm extends javax.swing.JInternalFrame {
     }
 
     public void guardarDetalle() {
-
+        String idv = vdao.IdVentas();
+        int idve = Integer.parseInt(idv);
+        for(int i = 0; i < tblTablaDetalle.getRowCount(); i++) {
+           int idp = Integer.parseInt(tblTablaDetalle.getValueAt(i, 1).toString());
+           int cantidad = Integer.parseInt(tblTablaDetalle.getValueAt(i, 3).toString());
+           double precioventa = Double.parseDouble(tblTablaDetalle.getValueAt(i, 4).toString());
+           dv.setIdVentas(idve);
+           dv.setIdProducto(idp);
+           dv.setCantidad(cantidad);
+           dv.setPrecioVenta(precioventa);
+           vdao.GuardarDetalleVentas(dv);
+           JOptionPane.showMessageDialog(this, "Venta Generada Correctamente");
+        }
     }
 
     public void fecha() {
