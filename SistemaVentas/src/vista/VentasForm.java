@@ -9,13 +9,16 @@ import modelo.Cliente;
 import modelo.ClienteDAO;
 import modelo.Producto;
 import modelo.ProductoDAO;
+import modelo.Ventas;
+import modelo.VentasDAO;
 
 /**
  *
  * @author Bryan
  */
 public class VentasForm extends javax.swing.JInternalFrame {
-
+    
+    VentasDAO vdao = new VentasDAO();
     ClienteDAO cdao = new ClienteDAO();
     ProductoDAO pdao = new ProductoDAO();
 
@@ -26,6 +29,7 @@ public class VentasForm extends javax.swing.JInternalFrame {
     int cantidadProductos;
     double precioProducto;
     double totalPagar;
+    Ventas v = new Ventas();
 
     public VentasForm() {
         initComponents();
@@ -468,7 +472,20 @@ public class VentasForm extends javax.swing.JInternalFrame {
     }
 
     public void guardarVenta() {
-
+        int idv = 0;
+        int idc = 0;
+        String serie = txtSerie.getText();
+        String fecha = txtFecha.getText();
+        double monto = totalPagar;
+        String estado = "1";
+        
+        v.setIdCliente(idc);
+        v.setIdVendedor(idv);
+        v.setSerie(serie);
+        v.setFecha(fecha);
+        v.setMonto(monto);
+        v.setEstado(estado);
+        vdao.GuardarVentas(v);
     }
 
     public void guardarDetalle() {
