@@ -18,7 +18,7 @@ public class VentasDAO {
     
     public String IdVentas(){
         String idv = "";
-        String sql = "SELECT * FROM ventas";
+        String sql = "SELECT max(IdVentas) FROM ventas";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -65,5 +65,21 @@ public class VentasDAO {
             System.out.println("Ocurrio un error durante el proceso de la consulta");
         }
         return respuesta;
+    }
+    
+    public String NroSerieVentas(){
+        String serie = "";
+        String sql = "SELECT max(NumeroSerie) FROM ventas";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                serie = rs.getString(1);
+            }
+        } catch (Exception e) {
+            System.out.println("Ocurrio un error durante el proceso de la consulta");
+        }
+        return serie;
     }
 }
