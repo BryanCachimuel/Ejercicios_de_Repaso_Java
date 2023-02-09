@@ -36,7 +36,19 @@ public class VentasForm extends javax.swing.JInternalFrame {
 
     public VentasForm() {
         initComponents();
+        generarSerie();
         fecha();
+    }
+    
+    public void generarSerie(){
+        String serie = vdao.NroSerieVentas();
+        if(serie == null){
+            txtSerie.setText("0000001");
+        }else{
+            int incrementar = Integer.parseInt(serie);
+            incrementar += 1;
+            txtSerie.setText("000000"+incrementar);
+        }
     }
 
     @SuppressWarnings("unchecked")
