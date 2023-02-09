@@ -39,6 +39,21 @@ public class ProductoDAO implements CRUD{
         return p;
     }
     
+    public int actualizarStock(int cantidad, int idProducto){
+        int r = 0;
+        String sql = "UPDATE producto SET Stock=? WHERE idProducto=?";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, cantidad);
+            ps.setInt(2, idProducto);
+            ps.executeQuery();
+        } catch (Exception e) {
+            System.out.println("Ocurrio un error durante el proceso de la consulta");
+        }
+        return r;
+    }
+    
     @Override
     public List listar() {
         List<Producto> listaproducto = new ArrayList<>();
