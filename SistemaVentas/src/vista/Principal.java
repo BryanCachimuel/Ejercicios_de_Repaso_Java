@@ -2,13 +2,15 @@ package vista;
 
 import java.awt.Dimension;
 import javax.swing.JInternalFrame;
+import modelo.EntidadVendedor;
+import modelo.VendedorDAO;
 
 /**
  *
  * @author Bryan
  */
 public class Principal extends javax.swing.JFrame {
-
+    
     public Principal() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
