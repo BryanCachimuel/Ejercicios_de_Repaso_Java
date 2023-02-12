@@ -39,6 +39,8 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel3.setText("USUARIO:");
 
+        txtUser.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
         btnInicioSesion.setBackground(new java.awt.Color(0, 153, 153));
         btnInicioSesion.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         btnInicioSesion.setText("INICIAR SESIÓN");
@@ -51,6 +53,8 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setText("INICIO DE SESIÓN");
+
+        txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -130,6 +134,7 @@ public class LoginForm extends javax.swing.JFrame {
             if(ev.getUser() != null && ev.getDni() != null) {
                 Principal p = new Principal();
                 p.setVisible(true);
+                //p.lblNombre.setText(ev.getNombre());
                 dispose();
             }else{
                 JOptionPane.showMessageDialog(this, "Debe Ingresar un usuario Valido");
