@@ -13,21 +13,21 @@
                     <h3>Inicio de Sesión</h3>
                     <img src="./publico/imagen/carrito.png" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <form>
+                        <form method="POST" action="Validar">
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Cédula de Identidad:</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <label for="txtusuario" class="form-label">Cédula de Identidad:</label>
+                                <input type="text" class="form-control" id="txtusuario" name="txtusuario">
                                 <div id="emailHelp" class="form-text">Ingrese su Cédula de Identidad sin Espacios y Giones</div>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Contraseña:</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
+                                <label for="txtpassword" class="form-label">Contraseña:</label>
+                                <input type="password" class="form-control" id="txtpassword" name="txtpassword">
                             </div>
                             <div class="mb-3 form-check">
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                 <label class="form-check-label" for="exampleCheck1">Permanecer Logeado</label>
                             </div>
-                            <button type="submit" class="btn btn-primary">Ingresar</button>
+                            <button type="submit" class="btn btn-primary" name="accion" value="Ingresar">Ingresar</button>
                         </form>
                     </div>
                 </div>
