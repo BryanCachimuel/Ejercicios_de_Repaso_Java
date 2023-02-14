@@ -18,31 +18,31 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-house"></i> Inicio</a>
+                            <a class="nav-link active" aria-current="page" href="#" target="miContenedor"><i class="fa-solid fa-house"></i> Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Productos</a>
+                            <a class="nav-link active" aria-current="page" href="Controlador?menu=Productos" target="miContenedor">Productos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Empleados</a>
+                            <a class="nav-link active" aria-current="page"href="Controlador?menu=Empleados" target="miContenedor">Empleados</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Clientes</a>
+                            <a class="nav-link active" aria-current="page" href="Controlador?menu=Clientes" target="miContenedor">Clientes</a>
                         </li>
                          <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Ventas</a>
+                            <a class="nav-link active" aria-current="page" href="Controlador?menu=Ventas" target="miContenedor">Ventas</a>
                         </li>
                     </ul>
                     <div class="btn-group">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Nombre de Usuario
+                            ${usuarios.getNombre()}
                         </a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#"><i class="fa-solid fa-user"></i></a>
-                            <a class="dropdown-item" href="#">Cédula</a>
-                            <a class="dropdown-item" href="#">correo@gmail.com</a>
+                            <a class="dropdown-item" href="#">${usuarios.getCedula()}</a>
+                            <a class="dropdown-item" href="#">${usuarios.getCorreo()}</a>
                             <div class="dropdown-divider"></div>
-                            <form>
+                            <form class="dropdown-item" method="POST" action="Validar">
                                 <button class="dropdown-item btn btn-danger" type="submit" name="accion" value="Salir">Cerrar Sesión</button>
                             </form>
                         </div>
