@@ -32,6 +32,14 @@ public class Controlador extends HttpServlet {
         
         if(menu.equals("Principal")){
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
+        }else if(menu.equals("Productos")){
+            request.getRequestDispatcher("Productos.jsp").forward(request, response);
+        }else if(menu.equals("Empleados")){
+            request.getRequestDispatcher("Empleados.jsp").forward(request, response);
+        }else if(menu.equals("Clientes")){
+            request.getRequestDispatcher("Clientes.jsp").forward(request, response);
+        }else if(menu.equals("Ventas")){
+            request.getRequestDispatcher("Ventas.jsp").forward(request, response);
         }
         
     }
