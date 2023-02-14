@@ -20,9 +20,9 @@ public class UsuariosDAO {
     
     public Usuarios Validar(int cedula, String password){
         Usuarios usuarios = new Usuarios();
-        String consulta = "SELECT * FROM usuarios WHERE cedula=? AND password=?";
-        con = cn.Conexion();
+        String consulta = "SELECT * FROM usuarios WHERE cedula=? AND password=?";   
         try {
+            con = cn.Conexion();
             ps = con.prepareStatement(consulta);
             ps.setInt(1, cedula);
             ps.setString(2, password);
