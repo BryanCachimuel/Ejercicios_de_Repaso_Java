@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
     <head>
@@ -9,7 +10,7 @@
     <body>
         <div class="container mt-5">
             <div class="row">
-                <div class="col-4">
+                <div class="col-3">
                     <div class="card">
                         <div class="card-body">
                             <form action="Controlador?menu=Empleados" method="POST">
@@ -49,10 +50,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-8">
+                <div class="col-9">
                     <table class="table">
-                        <thead>
-                            <tr>
+                        <thead class="table-dark">
+                            <tr class="text-white">
+                                <th scope="col">Id</th>
                                 <th scope="col">Cédula</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Correo</th>
@@ -63,7 +65,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                           
+                            <c:forEach var="usuario" items="${usuarios}">
+                                <tr>
+                                    <th scope="row">${usuario.getId()}</th>
+                                    <td>${usuario.getCedula()}</td>
+                                    <td>${usuario.getNombre()}</td>
+                                    <td>${usuario.getCorreo()}</td>
+                                    <td>${usuario.getPassword()}</td>
+                                    <td>${usuario.getRol()}</td>
+                                    <td>${usuario.getEstado()}</td>
+                                    <td>
+                                        <a class="btn btn-warning">Editar</a>
+                                        <a class="btn btn-danger">Eliminar</a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </div>
