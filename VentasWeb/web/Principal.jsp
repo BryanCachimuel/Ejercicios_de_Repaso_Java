@@ -24,7 +24,7 @@
                             <a class="nav-link active" aria-current="page" href="Controlador?menu=Productos" target="miContenedor">Productos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page"href="Controlador?menu=Empleados" target="miContenedor">Empleados</a>
+                            <a class="nav-link active" aria-current="page"href="Controlador?menu=Empleados&accion=Listar" target="miContenedor">Empleados</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="Controlador?menu=Clientes" target="miContenedor">Clientes</a>
@@ -43,7 +43,7 @@
                             <a class="dropdown-item" href="#">${usuarios.getCorreo()}</a>
                             <div class="dropdown-divider"></div>
                             <form class="dropdown-item" method="POST" action="Validar">
-                                <button class="dropdown-item btn btn-danger" type="submit" name="accion" value="Salir">Cerrar Sesión</button>
+                                <button class="dropdown-item" type="submit" name="accion" value="Salir">Cerrar Sesión</button>
                             </form>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
         </nav>
         
         <div class="ratio ratio-16x9" style="height:900px;">
-            <iframe name="miContenedor" style="height:100%; width:100%;" frameBorder="1"></iframe>
+                <iframe name="miContenedor" style="height:100%; width:100%;" frameBorder="1"></iframe>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
