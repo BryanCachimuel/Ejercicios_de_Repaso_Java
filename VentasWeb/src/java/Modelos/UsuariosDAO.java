@@ -20,6 +20,8 @@ public class UsuariosDAO {
     ResultSet rs;
     Conexion cn = new Conexion();
     
+     int respuesta;
+    
     public Usuarios Validar(int cedula, String password){
         Usuarios usuarios = new Usuarios();
         String consulta = "SELECT * FROM usuarios WHERE cedula=? AND password=?";   
@@ -66,5 +68,23 @@ public class UsuariosDAO {
             Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lista;
+    }
+    
+    public int Agregar(Usuarios usuarios){
+        String consulta = "INSERT INTO usuarios(cedula,nombre,correo,password,rol,estado) VALUES(?,?,?,?,?,?)";
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(consulta);
+            ps.setInt(1, usuarios.getCedula());
+            ps.setString(2, usuarios.getNombre());
+            ps.setString(3, usuarios.getCorreo());
+            ps.setString(4, usuarios.getPassword());
+            ps.setString(5, usuarios.getRol());
+            ps.setString(6, usuarios.getEstado());
+            respuesta = ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return respuesta;
     }
 }
