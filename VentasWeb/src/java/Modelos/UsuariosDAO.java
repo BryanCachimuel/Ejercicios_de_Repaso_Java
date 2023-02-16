@@ -108,4 +108,23 @@ public class UsuariosDAO {
         }
         return usuarios;
     }
+    
+    public int Actualizar(Usuarios usuarios){
+        String consulta = "UPDATE usuarios SET cedula=?,nombre=?,correo=?,password=?,rol=?,estado=? WHERE id=?";
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(consulta);
+            ps.setInt(1, usuarios.getCedula());
+            ps.setString(2, usuarios.getNombre());
+            ps.setString(3, usuarios.getCorreo());
+            ps.setString(4, usuarios.getPassword());
+            ps.setString(5, usuarios.getRol());
+            ps.setString(6, usuarios.getEstado());
+            ps.setInt(7, usuarios.getId());
+            respuesta = ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return respuesta;
+    }
 }
