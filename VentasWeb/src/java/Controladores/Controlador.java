@@ -20,6 +20,8 @@ public class Controlador extends HttpServlet {
     
     Usuarios usuarios = new Usuarios();
     UsuariosDAO usuariosDAO = new UsuariosDAO();
+    
+    int idUsuario;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -63,9 +65,13 @@ public class Controlador extends HttpServlet {
                     usuariosDAO.Agregar(usuarios);
                     request.getRequestDispatcher("Controlador?menu=Empleados&accion=Listar").forward(request, response);
                     break;
-                case "Actualizar":
-                break;
                 case "Cargar":
+                    idUsuario = Integer.parseInt(request.getParameter("id"));
+                    Usuarios usuarios = usuariosDAO.ListarPorId(idUsuario);
+                    request.setAttribute("usuarioSeleccionado", usuarios);
+                    request.getRequestDispatcher("Controlador?menu=Empleados&accion=Listar").forward(request, response);
+                    break;
+                case "Actualizar":
                 break;
                 case "Eliminar":
                 break;
