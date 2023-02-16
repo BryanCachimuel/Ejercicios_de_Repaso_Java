@@ -72,6 +72,22 @@ public class Controlador extends HttpServlet {
                     request.getRequestDispatcher("Controlador?menu=Empleados&accion=Listar").forward(request, response);
                     break;
                 case "Actualizar":
+                    Usuarios usuario = new Usuarios();
+                    int cedulaActualizar = Integer.parseInt(request.getParameter("txtcedula"));
+                    String nombreActualizar =request.getParameter("txtnombre");
+                    String correoActualizar = request.getParameter("txtcorreo");
+                    String passwordActualizar = request.getParameter("txtpassword");
+                    String rolActualizar = request.getParameter("txtrol");
+                    String estadoActualizar = request.getParameter("txtestado");
+                    usuario.setCedula(cedulaActualizar);
+                    usuario.setNombre(nombreActualizar);
+                    usuario.setCorreo(correoActualizar);
+                    usuario.setPassword(passwordActualizar);
+                    usuario.setRol(rolActualizar);
+                    usuario.setEstado(estadoActualizar);
+                    usuario.setId(idUsuario);
+                    usuariosDAO.Actualizar(usuario);
+                    request.getRequestDispatcher("Controlador?menu=Empleados&accion=Listar").forward(request, response);
                 break;
                 case "Eliminar":
                 break;
