@@ -16,19 +16,19 @@
                             <form action="Controlador?menu=Empleados" method="POST">
                                 <div class="mb-3">
                                     <label for="txtcedula" class="form-label">Cédula: </label>
-                                    <input type="number" class="form-control" id="txtcedula" name="txtcedula">
+                                    <input type="number" class="form-control" id="txtcedula" name="txtcedula" value="${usuarioSeleccionado.getCedula()}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="txtnombre" class="form-label">Nombre: </label>
-                                    <input type="text" class="form-control" id="txtnombre" name="txtnombre">
+                                    <input type="text" class="form-control" id="txtnombre" name="txtnombre" value="${usuarioSeleccionado.getNombre()}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="txtcorreo" class="form-label">Correo: </label>
-                                    <input type="email" class="form-control" id="txtcorreo" name="txtcorreo">
+                                    <input type="email" class="form-control" id="txtcorreo" name="txtcorreo" value="${usuarioSeleccionado.getCorreo()}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="txtpassword" class="form-label">Contraseña: </label>
-                                    <input type="text" class="form-control" id="txtpassword" name="txtpassword">
+                                    <input type="text" class="form-control" id="txtpassword" name="txtpassword" value="${usuarioSeleccionado.getPassword()}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="txtrol" class="form-label">Rol: </label>
@@ -75,8 +75,8 @@
                                     <td>${usuario.getRol()}</td>
                                     <td>${usuario.getEstado()}</td>
                                     <td>
-                                        <a class="btn btn-warning">Editar</a>
-                                        <a class="btn btn-danger">Eliminar</a>
+                                        <a class="btn btn-warning" href="Controlador?menu=Empleados&accion=Cargar&id=${usuario.getId()}">Editar</a>
+                                        <a class="btn btn-danger" href="Controlador?menu=Empleados&accion=Eliminar&id=${usuario.getId()}">Eliminar</a>
                                     </td>
                                 </tr>
                             </c:forEach>
