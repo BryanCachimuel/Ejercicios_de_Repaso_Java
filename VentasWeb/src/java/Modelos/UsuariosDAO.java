@@ -87,4 +87,25 @@ public class UsuariosDAO {
         }
         return respuesta;
     }
+    
+    public Usuarios ListarPorId(int id){
+        Usuarios usuarios = new Usuarios();
+        String consulta = "SELECT * FROM usuarios WHERE id=" + id;
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(consulta);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                usuarios.setCedula(rs.getInt(2));
+                usuarios.setNombre(rs.getString(3));
+                usuarios.setCorreo(rs.getString(4));
+                usuarios.setPassword(rs.getString(5));
+                usuarios.setRol(rs.getString(6));
+                usuarios.setEstado(rs.getString(7));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return usuarios;
+    }
 }
