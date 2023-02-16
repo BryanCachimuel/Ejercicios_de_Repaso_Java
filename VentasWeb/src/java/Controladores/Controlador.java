@@ -88,9 +88,12 @@ public class Controlador extends HttpServlet {
                     usuario.setId(idUsuario);
                     usuariosDAO.Actualizar(usuario);
                     request.getRequestDispatcher("Controlador?menu=Empleados&accion=Listar").forward(request, response);
-                break;
+                    break;
                 case "Eliminar":
-                break;
+                    idUsuario = Integer.parseInt(request.getParameter("id"));
+                    usuariosDAO.Eliminar(idUsuario);
+                    request.getRequestDispatcher("Controlador?menu=Empleados&accion=Listar").forward(request, response);
+                    break;
             }
             request.getRequestDispatcher("Empleados.jsp").forward(request, response);
         }else if(menu.equals("Clientes")){
