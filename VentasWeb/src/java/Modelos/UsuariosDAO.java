@@ -127,4 +127,15 @@ public class UsuariosDAO {
         }
         return respuesta;
     }
+    
+    public void Eliminar(int id){
+        String consulta = "DELETE FROM usuarios WHERE id=" + id;
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(consulta);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
