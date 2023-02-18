@@ -43,4 +43,20 @@ public class ProductosDAO {
         }
         return listaproductos;
     }
+    
+    public int AgregarProductos(Productos productos){
+        String consulta = "INSERT INTO productos(nombreproducto,descripcionproducto,unidad,precio) VALUES(?,?,?,?)";
+        try {
+           con = cn.Conexion();
+           ps = con.prepareStatement(consulta);
+           ps.setString(1, productos.getNombreproducto());
+           ps.setString(2, productos.getDescripcionproducto());
+           ps.setString(3, productos.getUnidad());
+           ps.setDouble(4, productos.getPrecio());
+           respuesta = ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return respuesta;
+    }
 }
