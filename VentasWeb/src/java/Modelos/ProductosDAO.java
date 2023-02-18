@@ -59,4 +59,23 @@ public class ProductosDAO {
         }
         return respuesta;
     }
+    
+    public Productos ListarPorId(int id){
+        Productos productos = new Productos();
+        String consulta = "SELECT * FROM productos WHERE id=" + id;
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(consulta);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                productos.setNombreproducto(rs.getString(2));
+                productos.setDescripcionproducto(rs.getString(3));
+                productos.setUnidad(rs.getString(4));
+                productos.setPrecio(rs.getDouble(5));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return productos;
+    }
 }
