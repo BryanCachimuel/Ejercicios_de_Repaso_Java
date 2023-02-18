@@ -60,7 +60,7 @@ public class ProductosDAO {
         return respuesta;
     }
     
-    public Productos ListarProductosId(int id){
+    public Productos ListarProductoPorId(int id){
         Productos productos = new Productos();
         String consulta = "SELECT * FROM productos WHERE idproducto=" + id;
         try {
@@ -79,7 +79,7 @@ public class ProductosDAO {
         return productos;
     }
     
-    public int ActualizarProductos(Productos productos){
+    public int ActualizarProducto(Productos productos){
         String consulta = "UPDATE productos SET nombreproducto=?,descripcionproducto=?,unidad=?,precio=? WHERE idproducto=?";
         try {
             con = cn.Conexion();
@@ -94,5 +94,16 @@ public class ProductosDAO {
             Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return respuesta;
+    }
+    
+    public void EliminarProducto(int id){
+        String consulta = "DELETE FROM productos WHERE idproducto=" + id;
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(consulta);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
