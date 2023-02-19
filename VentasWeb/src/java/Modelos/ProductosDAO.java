@@ -31,7 +31,7 @@ public class ProductosDAO {
             rs = ps.executeQuery();
             while(rs.next()){
                 Productos producto = new Productos();
-                producto.setId(rs.getInt("id"));
+                producto.setId(rs.getInt("idproducto"));
                 producto.setNombreproducto(rs.getString("nombreproducto"));
                 producto.setDescripcionproducto(rs.getString("descripcionproducto"));
                 producto.setUnidad(rs.getString("unidad"));
