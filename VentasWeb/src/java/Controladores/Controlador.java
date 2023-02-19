@@ -1,5 +1,7 @@
 package Controladores;
 
+import Modelos.Productos;
+import Modelos.ProductosDAO;
 import Modelos.Usuarios;
 import Modelos.UsuariosDAO;
 import java.io.IOException;
@@ -21,7 +23,11 @@ public class Controlador extends HttpServlet {
     Usuarios usuarios = new Usuarios();
     UsuariosDAO usuariosDAO = new UsuariosDAO();
     
+    Productos productos = new Productos();
+    ProductosDAO productosDAO = new ProductosDAO();
+    
     int idUsuario;
+    int idProductos;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,6 +48,23 @@ public class Controlador extends HttpServlet {
         if(menu.equals("Principal")){
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
         }else if(menu.equals("Productos")){
+            switch(accion){
+                case "ListarProductos":
+                    List listarProductos = productosDAO.ListarProductos();
+                    request.setAttribute("productos", listarProductos);
+                    break;
+                case "AgregarProductos":
+                    String nombreproducto = request.getParameter("txtproducto");
+                    String descripcionproducto = request.getParameter("txtdescripcion");
+                    String unidad = request.getParameter("txtunidad");
+                    double precio = Double.parseDouble(request.getParameter("txtprecio"));
+                    productos.setNombreproducto(nombreproducto);
+                    productos.setDescripcionproducto(descripcionproducto);
+                    productos.setUnidad(unidad);
+                    productos.setPrecio(precio);
+                    productosDAO.AgregarProductos(productos);
+                    request.getRequestDispatcher("Controlador?menu=Productos&accion=ListarProductos").forward(request, response);
+            }
             request.getRequestDispatcher("Productos.jsp").forward(request, response);
         }else if(menu.equals("Empleados")){
             switch(accion){
