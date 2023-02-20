@@ -71,6 +71,20 @@ public class Controlador extends HttpServlet {
                     request.setAttribute("productoSeleccionado", productos);
                     request.getRequestDispatcher("Controlador?menu=Productos&accion=ListarProductos").forward(request, response);
                     break;
+                case "ActualizarProductos":
+                    Productos producto = new Productos();
+                    String nombreProducto = request.getParameter("txtproducto");
+                    String descripcionProducto = request.getParameter("txtdescripcion");
+                    String unidadProducto = request.getParameter("txtunidad");
+                    double precioProducto = Double.parseDouble(request.getParameter("txtprecio"));
+                    producto.setNombreproducto(nombreProducto);
+                    producto.setDescripcionproducto(descripcionProducto);
+                    producto.setUnidad(unidadProducto);
+                    producto.setPrecio(precioProducto);
+                    producto.setId(idProducto);
+                    productosDAO.ActualizarProducto(producto);
+                    request.getRequestDispatcher("Controlador?menu=Productos&accion=ListarProductos").forward(request, response);
+                    break;
             }
             request.getRequestDispatcher("Productos.jsp").forward(request, response);
         }else if(menu.equals("Empleados")){
