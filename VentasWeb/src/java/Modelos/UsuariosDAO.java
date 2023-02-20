@@ -70,6 +70,30 @@ public class UsuariosDAO {
         return lista;
     }
     
+    public List ListarClientes(){
+        String consulta = "SELECT * FROM usuarios WHERE rol='Cliente'";
+        List<Usuarios> listaempleado = new ArrayList<>();
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(consulta);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                Usuarios usuario = new Usuarios();
+                usuario.setId(rs.getInt("id"));
+                usuario.setCedula(rs.getInt("cedula"));
+                usuario.setNombre(rs.getString("nombre"));
+                usuario.setCorreo(rs.getString("correo"));
+                usuario.setPassword(rs.getString("password"));
+                usuario.setRol(rs.getString("rol"));
+                usuario.setEstado(rs.getString("estado"));  
+                listaempleado.add(usuario);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaempleado;
+    }
+    
     public int Agregar(Usuarios usuarios){
         String consulta = "INSERT INTO usuarios(cedula,nombre,correo,password,rol,estado) VALUES(?,?,?,?,?,?)";
         try {
