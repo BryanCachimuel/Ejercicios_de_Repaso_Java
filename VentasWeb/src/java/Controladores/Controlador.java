@@ -27,7 +27,7 @@ public class Controlador extends HttpServlet {
     ProductosDAO productosDAO = new ProductosDAO();
     
     int idUsuario;
-    int idProductos;
+    int idProducto;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -64,6 +64,13 @@ public class Controlador extends HttpServlet {
                     productos.setPrecio(precio);
                     productosDAO.AgregarProductos(productos);
                     request.getRequestDispatcher("Controlador?menu=Productos&accion=ListarProductos").forward(request, response);
+                    break;
+                case "CargarProductos":
+                    idProducto = Integer.parseInt(request.getParameter("idproducto"));
+                    Productos productos = productosDAO.ListarProductoPorId(idProducto);
+                    request.setAttribute("productoSeleccionado", productos);
+                    request.getRequestDispatcher("Controlador?menu=Productos&accion=ListarProductos").forward(request, response);
+                    break;
             }
             request.getRequestDispatcher("Productos.jsp").forward(request, response);
         }else if(menu.equals("Empleados")){
