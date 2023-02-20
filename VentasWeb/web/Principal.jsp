@@ -27,7 +27,7 @@
                             <a class="nav-link active" aria-current="page"href="Controlador?menu=Empleados&accion=Listar" target="miContenedor">Empleados</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Controlador?menu=Clientes" target="miContenedor">Clientes</a>
+                            <a class="nav-link active" aria-current="page" href="Controlador?menu=Clientes&accion=ListarClientes" target="miContenedor">Clientes</a>
                         </li>
                          <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="Controlador?menu=Ventas" target="miContenedor">Ventas</a>
