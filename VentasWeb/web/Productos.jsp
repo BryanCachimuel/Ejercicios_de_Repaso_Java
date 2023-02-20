@@ -1,5 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,25 +13,25 @@
                 <div class="col-3">
                     <div class="card">
                         <div class="card-body">
-                            <form action="Controlador?menu=Productos" method="POST">
+                            <form action="Controlador?menu=Productos" method="POST" autocomplete="off">
                                 <div class="mb-3">
                                     <label for="txtproducto" class="form-label">Producto: </label>
-                                    <input type="text" class="form-control" id="txtproducto" name="txtproducto">
+                                    <input type="text" class="form-control" id="txtproducto" name="txtproducto" value="${productoSeleccionado.getNombreproducto()}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="txtdescripcion" class="form-label">Descripción: </label>
-                                    <textarea class="form-control" id="txtdescripcion" name="txtdescripcion" rows="3"></textarea>
+                                    <textarea class="form-control" id="txtdescripcion" name="txtdescripcion" rows="3">${productoSeleccionado.getDescripcionproducto()}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="txtunidad" class="form-label">Unidad: </label>
-                                    <input type="text" class="form-control" id="txtunidad" name="txtunidad">
+                                    <input type="text" class="form-control" id="txtunidad" name="txtunidad" value="${productoSeleccionado.getUnidad()}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="txtprecio" class="form-label">Precio: </label>
-                                    <input type="text" class="form-control" id="txtprecio" name="txtprecio">
+                                    <input type="number" step="0.01" class="form-control" id="txtprecio" name="txtprecio" value="${productoSeleccionado.getPrecio()}">
                                 </div>
-                                <input type="submit" class="btn btn-primary" name="accion" value="Agregar">
-                                <input type="submit" class="btn btn-success" name="accion" value="Actualizar">
+                                <input type="submit" class="btn btn-primary" name="accion" value="AgregarProductos">
+                                <input type="submit" class="btn btn-success" name="accion" value="ActualizarProductos">
                             </form>
                         </div>
                     </div>
@@ -39,15 +40,28 @@
                     <table class="table">
                         <thead class="table-dark">
                             <tr class="text-white">
+                                <th scope="col">Id</th>
                                 <th scope="col">Producto</th>
-                                <th scope="col">Descripci+on</th>
+                                <th scope="col">Descripción</th>
                                 <th scope="col">Unidad</th>
                                 <th scope="col">Precio</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            <c:forEach var="producto" items="${productos}">
+                                <tr>
+                                    <th scope="row">${producto.getId()}</th>
+                                    <td>${producto.getNombreproducto()}</td>
+                                    <td>${producto.getDescripcionproducto()}</td>
+                                    <td>${producto.getUnidad()}</td>
+                                    <td>${producto.getPrecio()}</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="Controlador?menu=Productos&accion=CargarProductos&idproducto=${producto.getId()}">Editar</a>
+                                        <a class="btn btn-danger" href="Controlador?menu=Productos&accion=EliminarProductos&idproducto=${producto.getId()}">Eliminar</a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </div>
