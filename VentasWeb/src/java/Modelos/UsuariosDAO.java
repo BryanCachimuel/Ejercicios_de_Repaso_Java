@@ -162,4 +162,26 @@ public class UsuariosDAO {
             Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public Usuarios BuscarCliente(int cedula){
+        Usuarios usuarios = new Usuarios();
+        String consulta = "SELECT * FROM usuarios WHERE cedula=?";
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(consulta);
+            ps.setInt(1, cedula);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                usuarios.setId(rs.getInt("id"));
+                usuarios.setCedula(rs.getInt("cedula"));
+                usuarios.setNombre(rs.getString("nombre"));
+                usuarios.setCorreo(rs.getString("correo"));
+                usuarios.setRol(rs.getString("rol"));
+                System.err.println(""+usuarios.getNombre());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return usuarios;
+    }
 }
