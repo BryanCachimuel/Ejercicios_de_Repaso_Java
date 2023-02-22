@@ -154,6 +154,14 @@ public class Controlador extends HttpServlet {
             }
             request.getRequestDispatcher("Clientes.jsp").forward(request, response);
         }else if(menu.equals("Ventas")){
+            switch(accion){
+                case "BuscarCliente":
+                    int cedulaCliente = Integer.parseInt(request.getParameter("cedulacliente"));
+                    //System.err.println("Entro a buscar: " + cedulaCliente);
+                    usuarios = usuariosDAO.BuscarCliente(cedulaCliente);
+                    request.setAttribute("cliente", usuarios);
+                    break;
+            }
             request.getRequestDispatcher("Ventas.jsp").forward(request, response);
         }
         
