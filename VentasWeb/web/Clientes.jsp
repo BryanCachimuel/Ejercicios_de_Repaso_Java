@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -8,47 +9,7 @@
     <body>
         <div class="container mt-5">
             <div class="row">
-                <div class="col-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <form action="Controlador?menu=Empleados" method="POST">
-                                <div class="mb-3">
-                                    <label for="txtcedula" class="form-label">Cédula: </label>
-                                    <input type="number" class="form-control" id="txtcedula" name="txtcedula" value="${usuarioSeleccionado.getCedula()}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="txtnombre" class="form-label">Nombre: </label>
-                                    <input type="text" class="form-control" id="txtnombre" name="txtnombre" value="${usuarioSeleccionado.getNombre()}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="txtcorreo" class="form-label">Correo: </label>
-                                    <input type="email" class="form-control" id="txtcorreo" name="txtcorreo" value="${usuarioSeleccionado.getCorreo()}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="txtpassword" class="form-label">Contraseña: </label>
-                                    <input type="text" class="form-control" id="txtpassword" name="txtpassword" value="${usuarioSeleccionado.getPassword()}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="txtrol" class="form-label">Rol: </label>
-                                    <select class="form-control form-control-sm" name="txtrol">
-                                        <option>Empleado</option>
-                                        <option>Cliente</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="txtestado" class="form-label">Estado: </label>
-                                    <select class="form-control form-control-sm" name="txtestado">
-                                        <option>Activo</option>
-                                        <option>Inactivo</option>
-                                    </select>
-                                </div>
-                                <input type="submit" class="btn btn-primary" name="accion" value="Agregar">
-                                <input type="submit" class="btn btn-success" name="accion" value="Actualizar">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-9">
+                <div class="col-9 mx-auto">
                     <table class="table">
                         <thead class="table-dark">
                             <tr class="text-white">
@@ -59,7 +20,7 @@
                                 <th scope="col">Contraseña</th>
                                 <th scope="col">Rol</th>
                                 <th scope="col">Estado</th>
-                                <th scope="col">Acciones</th>
+                                <!--<th scope="col">Acciones</th>-->
                             </tr>
                         </thead>
                         <tbody>
@@ -72,10 +33,10 @@
                                     <td>${usuariocli.getPassword()}</td>
                                     <td>${usuariocli.getRol()}</td>
                                     <td>${usuariocli.getEstado()}</td>
-                                    <td>
+                                    <!--<td>
                                         <a class="btn btn-warning" href="Controlador?menu=Empleados&accion=Cargar&id=${usuario.getId()}">Editar</a>
                                         <a class="btn btn-danger" href="Controlador?menu=Empleados&accion=Eliminar&id=${usuario.getId()}">Eliminar</a>
-                                    </td>
+                                    </td>-->
                                 </tr>
                             </c:forEach>
                         </tbody>
