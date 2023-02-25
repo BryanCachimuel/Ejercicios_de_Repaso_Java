@@ -23,13 +23,13 @@
                             <form action="Controlador?menu=Ventas" method="POST">
                                 <div class="row g-3">
                                     <div class="col-auto">
-                                        <input type="number" name="cedulacliente" class="form-control" placeholder="Cédula cliente">
+                                        <input type="number" name="cedulacliente" class="form-control" placeholder="Cédula cliente" value="${cliente.getCedula()}">
                                     </div>
                                     <div class="col-auto">
                                         <input type="submit" name="accion" value="BuscarCliente" class="btn btn-outline-dark">
                                     </div>
                                     <div class="col-auto">
-                                        <input type="text" name="nombrecliente" class="form-control" placeholder="Nombre del Cliente">
+                                        <input type="text" name="nombrecliente" class="form-control" placeholder="Nombre del Cliente" value="${cliente.getNombre()}">
                                     </div>
                                 </div>
                                 <div class="row"></div>
