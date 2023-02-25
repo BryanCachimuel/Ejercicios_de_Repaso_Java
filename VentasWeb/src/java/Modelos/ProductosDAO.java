@@ -106,4 +106,24 @@ public class ProductosDAO {
             Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public Productos BuscarProducto(int idProducto){
+        Productos productos = new Productos();
+        String consulta = "SELECT * FROM productos WHERE idproducto="+idProducto;
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(consulta);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                productos.setId(rs.getInt("idproducto"));
+                productos.setNombreproducto(rs.getString("nombreproducto"));
+                productos.setDescripcionproducto(rs.getString("descripcionproducto"));
+                productos.setUnidad(rs.getString("unidad"));
+                productos.setPrecio(rs.getDouble("precio"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return productos;
+    }
 }
