@@ -43,19 +43,19 @@
                             <form action="Controlador?menu=Ventas" method="POST">
                                 <div class="row g-4">
                                     <div class="col-auto">
-                                         <input type="number" name="codigoproducto" class="form-control" placeholder="Código Producto">
+                                        <input type="number" name="codigoproducto" class="form-control" placeholder="Código Producto" value="${productoseleccionado.getId()}">
                                     </div>
                                     <div class="col-auto">
                                         <input type="submit" name="accion" value="BuscarProducto" class="btn btn-outline-dark">
                                     </div>
                                     <div class="col-auto">
-                                        <input type="text" name="nombreproducto" class="form-control" placeholder="Nombre Producto">
+                                        <input type="text" name="nombreproducto" class="form-control" placeholder="Nombre Producto" value="${productoseleccionado.getNombreproducto()}">
                                     </div>
                                     <div class="col-auto">
-                                        <input type="number" step="0.01" name="precioproducto" class="form-control" placeholder="$00.00">
+                                        <input type="number" step="0.01" name="precioproducto" class="form-control" placeholder="$00.00" value="1">
                                     </div>
                                     <div class="col-auto mb-4">
-                                       <input type="number" value="1" name="cantidadproducto" class="form-control" placeholder="Cantidad Producto">
+                                        <input type="number" name="cantidadproducto" class="form-control" placeholder="Cantidad Producto" value="${productoseleccionado.getUnidad()}">
                                     </div>   
                                 </div>
                                 <div class="mx-auto">
