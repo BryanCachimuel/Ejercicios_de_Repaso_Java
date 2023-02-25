@@ -161,6 +161,8 @@ public class Controlador extends HttpServlet {
                     usuarios = usuariosDAO.BuscarCliente(cedulaCliente);
                     request.setAttribute("cliente", usuarios);
                     break;
+                    
+                    default:
             }
             request.getRequestDispatcher("Ventas.jsp").forward(request, response);
         }
