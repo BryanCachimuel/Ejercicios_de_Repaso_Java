@@ -161,7 +161,11 @@ public class Controlador extends HttpServlet {
                     usuarios = usuariosDAO.BuscarCliente(cedulaCliente);
                     request.setAttribute("cliente", usuarios);
                     break;
-                    
+                case "BuscarProducto":
+                    int codigoProducto = Integer.parseInt(request.getParameter("codigoproducto"));
+                    productos = productosDAO.BuscarProducto(codigoProducto);
+                    System.out.println(""+productos.getNombreproducto());
+                    request.setAttribute("productoseleccionado", productos);
                     default:
             }
             request.getRequestDispatcher("Ventas.jsp").forward(request, response);
