@@ -51,4 +51,19 @@ public class VentaDAO {
             Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void GuardarDetalleVenta(Venta venta){
+        String consulta = "INSERT INTO detalleventa(idproducto,idventa,cantidadproducto,precioventa) VALUES(?,?,?,?)";
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(consulta);
+            ps.setInt(1, venta.getIdProducto());
+            ps.setInt(2, venta.getIdVenta());
+            ps.setInt(3, venta.getCantidad());
+            ps.setDouble(4, venta.getPrecio());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
