@@ -34,4 +34,21 @@ public class VentaDAO {
         }
         return numerofactura;
     }
+    
+    public void RegistrarVenta(Venta venta){
+        String consulta = "INSERT INTO ventas(numerofactura,idclienteventa,idempleadoventa,fechaventa,totalventa,estado) VALUES(?,?,?,?,?,?)";
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, venta.getNumeroComprobante());
+            ps.setInt(2, venta.getIdCliente());
+            ps.setInt(3, venta.getIdEmpleado());
+            ps.setString(4, venta.getFecha());
+            ps.setDouble(5, venta.getMonto());
+            ps.setString(6, venta.getEstado());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
