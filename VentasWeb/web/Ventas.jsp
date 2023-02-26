@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
     <head>
@@ -90,7 +91,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    <c:forEach var="lista" items="${listaventas}">
+                                        <tr>
+                                            <th scope="row" style="width: 30px;">${lista.getItem()}</th>
+                                            <td style="width: 30px">${lista.getIdProducto()}</td>
+                                            <td style="width: 350px">${lista.getDescripcionProducto()}</td>
+                                            <td>$ ${lista.getPrecio()}</td>
+                                            <td style="width: 30px">${lista.getCantidad()}</td>
+                                            <td>${lista.getSubtotal()}</td>
+                                            <td class="columna">
+                                                <a class="btn btn-danger">Eliminar</a>
+                                                <a class="btn btn-warning">Editar</a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>
