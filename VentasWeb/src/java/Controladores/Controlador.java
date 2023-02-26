@@ -4,8 +4,10 @@ import Modelos.Productos;
 import Modelos.ProductosDAO;
 import Modelos.Usuarios;
 import Modelos.UsuariosDAO;
+import Modelos.Venta;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,6 +30,12 @@ public class Controlador extends HttpServlet {
     
     int idUsuario;
     int idProducto;
+    
+    Venta venta = new Venta();
+    int item, codProducto, precio, cantidad;
+    String descripcion;
+    double subtotal, totalapagar;
+    List<Venta> listaVenta = new ArrayList();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -166,6 +174,32 @@ public class Controlador extends HttpServlet {
                     productos = productosDAO.BuscarProducto(codigoProducto);
                     System.out.println(""+productos.getNombreproducto());
                     request.setAttribute("productoseleccionado", productos);
+                    request.setAttribute("cliente", usuarios);
+                    break;
+                case "AgregarProducto":
+                    totalapagar = 0;
+                    venta = new Venta();
+                    item++;
+                    codProducto = Integer.parseInt(request.getParameter("codigoproducto"));
+                    descripcion = request.getParameter("nombreproducto");
+                    precio = Integer.parseInt(request.getParameter("precioproducto"));
+                    cantidad = Integer.parseInt(request.getParameter("cantidadproducto"));
+                    subtotal = precio * cantidad;
+                    venta.setItem(item);
+                    venta.setDescripcionProducto(descripcion);
+                    venta.setCantidad(cantidad);
+                    venta.setPrecio(precio);
+                    venta.setSubtotal(subtotal);
+                    venta.setIdProducto(codProducto);
+                    listaVenta.add(venta);
+                    request.setAttribute("listaventas", listaVenta);
+                    for(int i = 0; i < listaVenta.size(); i++){
+                        totalapagar += listaVenta.get(i).getSubtotal();
+                    }
+                    NumberFormat formatoNumero1 = NumberFormat.getNumberInstance();
+                    String total1 = formatoNumero1.format(totalapagar);
+                    request.setAttribute("totalapagar", total1);
+                    break;
                     default:
             }
             request.getRequestDispatcher("Ventas.jsp").forward(request, response);
