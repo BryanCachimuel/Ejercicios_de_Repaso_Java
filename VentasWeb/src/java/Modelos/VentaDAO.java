@@ -18,6 +18,8 @@ public class VentaDAO {
     ResultSet rs;
     Conexion cn = new Conexion();
     
+    int respuesta = 0;
+    
     public String ObtenerNumeroFactura(){
         String numerofactura = "";
         String consulta = "SELECT MAX(numerofactura) FROM ventas";
@@ -82,6 +84,24 @@ public class VentaDAO {
             Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return idVenta;
+    }
+    
+    public int ActualizarVenta(Venta venta){
+        String consulta = "UPDATE ventas SET numerofactura=?,idclienteventa=?,idempleadoventa=?,fechaventa=?,totalventa=?,estado=? WHERE idventa=?";
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, venta.getNumeroComprobante());
+            ps.setInt(2, venta.getIdCliente());
+            ps.setInt(3, venta.getIdEmpleado());
+            ps.setString(4, venta.getFecha());
+            ps.setDouble(5, venta.getMonto());
+            ps.setString(6, venta.getEstado());
+            respuesta = ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return respuesta;
     }
     
     public void EliminarVenta(int idVenta){
