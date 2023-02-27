@@ -83,4 +83,15 @@ public class VentaDAO {
         }
         return idVenta;
     }
+    
+    public void EliminarVenta(int idVenta){
+        String consulta = "DELETE FROM ventas WHERE idventa=" + idVenta;
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(consulta);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
