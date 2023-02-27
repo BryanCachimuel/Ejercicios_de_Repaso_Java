@@ -212,6 +212,24 @@ public class Controlador extends HttpServlet {
                     total1 = formatoNumero1.format(totalapagar);
                     request.setAttribute("totalapagar", total1);
                     break;
+                case "GenerarVenta":
+                    venta.setIdCliente(usuarios.getId());
+                    venta.setIdEmpleado(1);
+                    venta.setNumeroComprobante(""+numFactura);
+                    venta.setFecha("2023-02-26");
+                    venta.setMonto(totalapagar);
+                    venta.setEstado("1");
+                    ventaDAO.RegistrarVenta(venta);
+                    int idv = ventaDAO.ObtenerMaximoIdVenta();
+                    for (int i = 0; i < listaVenta.size(); i++) {
+                        venta = new Venta();
+                        venta.setIdVenta(idv);
+                        venta.setIdProducto(listaVenta.get(i).getIdProducto());
+                        venta.setCantidad(listaVenta.get(i).getCantidad());
+                        venta.setPrecio(listaVenta.get(i).getPrecio());
+                        ventaDAO.GuardarDetalleVenta(venta);
+                    }
+                    break;
                     default:
                         String nrofactura = ventaDAO.ObtenerNumeroFactura();
                         System.err.println("número de factura: " + nrofactura);
