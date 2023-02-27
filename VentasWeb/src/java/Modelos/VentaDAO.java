@@ -55,7 +55,7 @@ public class VentaDAO {
     }
     
     public void GuardarDetalleVenta(Venta venta){
-        String consulta = "INSERT INTO detalleventa(idproducto,idventa,cantidadproducto,precioventa) VALUES(?,?,?,?)";
+        String consulta = "INSERT INTO detalleventas(idproducto,idventa,cantidadproductos,precioventa) VALUES(?,?,?,?)";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(consulta);
