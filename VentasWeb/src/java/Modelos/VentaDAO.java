@@ -66,4 +66,21 @@ public class VentaDAO {
             Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public int ObtenerMaximoIdVenta(){
+        int idVenta = 0;
+        String consulta = "SELECT MAX(idventa) FROM ventas";
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(consulta);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                idVenta = rs.getInt(1);
+                System.out.println("max: " + idVenta);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return idVenta;
+    }
 }
