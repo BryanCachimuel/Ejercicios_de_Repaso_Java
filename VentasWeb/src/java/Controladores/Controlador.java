@@ -253,6 +253,8 @@ public class Controlador extends HttpServlet {
                         request.setAttribute("numerofactura", numFactura);
             }
             request.getRequestDispatcher("Ventas.jsp").forward(request, response);
+        }else if(menu.equals("Inicio")){
+            request.getRequestDispatcher("Inicio.jsp").forward(request, response);
         }
         
     }
