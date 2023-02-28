@@ -73,14 +73,14 @@
                             <div class="mb-3 row">
                                 <label for="txtnumerofactura" class="col-sm-2 col-form-label">Nro. Factura</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="txtnumerofactura" name="txtnumerofactura" value="${numerofactura}">
+                                    <input type="text" class="form-control" id="txtnumerofactura" name="txtnumerofactura" value="${numerofactura}" disabled="disabled">
                                 </div>  
                             </div>
                         </div>
                         <div class="card-body">
                             <table class="table">
                                 <thead class="table-dark">
-                                    <tr class="text-white">
+                                    <tr class="text-white text-center">
                                         <th scope="col">#</th>
                                         <th scope="col">Código</th>
                                         <th scope="col">Producto</th>
@@ -90,7 +90,7 @@
                                         <th scope="col" class="columna">Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-center">
                                     <c:forEach var="lista" items="${listaventas}">
                                         <tr>
                                             <th scope="row" style="width: 30px;">${lista.getItem()}</th>
@@ -100,8 +100,8 @@
                                             <td>$ ${lista.getPrecio()}</td>
                                             <td>${lista.getSubtotal()}</td>
                                             <td class="columna">
-                                                <a class="btn btn-danger">Eliminar</a>
-                                                <a class="btn btn-warning">Editar</a>
+                                               <!--<a class="btn btn-warning" href="Controlador?menu=Ventas&accion=CargarVenta&idventa=${lista.getIdVenta()}">Editar</a>-->
+                                               <a class="btn btn-danger" href="Controlador?menu=Ventas&accion=EliminarVenta&idventa=${lista.getIdVenta()}">Eliminar</a>
                                             </td>
                                         </tr>
                                     </c:forEach>
