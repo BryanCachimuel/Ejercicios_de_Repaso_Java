@@ -86,6 +86,24 @@ public class VentaDAO {
         return idVenta;
     }
     
+    public Venta CargarVentaPorId(int id){
+        Venta venta = new Venta();
+        String consulta = "SELECT * FROM detalleventas WHERE iddetalleventa="+id;
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(consulta);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                venta.setIdProducto(rs.getInt(2));
+                venta.setCantidad(rs.getInt(4));
+                venta.setPrecio(rs.getDouble(5));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return venta;
+    }
+    
     public int ActualizarVenta(Venta venta){
         String consulta = "UPDATE ventas SET numerofactura=?,idclienteventa=?,idempleadoventa=?,fechaventa=?,totalventa=?,estado=? WHERE idventa=?";
         try {
