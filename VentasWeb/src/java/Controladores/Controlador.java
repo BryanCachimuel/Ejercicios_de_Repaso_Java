@@ -31,6 +31,7 @@ public class Controlador extends HttpServlet {
     
     int idUsuario;
     int idProducto;
+    int idvta;
     
     Venta venta = new Venta();
     int item, codProducto, precio, cantidad;
@@ -229,6 +230,17 @@ public class Controlador extends HttpServlet {
                         venta.setPrecio(listaVenta.get(i).getPrecio());
                         ventaDAO.GuardarDetalleVenta(venta);
                     }
+                    break;
+                case "CargarVenta":
+                    idvta = Integer.parseInt(request.getParameter("idventa"));
+                    Venta venta = ventaDAO.CargarVentaPorId(idvta);
+                    request.setAttribute("ventaseleccionada", venta);
+                    request.getRequestDispatcher("Ventas.jsp").forward(request, response);
+                    break;
+                case "EliminarVenta":
+                    idvta = Integer.parseInt(request.getParameter("idventa"));
+                    ventaDAO.EliminarVenta(idvta);
+                    request.getRequestDispatcher("Ventas.jsp").forward(request, response);
                     break;
                     default:
                         String nrofactura = ventaDAO.ObtenerNumeroFactura();
