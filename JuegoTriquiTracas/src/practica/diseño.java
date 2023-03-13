@@ -19,6 +19,8 @@ public class diseño extends javax.swing.JFrame {
     
     int matrizGanadora[][] = {{1,2,3},{4,5,6},{7,8,9},{1,4,7},{2,5,8},{3,6,9},{1,5,9},{3,5,7}};
     
+    public boolean estado = true;
+    
     
     public diseño() {
         initComponents();
@@ -312,7 +314,7 @@ public class diseño extends javax.swing.JFrame {
     
     
     public void presionarCasilla(int casilla){
-        if(arreglo[casilla-1].getText().equals("")){
+        if(arreglo[casilla-1].getText().equals("") && estado){
             arreglo[casilla-1].setText(turnoX);
             cambiarTurno();
             comprobarGanador();
@@ -322,8 +324,10 @@ public class diseño extends javax.swing.JFrame {
     public void cambiarTurno(){
         if(turnoX.equals("X")){
             turnoX = "O";
+            estado = true;
         }else{
             turnoX = "X";
+            estado = true;
         }
     }
     
@@ -331,6 +335,7 @@ public class diseño extends javax.swing.JFrame {
         for (int i = 0; i < arreglo.length; i++) {
             arreglo[i].setText("");
             arreglo[i].setBackground(Color.white);
+            estado = true;
         }
     }
     
@@ -341,11 +346,13 @@ public class diseño extends javax.swing.JFrame {
                 arreglo[matrizGanadora[i][1]-1].setBackground(Color.green);
                 arreglo[matrizGanadora[i][2]-1].setBackground(Color.green);
                 JOptionPane.showMessageDialog(null, "Gano X");
+                estado = false;
             }else if(arreglo[matrizGanadora[i][0]-1].getText().equals("O") && arreglo[matrizGanadora[i][1]-1].getText().equals("O") && arreglo[matrizGanadora[i][2]-1].getText().equals("O")){
                 arreglo[matrizGanadora[i][0]-1].setBackground(Color.green);
                 arreglo[matrizGanadora[i][1]-1].setBackground(Color.green);
                 arreglo[matrizGanadora[i][2]-1].setBackground(Color.green);
                 JOptionPane.showMessageDialog(null, "Gano O");
+                estado = false;
             }
         }
     }
