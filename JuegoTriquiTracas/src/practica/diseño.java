@@ -1,20 +1,34 @@
 
 package practica;
 
+import javax.swing.JLabel;
+
 /**
  *
  * @author Bryan
  */
 public class diseño extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Diseño2
-     */
+    
+    public String turnoX = "X";
+    public String turnoO = "O";
+    
+    JLabel[] arreglo = new JLabel[9];
+    
+    
     public diseño() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("Juego de Tiqui Tracas");
-        
+        arreglo[0] = lblabel1;
+        arreglo[1] = lblable2;
+        arreglo[2] = lblabel3;
+        arreglo[3] = lblable4;
+        arreglo[4] = lblable5;
+        arreglo[5] = lblable6;
+        arreglo[6] = lblable7;
+        arreglo[7] = lblable8;
+        arreglo[8] = lblable9;
     }
 
     /**
@@ -28,15 +42,15 @@ public class diseño extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        lblabel1 = new javax.swing.JLabel();
+        lblable2 = new javax.swing.JLabel();
+        lblabel3 = new javax.swing.JLabel();
+        lblable4 = new javax.swing.JLabel();
+        lblable5 = new javax.swing.JLabel();
+        lblable6 = new javax.swing.JLabel();
+        lblable7 = new javax.swing.JLabel();
+        lblable8 = new javax.swing.JLabel();
+        lblable9 = new javax.swing.JLabel();
         btnLimpiar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
 
@@ -46,68 +60,68 @@ public class diseño extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("X");
-        jLabel1.setOpaque(true);
+        lblabel1.setBackground(new java.awt.Color(255, 255, 255));
+        lblabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        lblabel1.setForeground(new java.awt.Color(0, 0, 0));
+        lblabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblabel1.setText("X");
+        lblabel1.setOpaque(true);
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("O");
-        jLabel2.setOpaque(true);
+        lblable2.setBackground(new java.awt.Color(255, 255, 255));
+        lblable2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        lblable2.setForeground(new java.awt.Color(0, 0, 0));
+        lblable2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblable2.setText("O");
+        lblable2.setOpaque(true);
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("X");
-        jLabel3.setOpaque(true);
+        lblabel3.setBackground(new java.awt.Color(255, 255, 255));
+        lblabel3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        lblabel3.setForeground(new java.awt.Color(0, 0, 0));
+        lblabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblabel3.setText("X");
+        lblabel3.setOpaque(true);
 
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("O");
-        jLabel4.setOpaque(true);
+        lblable4.setBackground(new java.awt.Color(255, 255, 255));
+        lblable4.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        lblable4.setForeground(new java.awt.Color(0, 0, 0));
+        lblable4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblable4.setText("O");
+        lblable4.setOpaque(true);
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("X");
-        jLabel5.setOpaque(true);
+        lblable5.setBackground(new java.awt.Color(255, 255, 255));
+        lblable5.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        lblable5.setForeground(new java.awt.Color(0, 0, 0));
+        lblable5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblable5.setText("X");
+        lblable5.setOpaque(true);
 
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("O");
-        jLabel6.setOpaque(true);
+        lblable6.setBackground(new java.awt.Color(255, 255, 255));
+        lblable6.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        lblable6.setForeground(new java.awt.Color(0, 0, 0));
+        lblable6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblable6.setText("O");
+        lblable6.setOpaque(true);
 
-        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("X");
-        jLabel7.setOpaque(true);
+        lblable7.setBackground(new java.awt.Color(255, 255, 255));
+        lblable7.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        lblable7.setForeground(new java.awt.Color(0, 0, 0));
+        lblable7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblable7.setText("X");
+        lblable7.setOpaque(true);
 
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("O");
-        jLabel8.setOpaque(true);
+        lblable8.setBackground(new java.awt.Color(255, 255, 255));
+        lblable8.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        lblable8.setForeground(new java.awt.Color(0, 0, 0));
+        lblable8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblable8.setText("O");
+        lblable8.setOpaque(true);
 
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("O");
-        jLabel9.setOpaque(true);
+        lblable9.setBackground(new java.awt.Color(255, 255, 255));
+        lblable9.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        lblable9.setForeground(new java.awt.Color(0, 0, 0));
+        lblable9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblable9.setText("O");
+        lblable9.setOpaque(true);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -115,37 +129,37 @@ public class diseño extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblable4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                    .addComponent(lblabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblable7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblable2, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                    .addComponent(lblable5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblable8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(lblabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblable6, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                    .addComponent(lblable9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                    .addComponent(lblabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblable2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblable5, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                    .addComponent(lblable6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblable4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(lblable7, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                    .addComponent(lblable8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblable9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         btnLimpiar.setText("Limpiar");
@@ -210,7 +224,14 @@ public class diseño extends javax.swing.JFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
-
+    
+    
+    public void presionarCasilla(int casilla){
+        if(arreglo[casilla-1].getText().equals("")){
+            arreglo[casilla-1].setText(turnoX);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -250,16 +271,16 @@ public class diseño extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblabel1;
+    private javax.swing.JLabel lblabel3;
+    private javax.swing.JLabel lblable2;
+    private javax.swing.JLabel lblable4;
+    private javax.swing.JLabel lblable5;
+    private javax.swing.JLabel lblable6;
+    private javax.swing.JLabel lblable7;
+    private javax.swing.JLabel lblable8;
+    private javax.swing.JLabel lblable9;
     // End of variables declaration//GEN-END:variables
 }
