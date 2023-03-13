@@ -64,63 +64,79 @@ public class diseño extends javax.swing.JFrame {
         lblabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         lblabel1.setForeground(new java.awt.Color(0, 0, 0));
         lblabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblabel1.setText("X");
         lblabel1.setOpaque(true);
+        lblabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblabel1MousePressed(evt);
+            }
+        });
 
         lblable2.setBackground(new java.awt.Color(255, 255, 255));
         lblable2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         lblable2.setForeground(new java.awt.Color(0, 0, 0));
         lblable2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblable2.setText("O");
         lblable2.setOpaque(true);
+        lblable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblable2MousePressed(evt);
+            }
+        });
 
         lblabel3.setBackground(new java.awt.Color(255, 255, 255));
         lblabel3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         lblabel3.setForeground(new java.awt.Color(0, 0, 0));
         lblabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblabel3.setText("X");
         lblabel3.setOpaque(true);
+        lblabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblabel3MousePressed(evt);
+            }
+        });
 
         lblable4.setBackground(new java.awt.Color(255, 255, 255));
         lblable4.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         lblable4.setForeground(new java.awt.Color(0, 0, 0));
         lblable4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblable4.setText("O");
         lblable4.setOpaque(true);
+        lblable4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblable4MousePressed(evt);
+            }
+        });
 
         lblable5.setBackground(new java.awt.Color(255, 255, 255));
         lblable5.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         lblable5.setForeground(new java.awt.Color(0, 0, 0));
         lblable5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblable5.setText("X");
         lblable5.setOpaque(true);
+        lblable5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblable5MousePressed(evt);
+            }
+        });
 
         lblable6.setBackground(new java.awt.Color(255, 255, 255));
         lblable6.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         lblable6.setForeground(new java.awt.Color(0, 0, 0));
         lblable6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblable6.setText("O");
         lblable6.setOpaque(true);
 
         lblable7.setBackground(new java.awt.Color(255, 255, 255));
         lblable7.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         lblable7.setForeground(new java.awt.Color(0, 0, 0));
         lblable7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblable7.setText("X");
         lblable7.setOpaque(true);
 
         lblable8.setBackground(new java.awt.Color(255, 255, 255));
         lblable8.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         lblable8.setForeground(new java.awt.Color(0, 0, 0));
         lblable8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblable8.setText("O");
         lblable8.setOpaque(true);
 
         lblable9.setBackground(new java.awt.Color(255, 255, 255));
         lblable9.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         lblable9.setForeground(new java.awt.Color(0, 0, 0));
         lblable9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblable9.setText("O");
         lblable9.setOpaque(true);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -224,11 +240,40 @@ public class diseño extends javax.swing.JFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void lblabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblabel1MousePressed
+        presionarCasilla(1);
+    }//GEN-LAST:event_lblabel1MousePressed
+
+    private void lblable2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblable2MousePressed
+        presionarCasilla(2);
+    }//GEN-LAST:event_lblable2MousePressed
+
+    private void lblabel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblabel3MousePressed
+        presionarCasilla(3);
+    }//GEN-LAST:event_lblabel3MousePressed
+
+    private void lblable4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblable4MousePressed
+        presionarCasilla(4);
+    }//GEN-LAST:event_lblable4MousePressed
+
+    private void lblable5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblable5MousePressed
+        presionarCasilla(5);
+    }//GEN-LAST:event_lblable5MousePressed
     
     
     public void presionarCasilla(int casilla){
         if(arreglo[casilla-1].getText().equals("")){
             arreglo[casilla-1].setText(turnoX);
+            cambiarTurno();
+        }
+    }
+    
+    public void cambiarTurno(){
+        if(turnoX.equals("X")){
+            turnoX = "O";
+        }else{
+            turnoX = "X";
         }
     }
     
