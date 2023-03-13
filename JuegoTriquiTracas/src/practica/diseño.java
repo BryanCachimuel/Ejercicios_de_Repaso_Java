@@ -1,6 +1,7 @@
 
 package practica;
 
+import java.awt.Color;
 import javax.swing.JLabel;
 
 /**
@@ -199,6 +200,11 @@ public class diseño extends javax.swing.JFrame {
         );
 
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -296,6 +302,10 @@ public class diseño extends javax.swing.JFrame {
     private void lblable9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblable9MousePressed
         presionarCasilla(9);
     }//GEN-LAST:event_lblable9MousePressed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiarJuego();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
     
     
     public void presionarCasilla(int casilla){
@@ -310,6 +320,13 @@ public class diseño extends javax.swing.JFrame {
             turnoX = "O";
         }else{
             turnoX = "X";
+        }
+    }
+    
+    public void limpiarJuego(){
+        for (int i = 0; i < arreglo.length; i++) {
+            arreglo[i].setText("");
+            arreglo[i].setBackground(Color.white);
         }
     }
     
