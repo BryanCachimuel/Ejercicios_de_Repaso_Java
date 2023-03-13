@@ -3,6 +3,7 @@ package practica;
 
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,6 +16,8 @@ public class diseño extends javax.swing.JFrame {
     public String turnoO = "O";
     
     JLabel[] arreglo = new JLabel[9];
+    
+    int matrizGanadora[][] = {{1,2,3},{4,5,6},{7,8,9},{1,4,7},{2,5,8},{3,6,9},{1,5,9},{3,5,7}};
     
     
     public diseño() {
@@ -312,6 +315,7 @@ public class diseño extends javax.swing.JFrame {
         if(arreglo[casilla-1].getText().equals("")){
             arreglo[casilla-1].setText(turnoX);
             cambiarTurno();
+            comprobarGanador();
         }
     }
     
@@ -327,6 +331,22 @@ public class diseño extends javax.swing.JFrame {
         for (int i = 0; i < arreglo.length; i++) {
             arreglo[i].setText("");
             arreglo[i].setBackground(Color.white);
+        }
+    }
+    
+    public void comprobarGanador(){
+        for (int i = 0; i < matrizGanadora.length; i++) {
+            if(arreglo[matrizGanadora[i][0]-1].getText().equals("X") && arreglo[matrizGanadora[i][1]-1].getText().equals("X") && arreglo[matrizGanadora[i][2]-1].getText().equals("X")){
+                arreglo[matrizGanadora[i][0]-1].setBackground(Color.green);
+                arreglo[matrizGanadora[i][1]-1].setBackground(Color.green);
+                arreglo[matrizGanadora[i][2]-1].setBackground(Color.green);
+                JOptionPane.showMessageDialog(null, "Gano X");
+            }else if(arreglo[matrizGanadora[i][0]-1].getText().equals("O") && arreglo[matrizGanadora[i][1]-1].getText().equals("O") && arreglo[matrizGanadora[i][2]-1].getText().equals("O")){
+                arreglo[matrizGanadora[i][0]-1].setBackground(Color.green);
+                arreglo[matrizGanadora[i][1]-1].setBackground(Color.green);
+                arreglo[matrizGanadora[i][2]-1].setBackground(Color.green);
+                JOptionPane.showMessageDialog(null, "Gano O");
+            }
         }
     }
     
