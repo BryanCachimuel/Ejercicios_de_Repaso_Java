@@ -120,24 +120,44 @@ public class diseño extends javax.swing.JFrame {
         lblable6.setForeground(new java.awt.Color(0, 0, 0));
         lblable6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblable6.setOpaque(true);
+        lblable6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblable6MousePressed(evt);
+            }
+        });
 
         lblable7.setBackground(new java.awt.Color(255, 255, 255));
         lblable7.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         lblable7.setForeground(new java.awt.Color(0, 0, 0));
         lblable7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblable7.setOpaque(true);
+        lblable7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblable7MousePressed(evt);
+            }
+        });
 
         lblable8.setBackground(new java.awt.Color(255, 255, 255));
         lblable8.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         lblable8.setForeground(new java.awt.Color(0, 0, 0));
         lblable8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblable8.setOpaque(true);
+        lblable8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblable8MousePressed(evt);
+            }
+        });
 
         lblable9.setBackground(new java.awt.Color(255, 255, 255));
         lblable9.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         lblable9.setForeground(new java.awt.Color(0, 0, 0));
         lblable9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblable9.setOpaque(true);
+        lblable9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblable9MousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -260,6 +280,22 @@ public class diseño extends javax.swing.JFrame {
     private void lblable5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblable5MousePressed
         presionarCasilla(5);
     }//GEN-LAST:event_lblable5MousePressed
+
+    private void lblable6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblable6MousePressed
+        presionarCasilla(6);
+    }//GEN-LAST:event_lblable6MousePressed
+
+    private void lblable7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblable7MousePressed
+        presionarCasilla(7);
+    }//GEN-LAST:event_lblable7MousePressed
+
+    private void lblable8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblable8MousePressed
+        presionarCasilla(8);
+    }//GEN-LAST:event_lblable8MousePressed
+
+    private void lblable9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblable9MousePressed
+        presionarCasilla(9);
+    }//GEN-LAST:event_lblable9MousePressed
     
     
     public void presionarCasilla(int casilla){
