@@ -25,7 +25,16 @@ public class Cronometro extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Cronómetro");
     }
-
+    
+    
+    private void actualizarEtiquetaTiempo(){
+        String texto = (horas <= 9 ? "0" : "") + horas + ":" + 
+                       (minutos <= 9 ? "0" : "") + minutos + ":" + 
+                       (segundos <= 9 ? "0" : "")+ segundos + ":" +
+                       (centesimas_segundos <= 9 ? "0" : "")+ centesimas_segundos;
+        lbltiempo.setText(texto);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
