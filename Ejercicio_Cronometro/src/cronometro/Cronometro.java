@@ -5,6 +5,8 @@
  */
 package cronometro;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 /**
@@ -34,6 +36,30 @@ public class Cronometro extends javax.swing.JFrame {
                        (centesimas_segundos <= 9 ? "0" : "")+ centesimas_segundos;
         lbltiempo.setText(texto);
     }
+    
+    private ActionListener acciones = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            centesimas_segundos++;
+            if(centesimas_segundos == 100){
+                segundos++;
+                centesimas_segundos = 0;
+            }
+            if(segundos == 60){
+                minutos++;
+                segundos = 0;
+            }
+            if(minutos == 60){
+                horas++;
+                minutos = 0;
+            }
+            if(horas == 24){
+                horas = 0;
+            }
+            
+            actualizarEtiquetaTiempo();
+        }
+    };
     
     /**
      * This method is called from within the constructor to initialize the form.
