@@ -22,21 +22,6 @@ public class Cronometro extends javax.swing.JFrame {
     private int minutos = 0;
     private int horas = 0;
     
-    public Cronometro() {
-        initComponents();
-        this.setLocationRelativeTo(null);
-        this.setTitle("Cronómetro");
-    }
-    
-    
-    private void actualizarEtiquetaTiempo(){
-        String texto = (horas <= 9 ? "0" : "") + horas + ":" + 
-                       (minutos <= 9 ? "0" : "") + minutos + ":" + 
-                       (segundos <= 9 ? "0" : "")+ segundos + ":" +
-                       (centesimas_segundos <= 9 ? "0" : "")+ centesimas_segundos;
-        lbltiempo.setText(texto);
-    }
-    
     private ActionListener acciones = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -60,6 +45,24 @@ public class Cronometro extends javax.swing.JFrame {
             actualizarEtiquetaTiempo();
         }
     };
+    
+    
+    public Cronometro() {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("Cronómetro");
+        tiempo = new Timer(10, acciones);
+    }
+    
+    
+    private void actualizarEtiquetaTiempo(){
+        String texto = (horas <= 9 ? "0" : "") + horas + ":" + 
+                       (minutos <= 9 ? "0" : "") + minutos + ":" + 
+                       (segundos <= 9 ? "0" : "")+ segundos + ":" +
+                       (centesimas_segundos <= 9 ? "0" : "")+ centesimas_segundos;
+        lbltiempo.setText(texto);
+    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -86,6 +89,11 @@ public class Cronometro extends javax.swing.JFrame {
 
         btnIniciar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnIniciar.setText("Iniciar");
+        btnIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarActionPerformed(evt);
+            }
+        });
 
         btnPausar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnPausar.setText("Pausar");
@@ -133,6 +141,12 @@ public class Cronometro extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+        tiempo.start();
+        btnIniciar.setEnabled(false);
+        btnIniciar.setText("Reiniciar");
+    }//GEN-LAST:event_btnIniciarActionPerformed
 
     /**
      * @param args the command line arguments
