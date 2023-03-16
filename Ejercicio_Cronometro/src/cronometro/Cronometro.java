@@ -107,6 +107,11 @@ public class Cronometro extends javax.swing.JFrame {
         btnDetener.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnDetener.setText("Detener");
         btnDetener.setEnabled(false);
+        btnDetener.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetenerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,8 +164,25 @@ public class Cronometro extends javax.swing.JFrame {
 
     private void btnPausarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPausarActionPerformed
         tiempo.stop();
-        btnIniciar.setEnabled(true);
+        btnIniciar.setEnabled(true); 
     }//GEN-LAST:event_btnPausarActionPerformed
+
+    private void btnDetenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetenerActionPerformed
+       if(tiempo.isRunning()){
+           tiempo.stop();
+       }
+       
+       centesimas_segundos = 0;
+       segundos = 0;
+       minutos = 0;
+       horas = 0;
+       
+       actualizarEtiquetaTiempo();
+       btnIniciar.setEnabled(true);
+       btnPausar.setEnabled(false);
+       btnDetener.setEnabled(false);
+       
+    }//GEN-LAST:event_btnDetenerActionPerformed
 
     /**
      * @param args the command line arguments
