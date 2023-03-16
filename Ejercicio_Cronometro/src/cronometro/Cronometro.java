@@ -97,9 +97,16 @@ public class Cronometro extends javax.swing.JFrame {
 
         btnPausar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnPausar.setText("Pausar");
+        btnPausar.setEnabled(false);
+        btnPausar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPausarActionPerformed(evt);
+            }
+        });
 
         btnDetener.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnDetener.setText("Detener");
+        btnDetener.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -146,7 +153,14 @@ public class Cronometro extends javax.swing.JFrame {
         tiempo.start();
         btnIniciar.setEnabled(false);
         btnIniciar.setText("Reiniciar");
+        btnPausar.setEnabled(true);
+        btnDetener.setEnabled(true);
     }//GEN-LAST:event_btnIniciarActionPerformed
+
+    private void btnPausarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPausarActionPerformed
+        tiempo.stop();
+        btnIniciar.setEnabled(true);
+    }//GEN-LAST:event_btnPausarActionPerformed
 
     /**
      * @param args the command line arguments
