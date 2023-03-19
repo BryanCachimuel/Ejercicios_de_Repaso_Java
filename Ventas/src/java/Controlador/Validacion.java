@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controlador;
 
 import java.io.IOException;
@@ -70,7 +65,15 @@ public class Validacion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        /* para poder utilizar el formulario creado en el index.jsp*/
+        String accion = request.getParameter("accion");
+        if(accion.equals("Ingresar")){
+           String usuario = request.getParameter("txtusuario");
+           String password = request.getParameter("txtpassword");
+        }else{
+            
+        }
     }
 
     /**
