@@ -1,5 +1,7 @@
 package Controlador;
 
+import Modelo.Empleado;
+import Modelo.EmpleadoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,15 +15,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Validacion extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    EmpleadoDAO emdao = new EmpleadoDAO();
+    Empleado em = new Empleado();
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -71,8 +67,14 @@ public class Validacion extends HttpServlet {
         if(accion.equals("Ingresar")){
            String usuario = request.getParameter("txtusuario");
            String password = request.getParameter("txtpassword");
+           em = emdao.validar(usuario, password);
+           if(em.getUsuario() != null){
+               request.getRequestDispatcher("Controlador?accion=Principal").forward(request, response);
+           }else{
+               request.getRequestDispatcher("index.jsp").forward(request, response);
+           }
         }else{
-            
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 
