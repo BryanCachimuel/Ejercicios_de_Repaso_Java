@@ -20,7 +20,7 @@ public class EmpleadoDAO {
     
     public Empleado validar(String usuario, String cedula){
         Empleado em = new Empleado();
-        String sql = "SELECT * FROM empleado where User=? and Cedula=?";
+        String sql = "SELECT * FROM empleado WHERE User=? AND Cedula=?";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -30,7 +30,7 @@ public class EmpleadoDAO {
             while(rs.next()){
                 em.setId(rs.getInt("IdEmpleado"));
                 em.setUsuario(rs.getString("User"));
-                em.setCedula(rs.getString("Dni"));
+                em.setCedula(rs.getString("Cedula"));
                 em.setNombre(rs.getString("Nombres"));
             }
         } catch (SQLException ex) {
