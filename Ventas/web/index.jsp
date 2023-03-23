@@ -11,7 +11,7 @@
       <div class="container mt-5 col-4">
           <div class="card col-sm-10">
               <div class="card-body">
-                  <form>
+                  <form class="form-sign" action="Validacion" method="POST">
                       <div class="form-group text-center">
                           <h3>Inicio de Sesión</h3>
                           <img src="img/ventas.png" alt="70" width="170"/>
