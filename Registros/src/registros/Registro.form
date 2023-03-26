@@ -45,6 +45,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Conexi&#xf3;n a la BDD"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBaseDatosActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
