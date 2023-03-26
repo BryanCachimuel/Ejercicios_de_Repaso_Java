@@ -21,14 +21,14 @@ public class Conexion {
     private static Conexion instancia;
     
     //creamos las variables para conectarse a la base de datos
-    private static final String url = "jdbc:mysql://localhost/bd_registros";
+    private static final String url = "jdbc:mysql://localhost:3307/bd_registros?useSSL=false";
     private static final String username = "root";
-    private static final String password = "3307";
+    private static final String password = "admin1994";
     
     // método para conectar hacia la base de datos
     public Connection conectar(){
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             conexion = DriverManager.getConnection(url, username, password);
              JOptionPane.showMessageDialog(null, "Conexión hacia la base de datos exitosa" );
              return conexion;
@@ -42,6 +42,7 @@ public class Conexion {
     public void cerrarConexion() throws SQLException{
         try {
             conexion.close();
+            JOptionPane.showMessageDialog(null, "Se cerro la conexión hacia la base de datos");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error : " + e);
             conexion.close();
