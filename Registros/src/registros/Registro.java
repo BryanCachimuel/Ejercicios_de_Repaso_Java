@@ -104,6 +104,11 @@ public class Registro extends javax.swing.JFrame {
         jLabel5.setText("Ingrese el Id a Buscar:");
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -303,6 +308,27 @@ public class Registro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error: " + error);
         }
     }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        try {
+          Connection conexion = conectarbdd.conectar();
+          String sql = "SELECT * FROM empleados WHERE id=?";
+          PreparedStatement buscar = conexion.prepareStatement(sql);
+          buscar.setString(1, txtIdBuscar.getText().trim());
+          
+          ResultSet consulta = buscar.executeQuery();
+          while(consulta.next()){
+              txtNombre.setText(consulta.getString("nombre"));
+              txtTelefono.setText(consulta.getString("telefono"));
+              cbxProfesion.setSelectedItem( consulta.getString("profesion"));
+          }
+          JOptionPane.showMessageDialog(null, "Dato Encontrado con Exito");
+          
+          conectarbdd.cerrarConexion();
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, "Error: " + error);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
