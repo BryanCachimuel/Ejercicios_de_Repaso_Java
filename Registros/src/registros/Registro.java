@@ -69,6 +69,11 @@ public class Registro extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txaInformacionEmpleados);
 
         btnConsultarEmpleados.setText("Consultar Empleados");
+        btnConsultarEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarEmpleadosActionPerformed(evt);
+            }
+        });
 
         btnValidadBDD.setText("Validar Informacion en BDD");
         btnValidadBDD.addActionListener(new java.awt.event.ActionListener() {
@@ -193,6 +198,35 @@ public class Registro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, error);
         }
     }//GEN-LAST:event_btnValidadBDDActionPerformed
+
+    private void btnConsultarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarEmpleadosActionPerformed
+        
+        // controlar que cuando se vuelva ingresar un nuevo empleado la lista se actualize sin repetir la lista una y otra vez
+        txaInformacionEmpleados.setText("");
+        
+        try {
+           Connection conexion = conectarbdd.conectar();
+           String sql = "SELECT * FROM empleados";
+           PreparedStatement seleccionar = conexion.prepareStatement(sql);
+           ResultSet consulta = seleccionar.executeQuery();
+           
+           while(consulta.next()){
+               txaInformacionEmpleados.append(consulta.getString(1)); // le decimos que con append nos traiga el elemento 1 de la bdd
+               txaInformacionEmpleados.append("   ");
+               txaInformacionEmpleados.append(consulta.getString(2));
+               txaInformacionEmpleados.append("   ");
+               txaInformacionEmpleados.append(consulta.getString(3));
+               txaInformacionEmpleados.append("   ");
+               txaInformacionEmpleados.append(consulta.getString(4));
+               txaInformacionEmpleados.append("\n");
+           }
+           
+           conectarbdd.cerrarConexion(); 
+           
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, error);
+        }
+    }//GEN-LAST:event_btnConsultarEmpleadosActionPerformed
 
     /**
      * @param args the command line arguments
