@@ -1,5 +1,7 @@
 package registros;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 
 /**
@@ -8,10 +10,12 @@ import javax.swing.JOptionPane;
  */
 public class Registro extends javax.swing.JFrame {
 
-    Conexion conectar = Conexion.getInstance();
+    Conexion conectarbdd = Conexion.getInstance();
     
     public Registro() {
         initComponents(); 
+        this.setLocationRelativeTo(null);
+        this.setTitle("Registro de Empleados");
     }
 
    
@@ -42,6 +46,11 @@ public class Registro extends javax.swing.JFrame {
         cbxProfesion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingeniero en Sistemas Computacionales", "Ingeniero en Mecatrónica", "Ingeniero en Telecomunicaciones", "Ingeniero en Electricidad" }));
 
         btnRegistrar.setText("Registrar Empleado");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         btnActualizar.setText("Actualizar Empleado");
 
@@ -100,6 +109,21 @@ public class Registro extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        try {
+           Connection conexion = conectarbdd.conectar();
+           String sql = "INSERT INTO empleados VALUES(?,?,?,?)";
+           PreparedStatement insertar = conexion.prepareStatement(sql);
+           insertar.setString(1, "0");
+           insertar.setString(2, txtNombre.getText().trim());
+           insertar.setString(3, txtTelefono.getText().trim());
+           insertar.setString(4, cbxProfesion.getSelectedItem().toString());
+           insertar.executeUpdate();
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, error);
+        }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
