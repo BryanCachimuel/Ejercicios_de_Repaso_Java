@@ -2,6 +2,7 @@ package registros;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -70,6 +71,11 @@ public class Registro extends javax.swing.JFrame {
         btnConsultarEmpleados.setText("Consultar Empleados");
 
         btnValidadBDD.setText("Validar Informacion en BDD");
+        btnValidadBDD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidadBDDActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,6 +169,30 @@ public class Registro extends javax.swing.JFrame {
         txtNombre.setText("");
         txtTelefono.setText("");
     }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnValidadBDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidadBDDActionPerformed
+        try {
+           Connection conexion = conectarbdd.conectar();
+           String sql = "SELECT * FROM empleados";
+           // sirve para poder insertar, actualizar, eliminar o listar información hacia la bdd
+           PreparedStatement seleccionar = conexion.prepareStatement(sql);
+           
+           // consultamos a la base de datos
+            ResultSet consulta = seleccionar.executeQuery();
+            
+            // validamos si en la bdd tiene datos
+            if(consulta.next()){
+                JOptionPane.showMessageDialog(null, "La Base de Datos si tiene Información");
+            }else{
+                JOptionPane.showMessageDialog(null, "No existe Información en la Base de Datos");
+            } 
+            // cerramos la conexión hacia la bdd
+            conectarbdd.cerrarConexion();
+            
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, error);
+        }
+    }//GEN-LAST:event_btnValidadBDDActionPerformed
 
     /**
      * @param args the command line arguments
