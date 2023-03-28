@@ -30,7 +30,7 @@ public class Conexion {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexion = DriverManager.getConnection(url, username, password);
-             /*JOptionPane.showMessageDialog(null, "Conexión hacia la base de datos exitosa" );*/
+             JOptionPane.showMessageDialog(null, "Conexión hacia la base de datos exitosa" );
              return conexion;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error : " + e);
@@ -42,7 +42,7 @@ public class Conexion {
     public void cerrarConexion() throws SQLException{
         try {
             conexion.close();
-            /*JOptionPane.showMessageDialog(null, "Se cerro la conexión hacia la base de datos");*/
+            JOptionPane.showMessageDialog(null, "Se cerro la conexión hacia la base de datos");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error : " + e);
             conexion.close();

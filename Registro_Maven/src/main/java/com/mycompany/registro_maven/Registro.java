@@ -321,7 +321,6 @@ public class Registro extends javax.swing.JFrame {
               txtNombre.setText(consulta.getString("nombre"));
               txtTelefono.setText(consulta.getString("telefono"));
               cbxProfesion.setSelectedItem( consulta.getString("profesion"));
-              
           }
           JOptionPane.showMessageDialog(null, "Dato Encontrado con Exito");
           
