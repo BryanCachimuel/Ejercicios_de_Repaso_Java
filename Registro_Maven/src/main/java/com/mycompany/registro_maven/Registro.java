@@ -1,4 +1,4 @@
-package registros;
+package com.mycompany.registro_maven;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -321,6 +321,7 @@ public class Registro extends javax.swing.JFrame {
               txtNombre.setText(consulta.getString("nombre"));
               txtTelefono.setText(consulta.getString("telefono"));
               cbxProfesion.setSelectedItem( consulta.getString("profesion"));
+              
           }
           JOptionPane.showMessageDialog(null, "Dato Encontrado con Exito");
           
@@ -355,6 +356,7 @@ public class Registro extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
