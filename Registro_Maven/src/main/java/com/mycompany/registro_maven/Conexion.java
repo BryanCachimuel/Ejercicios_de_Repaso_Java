@@ -21,7 +21,7 @@ public class Conexion {
     private static Conexion instancia;
     
     //creamos las variables para conectarse a la base de datos
-    private static final String url = "jdbc:mysql://localhost:3307/bd_registros?useSSL=false";
+    private static final String url = "jdbc:mysql://localhost:3307/bd_registros?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String username = "root";
     private static final String password = "admin1994";
     
@@ -33,7 +33,7 @@ public class Conexion {
              /*JOptionPane.showMessageDialog(null, "Conexión hacia la base de datos exitosa" );*/
              return conexion;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error : " + e);
+            System.out.println("Error: " + e);
         }
         return conexion;
     }
@@ -44,7 +44,7 @@ public class Conexion {
             conexion.close();
             /*JOptionPane.showMessageDialog(null, "Se cerro la conexión hacia la base de datos");*/
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error : " + e);
+            System.out.println("Error: " + e);
             conexion.close();
         }finally{
             conexion.close();
