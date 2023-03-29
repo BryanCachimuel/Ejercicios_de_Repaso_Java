@@ -29,6 +29,7 @@ public class EstudianteForm extends javax.swing.JFrame {
         txtNombres.setText("");
         txtEdad.setText("");
         txtDireccion.setText("");
+        txtBuscar.setText("");
     }
 
     /**
@@ -79,6 +80,11 @@ public class EstudianteForm extends javax.swing.JFrame {
         btnActualizar.setText("Actualizar");
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -99,31 +105,34 @@ public class EstudianteForm extends javax.swing.JFrame {
                 .addGap(189, 189, 189))
             .addGroup(layout.createSequentialGroup()
                 .addGap(91, 91, 91)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtEdad, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtNombres, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel4))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtEdad, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtNombres, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnActualizar)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnRegistrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnActualizar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -152,14 +161,14 @@ public class EstudianteForm extends javax.swing.JFrame {
                         .addGap(47, 47, 47)))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEliminar)
                     .addComponent(btnActualizar)
                     .addComponent(btnRegistrar))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
+                    .addComponent(btnBuscar)
+                    .addComponent(btnEliminar))
                 .addContainerGap(84, Short.MAX_VALUE))
         );
 
@@ -170,20 +179,24 @@ public class EstudianteForm extends javax.swing.JFrame {
         DAOEstudiantes estudiantesdao = new DAOEstudiantes();
         Estudiantes estudiantes = new Estudiantes();
         
-        String cedula = txtCedula.getText();
-        String nombres = txtNombres.getText();
-        int edad = Integer.parseInt(txtEdad.getText());
-        String direccion = txtDireccion.getText();
-        
-        estudiantes.setCedula(cedula);
-        estudiantes.setNombres(nombres);
-        estudiantes.setEdad(edad);
-        estudiantes.setDireccion(direccion);
+        if(txtCedula.getText().equals("") || txtNombres.getText().equals("") || txtEdad.getText().equals("") || txtDireccion.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Por Favor Ingrese la Información solicitada para Registrar un Estudiante");
+        }else{
+            String cedula = txtCedula.getText();
+            String nombres = txtNombres.getText();
+            int edad = Integer.parseInt(txtEdad.getText());
+            String direccion = txtDireccion.getText();
 
-        estudiantesdao.registrar(estudiantes);
-        
-        JOptionPane.showMessageDialog(null, "Registro del Estudiante Exitoso");
-        limpiarCampos();
+            estudiantes.setCedula(cedula);
+            estudiantes.setNombres(nombres);
+            estudiantes.setEdad(edad);
+            estudiantes.setDireccion(direccion);
+
+            estudiantesdao.registrar(estudiantes);
+
+            JOptionPane.showMessageDialog(null, "Registro del Estudiante Exitoso");
+            limpiarCampos();
+        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -205,6 +218,22 @@ public class EstudianteForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Registro Encontrado con Exito");
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        DAOEstudiantes estudiantesdao = new DAOEstudiantes();
+        Estudiantes estudiantes = new Estudiantes();
+        
+        if(txtBuscar.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Por Favor Ingrese un Id para Eliminar un Registro");
+        }else{
+            int id = Integer.parseInt(txtBuscar.getText());
+            estudiantes.setId(id);
+            estudiantesdao.eliminar(estudiantes);
+            limpiarCampos();
+            JOptionPane.showMessageDialog(null, "Registro Eliminado con Exito");
+        }
+        
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
