@@ -78,6 +78,11 @@ public class EstudianteForm extends javax.swing.JFrame {
         });
 
         btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -234,6 +239,31 @@ public class EstudianteForm extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        DAOEstudiantes estudiantesdao = new DAOEstudiantes();
+        Estudiantes estudiantes = new Estudiantes();
+        
+        if(txtCedula.getText().equals("") || txtNombres.getText().equals("") || txtEdad.getText().equals("") || txtDireccion.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Por favor Ingrese la Información en los Campos para Modificar el Registro Seleccionado");
+        }else{
+            int id = Integer.parseInt(txtBuscar.getText());
+            String cedula = txtCedula.getText();
+            String nombres = txtNombres.getText();
+            int edad = Integer.parseInt(txtEdad.getText());
+            String direccion = txtDireccion.getText();
+            
+            estudiantes.setId(id);
+            estudiantes.setCedula(cedula);
+            estudiantes.setNombres(nombres);
+            estudiantes.setEdad(edad);
+            estudiantes.setDireccion(direccion);
+            
+            estudiantesdao.actualizar(estudiantes);
+            limpiarCampos();
+            JOptionPane.showMessageDialog(null, "Información del Registro Actualizado con Exito");
+        }
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     /**
      * @param args the command line arguments
