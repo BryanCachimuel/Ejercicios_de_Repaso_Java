@@ -1,7 +1,7 @@
 package Modelo;
 
 import dao.Conexion;
-import interfaces.InterfaceEstudiantes;
+import interfaces.DAO_Estudiantes;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  *
  * @author Bryan
  */
-public class DAOEstudiantes implements InterfaceEstudiantes {
+public class DAOEstudiantes implements DAO_Estudiantes {
 
     Conexion conexion = Conexion.getInstance();
 
@@ -36,7 +36,19 @@ public class DAOEstudiantes implements InterfaceEstudiantes {
 
     @Override
     public void actualizar(Estudiantes estudiantes) {
-
+        try {
+          Connection conectar = conexion.conectar();
+          String sql = "UPDATE personas SET cedula=?,nombres=?,edad=?,direccion=? WHERE id=?";
+          PreparedStatement actualizar = conectar.prepareStatement(sql);
+          actualizar.setString(1, estudiantes.getCedula());
+          actualizar.setString(2, estudiantes.getNombres());
+          actualizar.setInt(3, estudiantes.getEdad());
+          actualizar.setString(4, estudiantes.getDireccion());
+          actualizar.setInt(5, estudiantes.getId());
+          actualizar.executeUpdate();
+        } catch (SQLException ex) {
+             Logger.getLogger(DAOEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
