@@ -29,6 +29,9 @@ public class DAOEstudiantes implements DAO_Estudiantes {
             insertar.setInt(3, estudiantes.getEdad());
             insertar.setString(4, estudiantes.getDireccion());
             insertar.executeUpdate();
+            
+            conexion.cerrarConexion();
+            
         } catch (SQLException ex) {
             Logger.getLogger(DAOEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -47,6 +50,9 @@ public class DAOEstudiantes implements DAO_Estudiantes {
           actualizar.setString(4, estudiantes.getDireccion());
           actualizar.setInt(5, estudiantes.getId());
           actualizar.executeUpdate();
+          
+          conexion.cerrarConexion();
+          
         } catch (SQLException ex) {
              Logger.getLogger(DAOEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -60,6 +66,9 @@ public class DAOEstudiantes implements DAO_Estudiantes {
             PreparedStatement eliminar = conectar.prepareStatement(sql);
             eliminar.setInt(1, estudiantes.getId());
             eliminar.executeUpdate();
+            
+            conexion.cerrarConexion();
+            
         } catch (SQLException ex) {
             Logger.getLogger(DAOEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -80,6 +89,9 @@ public class DAOEstudiantes implements DAO_Estudiantes {
               estudiantes.setEdad(Integer.parseInt(consulta.getString("edad")));
               estudiantes.setDireccion(consulta.getString("direccion"));
           }
+          
+          conexion.cerrarConexion();
+          
         } catch (SQLException ex) {
             Logger.getLogger(DAOEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
         }
