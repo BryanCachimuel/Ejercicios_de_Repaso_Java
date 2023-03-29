@@ -4,6 +4,7 @@ import dao.Conexion;
 import interfaces.DAO_Estudiantes;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,7 +67,22 @@ public class DAOEstudiantes implements DAO_Estudiantes {
 
     @Override
     public void buscar(Estudiantes estudiantes) {
-
+        try {
+          Connection conectar = conexion.conectar();
+          String sql = "SELECT * FROM personas WHERE id=?";
+          PreparedStatement buscar = conectar.prepareStatement(sql);
+          buscar.setInt(1, estudiantes.getId());
+          
+          ResultSet consulta = buscar.executeQuery();
+          if(consulta.next()){
+              estudiantes.setCedula(consulta.getString("cedula"));
+              estudiantes.setNombres(consulta.getString("nombres"));
+              estudiantes.setEdad(Integer.parseInt(consulta.getString("edad")));
+              estudiantes.setDireccion(consulta.getString("direccion"));
+          }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
