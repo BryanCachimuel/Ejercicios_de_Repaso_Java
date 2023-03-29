@@ -53,7 +53,15 @@ public class DAOEstudiantes implements DAO_Estudiantes {
 
     @Override
     public void eliminar(Estudiantes estudiantes) {
-
+        try {
+            Connection conectar = conexion.conectar();
+            String sql = "DELETE FROM personas WHERE id=?";
+            PreparedStatement eliminar = conectar.prepareStatement(sql);
+            eliminar.setInt(1, estudiantes.getId());
+            eliminar.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
