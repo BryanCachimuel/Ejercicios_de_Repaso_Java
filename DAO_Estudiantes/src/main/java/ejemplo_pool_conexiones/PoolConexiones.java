@@ -1,6 +1,7 @@
 package ejemplo_pool_conexiones;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -19,6 +20,7 @@ public class PoolConexiones {
     private static final String URL = "jdbc:mysql://localhost:3307/estudiantes?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String USER = "root";
     private static final String PASSWORD = "admin1994";
+    private static PoolConexiones instancia;
     
     // conectar con la base de datos
     public DataSource obtenerFuentedeDatos(){
@@ -50,5 +52,20 @@ public class PoolConexiones {
         } catch (SQLException ex) {
             Logger.getLogger(PoolConexiones.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void cerrarStatement(PreparedStatement statement){
+        try {
+           statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(PoolConexiones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static PoolConexiones getInstance(){
+        if(instancia == null){
+            instancia = new PoolConexiones();
+        }
+        return instancia;
     }
 }
