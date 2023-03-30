@@ -16,6 +16,10 @@ dependecia puesta en el archivo pom.xml para que funcione el pool de conexiones
     <version>2.8.0</version>
  */
 public class PoolConexiones {
+    
+    // crendo un constructor privado
+    private PoolConexiones(){}
+    
     /* estableciendo como un ejemplo un pool de conexiones */
     private static final String URL = "jdbc:mysql://localhost:3307/estudiantes?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String USER = "root";
