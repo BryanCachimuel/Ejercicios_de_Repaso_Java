@@ -82,4 +82,33 @@ public class DatosDAO {
         
         return registros;
     }
+    
+    // método para actualizar
+    public int actualizar(Datos dato){
+        Connection conexion = null;
+        PreparedStatement consulta = null;
+        int registros = 0;
+        
+        try {
+            conexion = instanciaMysql.conectar();
+            consulta = conexion.prepareStatement(SQL_UPDATE);
+            
+            consulta.setString(1, dato.getNombres());
+            consulta.setString(2, dato.getApellidos());
+            consulta.setString(3, dato.getEmail());
+            consulta.setString(4, dato.getTelefono());
+            consulta.setDouble(5, dato.getSaldo());
+            consulta.setInt(6, dato.getIddatos());
+            
+            registros = consulta.executeUpdate();
+            
+        } catch (SQLException error) {
+            System.out.println(error);
+        } finally{
+            instanciaMysql.cerrarStatement(consulta);
+            instanciaMysql.desconectar(conexion);
+        }
+        
+        return registros;
+    }
 }
