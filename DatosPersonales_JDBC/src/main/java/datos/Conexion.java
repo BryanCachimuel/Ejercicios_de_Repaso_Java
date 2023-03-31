@@ -2,7 +2,13 @@ package datos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sql.DataSource;
+import org.apache.commons.dbcp2.BasicDataSource;
 
 /**
  *
@@ -12,40 +18,49 @@ public class Conexion {
     // creamos un constructor
     private Conexion(){}
     
-    // crear una variable donde se guarde el estado de la conexión hacia la base de datos
-    private static Connection conexion;
-    
-    // creamos una variable para crear una sola instancia desde esta clase al JFrame
+    /* estableciendo como un ejemplo un pool de conexiones */
+    private static final String URL = "jdbc:mysql://localhost:3307/datos_personales?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private static final String USER = "root";
+    private static final String PASSWORD = "admin1994";
     private static Conexion instancia;
     
-    //creamos las variables para conectarse a la base de datos
-    private static final String url = "jdbc:mysql://localhost:3307/datos_personales?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    private static final String username = "root";
-    private static final String password = "admin1994";
-    
-    // método para conectar hacia la base de datos
-    public Connection conectar(){
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection(url, username, password);
-             System.out.println("Conexión hacia la base de datos exitosa");
-             return conexion;
-        } catch (Exception e) {
-            System.out.println("Error: " + e);
-        }
-        return conexion;
+    // conectar con la base de datos
+    public DataSource obtenerFuentedeDatos(){
+        BasicDataSource datos = new BasicDataSource();
+        datos.setUrl(URL);
+        datos.setUsername(USER);
+        datos.setPassword(PASSWORD);
+        datos.setInitialSize(25);  // es el tamaño de las conexiones a la base de datos
+        return datos;
+    }
+   
+    // se obtiene la conexion hacia la base de datos
+    public Connection conectar() throws SQLException{
+        return obtenerFuentedeDatos().getConnection();
     }
     
-    // creamos el método para cerrar la conexion hacia la base de datos
-    public void cerrarConexion() throws SQLException{
+    // mejores prácticas para hacer la conexión hacia la base de datos
+    public void desconectar(Connection conectar){
         try {
-            conexion.close();
-            System.out.println("Se cerro la conexión hacia la base de datos");
-        } catch (Exception e) {
-            System.out.println("Error: " + e);
-            conexion.close();
-        }finally{
-            conexion.close();
+            conectar.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void cerrarResultSet(ResultSet resultado){
+        try {
+           resultado.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void cerrarStatement(PreparedStatement statement){
+        try {
+           statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
