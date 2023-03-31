@@ -111,4 +111,27 @@ public class DatosDAO {
         
         return registros;
     }
+    
+    // método para eliminar
+    public int eliminar(Datos dato){
+        Connection conexion = null;
+        PreparedStatement consulta = null;
+        int registros = 0;
+        
+        try {
+            conexion = instanciaMysql.conectar();
+            consulta = conexion.prepareStatement(SQL_DELETE);
+            
+            consulta.setInt(1, dato.getIddatos());
+            registros = consulta.executeUpdate();
+            
+        } catch (SQLException error) {
+            System.out.println(error);
+        } finally{
+            instanciaMysql.cerrarStatement(consulta);
+            instanciaMysql.desconectar(conexion);
+        }
+        
+        return registros;
+    }
 }
