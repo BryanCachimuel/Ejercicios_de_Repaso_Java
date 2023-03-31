@@ -44,10 +44,42 @@ public class DatosDAO {
                 datos = new Datos(idDatos, nombres, apellidos, email, telefono, saldo);
                 datoslista.add(datos);
             }
-        } catch (SQLException e) {
-            System.out.println(e);
+        } catch (SQLException error) {
+            System.out.println(error);
+        }finally{
+            instanciaMysql.cerrarResultSet(resultado);
+            instanciaMysql.cerrarStatement(consulta);
+            instanciaMysql.desconectar(conexion);
         }
         
         return datoslista;
+    }
+    
+    // método para insertar datos
+    public int insertar(Datos dato){
+        Connection conexion = null;
+        PreparedStatement consulta = null;
+        int registros = 0;
+        
+        try {
+            conexion = instanciaMysql.conectar();
+            consulta = conexion.prepareStatement(SQL_INSERT);
+            
+            consulta.setString(1, dato.getNombres());
+            consulta.setString(2, dato.getApellidos());
+            consulta.setString(3, dato.getEmail());
+            consulta.setString(4, dato.getTelefono());
+            consulta.setDouble(5, dato.getSaldo());
+            
+            registros = consulta.executeUpdate();
+            
+        } catch (SQLException error) {
+            System.out.println(error);
+        } finally{
+            instanciaMysql.cerrarStatement(consulta);
+            instanciaMysql.desconectar(conexion);
+        }
+        
+        return registros;
     }
 }
