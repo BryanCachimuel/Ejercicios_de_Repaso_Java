@@ -260,8 +260,17 @@ public class TestDatos extends javax.swing.JFrame {
         datos = new Datos(nombres, apellidos, email, telefono, saldo);
         datosdao.insertar(datos);
         JOptionPane.showMessageDialog(null, "Datos Registrados correctamente");
+        LimpiarCampos();
     }//GEN-LAST:event_btnRegistrarActionPerformed
-
+    
+    private void LimpiarCampos(){
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtEmail.setText("");
+        txtTelefono.setText("");
+        txtSaldo.setText("");
+        txtId.setText("");
+    }
     /**
      * @param args the command line arguments
      */
