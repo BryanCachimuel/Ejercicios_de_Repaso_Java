@@ -2,6 +2,7 @@ package test;
 
 import domain.Datos;
 import domain.DatosDAO;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -190,6 +191,11 @@ public class TestDatos extends javax.swing.JFrame {
 
         btnListar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnListar.setText("Listar");
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -262,6 +268,13 @@ public class TestDatos extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Datos Registrados correctamente");
         LimpiarCampos();
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        List<Datos> dato = datosdao.listar();
+        for(Datos datosregistrados : dato){
+            txaListadoDatos.append(datosregistrados.toString());
+        }
+    }//GEN-LAST:event_btnListarActionPerformed
     
     private void LimpiarCampos(){
         txtNombre.setText("");
