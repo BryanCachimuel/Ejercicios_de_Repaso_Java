@@ -1,5 +1,9 @@
 package test;
 
+import domain.Datos;
+import domain.DatosDAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Bryan
@@ -9,6 +13,10 @@ public class TestDatos extends javax.swing.JFrame {
     /**
      * Creates new form TestDatos
      */
+    
+    DatosDAO datosdao = new DatosDAO();
+    Datos datos;
+    
     public TestDatos() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -63,6 +71,11 @@ public class TestDatos extends javax.swing.JFrame {
 
         btnRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -236,6 +249,18 @@ public class TestDatos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        String nombres = txtNombre.getText().trim();
+        String apellidos = txtApellido.getText().trim();
+        String email = txtEmail.getText().trim();
+        String telefono = txtTelefono.getText().trim();
+        double saldo = Double.parseDouble(txtSaldo.getText());
+        
+        datos = new Datos(nombres, apellidos, email, telefono, saldo);
+        datosdao.insertar(datos);
+        JOptionPane.showMessageDialog(null, "Datos Registrados correctamente");
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
