@@ -1,9 +1,13 @@
 package test;
 
+import datos.Conexion;
 import domain.Cliente;
 import domain.ClienteDAO;
 import java.util.List;
 import javax.swing.JOptionPane;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,10 +18,11 @@ public class TestDatos extends javax.swing.JFrame {
     /**
      * Creates new form TestDatos
      */
-    
     ClienteDAO datosdao = new ClienteDAO();
     Cliente datos;
-    
+    Connection conexion = null;
+    Conexion instanciaMysql = Conexion.getInstance();
+
     public TestDatos() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -278,29 +283,44 @@ public class TestDatos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        String nombres = txtNombre.getText().trim();
-        String apellidos = txtApellido.getText().trim();
-        String email = txtEmail.getText().trim();
-        String telefono = txtTelefono.getText().trim();
-        double saldo = Double.parseDouble(txtSaldo.getText());
-        
-        datos = new Cliente(nombres, apellidos, email, telefono, saldo);
-        datosdao.insertar(datos);
-        JOptionPane.showMessageDialog(null, "Datos Registrados correctamente");
-        LimpiarCampos();
+        try {
+            conexion = instanciaMysql.conectar();
+            if (conexion.getAutoCommit()) {
+                conexion.setAutoCommit(false);
+            }
+            String nombres = txtNombre.getText().trim();
+            String apellidos = txtApellido.getText().trim();
+            String email = txtEmail.getText().trim();
+            String telefono = txtTelefono.getText().trim();
+            double saldo = Double.parseDouble(txtSaldo.getText());
+
+            datos = new Cliente(nombres, apellidos, email, telefono, saldo);
+            datosdao.insertar(datos);
+            JOptionPane.showMessageDialog(null, "Datos Registrados correctamente");
+            LimpiarCampos();
+            conexion.commit();
+
+        } catch (SQLException error) {
+            System.out.println(error);
+            try {
+                conexion.rollback();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         txaListadoDatos.setText("");
         List<Cliente> dato = datosdao.listar();
-        for(Cliente datosregistrados : dato){
+        for (Cliente datosregistrados : dato) {
             txaListadoDatos.append(datosregistrados.toString());
         }
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         int idDatos = Integer.parseInt(txtId.getText());
-        
+
         datos = new Cliente(idDatos);
         datosdao.eliminar(datos);
         JOptionPane.showMessageDialog(null, "Dato Eliminado Correctamente");
@@ -308,24 +328,40 @@ public class TestDatos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        int IdDatos = Integer.parseInt(txtId.getText());
-        String nombres = txtNombre.getText().trim();
-        String apellidos = txtApellido.getText().trim();
-        String email = txtEmail.getText().trim();
-        String telefono = txtTelefono.getText().trim();
-        double saldo = Double.parseDouble(txtSaldo.getText()); 
-        
-        datos = new Cliente(IdDatos, nombres, apellidos, email, telefono, saldo);
-        datosdao.actualizar(datos);
-        JOptionPane.showMessageDialog(null, "Datos Actualizados Correctamente");
-        LimpiarCampos();
+        try {
+            conexion = instanciaMysql.conectar();
+            if (conexion.getAutoCommit()) {
+                conexion.setAutoCommit(false);
+            }
+            int IdDatos = Integer.parseInt(txtId.getText());
+            String nombres = txtNombre.getText().trim();
+            String apellidos = txtApellido.getText().trim();
+            String email = txtEmail.getText().trim();
+            String telefono = txtTelefono.getText().trim();
+            double saldo = Double.parseDouble(txtSaldo.getText());
+
+            datos = new Cliente(IdDatos, nombres, apellidos, email, telefono, saldo);
+            datosdao.actualizar(datos);
+            JOptionPane.showMessageDialog(null, "Datos Actualizados Correctamente");
+            LimpiarCampos();
+            conexion.commit();
+            
+        } catch (SQLException error) {
+            System.out.println(error);
+            try {
+                conexion.rollback();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
+
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnLimpiarAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarAreaActionPerformed
         txaListadoDatos.setText("");
     }//GEN-LAST:event_btnLimpiarAreaActionPerformed
-    
-    private void LimpiarCampos(){
+
+    private void LimpiarCampos() {
         txtNombre.setText("");
         txtApellido.setText("");
         txtEmail.setText("");
@@ -333,6 +369,7 @@ public class TestDatos extends javax.swing.JFrame {
         txtSaldo.setText("");
         txtId.setText("");
     }
+
     /**
      * @param args the command line arguments
      */
