@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,6 +23,7 @@ public class DatosDAO {
     private static final String SQL_UPDATE = "UPDATE datos SET nombres=?,apellidos=?,email=?,telefono=?,saldo=? WHERE id_datos=?";
     private static final String SQL_DELETE = "DELETE FROM datos WHERE id_datos=?";
     
+    int registros;
     // método para listar datos
     public List<Datos> listar(){
         Connection conexion = null;
@@ -59,12 +62,12 @@ public class DatosDAO {
     public int insertar(Datos dato){
         Connection conexion = null;
         PreparedStatement consulta = null;
-        int registros = 0;
-        
+
         try {
             conexion = instanciaMysql.conectar();
             consulta = conexion.prepareStatement(SQL_INSERT);
             
+            //consulta.setInt(1, dato.getIddatos());
             consulta.setString(1, dato.getNombres());
             consulta.setString(2, dato.getApellidos());
             consulta.setString(3, dato.getEmail());
@@ -74,7 +77,7 @@ public class DatosDAO {
             registros = consulta.executeUpdate();
             
         } catch (SQLException error) {
-            System.out.println(error);
+            Logger.getLogger(DatosDAO.class.getName()).log(Level.SEVERE, null, error);
         } finally{
             instanciaMysql.cerrarStatement(consulta);
             instanciaMysql.desconectar(conexion);

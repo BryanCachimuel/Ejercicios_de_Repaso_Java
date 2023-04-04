@@ -85,12 +85,12 @@ public class Datos {
 
     @Override
     public String toString() {
-        return "\nId : " + iddatos + 
+        return "Id : " + iddatos + 
                "\nNombre : " + nombres + 
                "\nApellido : " + apellidos + 
                "\nEmail : " + email + 
                "\nTeléfono : " + telefono +
-               "\nSaldo : " + saldo;
+               "\nSaldo : " + "$" + saldo +"\n"+"\n";
     }
    
    
