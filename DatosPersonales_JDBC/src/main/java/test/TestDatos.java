@@ -257,12 +257,18 @@ public class TestDatos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        //String id_datos = "0";
         String nombres = txtNombre.getText().trim();
         String apellidos = txtApellido.getText().trim();
         String email = txtEmail.getText().trim();
         String telefono = txtTelefono.getText().trim();
         double saldo = Double.parseDouble(txtSaldo.getText());
         
+        /*datos.setNombres(nombres);
+        datos.setApellidos(apellidos);
+        datos.setEmail(email);
+        datos.setTelefono(telefono);
+        datos.setSaldo(saldo);*/
         datos = new Datos(nombres, apellidos, email, telefono, saldo);
         datosdao.insertar(datos);
         JOptionPane.showMessageDialog(null, "Datos Registrados correctamente");
@@ -274,6 +280,7 @@ public class TestDatos extends javax.swing.JFrame {
         for(Datos datosregistrados : dato){
             txaListadoDatos.append(datosregistrados.toString());
         }
+        
     }//GEN-LAST:event_btnListarActionPerformed
     
     private void LimpiarCampos(){
@@ -283,6 +290,7 @@ public class TestDatos extends javax.swing.JFrame {
         txtTelefono.setText("");
         txtSaldo.setText("");
         txtId.setText("");
+        txaListadoDatos.setText("");
     }
     /**
      * @param args the command line arguments
