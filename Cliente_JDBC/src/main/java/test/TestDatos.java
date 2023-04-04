@@ -319,12 +319,27 @@ public class TestDatos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        int idDatos = Integer.parseInt(txtId.getText());
+        try {
+            conexion = instanciaMysql.conectar();
+            if (conexion.getAutoCommit()) {
+                conexion.setAutoCommit(false);
+            }
+            int idDatos = Integer.parseInt(txtId.getText());
 
-        datos = new Cliente(idDatos);
-        datosdao.eliminar(datos);
-        JOptionPane.showMessageDialog(null, "Dato Eliminado Correctamente");
-        LimpiarCampos();
+            datos = new Cliente(idDatos);
+            datosdao.eliminar(datos);
+            JOptionPane.showMessageDialog(null, "Dato Eliminado Correctamente");
+            LimpiarCampos();
+            conexion.commit();
+            
+        } catch (Exception error) {
+            System.out.println(error);
+            try {
+                conexion.rollback();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -345,7 +360,7 @@ public class TestDatos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Datos Actualizados Correctamente");
             LimpiarCampos();
             conexion.commit();
-            
+
         } catch (SQLException error) {
             System.out.println(error);
             try {
