@@ -90,11 +90,8 @@ public class TestDatos extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(10, 10, 10))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(18, 18, 18)))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(4, 4, 4)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtApellido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
@@ -151,6 +148,11 @@ public class TestDatos extends javax.swing.JFrame {
 
         btnEliminar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -276,12 +278,21 @@ public class TestDatos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        txaListadoDatos.setText("");
         List<Datos> dato = datosdao.listar();
         for(Datos datosregistrados : dato){
             txaListadoDatos.append(datosregistrados.toString());
         }
-        
     }//GEN-LAST:event_btnListarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int idDatos = Integer.parseInt(txtId.getText());
+        
+        datos = new Datos(idDatos);
+        datosdao.eliminar(datos);
+        JOptionPane.showMessageDialog(null, "Dato Eliminado Correctamente");
+        LimpiarCampos();
+    }//GEN-LAST:event_btnEliminarActionPerformed
     
     private void LimpiarCampos(){
         txtNombre.setText("");
@@ -290,7 +301,6 @@ public class TestDatos extends javax.swing.JFrame {
         txtTelefono.setText("");
         txtSaldo.setText("");
         txtId.setText("");
-        txaListadoDatos.setText("");
     }
     /**
      * @param args the command line arguments
