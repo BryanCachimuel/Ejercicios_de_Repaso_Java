@@ -296,9 +296,10 @@ public class TestDatos extends javax.swing.JFrame {
 
             datos = new Cliente(nombres, apellidos, email, telefono, saldo);
             datosdao.insertar(datos);
+            conexion.commit();
             JOptionPane.showMessageDialog(null, "Datos Registrados correctamente");
             LimpiarCampos();
-            conexion.commit();
+            
 
         } catch (SQLException error) {
             System.out.println(error);
@@ -311,10 +312,24 @@ public class TestDatos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        txaListadoDatos.setText("");
-        List<Cliente> dato = datosdao.listar();
-        for (Cliente datosregistrados : dato) {
-            txaListadoDatos.append(datosregistrados.toString());
+        try {
+            conexion = instanciaMysql.conectar();
+            if (conexion.getAutoCommit()) {
+                conexion.setAutoCommit(false);
+            }
+            txaListadoDatos.setText("");
+            List<Cliente> dato = datosdao.listar();
+            dato.forEach(datosregistrados -> {
+                txaListadoDatos.append(datosregistrados.toString());
+            });
+            conexion.commit();
+        } catch (SQLException e) {
+            System.out.println(e);
+            try {
+                conexion.rollback();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
         }
     }//GEN-LAST:event_btnListarActionPerformed
 
@@ -328,11 +343,11 @@ public class TestDatos extends javax.swing.JFrame {
 
             datos = new Cliente(idDatos);
             datosdao.eliminar(datos);
+            conexion.commit();
             JOptionPane.showMessageDialog(null, "Dato Eliminado Correctamente");
             LimpiarCampos();
-            conexion.commit();
-            
-        } catch (Exception error) {
+
+        } catch (SQLException error) {
             System.out.println(error);
             try {
                 conexion.rollback();
