@@ -145,6 +145,11 @@ public class TestDatos extends javax.swing.JFrame {
 
         btnActualizar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnEliminar.setText("Eliminar");
@@ -259,18 +264,12 @@ public class TestDatos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        //String id_datos = "0";
         String nombres = txtNombre.getText().trim();
         String apellidos = txtApellido.getText().trim();
         String email = txtEmail.getText().trim();
         String telefono = txtTelefono.getText().trim();
         double saldo = Double.parseDouble(txtSaldo.getText());
         
-        /*datos.setNombres(nombres);
-        datos.setApellidos(apellidos);
-        datos.setEmail(email);
-        datos.setTelefono(telefono);
-        datos.setSaldo(saldo);*/
         datos = new Datos(nombres, apellidos, email, telefono, saldo);
         datosdao.insertar(datos);
         JOptionPane.showMessageDialog(null, "Datos Registrados correctamente");
@@ -293,6 +292,20 @@ public class TestDatos extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Dato Eliminado Correctamente");
         LimpiarCampos();
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        int IdDatos = Integer.parseInt(txtId.getText());
+        String nombres = txtNombre.getText().trim();
+        String apellidos = txtApellido.getText().trim();
+        String email = txtEmail.getText().trim();
+        String telefono = txtTelefono.getText().trim();
+        double saldo = Double.parseDouble(txtSaldo.getText()); 
+        
+        datos = new Datos(IdDatos, nombres, apellidos, email, telefono, saldo);
+        datosdao.actualizar(datos);
+        JOptionPane.showMessageDialog(null, "Datos Actualizados Correctamente");
+        LimpiarCampos();
+    }//GEN-LAST:event_btnActualizarActionPerformed
     
     private void LimpiarCampos(){
         txtNombre.setText("");
