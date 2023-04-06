@@ -193,6 +193,7 @@ public class Procedimientos extends javax.swing.JFrame {
             procedimientoAlmacenadoInsertar.setInt(3, Integer.parseInt(txtEdad.getText()));
             procedimientoAlmacenadoInsertar.setString(4, txtParalelo.getText());
             procedimientoAlmacenadoInsertar.executeUpdate();
+            limpiarCampos();
             JOptionPane.showMessageDialog(null, "Alumno Registrado con exito");
             
             procedimientoAlmacenadoInsertar.close();
@@ -201,7 +202,14 @@ public class Procedimientos extends javax.swing.JFrame {
             System.out.println(e);
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
-
+    
+    public void limpiarCampos(){
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtEdad.setText("");
+        txtParalelo.setText("");
+        txaLista.setText("");
+    }
     /**
      * @param args the command line arguments
      */
