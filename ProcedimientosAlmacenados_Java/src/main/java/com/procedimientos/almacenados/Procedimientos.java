@@ -9,6 +9,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -80,6 +81,11 @@ public class Procedimientos extends javax.swing.JFrame {
         jLabel4.setText("Ingrese su Paralelo:");
 
         btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,6 +172,7 @@ public class Procedimientos extends javax.swing.JFrame {
                 txaLista.append("\n");
             }
             
+            procedimientoAlmacenado.close();
             instanciaMysql.desconectar(conexion);
         } catch (SQLException e) {
             System.out.println(e);
@@ -175,6 +182,25 @@ public class Procedimientos extends javax.swing.JFrame {
     private void txtLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLimpiarActionPerformed
         txaLista.setText("");
     }//GEN-LAST:event_txtLimpiarActionPerformed
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        try {
+            Connection conexion = instanciaMysql.conectar();
+            CallableStatement procedimientoAlmacenadoInsertar = conexion.prepareCall("{call insertarAlumno(?,?,?,?)}");
+            
+            procedimientoAlmacenadoInsertar.setString(1, txtNombre.getText());
+            procedimientoAlmacenadoInsertar.setString(2, txtApellido.getText());
+            procedimientoAlmacenadoInsertar.setInt(3, Integer.parseInt(txtEdad.getText()));
+            procedimientoAlmacenadoInsertar.setString(4, txtParalelo.getText());
+            procedimientoAlmacenadoInsertar.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Alumno Registrado con exito");
+            
+            procedimientoAlmacenadoInsertar.close();
+            instanciaMysql.desconectar(conexion);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
