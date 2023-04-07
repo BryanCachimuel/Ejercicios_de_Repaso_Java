@@ -56,6 +56,7 @@ public class TestDatos extends javax.swing.JFrame {
         txtId = new javax.swing.JTextField();
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txaListadoDatos = new javax.swing.JTextArea();
@@ -166,6 +167,14 @@ public class TestDatos extends javax.swing.JFrame {
             }
         });
 
+        btnBuscar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -173,10 +182,12 @@ public class TestDatos extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtId))
+                        .addComponent(txtId)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -189,7 +200,8 @@ public class TestDatos extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar))
                 .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -245,6 +257,7 @@ public class TestDatos extends javax.swing.JFrame {
                 .addGap(66, 66, 66))
         );
 
+        btnSalir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -281,7 +294,7 @@ public class TestDatos extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -406,6 +419,35 @@ public class TestDatos extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        try {
+            conexion = instanciaMysql.conectar();
+            if (conexion.getAutoCommit()) {
+                conexion.setAutoCommit(false);
+            }
+            String sql = "SELECT * FROM cliente WHERE id_datos=?";
+            PreparedStatement buscar = conexion.prepareStatement(sql);
+            buscar.setInt(1, Integer.parseInt(txtId.getText()));
+            ResultSet consulta = buscar.executeQuery();
+            while(consulta.next()){
+                txtNombre.setText(consulta.getString("nombres"));
+                txtApellido.setText(consulta.getString("apellidos"));
+                txtEmail.setText(consulta.getString("email"));
+                txtTelefono.setText(consulta.getString("telefono"));
+                txtSaldo.setText(String.valueOf(consulta.getDouble("saldo")));
+            }
+            JOptionPane.showMessageDialog(null, "Cliente Encontrado con Exito");
+            conexion.commit();
+        } catch (SQLException e) {
+            System.out.println(e);
+            try {
+                conexion.rollback();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
     private void LimpiarCampos() {
         txtNombre.setText("");
         txtApellido.setText("");
@@ -452,6 +494,7 @@ public class TestDatos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiarArea;
     private javax.swing.JButton btnListar;
