@@ -56,6 +56,7 @@ public class Procedimientos extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
         btnEliminar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,6 +116,13 @@ public class Procedimientos extends javax.swing.JFrame {
             }
         });
 
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,13 +131,15 @@ public class Procedimientos extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnSalir)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel5)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
@@ -186,7 +196,8 @@ public class Procedimientos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar))
+                    .addComponent(btnEliminar)
+                    .addComponent(btnActualizar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -285,6 +296,27 @@ public class Procedimientos extends javax.swing.JFrame {
             System.out.println(e);
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        try {
+            Connection conexion = instanciaMysql.conectar();
+            CallableStatement procedimientoAlmacenadoActualizar = conexion.prepareCall("call actualizarAlumno(?,?,?,?,?)");
+            
+            procedimientoAlmacenadoActualizar.setString(1, txtNombre.getText());
+            procedimientoAlmacenadoActualizar.setString(2, txtApellido.getText());
+            procedimientoAlmacenadoActualizar.setInt(3, Integer.parseInt(txtEdad.getText()));
+            procedimientoAlmacenadoActualizar.setString(4, txtParalelo.getText());
+            procedimientoAlmacenadoActualizar.setInt(5, Integer.parseInt(txtId.getText()));
+            procedimientoAlmacenadoActualizar.executeUpdate();
+            limpiarCampos();
+            JOptionPane.showMessageDialog(null, "Datos del Alumno Actualizados exitosamente");
+            
+            procedimientoAlmacenadoActualizar.close();
+            instanciaMysql.desconectar(conexion);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_btnActualizarActionPerformed
     
     public void limpiarCampos(){
         txtNombre.setText("");
@@ -330,6 +362,7 @@ public class Procedimientos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnListarAlumnos;
     private javax.swing.JButton btnListarAlumnosB;
