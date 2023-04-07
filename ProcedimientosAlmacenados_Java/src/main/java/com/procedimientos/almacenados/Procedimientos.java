@@ -137,6 +137,11 @@ public class Procedimientos extends javax.swing.JFrame {
         });
 
         btnParaleloB.setText("Edades Alumnos Paralelo B");
+        btnParaleloB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnParaleloBActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -355,6 +360,7 @@ public class Procedimientos extends javax.swing.JFrame {
            Connection conexion = instanciaMysql.conectar();
            CallableStatement procedimientoAlmacenadoEdadesA = conexion.prepareCall("{call edadesAlumnosA}");
            ResultSet consulta = procedimientoAlmacenadoEdadesA.executeQuery();
+           
            while(consulta.next()){
                txaLista.append((consulta.getInt(1) + " "));
                txaLista.append((consulta.getString(2) + " "));
@@ -363,13 +369,36 @@ public class Procedimientos extends javax.swing.JFrame {
                txaLista.append((consulta.getString(5) + " "));
                txaLista.append("\n");
            }
-           JOptionPane.showMessageDialog(null, "Lista de los Estudiantes Mayores o Iguales a 28 años");
+           
+           JOptionPane.showMessageDialog(null, "Lista de los Estudiantes Mayores o Iguales a 28 años del Paralelo A");
            procedimientoAlmacenadoEdadesA.close();
            instanciaMysql.desconectar(conexion);
         } catch (SQLException e) {
             System.out.println(e);
         }
     }//GEN-LAST:event_btnParaleloAActionPerformed
+
+    private void btnParaleloBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnParaleloBActionPerformed
+        try {
+           Connection conexion = instanciaMysql.conectar();
+           CallableStatement procedimientoAlmacenadoEdadesB = conexion.prepareCall("{call edadesAlumnosB}");
+           ResultSet consulta = procedimientoAlmacenadoEdadesB.executeQuery();
+           
+           while(consulta.next()){
+               txaLista.append((consulta.getInt(1) + " "));
+               txaLista.append((consulta.getString(2) + " "));
+               txaLista.append((consulta.getString(3) + " "));
+               txaLista.append((consulta.getInt(4) + " "));
+               txaLista.append((consulta.getString(5) + " "));
+               txaLista.append("\n");
+           }
+           JOptionPane.showMessageDialog(null, "Lista de los Estudiantes Mayores o Iguales a 28 años del Paralelo B");
+           procedimientoAlmacenadoEdadesB.close();
+           instanciaMysql.desconectar(conexion);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_btnParaleloBActionPerformed
     
     public void limpiarCampos(){
         txtNombre.setText("");
