@@ -109,6 +109,11 @@ public class Procedimientos extends javax.swing.JFrame {
         jLabel5.setText("Código del Alumno:");
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,11 +187,11 @@ public class Procedimientos extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSalir)
-                .addGap(13, 13, 13))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -263,12 +268,30 @@ public class Procedimientos extends javax.swing.JFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        try {
+            Connection conexion = instanciaMysql.conectar();
+            CallableStatement procedimientoAlmacenadoEliminar = conexion.prepareCall("{call eliminarAlumno(?)}");
+            
+            procedimientoAlmacenadoEliminar.setInt(1, Integer.parseInt(txtId.getText()));
+            procedimientoAlmacenadoEliminar.executeUpdate();
+            limpiarCampos();
+            JOptionPane.showMessageDialog(null, "Alumno Eliminado satisfactoriamente");
+            
+            procedimientoAlmacenadoEliminar.close();
+            instanciaMysql.desconectar(conexion);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
     
     public void limpiarCampos(){
         txtNombre.setText("");
         txtApellido.setText("");
         txtEdad.setText("");
         txtParalelo.setText("");
+        txtId.setText("");
         txaLista.setText("");
     }
     /**
