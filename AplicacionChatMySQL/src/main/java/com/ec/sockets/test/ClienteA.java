@@ -5,17 +5,28 @@
  */
 package com.ec.sockets.test;
 
+import com.ec.sockets.chat.Cliente;
+import com.ec.sockets.chat.Servidor;
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  *
  * @author Bryan
  */
-public class ClienteA extends javax.swing.JFrame {
+public class ClienteA extends javax.swing.JFrame implements Observer{
 
     /**
      * Creates new form ClienteA
      */
     public ClienteA() {
         initComponents();
+        this.getRootPane().setDefaultButton(btnEnviar);
+        this.setTitle("Cliente A");
+        Servidor servidor = new Servidor(5000); // puerto del servidor
+        servidor.addObserver(this);
+        Thread hilo = new Thread(servidor);
+        hilo.start();
     }
 
     /**
@@ -28,7 +39,7 @@ public class ClienteA extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtNombreClienteB = new javax.swing.JTextField();
+        txtNombreClienteA = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txaAreaMensajes = new javax.swing.JTextArea();
@@ -46,6 +57,11 @@ public class ClienteA extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txaAreaMensajes);
 
         btnEnviar.setText("Enviar");
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -63,7 +79,7 @@ public class ClienteA extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtNombreClienteB, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombreClienteA, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(26, Short.MAX_VALUE))
@@ -73,7 +89,7 @@ public class ClienteA extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombreClienteB, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreClienteA, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -87,6 +103,15 @@ public class ClienteA extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
+        String mensaje = this.txtNombreClienteA.getText() + " : " + this.txtMensajesEnviar.getText();
+        this.txaAreaMensajes.append(mensaje);
+        
+        Cliente cliente = new Cliente(6000, mensaje);
+        Thread hilo = new Thread(cliente);
+        hilo.start();
+    }//GEN-LAST:event_btnEnviarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,6 +155,11 @@ public class ClienteA extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txaAreaMensajes;
     private javax.swing.JTextField txtMensajesEnviar;
-    private javax.swing.JTextField txtNombreClienteB;
+    private javax.swing.JTextField txtNombreClienteA;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+        txaAreaMensajes.append((String)arg);
+    }
 }

@@ -36,7 +36,7 @@
                       <Group type="102" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtNombreClienteB" min="-2" pref="173" max="-2" attributes="0"/>
+                          <Component id="txtNombreClienteA" min="-2" pref="173" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btnLimpiar" min="-2" pref="118" max="-2" attributes="0"/>
                       </Group>
@@ -51,7 +51,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtNombreClienteB" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                  <Component id="txtNombreClienteA" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnLimpiar" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
               </Group>
@@ -73,7 +73,7 @@
         <Property name="text" type="java.lang.String" value="Ingrese su Nombre:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNombreClienteB">
+    <Component class="javax.swing.JTextField" name="txtNombreClienteA">
     </Component>
     <Component class="javax.swing.JButton" name="btnLimpiar">
       <Properties>
@@ -101,6 +101,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Enviar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEnviarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
