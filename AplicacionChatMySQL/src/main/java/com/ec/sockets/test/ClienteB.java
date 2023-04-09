@@ -105,7 +105,7 @@ public class ClienteB extends javax.swing.JFrame implements Observer{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
-        String mensaje = this.txtNombreClienteB.getText() + " : " + this.txtMensajesEnviar.getText();
+        String mensaje = this.txtNombreClienteB.getText() + " : " + this.txtMensajesEnviar.getText() + "\n";
         this.txaAreaMensajes.append(mensaje);
         
         Cliente cliente = new Cliente(5000, mensaje);
