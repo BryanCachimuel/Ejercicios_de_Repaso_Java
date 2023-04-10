@@ -7,6 +7,7 @@ package com.ec.sockets.test;
 
 import com.ec.sockets.chat.Cliente;
 import com.ec.sockets.chat.Servidor;
+import com.ec.sockets.dao.ConversacionImpl;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -15,7 +16,9 @@ import java.util.Observer;
  * @author Bryan
  */
 public class ClienteA extends javax.swing.JFrame implements Observer{
-
+    
+    ConversacionImpl conversacionimpl = new ConversacionImpl();
+    
     /**
      * Creates new form ClienteA
      */
@@ -107,6 +110,8 @@ public class ClienteA extends javax.swing.JFrame implements Observer{
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         String mensaje = this.txtNombreClienteA.getText() + " : " + this.txtMensajesEnviar.getText() + "\n";
         this.txaAreaMensajes.append(mensaje);
+        
+        conversacionimpl.registrarConversacionA(mensaje);
         
         Cliente cliente = new Cliente(6000, mensaje);
         Thread hilo = new Thread(cliente);
