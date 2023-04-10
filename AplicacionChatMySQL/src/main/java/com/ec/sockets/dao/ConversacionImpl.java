@@ -34,7 +34,20 @@ public class ConversacionImpl implements ConversacionDAO{
 
     @Override
     public void registrarConversacionB(String mensaje) {
+        PreparedStatement consulta = null;
+        Connection conexion = null;
         
+        try {
+            conexion = instanciaMySQL.conectar();
+            String sql = "INSERT INTO conversaciones(conversacionB) values(?)";
+            consulta = conexion.prepareStatement(sql);
+            consulta.setString(1, mensaje);
+            consulta.executeUpdate();
+        } catch (SQLException error) {
+            System.out.println(error);
+        } finally{
+            instanciaMySQL.cerrarStatement(consulta);
+            instanciaMySQL.desconectar(conexion);
+        }
     }
-    
 }
