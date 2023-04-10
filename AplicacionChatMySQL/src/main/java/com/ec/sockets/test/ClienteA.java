@@ -54,6 +54,11 @@ public class ClienteA extends javax.swing.JFrame implements Observer{
         jLabel1.setText("Ingrese su Nombre:");
 
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         txaAreaMensajes.setColumns(20);
         txaAreaMensajes.setRows(5);
@@ -118,6 +123,11 @@ public class ClienteA extends javax.swing.JFrame implements Observer{
         hilo.start();
     }//GEN-LAST:event_btnEnviarActionPerformed
 
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+       txaAreaMensajes.setText("");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+   
     /**
      * @param args the command line arguments
      */
