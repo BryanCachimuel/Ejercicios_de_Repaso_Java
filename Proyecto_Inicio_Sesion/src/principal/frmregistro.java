@@ -46,14 +46,19 @@ public class frmregistro extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/registro.png"))); // NOI18N
 
+        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtNombre.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombre"));
 
+        txtApellido.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtApellido.setBorder(javax.swing.BorderFactory.createTitledBorder("Apellido"));
 
+        txtEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtEmail.setBorder(javax.swing.BorderFactory.createTitledBorder("Email"));
 
+        txtContrasenia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtContrasenia.setBorder(javax.swing.BorderFactory.createTitledBorder("Contraseña"));
 
+        cbxTipoUsuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cbxTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Administrador", "Comercial" }));
         cbxTipoUsuario.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo de Usuario"));
 
@@ -110,7 +115,7 @@ public class frmregistro extends javax.swing.JFrame {
                 .addComponent(cbxTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRegistrar)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -146,6 +151,7 @@ public class frmregistro extends javax.swing.JFrame {
                    String consulta = "insert into usuarios(nombre,apellido,email,clave,tipo_nivel) values('"+nombre+"','"+apellido+"','"+email+"','"+contrasenia+"','"+tipoUsuario+"')";
                    ps = con.prepareStatement(consulta);
                    ps.executeUpdate();
+                   LimpiarCampos();
                    JOptionPane.showMessageDialog(null, "Registro realizado Exitosamente");
                } catch (Exception e) {
                    JOptionPane.showMessageDialog(null, "No se pudo Guardar el Registro: "+ e);
@@ -153,7 +159,13 @@ public class frmregistro extends javax.swing.JFrame {
            }
        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
-
+    
+    public void LimpiarCampos(){
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtEmail.setText("");
+        txtContrasenia.setText("");
+    }
     /**
      * @param args the command line arguments
      */
