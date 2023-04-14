@@ -17,6 +17,8 @@ public class frmlogin extends javax.swing.JFrame {
      */
     
     public static frmregistro fr_registro;
+    usuario_administrador uAdministrador = new usuario_administrador();
+    usuario_comercial uComercial = new usuario_comercial();
     
     conexionbd con = new conexionbd();
     Connection cn = con.conectarbd();
@@ -158,12 +160,16 @@ public class frmlogin extends javax.swing.JFrame {
                     String tiponivel = rs.getString("tipo_nivel");
                     if(tiponivel.equalsIgnoreCase("Administrador")){
                         dispose();
+                        uAdministrador.setVisible(true);
+                    }else if(tiponivel.equalsIgnoreCase("Comercial")){
+                        dispose();
+                        uComercial.setVisible(true);
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "Usuario o Contraseña Incorrectos");
                 }
             } catch (Exception e) {
-                System.out.println(e);
+                JOptionPane.showMessageDialog(null, "Error al Iniciar Sesión: " + e);
             }
         }else{
             JOptionPane.showMessageDialog(null, "Debe Ingresar Información en los Campos de Texto");
