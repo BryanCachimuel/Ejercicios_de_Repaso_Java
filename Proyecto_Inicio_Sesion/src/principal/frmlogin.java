@@ -1,5 +1,11 @@
 package principal;
 
+import conexion.conexionbd;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Bryan
@@ -11,6 +17,9 @@ public class frmlogin extends javax.swing.JFrame {
      */
     
     public static frmregistro fr_registro;
+    
+    conexionbd con = new conexionbd();
+    Connection cn = con.conectarbd();
     
     public frmlogin() {
         initComponents();
@@ -51,6 +60,11 @@ public class frmlogin extends javax.swing.JFrame {
         btnInicioSesion.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         btnInicioSesion.setText("Iniciar Sesión");
         btnInicioSesion.setBorder(null);
+        btnInicioSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicioSesionActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel4.setText("        ¿Deseas Registrarte?");
@@ -130,6 +144,31 @@ public class frmlogin extends javax.swing.JFrame {
        fr_registro = new frmregistro();
        fr_registro.setVisible(true);
     }//GEN-LAST:event_btnRegistroActionPerformed
+
+    private void btnInicioSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioSesionActionPerformed
+        String usuario = txtUsuario.getText();
+        String contrasenia = txtContrasenia.getText();
+        
+        if(!usuario.equals("") || !contrasenia.equals("")){
+            try {
+                String consulta = "SELECT tipo_nivel FROM usuarios WHERE email='"+usuario+"' AND clave='"+contrasenia+"'";
+                PreparedStatement ps = cn.prepareStatement(consulta);
+                ResultSet rs = ps.executeQuery();
+                if(rs.next()){
+                    String tiponivel = rs.getString("tipo_nivel");
+                    if(tiponivel.equalsIgnoreCase("Administrador")){
+                        dispose();
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "Usuario o Contraseña Incorrectos");
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Información en los Campos de Texto");
+        }
+    }//GEN-LAST:event_btnInicioSesionActionPerformed
 
     /**
      * @param args the command line arguments
