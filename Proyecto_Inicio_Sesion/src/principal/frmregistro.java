@@ -94,7 +94,7 @@ public class frmregistro extends javax.swing.JFrame {
                                 .addGap(104, 104, 104)
                                 .addComponent(cbxTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(238, 238, 238)
+                        .addGap(236, 236, 236)
                         .addComponent(btnRegistrar)))
                 .addContainerGap(95, Short.MAX_VALUE))
         );
@@ -108,14 +108,14 @@ public class frmregistro extends javax.swing.JFrame {
                     .addComponent(txtApellido)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtEmail)
+                    .addComponent(txtContrasenia))
                 .addGap(18, 18, 18)
-                .addComponent(cbxTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbxTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRegistrar)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -153,6 +153,7 @@ public class frmregistro extends javax.swing.JFrame {
                    ps.executeUpdate();
                    LimpiarCampos();
                    JOptionPane.showMessageDialog(null, "Registro realizado Exitosamente");
+                   CerrarVentana();
                } catch (Exception e) {
                    JOptionPane.showMessageDialog(null, "No se pudo Guardar el Registro: "+ e);
                }
@@ -165,6 +166,12 @@ public class frmregistro extends javax.swing.JFrame {
         txtApellido.setText("");
         txtEmail.setText("");
         txtContrasenia.setText("");
+    }
+    
+    public void CerrarVentana(){
+        frmregistro fregistro = new frmregistro();
+        dispose();
+        fregistro.setVisible(false);
     }
     /**
      * @param args the command line arguments
