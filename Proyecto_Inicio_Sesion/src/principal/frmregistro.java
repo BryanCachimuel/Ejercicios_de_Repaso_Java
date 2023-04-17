@@ -15,8 +15,8 @@ public class frmregistro extends javax.swing.JFrame {
      * Creates new form frmregistro
      */
     
-    conexionbd conexion = new conexionbd();
-    Connection con = conexion.conectarbd();
+    conexionbd conexion = conexionbd.getInstance();
+    Connection cn = conexion.conectarbd();
     
     public frmregistro() {
         initComponents();
@@ -149,11 +149,12 @@ public class frmregistro extends javax.swing.JFrame {
            }else{
                try {
                    String consulta = "insert into usuarios(nombre,apellido,email,clave,tipo_nivel) values('"+nombre+"','"+apellido+"','"+email+"','"+contrasenia+"','"+tipoUsuario+"')";
-                   ps = con.prepareStatement(consulta);
+                   ps = cn.prepareStatement(consulta);
                    ps.executeUpdate();
                    LimpiarCampos();
                    JOptionPane.showMessageDialog(null, "Registro realizado Exitosamente");
                    CerrarVentana();
+                   conexion.cerrarConexion();
                } catch (Exception e) {
                    JOptionPane.showMessageDialog(null, "No se pudo Guardar el Registro: "+ e);
                }
