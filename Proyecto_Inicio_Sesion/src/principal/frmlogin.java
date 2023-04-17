@@ -4,6 +4,7 @@ import conexion.conexionbd;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,8 +21,8 @@ public class frmlogin extends javax.swing.JFrame {
     usuario_administrador uAdministrador = new usuario_administrador();
     usuario_comercial uComercial = new usuario_comercial();
     
-    conexionbd con = new conexionbd();
-    Connection cn = con.conectarbd();
+    conexionbd conexion = conexionbd.getInstance();
+    Connection cn = conexion.conectarbd();
     
     public frmlogin() {
         initComponents();
@@ -153,7 +154,7 @@ public class frmlogin extends javax.swing.JFrame {
         
         if(!usuario.equals("") || !contrasenia.equals("")){
             try {
-                String consulta = "SELECT tipo_nivel FROM usuarios WHERE email='"+usuario+"' AND clave='"+contrasenia+"'";
+                String consulta = "SELECT tipo_nivel FROM usuarios WHERE email='"+usuario+"' AND clave='"+contrasenia+"'"; 
                 PreparedStatement ps = cn.prepareStatement(consulta);
                 ResultSet rs = ps.executeQuery();
                 if(rs.next()){
@@ -165,10 +166,11 @@ public class frmlogin extends javax.swing.JFrame {
                         dispose();
                         uComercial.setVisible(true);
                     }
+                    conexion.cerrarConexion();
                 }else{
                     JOptionPane.showMessageDialog(null, "Usuario o Contraseña Incorrectos");
                 }
-            } catch (Exception e) {
+            } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Error al Iniciar Sesión: " + e);
             }
         }else{
