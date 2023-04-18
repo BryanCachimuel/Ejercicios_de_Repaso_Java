@@ -63,7 +63,18 @@ public class CarnicosDAO implements MetodosUtil{
 
     @Override
     public void eliminar(Carnicos carnicos) {
-        
+        try {
+            Connection cn = conexion.conectarbd();
+            String sql = "DELETE FROM carnicos WHERE id=?";
+            PreparedStatement eliminar = cn.prepareStatement(sql);
+            eliminar.setInt(1, carnicos.getId_carnicos());
+            eliminar.executeUpdate();
+            
+            conexion.cerrarConexion();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CarnicosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
