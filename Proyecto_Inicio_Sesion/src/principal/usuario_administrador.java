@@ -5,6 +5,10 @@
  */
 package principal;
 
+import Dao.CarnicosDAO;
+import Modelo.Carnicos;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Bryan
@@ -26,6 +30,7 @@ public class usuario_administrador extends javax.swing.JFrame {
         txtPrecio_Carnico_Lb.setText("");
         txtCantidad.setText("");
         txtProcedencia.setText("");
+        cbxTipo_Carnico.setSelectedItem("Seleccionar");
         txtId_Carnico.setText("");
     }
     /**
@@ -80,6 +85,11 @@ public class usuario_administrador extends javax.swing.JFrame {
         jLabel7.setText("Tipo de Carnico:");
 
         btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -216,6 +226,33 @@ public class usuario_administrador extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        CarnicosDAO carnicosdao = new CarnicosDAO();
+        Carnicos carnicos = new Carnicos();
+        
+        String nombre_carnico = txtNombre_Carnico.getText();
+        Double precio_carnico_kg = Double.parseDouble(txtPrecio_Carnico_Kg.getText());
+        Double precio_carnico_lb = Double.parseDouble(txtPrecio_Carnico_Lb.getText());
+        Double cantidad_producto = Double.parseDouble(txtCantidad.getText());
+        String procedencia = txtProcedencia.getText();
+        String tipo_carnico = cbxTipo_Carnico.getSelectedItem().toString();
+        
+        if(nombre_carnico.equals("") || precio_carnico_kg.isNaN() || precio_carnico_lb.isNaN() || cantidad_producto.isNaN() || procedencia.equals("") || tipo_carnico.equals("")){
+            JOptionPane.showMessageDialog(null, "Ingrese los Datos Correcpondientes en los Campos de Texto");
+        }else{
+            carnicos.setCarnicos(nombre_carnico);
+            carnicos.setPrecio_carnicos_kilos(precio_carnico_kg);
+            carnicos.setPrecio_carnicos_libras(precio_carnico_lb);
+            carnicos.setCantidad(cantidad_producto);
+            carnicos.setProcedencia(procedencia);
+            carnicos.setTipo_carnico(tipo_carnico);
+            carnicosdao.registrar(carnicos);
+            
+            JOptionPane.showMessageDialog(null, "Registro del Carnico Exitoso");
+            LimpiarCampos();
+        }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
