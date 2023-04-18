@@ -40,7 +40,25 @@ public class CarnicosDAO implements MetodosUtil{
 
     @Override
     public void actualizar(Carnicos carnicos) {
-        
+        try {
+            Connection cn = conexion.conectarbd();
+            String sql = "UPDATE carnicos SET nombre_carnico=?,precio_carnico_kilos=?,precio_carnico_libras=?,cantidad=?,procedencia=?,tipo_carnico=? WHERE id=?";
+            PreparedStatement actualizar = cn.prepareStatement(sql);
+            
+            actualizar.setString(1, carnicos.getCarnicos());
+            actualizar.setDouble(2, carnicos.getPrecio_carnicos_kilos());
+            actualizar.setDouble(3, carnicos.getPrecio_carnicos_libras());
+            actualizar.setDouble(4, carnicos.getCantidad());
+            actualizar.setString(5, carnicos.getProcedencia());
+            actualizar.setString(6, carnicos.getTipo_carnico());
+            actualizar.setInt(7, carnicos.getId_carnicos());
+            actualizar.executeUpdate();
+            
+            conexion.cerrarConexion();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CarnicosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
