@@ -5,6 +5,7 @@ import Modelo.Carnicos;
 import conexion.conexionbd;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -79,7 +80,25 @@ public class CarnicosDAO implements MetodosUtil{
 
     @Override
     public void buscar(Carnicos carnicos) {
-        
+        try {
+            Connection cn = conexion.conectarbd();
+            String sql = "SELECT * FROM carnicos WHERE id=?";
+            PreparedStatement buscar = cn.prepareStatement(sql);
+            buscar.setInt(1, carnicos.getId_carnicos());
+            
+            ResultSet rs = buscar.executeQuery(); 
+            if(rs.next()){
+                carnicos.setCarnicos(rs.getString("nombre_carnico"));
+                carnicos.setPrecio_carnicos_kilos(rs.getDouble("precio_carnico_kilos"));
+                carnicos.setPrecio_carnicos_libras(rs.getDouble("precio_carnico_libras"));
+                carnicos.setCantidad(rs.getDouble("cantidad"));
+                carnicos.setProcedencia(rs.getString("procedencia"));
+                carnicos.setTipo_carnico("tipo_carnico");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CarnicosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
