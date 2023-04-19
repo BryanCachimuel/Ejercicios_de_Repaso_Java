@@ -101,4 +101,15 @@ public class CarnicosDAO implements MetodosUtil{
         }
     }
     
+    public void CarnicoMayorPrecio(){
+        try {
+            Connection cn = conexion.conectarbd();
+            String sql = "SELECT nombre_carnico,MAX(precio_carnico_kilos) FROM carnicos";
+            PreparedStatement mayor = cn.prepareStatement(sql);
+            mayor.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(CarnicosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }
