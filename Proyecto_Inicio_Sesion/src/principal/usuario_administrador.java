@@ -169,6 +169,11 @@ public class usuario_administrador extends javax.swing.JFrame {
         jLabel8.setText("Buscar por Id:");
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -289,6 +294,28 @@ public class usuario_administrador extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Información del Registro Actualizado con Exito");
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        CarnicosDAO carnicosdao = new CarnicosDAO();
+        Carnicos carnicos = new Carnicos();
+        
+        if(txtId_Carnico.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Ingrese un Id para buscar el carnico que desee");
+        }else{
+            int id_carnico = Integer.parseInt(txtId_Carnico.getText());
+            carnicos.setId_carnicos(id_carnico);
+            carnicosdao.buscar(carnicos);
+            
+            txtNombre_Carnico.setText(carnicos.getCarnicos());
+            txtPrecio_Carnico_Kg.setText(String.valueOf(carnicos.getPrecio_carnicos_kilos()));
+            txtPrecio_Carnico_Lb.setText(String.valueOf(carnicos.getPrecio_carnicos_libras()));
+            txtCantidad.setText(String.valueOf(carnicos.getCantidad()));
+            txtProcedencia.setText(carnicos.getProcedencia());
+            cbxTipo_Carnico.setSelectedItem(carnicos.getTipo_carnico());
+            
+            JOptionPane.showMessageDialog(null, "Registro Encontrado con Exito");
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
