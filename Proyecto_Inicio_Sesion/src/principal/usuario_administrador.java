@@ -246,16 +246,21 @@ public class usuario_administrador extends javax.swing.JFrame {
         CarnicosDAO carnicosdao = new CarnicosDAO();
         Carnicos carnicos = new Carnicos();
         
-        String nombre_carnico = txtNombre_Carnico.getText();
-        Double precio_carnico_kg = Double.parseDouble(txtPrecio_Carnico_Kg.getText());
-        Double precio_carnico_lb = Double.parseDouble(txtPrecio_Carnico_Lb.getText());
-        Double cantidad_producto = Double.parseDouble(txtCantidad.getText());
-        String procedencia = txtProcedencia.getText();
-        String tipo_carnico = cbxTipo_Carnico.getSelectedItem().toString();
+       
         
-        if(nombre_carnico.equals("") || precio_carnico_kg.isNaN() || precio_carnico_lb.isNaN() || cantidad_producto.isNaN() || procedencia.equals("") || tipo_carnico.equals("")){
+        if(txtNombre_Carnico.getText().equals("") || txtPrecio_Carnico_Kg.getText().equals("") || 
+                txtPrecio_Carnico_Lb.getText().equals("") || txtCantidad.getText().equals("") || 
+                txtProcedencia.getText().equals("") || cbxTipo_Carnico.getSelectedItem().toString().equals("")){
             JOptionPane.showMessageDialog(null, "Ingrese los Datos Correcpondientes en los Campos de Texto");
         }else{
+            
+            String nombre_carnico = txtNombre_Carnico.getText();
+            Double precio_carnico_kg = Double.parseDouble(txtPrecio_Carnico_Kg.getText());
+            Double precio_carnico_lb = Double.parseDouble(txtPrecio_Carnico_Lb.getText());
+            Double cantidad_producto = Double.parseDouble(txtCantidad.getText());
+            String procedencia = txtProcedencia.getText();
+            String tipo_carnico = cbxTipo_Carnico.getSelectedItem().toString();
+            
             carnicos.setCarnicos(nombre_carnico);
             carnicos.setPrecio_carnicos_kilos(precio_carnico_kg);
             carnicos.setPrecio_carnicos_libras(precio_carnico_lb);
@@ -274,7 +279,7 @@ public class usuario_administrador extends javax.swing.JFrame {
         Carnicos carnicos = new Carnicos();
         
         
-        if(txtNombre_Carnico.getText().equals("") || txtPrecio_Carnico_Kg.getText().equals("") || txtPrecio_Carnico_Lb.getText().equals("") || txtCantidad.getText().equals("") || txtProcedencia.getText().equals("")){
+        if(txtNombre_Carnico.getText().equals("") || txtPrecio_Carnico_Kg.getText().equals("") || txtPrecio_Carnico_Lb.getText().equals("") || txtCantidad.getText().equals("") || txtProcedencia.getText().equals("") || cbxTipo_Carnico.getSelectedItem().toString().equals("")){
             JOptionPane.showMessageDialog(null, "Por favor Ingrese la Información en los Campos para Modificar el Registro Seleccionado");
         }else{
             
