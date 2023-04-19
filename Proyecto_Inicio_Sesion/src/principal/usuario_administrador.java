@@ -219,6 +219,11 @@ public class usuario_administrador extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de Insidencia"));
 
         btnMayor.setText("Mayor Precio");
+        btnMayor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMayorActionPerformed(evt);
+            }
+        });
 
         btnMenor.setText("Menor Precio");
 
@@ -386,6 +391,12 @@ public class usuario_administrador extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Registro Eliminado con Exito");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnMayorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMayorActionPerformed
+          CarnicosDAO carnicosdao = new CarnicosDAO();
+          /*String mayor = carnicosdao.CarnicoMayorPrecio();
+          txtMayorPrecio.setText(t);*/
+    }//GEN-LAST:event_btnMayorActionPerformed
 
     /**
      * @param args the command line arguments
