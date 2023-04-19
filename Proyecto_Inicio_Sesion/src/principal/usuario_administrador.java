@@ -158,6 +158,11 @@ public class usuario_administrador extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
         btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
 
@@ -253,6 +258,37 @@ public class usuario_administrador extends javax.swing.JFrame {
             LimpiarCampos();
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        CarnicosDAO carnicosdao = new CarnicosDAO();
+        Carnicos carnicos = new Carnicos();
+        
+        
+        if(txtNombre_Carnico.getText().equals("") || txtPrecio_Carnico_Kg.getText().equals("") || txtPrecio_Carnico_Lb.getText().equals("") || txtCantidad.getText().equals("") || txtProcedencia.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Por favor Ingrese la Información en los Campos para Modificar el Registro Seleccionado");
+        }else{
+            
+            int id_carnicos = Integer.parseInt(txtId_Carnico.getText());
+            String nombre_carnico = txtNombre_Carnico.getText();
+            Double precio_carnico_kg = Double.parseDouble(txtPrecio_Carnico_Kg.getText());
+            Double precio_carnico_lb = Double.parseDouble(txtPrecio_Carnico_Lb.getText());
+            Double cantidad_producto = Double.parseDouble(txtCantidad.getText());
+            String procedencia = txtProcedencia.getText();
+            String tipo_carnico = cbxTipo_Carnico.getSelectedItem().toString();
+        
+            carnicos.setId_carnicos(id_carnicos);
+            carnicos.setCarnicos(nombre_carnico);
+            carnicos.setPrecio_carnicos_kilos(precio_carnico_kg);
+            carnicos.setPrecio_carnicos_libras(precio_carnico_lb);
+            carnicos.setCantidad(cantidad_producto);
+            carnicos.setProcedencia(procedencia);
+            carnicos.setTipo_carnico(tipo_carnico);
+            
+            carnicosdao.actualizar(carnicos);
+            LimpiarCampos();
+            JOptionPane.showMessageDialog(null, "Información del Registro Actualizado con Exito");
+        }
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     /**
      * @param args the command line arguments
