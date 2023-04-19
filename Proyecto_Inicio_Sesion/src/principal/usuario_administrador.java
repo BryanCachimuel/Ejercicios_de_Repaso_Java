@@ -165,6 +165,11 @@ public class usuario_administrador extends javax.swing.JFrame {
         });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Buscar por Id:");
 
@@ -316,6 +321,21 @@ public class usuario_administrador extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Registro Encontrado con Exito");
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        CarnicosDAO carnicosdao = new CarnicosDAO();
+        Carnicos carnicos = new Carnicos();
+        
+        if(txtId_Carnico.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Por Favor Ingrese un Id para Eliminar un Registro");
+        }else{
+            int id_carnicos = Integer.parseInt(txtId_Carnico.getText());
+            carnicos.setId_carnicos(id_carnicos);
+            carnicosdao.eliminar(carnicos);
+            LimpiarCampos();
+            JOptionPane.showMessageDialog(null, "Registro Eliminado con Exito");
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
