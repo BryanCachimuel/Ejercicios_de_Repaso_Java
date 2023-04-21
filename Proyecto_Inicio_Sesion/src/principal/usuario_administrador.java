@@ -7,7 +7,13 @@ package principal;
 
 import Dao.CarnicosDAO;
 import Modelo.Carnicos;
+import conexion.conexionbd;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,10 +24,14 @@ public class usuario_administrador extends javax.swing.JFrame {
     /**
      * Creates new form usuario_administrador
      */
+    
+    conexionbd conexion = conexionbd.getInstance();
+    
     public usuario_administrador() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("Registro de Productos Carnicos");
+        mostrarTabla("");
     }
 
     private void LimpiarCampos(){
@@ -32,6 +42,41 @@ public class usuario_administrador extends javax.swing.JFrame {
         txtProcedencia.setText("");
         cbxTipo_Carnico.setSelectedItem("Seleccionar");
         txtId_Carnico.setText("");
+    }
+    
+    private void mostrarTabla(String valor){
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Nombre Carnico");
+        modelo.addColumn("Precio por Kg");
+        modelo.addColumn("Precio por Lb");
+        modelo.addColumn("Cantidad del Producto");
+        modelo.addColumn("Procedencia");
+        modelo.addColumn("Tipo de Carnico");
+        
+        tblRegistrosCarnicos.setModel(modelo);
+        
+        Connection cn = conexion.conectarbd();
+        String sql = "SELECT * FROM carnicos WHERE CONCAT(nombre_carnico,' ',precio_carnico_kilos) LIKE '%"+valor+"%'";
+        String carnicos[] = new String[6];
+        try {
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                carnicos[0] = rs.getString("nombre_carnico");
+                carnicos[1] = rs.getString("precio_carnico_kilos");
+                carnicos[2] = rs.getString("precio_carnico_libras");
+                carnicos[3] = rs.getString("cantidad");
+                carnicos[4] = rs.getString("procedencia");
+                carnicos[5] = rs.getString("tipo_carnico");
+                
+                modelo.addRow(carnicos);
+            }
+            
+            tblRegistrosCarnicos.setModel(modelo);
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,6 +113,8 @@ public class usuario_administrador extends javax.swing.JFrame {
         txtMayorPrecio = new javax.swing.JTextField();
         btnMenor = new javax.swing.JButton();
         txtMenorPrecio = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblRegistrosCarnicos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -256,6 +303,19 @@ public class usuario_administrador extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        tblRegistrosCarnicos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblRegistrosCarnicos);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -263,15 +323,18 @@ public class usuario_administrador extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(246, 246, 246)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -286,7 +349,9 @@ public class usuario_administrador extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -321,6 +386,7 @@ public class usuario_administrador extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(null, "Registro del Carnico Exitoso");
             LimpiarCampos();
+            mostrarTabla("");
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -352,6 +418,7 @@ public class usuario_administrador extends javax.swing.JFrame {
             carnicosdao.actualizar(carnicos);
             LimpiarCampos();
             JOptionPane.showMessageDialog(null, "Información del Registro Actualizado con Exito");
+            mostrarTabla("");
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
@@ -389,6 +456,7 @@ public class usuario_administrador extends javax.swing.JFrame {
             carnicosdao.eliminar(carnicos);
             LimpiarCampos();
             JOptionPane.showMessageDialog(null, "Registro Eliminado con Exito");
+            mostrarTabla("");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -452,6 +520,8 @@ public class usuario_administrador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblRegistrosCarnicos;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtId_Carnico;
     private javax.swing.JTextField txtMayorPrecio;
