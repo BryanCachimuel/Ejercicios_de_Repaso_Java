@@ -3,7 +3,9 @@ package registros;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,8 +19,35 @@ public class Registro extends javax.swing.JFrame {
         initComponents(); 
         this.setLocationRelativeTo(null);
         this.setTitle("Registro de Empleados");
+        mostrarTabla("");
     }
-
+ 
+    private void mostrarTabla(String valor){
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("nombre");
+        modelo.addColumn("telefono");
+        modelo.addColumn("profesion");
+        
+        tblTablaEmpleados.setModel(modelo);
+        
+        Connection cn = conectarbdd.conectar();
+         String sql = "SELECT * FROM empleados WHERE CONCAT(nombre,' ',telefono) LIKE '%"+valor+"%'";
+         String empleados[] = new String[3];
+         try {
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                empleados[0] = rs.getString("nombre");
+                empleados[1] = rs.getString("telefono");
+                empleados[2] = rs.getString("profesion");
+                
+                modelo.addRow(empleados);
+            }
+            tblTablaEmpleados.setModel(modelo);
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }
+    }
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -33,9 +62,6 @@ public class Registro extends javax.swing.JFrame {
         cbxProfesion = new javax.swing.JComboBox<>();
         btnRegistrar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txaInformacionEmpleados = new javax.swing.JTextArea();
-        btnConsultarEmpleados = new javax.swing.JButton();
         btnValidadBDD = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
@@ -43,6 +69,8 @@ public class Registro extends javax.swing.JFrame {
         txtIdBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblTablaEmpleados = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,17 +95,6 @@ public class Registro extends javax.swing.JFrame {
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
-            }
-        });
-
-        txaInformacionEmpleados.setColumns(20);
-        txaInformacionEmpleados.setRows(5);
-        jScrollPane1.setViewportView(txaInformacionEmpleados);
-
-        btnConsultarEmpleados.setText("Consultar Empleados");
-        btnConsultarEmpleados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarEmpleadosActionPerformed(evt);
             }
         });
 
@@ -118,6 +135,19 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
+        tblTablaEmpleados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tblTablaEmpleados);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,37 +166,35 @@ public class Registro extends javax.swing.JFrame {
                                 .addComponent(txtIdBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cbxProfesion, 0, 1, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel1))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                                            .addComponent(txtTelefono))))
-                                .addGap(33, 33, 33)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(btnValidadBDD)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnSalir))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnConsultarEmpleados)
-                                    .addGap(52, 52, 52)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(jLabel4)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(cbxProfesion, 0, 1, Short.MAX_VALUE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabel3)
+                                                .addComponent(jLabel1))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                                                .addComponent(txtTelefono))))
+                                    .addGap(33, 33, 33)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,16 +222,15 @@ public class Registro extends javax.swing.JFrame {
                     .addComponent(btnBuscar))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnConsultarEmpleados)
                     .addComponent(btnModificar)
                     .addComponent(btnEliminar))
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnValidadBDD)
                     .addComponent(btnSalir))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -221,6 +248,7 @@ public class Registro extends javax.swing.JFrame {
            insertar.executeUpdate();
            
            JOptionPane.showMessageDialog(null, "Se Registro al Empleado con exito!");
+           mostrarTabla("");
            conectarbdd.cerrarConexion();
            
         } catch (Exception error) {
@@ -231,7 +259,7 @@ public class Registro extends javax.swing.JFrame {
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         txtNombre.setText("");
         txtTelefono.setText("");
-        txaInformacionEmpleados.setText("");
+        //txaInformacionEmpleados.setText("");
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnValidadBDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidadBDDActionPerformed
@@ -258,35 +286,6 @@ public class Registro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnValidadBDDActionPerformed
 
-    private void btnConsultarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarEmpleadosActionPerformed
-        
-        // controlar que cuando se vuelva ingresar un nuevo empleado la lista se actualize sin repetir la lista una y otra vez
-        txaInformacionEmpleados.setText("");
-        
-        try {
-           Connection conexion = conectarbdd.conectar();
-           String sql = "SELECT * FROM empleados";
-           PreparedStatement seleccionar = conexion.prepareStatement(sql);
-           ResultSet consulta = seleccionar.executeQuery();
-           
-           while(consulta.next()){
-               txaInformacionEmpleados.append(consulta.getString(1)); // le decimos que con append nos traiga el elemento 1 de la bdd
-               txaInformacionEmpleados.append("   ");
-               txaInformacionEmpleados.append(consulta.getString(2));
-               txaInformacionEmpleados.append("   ");
-               txaInformacionEmpleados.append(consulta.getString(3));
-               txaInformacionEmpleados.append("   ");
-               txaInformacionEmpleados.append(consulta.getString(4));
-               txaInformacionEmpleados.append("\n");
-           }
-           
-           conectarbdd.cerrarConexion(); 
-           
-        } catch (Exception error) {
-            JOptionPane.showMessageDialog(null, error);
-        }
-    }//GEN-LAST:event_btnConsultarEmpleadosActionPerformed
-
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         try {
            Connection conexion = conectarbdd.conectar();
@@ -296,7 +295,7 @@ public class Registro extends javax.swing.JFrame {
            eliminar.setString(1, txtIdBuscar.getText().trim());             // mediante el id que se busca se va a poder eliminar al empleado seleccionado
            JOptionPane.showMessageDialog(null, "Registro Eliminado con exito");
            eliminar.executeUpdate();                                        // actualiza los registros en la base de datos
-           
+           mostrarTabla("");
            conectarbdd.cerrarConexion();
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, "Error: " + error);
@@ -315,7 +314,7 @@ public class Registro extends javax.swing.JFrame {
            modificar.setString(3, cbxProfesion.getSelectedItem().toString());
            modificar.executeUpdate();
            JOptionPane.showMessageDialog(null, "Registro Actualizado Correctamente");
-           
+           mostrarTabla("");
            conectarbdd.cerrarConexion();
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, "Error: " + error);
@@ -386,7 +385,6 @@ public class Registro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnConsultarEmpleados;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegistrar;
@@ -398,8 +396,8 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txaInformacionEmpleados;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tblTablaEmpleados;
     private javax.swing.JTextField txtIdBuscar;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;
