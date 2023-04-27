@@ -83,7 +83,7 @@ public class VendedorForm extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Estado:");
 
-        cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "1", "0" }));
+        cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Activado", "Desactivado" }));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel6.setText("DATOS VENDEDOR");
