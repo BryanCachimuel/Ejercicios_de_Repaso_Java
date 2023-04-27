@@ -3,6 +3,7 @@ package modelo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class VendedorDAO implements CRUD{
                 ev.setEstado(rs.getString(5));
                 ev.setUser(rs.getString(6));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en la consulta");
         }
        return ev;
@@ -62,7 +63,7 @@ public class VendedorDAO implements CRUD{
                 vd.setUser(rs.getString(6));
                 listaVendedor.add(vd);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Ocurrio un error durante el proceso de la consulta");
         }
         return listaVendedor;
@@ -81,7 +82,7 @@ public class VendedorDAO implements CRUD{
             ps.setObject(4, o[3]);
             ps.setObject(5, o[4]);
             r = ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Ocurrio un error durante el proceso de la consulta");
         }
         return r;
@@ -101,7 +102,7 @@ public class VendedorDAO implements CRUD{
             ps.setObject(5, o[4]);
             ps.setObject(6, o[5]);
             r = ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Ocurrio un error durante el proceso de la consulta");
         }
         return r;
@@ -115,9 +116,25 @@ public class VendedorDAO implements CRUD{
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Ocurrio un error durante el proceso de la consulta");
         }
     }
     
+    public int registrarUsuario(Object[] v){
+        int r = 0;
+        String sql = "INSERT INTO vendedor(Dni,Nombres,Telefono,User) VALUES(?,?,?,?)";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, v[0]);
+            ps.setObject(2, v[1]);
+            ps.setObject(3, v[2]);
+            ps.setObject(4, v[3]);
+            r = ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Ocurrio un error durante el proceso de la consulta");
+        }
+        return r;
+    }
 }
