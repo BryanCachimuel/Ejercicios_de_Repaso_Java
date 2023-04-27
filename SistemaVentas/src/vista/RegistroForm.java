@@ -1,5 +1,6 @@
 package vista;
 
+import javax.swing.JOptionPane;
 import modelo.Vendedor;
 import modelo.VendedorDAO;
 
@@ -184,7 +185,9 @@ public class RegistroForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        
+       AgregarRegistro();
+       LimpiarCampos();
+       CerrarVentana();
     }//GEN-LAST:event_btnRegistrarActionPerformed
     
     public void AgregarRegistro(){
@@ -192,7 +195,28 @@ public class RegistroForm extends javax.swing.JFrame {
         String nombres = txtNombres.getText();
         String telefono = txtTelefono.getText();
         String usuario = txtUsuario.getText();
+        Object[] registro = new Object[4];
+        registro[0] = cedula;
+        registro[1] = nombres;
+        registro[2] = telefono;
+        registro[3] = usuario;
+        vdao.registrarUsuario(registro);
+        JOptionPane.showMessageDialog(this, "Registro Realizado Correctamente");
     }
+    
+    public void LimpiarCampos(){
+        txtDni.setText("");
+        txtNombres.setText("");
+        txtTelefono.setText("");
+        txtUsuario.setText("");
+    }
+    
+    public void CerrarVentana(){
+        RegistroForm registro = new RegistroForm();
+        dispose();
+        registro.setVisible(false);
+    }
+    
     
     /**
      * @param args the command line arguments
