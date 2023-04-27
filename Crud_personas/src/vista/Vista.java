@@ -141,6 +141,11 @@ public class Vista extends javax.swing.JFrame {
         btnGuardar.setText("Agregar");
 
         btnListar.setText("Listar");
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarActionPerformed(evt);
+            }
+        });
 
         btnEditar.setText("Editar");
 
@@ -232,6 +237,10 @@ public class Vista extends javax.swing.JFrame {
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnListarActionPerformed
 
     /**
      * @param args the command line arguments
