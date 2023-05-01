@@ -91,9 +91,19 @@ public class Calculadora extends javax.swing.JFrame {
 
         btnBorrarTodo.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnBorrarTodo.setText("CE");
+        btnBorrarTodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarTodoActionPerformed(evt);
+            }
+        });
 
         btnBorrarUno.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnBorrarUno.setText("C");
+        btnBorrarUno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarUnoActionPerformed(evt);
+            }
+        });
 
         btnDividir.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnDividir.setText("/");
@@ -327,6 +337,25 @@ public class Calculadora extends javax.swing.JFrame {
     private void btnCeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCeroActionPerformed
         lblOperacion.setText(lblOperacion.getText()+"0");
     }//GEN-LAST:event_btnCeroActionPerformed
+
+    private void btnBorrarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarTodoActionPerformed
+        lblOperacion.setText("");
+        lblResultado.setText("");
+    }//GEN-LAST:event_btnBorrarTodoActionPerformed
+
+    private void btnBorrarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarUnoActionPerformed
+        try {
+            String resultado = lblOperacion.getText();
+            if(resultado.length() > 0){
+                resultado = resultado.substring(0,resultado.length()-1);
+            }
+            
+            lblOperacion.setText(resultado);
+            
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+    }//GEN-LAST:event_btnBorrarUnoActionPerformed
 
     /**
      * @param args the command line arguments
