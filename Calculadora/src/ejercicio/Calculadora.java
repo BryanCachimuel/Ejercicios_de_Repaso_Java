@@ -442,15 +442,19 @@ public class Calculadora extends javax.swing.JFrame {
             numero2 = Float.parseFloat(lblOperacion.getText());
             
             if(operador == "+"){
-                
+               lblResultado.setText(quitarCeroResultado(numero1 + numero2));
             }else if(operador == "-"){
-                
+                lblResultado.setText(quitarCeroResultado(numero1 - numero2));
             }else if(operador == "*"){
-                
+                lblResultado.setText(quitarCeroResultado(numero1 * numero2));
             }else if(operador == "/"){
-                
+                if(numero2 == 0){
+                    lblResultado.setText("No se puede Dividir entre 0");
+                }else{
+                    lblResultado.setText(quitarCeroResultado(numero1 / numero2));
+                }
             }else if(operador == "%"){
-                
+                lblResultado.setText(quitarCeroResultado((numero1/100)* numero2));
             }
             
         } catch (NumberFormatException e) {
