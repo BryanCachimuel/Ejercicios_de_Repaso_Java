@@ -211,6 +211,11 @@ public class Calculadora extends javax.swing.JFrame {
 
         btnIgual.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnIgual.setText("=");
+        btnIgual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIgualActionPerformed(evt);
+            }
+        });
 
         btnPotencia.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnPotencia.setText("^");
@@ -432,6 +437,38 @@ public class Calculadora extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnPorcentajeActionPerformed
 
+    private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
+        try {
+            numero2 = Float.parseFloat(lblOperacion.getText());
+            
+            if(operador == "+"){
+                
+            }else if(operador == "-"){
+                
+            }else if(operador == "*"){
+                
+            }else if(operador == "/"){
+                
+            }else if(operador == "%"){
+                
+            }
+            
+        } catch (NumberFormatException e) {
+            System.out.println("Erro: " + e);
+        }
+    }//GEN-LAST:event_btnIgualActionPerformed
+    
+    public String quitarCeroResultado(float valor){
+        String resultado = "";
+        resultado = Float.toString(valor);
+        
+        if(valor % 1 == 0){
+            resultado = resultado.substring(0, resultado.length() - 2);
+        }
+        
+        return resultado;
+    }
+    
     /**
      * @param args the command line arguments
      */
