@@ -107,12 +107,27 @@ public class Calculadora extends javax.swing.JFrame {
 
         btnDividir.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnDividir.setText("/");
+        btnDividir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDividirActionPerformed(evt);
+            }
+        });
 
         btnMultiplicar.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnMultiplicar.setText("*");
+        btnMultiplicar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMultiplicarActionPerformed(evt);
+            }
+        });
 
         btnSuma.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnSuma.setText("+");
+        btnSuma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSumaActionPerformed(evt);
+            }
+        });
 
         btnNueve.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnNueve.setText("9");
@@ -164,6 +179,11 @@ public class Calculadora extends javax.swing.JFrame {
 
         btnResta.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnResta.setText("-");
+        btnResta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRestaActionPerformed(evt);
+            }
+        });
 
         btnTres.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnTres.setText("3");
@@ -208,6 +228,11 @@ public class Calculadora extends javax.swing.JFrame {
 
         btnPorcentaje.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnPorcentaje.setText("%");
+        btnPorcentaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPorcentajeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -356,6 +381,56 @@ public class Calculadora extends javax.swing.JFrame {
             System.out.println("Error: " + e);
         }
     }//GEN-LAST:event_btnBorrarUnoActionPerformed
+
+    private void btnSumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSumaActionPerformed
+        try {
+            numero1 = Float.parseFloat(lblOperacion.getText());
+            operador += "+";
+            lblOperacion.setText("");
+        } catch (NumberFormatException e) {
+            System.out.println("Error: " + e);
+        }
+    }//GEN-LAST:event_btnSumaActionPerformed
+
+    private void btnRestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaActionPerformed
+        try {
+            numero1 = Float.parseFloat(lblOperacion.getText());
+            operador += "-";
+            lblOperacion.setText("");
+        } catch (NumberFormatException e) {
+            System.out.println("Error: " + e);
+        }
+    }//GEN-LAST:event_btnRestaActionPerformed
+
+    private void btnMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultiplicarActionPerformed
+        try {
+            numero1 = Float.parseFloat(lblOperacion.getText());
+            operador += "*";
+            lblOperacion.setText("");
+        } catch (NumberFormatException e) {
+            System.out.println("Error: " + e);
+        }
+    }//GEN-LAST:event_btnMultiplicarActionPerformed
+
+    private void btnDividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDividirActionPerformed
+        try {
+            numero1 = Float.parseFloat(lblOperacion.getText());
+            operador += "/";
+            lblOperacion.setText("");
+        } catch (NumberFormatException e) {
+            System.out.println("Error: " + e);
+        }
+    }//GEN-LAST:event_btnDividirActionPerformed
+
+    private void btnPorcentajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPorcentajeActionPerformed
+        try {
+            numero1 = Float.parseFloat(lblOperacion.getText());
+            operador += "%";
+            lblOperacion.setText("");
+        } catch (NumberFormatException e) {
+            System.out.println("Error: " + e);
+        }
+    }//GEN-LAST:event_btnPorcentajeActionPerformed
 
     /**
      * @param args the command line arguments
