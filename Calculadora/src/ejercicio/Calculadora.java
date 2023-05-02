@@ -222,6 +222,11 @@ public class Calculadora extends javax.swing.JFrame {
 
         btnPunto.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnPunto.setText(".");
+        btnPunto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPuntoActionPerformed(evt);
+            }
+        });
 
         btnCero.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnCero.setText("0");
@@ -466,6 +471,12 @@ public class Calculadora extends javax.swing.JFrame {
             System.out.println("Erro: " + e);
         }
     }//GEN-LAST:event_btnIgualActionPerformed
+
+    private void btnPuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPuntoActionPerformed
+        if(!(lblOperacion.getText().contains("."))){
+            lblOperacion.setText(lblOperacion.getText()+".");
+        }
+    }//GEN-LAST:event_btnPuntoActionPerformed
     
     public String quitarCeroResultado(float valor){
         String resultado = "";
