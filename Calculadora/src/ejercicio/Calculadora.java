@@ -1,5 +1,8 @@
 package ejercicio;
 
+import java.awt.HeadlessException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Bryan
@@ -219,6 +222,11 @@ public class Calculadora extends javax.swing.JFrame {
 
         btnPotencia.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnPotencia.setText("^");
+        btnPotencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPotenciaActionPerformed(evt);
+            }
+        });
 
         btnPunto.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnPunto.setText(".");
@@ -477,6 +485,19 @@ public class Calculadora extends javax.swing.JFrame {
             lblOperacion.setText(lblOperacion.getText()+".");
         }
     }//GEN-LAST:event_btnPuntoActionPerformed
+
+    private void btnPotenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPotenciaActionPerformed
+        try {
+            numero1 = Float.parseFloat(lblOperacion.getText());
+            int exponente = Integer.parseInt(JOptionPane.showInputDialog("Digite un exponente: "));
+            float resultado = (float) Math.pow(numero1, exponente);
+            
+            lblResultado.setText(quitarCeroResultado(resultado));
+            lblOperacion.setText("");
+        } catch (NumberFormatException e) {
+            System.out.println("Error: " + e);
+        }
+    }//GEN-LAST:event_btnPotenciaActionPerformed
     
     public String quitarCeroResultado(float valor){
         String resultado = "";
