@@ -390,7 +390,7 @@ public class Calculadora extends javax.swing.JFrame {
     private void btnSumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSumaActionPerformed
         try {
             numero1 = Float.parseFloat(lblOperacion.getText());
-            operador += "+";
+            operador = "+";
             lblOperacion.setText("");
         } catch (NumberFormatException e) {
             System.out.println("Error: " + e);
@@ -400,7 +400,7 @@ public class Calculadora extends javax.swing.JFrame {
     private void btnRestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaActionPerformed
         try {
             numero1 = Float.parseFloat(lblOperacion.getText());
-            operador += "-";
+            operador = "-";
             lblOperacion.setText("");
         } catch (NumberFormatException e) {
             System.out.println("Error: " + e);
@@ -410,7 +410,7 @@ public class Calculadora extends javax.swing.JFrame {
     private void btnMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultiplicarActionPerformed
         try {
             numero1 = Float.parseFloat(lblOperacion.getText());
-            operador += "*";
+            operador = "*";
             lblOperacion.setText("");
         } catch (NumberFormatException e) {
             System.out.println("Error: " + e);
@@ -420,7 +420,7 @@ public class Calculadora extends javax.swing.JFrame {
     private void btnDividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDividirActionPerformed
         try {
             numero1 = Float.parseFloat(lblOperacion.getText());
-            operador += "/";
+            operador = "/";
             lblOperacion.setText("");
         } catch (NumberFormatException e) {
             System.out.println("Error: " + e);
@@ -430,7 +430,7 @@ public class Calculadora extends javax.swing.JFrame {
     private void btnPorcentajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPorcentajeActionPerformed
         try {
             numero1 = Float.parseFloat(lblOperacion.getText());
-            operador += "%";
+            operador = "%";
             lblOperacion.setText("");
         } catch (NumberFormatException e) {
             System.out.println("Error: " + e);
@@ -441,20 +441,25 @@ public class Calculadora extends javax.swing.JFrame {
         try {
             numero2 = Float.parseFloat(lblOperacion.getText());
             
-            if(operador == "+"){
+            if(operador.equals("+")){
                lblResultado.setText(quitarCeroResultado(numero1 + numero2));
-            }else if(operador == "-"){
+               lblOperacion.setText("");
+            }else if(operador.equals("-")){
                 lblResultado.setText(quitarCeroResultado(numero1 - numero2));
-            }else if(operador == "*"){
+                lblOperacion.setText("");
+            }else if(operador.equals( "*")){
                 lblResultado.setText(quitarCeroResultado(numero1 * numero2));
-            }else if(operador == "/"){
+                lblOperacion.setText("");
+            }else if(operador.equals("/")){
                 if(numero2 == 0){
                     lblResultado.setText("No se puede Dividir entre 0");
                 }else{
-                    lblResultado.setText(quitarCeroResultado(numero1 / numero2));
+                    lblResultado.setText(quitarCeroResultado(numero1 / numero2)); 
+                    lblOperacion.setText("");
                 }
-            }else if(operador == "%"){
+            }else if(operador.equals("%")){
                 lblResultado.setText(quitarCeroResultado((numero1/100)* numero2));
+                lblOperacion.setText("");
             }
             
         } catch (NumberFormatException e) {
