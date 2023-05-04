@@ -30,7 +30,7 @@ public class Principal_Automovil extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnConsultas = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,14 +38,28 @@ public class Principal_Automovil extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 102, 204));
         jLabel1.setText("Venta de Automoviles");
 
+        btnConsultas.setBackground(new java.awt.Color(0, 204, 255));
         btnConsultas.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        btnConsultas.setForeground(new java.awt.Color(0, 0, 0));
         btnConsultas.setText("Consulta, Edición y Eliminación");
+        btnConsultas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        btnSalir.setBackground(new java.awt.Color(0, 204, 255));
         btnSalir.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(0, 0, 0));
         btnSalir.setText("Salir");
+        btnSalir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        jButton1.setText("Agregar Automovil");
+        btnAgregar.setBackground(new java.awt.Color(0, 204, 255));
+        btnAgregar.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        btnAgregar.setForeground(new java.awt.Color(0, 0, 0));
+        btnAgregar.setText("Agregar Automovil");
+        btnAgregar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -60,7 +74,7 @@ public class Principal_Automovil extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(139, 139, 139))
         );
         jPanel1Layout.setVerticalGroup(
@@ -69,7 +83,7 @@ public class Principal_Automovil extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel1)
                 .addGap(33, 33, 33)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(btnConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -96,11 +110,17 @@ public class Principal_Automovil extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        AgregarAutomovil a_automovil = new AgregarAutomovil();
+        a_automovil.setVisible(true);
+        a_automovil.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnConsultas;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
