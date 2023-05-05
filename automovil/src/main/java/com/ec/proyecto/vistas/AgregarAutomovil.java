@@ -1,5 +1,7 @@
 package com.ec.proyecto.vistas;
 
+import com.ec.proyecto.logica.ControladorAutomovil;
+
 /**
  *
  * @author Bryan
@@ -9,6 +11,9 @@ public class AgregarAutomovil extends javax.swing.JFrame {
     /**
      * Creates new form AgregarAutomovil
      */
+    
+    ControladorAutomovil controlAutomovil = new ControladorAutomovil();
+    
     public AgregarAutomovil() {
         initComponents();
         this.setTitle("Ingreso de Datos de Automoviles");
@@ -158,10 +163,20 @@ public class AgregarAutomovil extends javax.swing.JFrame {
         btnAgregar.setBackground(new java.awt.Color(0, 153, 255));
         btnAgregar.setFont(new java.awt.Font("sansserif", 0, 22)); // NOI18N
         btnAgregar.setText("Agregar Automovil");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setBackground(new java.awt.Color(0, 153, 255));
         btnLimpiar.setFont(new java.awt.Font("sansserif", 0, 22)); // NOI18N
         btnLimpiar.setText("Limpiar Campos");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -226,6 +241,27 @@ public class AgregarAutomovil extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+     String modelo = txtModelo.getText();
+     String marca = txtMarca.getText();
+     String motor = txtMotor.getText();
+     String color = txtColor.getText();
+     String placa = txtPlaca.getText();
+     int cantidadPuertas = Integer.parseInt(txtCantidadPuertas.getText());
+     double valorAutomovil = Double.parseDouble(txtValorAutomovil.getText());      
+     controlAutomovil.agregarAutomovil(modelo,marca,motor,color,placa,cantidadPuertas,valorAutomovil);
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtModelo.setText("");
+        txtMarca.setText("");
+        txtMotor.setText("");
+        txtColor.setText("");
+        txtPlaca.setText("");
+        txtCantidadPuertas.setText("");
+        txtValorAutomovil.setText("");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
