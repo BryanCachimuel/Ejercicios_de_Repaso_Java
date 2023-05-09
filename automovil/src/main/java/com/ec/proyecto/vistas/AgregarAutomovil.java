@@ -1,6 +1,7 @@
 package com.ec.proyecto.vistas;
 
 import com.ec.proyecto.logica.ControladorAutomovil;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -251,9 +252,15 @@ public class AgregarAutomovil extends javax.swing.JFrame {
      int cantidadPuertas = Integer.parseInt(txtCantidadPuertas.getText());
      double valorAutomovil = Double.parseDouble(txtValorAutomovil.getText());      
      controlAutomovil.agregarAutomovil(modelo,marca,motor,color,placa,cantidadPuertas,valorAutomovil);
+     JOptionPane.showMessageDialog(null, "Automovil Registrado con Exito");
+     LimpiarCampos();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        LimpiarCampos();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+    
+    public void LimpiarCampos(){
         txtModelo.setText("");
         txtMarca.setText("");
         txtMotor.setText("");
@@ -261,8 +268,7 @@ public class AgregarAutomovil extends javax.swing.JFrame {
         txtPlaca.setText("");
         txtCantidadPuertas.setText("");
         txtValorAutomovil.setText("");
-    }//GEN-LAST:event_btnLimpiarActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */
