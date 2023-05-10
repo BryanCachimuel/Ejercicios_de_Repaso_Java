@@ -1,9 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ec.proyecto.vistas;
+
+import com.ec.proyecto.logica.Automovil;
+import com.ec.proyecto.logica.ControladorAutomovil;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -11,9 +11,9 @@ package com.ec.proyecto.vistas;
  */
 public class ConsultaAutomovil extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ConsultaAutomovil
-     */
+   
+    ControladorAutomovil c_automovil = new ControladorAutomovil();
+    
     public ConsultaAutomovil() {
         initComponents();
     }
@@ -36,6 +36,11 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 204));
@@ -68,11 +73,11 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -93,13 +98,14 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(243, 243, 243)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(243, 243, 243)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,6 +131,47 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+          cargarTabla();
+    }//GEN-LAST:event_formWindowOpened
+    
+    public void cargarTabla(){
+      
+      /* hacemos que la tabla no sea editable */  
+      DefaultTableModel modeloTabla = new DefaultTableModel(){
+      
+        @Override
+        public boolean isCellEditable(int row, int column){
+            return false;
+        }
+      };
+      
+      String titulos[] = {"Id","Modelo","Marca","Motor","Color","Placa","Cantidad Puertas","Valor Automovil"};
+      modeloTabla.setColumnIdentifiers(titulos);
+      
+      /* traer los autos desde la base de datos */
+      List <Automovil> listaAutomoviles = c_automovil.listarAutos();
+      
+      /* setear los registros obtenidos en la tabla */
+      if(listaAutomoviles != null){
+        for(Automovil auto: listaAutomoviles){
+            Object[] objeto = {
+               auto.getId(),
+               auto.getModelo(),
+               auto.getMarca(),
+               auto.getMotor(),
+               auto.getColor(),
+               auto.getPlaca(),
+               auto.getCantidadPuertas(),
+               auto.getValorAutomovil()
+            };
+            
+            modeloTabla.addRow(objeto);
+        }
+      }
+      
+      tblRegistroAutomoviles.setModel(modeloTabla);
+    }
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
