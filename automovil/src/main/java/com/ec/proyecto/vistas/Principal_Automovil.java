@@ -43,12 +43,22 @@ public class Principal_Automovil extends javax.swing.JFrame {
         btnConsultas.setForeground(new java.awt.Color(0, 0, 0));
         btnConsultas.setText("Consulta, Edición y Eliminación");
         btnConsultas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnConsultas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultasActionPerformed(evt);
+            }
+        });
 
         btnSalir.setBackground(new java.awt.Color(0, 204, 255));
         btnSalir.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         btnSalir.setForeground(new java.awt.Color(0, 0, 0));
         btnSalir.setText("Salir");
         btnSalir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         btnAgregar.setBackground(new java.awt.Color(0, 204, 255));
         btnAgregar.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
@@ -115,6 +125,17 @@ public class Principal_Automovil extends javax.swing.JFrame {
         a_automovil.setVisible(true);
         a_automovil.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultasActionPerformed
+        ConsultaAutomovil c_Automovil = new ConsultaAutomovil();
+        c_Automovil.setVisible(true);
+        c_Automovil.setLocationRelativeTo(null);    
+        c_Automovil.setTitle("Registros de Automoviles");
+    }//GEN-LAST:event_btnConsultasActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
