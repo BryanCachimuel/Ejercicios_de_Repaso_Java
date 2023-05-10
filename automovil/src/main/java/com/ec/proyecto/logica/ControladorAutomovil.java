@@ -26,5 +26,9 @@ public class ControladorAutomovil {
     public List<Automovil> listarAutos() {
         return controlPersistencia.listarAutos();
     }
+
+    public void eliminarAuto(int idAuto) {
+        controlPersistencia.eliminarAuto(idAuto);
+    }
     
 }
