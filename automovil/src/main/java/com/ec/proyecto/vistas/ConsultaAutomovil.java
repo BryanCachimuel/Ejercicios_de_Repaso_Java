@@ -3,6 +3,8 @@ package com.ec.proyecto.vistas;
 import com.ec.proyecto.logica.Automovil;
 import com.ec.proyecto.logica.ControladorAutomovil;
 import java.util.List;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -66,6 +68,11 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
 
         btnEliminar.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -134,6 +141,25 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
           cargarTabla();
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // Control de que la tabla no este vacia
+        if(tblRegistroAutomoviles.getRowCount() > 0){
+            // valido que se haya seleccioando un registro
+            if(tblRegistroAutomoviles.getSelectedRow() != -1){
+                // obtener el id del auto que se quiere borrar
+                int idAuto = Integer.parseInt(String.valueOf(tblRegistroAutomoviles.getValueAt(tblRegistroAutomoviles.getSelectedRow(), 0)));
+                c_automovil.eliminarAuto(idAuto);
+                MostrarMensaje("Auto Borrado Correctamente", "Info", "Borrado Exitoso");
+                cargarTabla();
+            }else{
+                MostrarMensaje("No Seleccionó un registro para Eliminar", "Error", "Error al Eliminar");
+            }
+        }
+        else{
+             MostrarMensaje("La Tabla está Vacía, no se puede eliminar", "Error", "Error al Eliminar");
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
     
     public void cargarTabla(){
       
@@ -171,6 +197,19 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
       }
       
       tblRegistroAutomoviles.setModel(modeloTabla);
+    }
+    
+    public void MostrarMensaje(String mensaje, String tipo, String titulo){
+        JOptionPane optionpane = new JOptionPane(mensaje);
+        if(tipo.equals("Info")){
+            optionpane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        }
+        else if(tipo.equals("Error")){
+            optionpane.setMessageType(JOptionPane.ERROR_MESSAGE);
+        }
+        JDialog dialog = optionpane.createDialog(titulo);
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
     }
  
 
