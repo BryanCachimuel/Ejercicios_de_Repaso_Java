@@ -1,6 +1,7 @@
 package com.ec.proyecto.logica;
 
 import com.ec.proyecto.persistencia.ControladorPersistencia;
+import java.util.List;
 
 /**
  *
@@ -20,6 +21,10 @@ public class ControladorAutomovil {
         auto.setCantidadPuertas(cantidadPuertas);
         auto.setValorAutomovil(valorAutomovil);
         controlPersistencia.agregarAutomovil(auto);
+    }
+
+    public List<Automovil> listarAutos() {
+        return controlPersistencia.listarAutos();
     }
     
 }
