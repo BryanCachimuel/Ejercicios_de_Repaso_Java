@@ -1,5 +1,8 @@
 package com.ec.proyecto.vistas;
 
+import com.ec.proyecto.logica.Automovil;
+import com.ec.proyecto.logica.ControladorAutomovil;
+
 /**
  *
  * @author Bryan
@@ -9,8 +12,14 @@ public class ModificarAutomovil extends javax.swing.JFrame {
     /**
      * Creates new form ModificarAutomovil
      */
-    public ModificarAutomovil() {
+    
+    ControladorAutomovil c_automovil = null;
+    Automovil auto = new Automovil();
+    
+    public ModificarAutomovil(int idAuto) {
+        c_automovil = new ControladorAutomovil();
         initComponents();
+        cargarDatosAutos(idAuto);
     }
 
     /**
@@ -278,22 +287,41 @@ public class ModificarAutomovil extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-       
+
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-       
+
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-       
+
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCamposActionPerformed
-       
+        LimpiarCampos();
     }//GEN-LAST:event_btnLimpiarCamposActionPerformed
 
-  
+    public void LimpiarCampos() {
+        txtModelo.setText("");
+        txtMarca.setText("");
+        txtMotor.setText("");
+        txtColor.setText("");
+        txtPlaca.setText("");
+        txtCantidadPuertas.setText("");
+        txtValorAutomovil.setText("");
+    }
+    
+    private void cargarDatosAutos(int idAuto) {
+        auto = c_automovil.traerAutomovil(idAuto);
+        txtModelo.setText(auto.getModelo());
+        txtMarca.setText(auto.getMarca());
+        txtMotor.setText(auto.getMotor());
+        txtColor.setText(auto.getColor());
+        txtPlaca.setText(auto.getPlaca());
+        txtCantidadPuertas.setText(String.valueOf(auto.getCantidadPuertas()));
+        txtValorAutomovil.setText(String.valueOf(auto.getValorAutomovil()));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
@@ -321,4 +349,6 @@ public class ModificarAutomovil extends javax.swing.JFrame {
     private javax.swing.JTextField txtPlaca;
     private javax.swing.JTextField txtValorAutomovil;
     // End of variables declaration//GEN-END:variables
+
+   
 }
