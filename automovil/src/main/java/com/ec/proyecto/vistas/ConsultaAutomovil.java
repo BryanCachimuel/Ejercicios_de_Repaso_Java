@@ -171,9 +171,13 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
             if(tblRegistroAutomoviles.getSelectedRow() != -1){
               // obtener el id del auto que se quiere modificar
                 int idAuto = Integer.parseInt(String.valueOf(tblRegistroAutomoviles.getValueAt(tblRegistroAutomoviles.getSelectedRow(), 0))); 
-                ModificarAutomovil m_automovil = new ModificarAutomovil();
+                
+                ModificarAutomovil m_automovil = new ModificarAutomovil(idAuto);
                 m_automovil.setVisible(true);
                 m_automovil.setLocationRelativeTo(null);
+                
+                this.dispose();
+                
             }else{
                  MostrarMensaje("No Seleccionó un registro para modificar", "Error", "Error al Modif    icar");
             }
