@@ -65,6 +65,11 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
 
         btnModificar.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         btnEliminar.setText("Eliminar");
@@ -160,6 +165,23 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
              MostrarMensaje("La Tabla está Vacía, no se puede eliminar", "Error", "Error al Eliminar");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        if(tblRegistroAutomoviles.getRowCount() > 0){
+            if(tblRegistroAutomoviles.getSelectedRow() != -1){
+              // obtener el id del auto que se quiere modificar
+                int idAuto = Integer.parseInt(String.valueOf(tblRegistroAutomoviles.getValueAt(tblRegistroAutomoviles.getSelectedRow(), 0))); 
+                ModificarAutomovil m_automovil = new ModificarAutomovil();
+                m_automovil.setVisible(true);
+                m_automovil.setLocationRelativeTo(null);
+            }else{
+                 MostrarMensaje("No Seleccionó un registro para modificar", "Error", "Error al Modif    icar");
+            }
+        }
+        else{
+            MostrarMensaje("La Tabla está Vacía, no se puede modificar", "Error", "Error al Modificar");
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
     
     public void cargarTabla(){
       
