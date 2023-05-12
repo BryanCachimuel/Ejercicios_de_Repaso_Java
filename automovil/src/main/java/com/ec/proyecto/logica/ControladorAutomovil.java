@@ -30,5 +30,9 @@ public class ControladorAutomovil {
     public void eliminarAuto(int idAuto) {
         controlPersistencia.eliminarAuto(idAuto);
     }
+
+    public Automovil traerAutomovil(int idAuto) {
+        return controlPersistencia.traerAutomoviles(idAuto);
+    }
     
 }
