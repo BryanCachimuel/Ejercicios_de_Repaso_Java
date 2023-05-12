@@ -33,6 +33,6 @@ public class ControladorAutomovil {
 
     public Automovil traerAutomovil(int idAuto) {
         return controlPersistencia.traerAutomoviles(idAuto);
-    }
+    }   
     
 }
