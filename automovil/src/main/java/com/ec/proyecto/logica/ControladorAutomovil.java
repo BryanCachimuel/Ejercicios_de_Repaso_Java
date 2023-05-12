@@ -34,5 +34,18 @@ public class ControladorAutomovil {
     public Automovil traerAutomovil(int idAuto) {
         return controlPersistencia.traerAutomoviles(idAuto);
     }   
+
+    public void modificarAutomovil(Automovil auto, String modelo, String marca, String motor, String color, String placa, int cantidadPuertas, double valorAutomovil) {
+            auto.setModelo(modelo);
+            auto.setMarca(marca);
+            auto.setMotor(motor);
+            auto.setColor(color);
+            auto.setPlaca(placa);
+            auto.setCantidadPuertas(cantidadPuertas);
+            auto.setValorAutomovil(valorAutomovil);
+            
+            // le pido a la persistencia que modifique
+            controlPersistencia.modificarAutomovil(auto);
+    }
     
 }
