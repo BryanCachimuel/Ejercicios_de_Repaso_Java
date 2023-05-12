@@ -254,6 +254,12 @@ public class AgregarAutomovil extends javax.swing.JFrame {
      controlAutomovil.agregarAutomovil(modelo,marca,motor,color,placa,cantidadPuertas,valorAutomovil);
      JOptionPane.showMessageDialog(null, "Automovil Registrado con Exito");
      LimpiarCampos();
+     
+     ConsultaAutomovil consultaA = new ConsultaAutomovil();
+     consultaA.setVisible(true);
+     consultaA.setLocationRelativeTo(null);
+     
+     this.dispose();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
