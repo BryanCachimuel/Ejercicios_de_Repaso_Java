@@ -2,6 +2,8 @@ package com.ec.proyecto.vistas;
 
 import com.ec.proyecto.logica.Automovil;
 import com.ec.proyecto.logica.ControladorAutomovil;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,10 +14,9 @@ public class ModificarAutomovil extends javax.swing.JFrame {
     /**
      * Creates new form ModificarAutomovil
      */
-    
     ControladorAutomovil c_automovil = null;
     Automovil auto = new Automovil();
-    
+
     public ModificarAutomovil(int idAuto) {
         c_automovil = new ControladorAutomovil();
         initComponents();
@@ -295,7 +296,23 @@ public class ModificarAutomovil extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-
+        String modelo = txtModelo.getText();
+        String marca = txtMarca.getText();
+        String motor = txtMotor.getText();
+        String color = txtColor.getText();
+        String placa = txtPlaca.getText();
+        int cantidadPuertas = Integer.parseInt(txtCantidadPuertas.getText());
+        double valorAutomovil = Double.parseDouble(txtValorAutomovil.getText());
+        
+        c_automovil.modificarAutomovil(auto, modelo, marca, motor, color, placa, cantidadPuertas, valorAutomovil);
+        
+        MostrarMensaje("Edición realizada Correctamente", "Info", "Edición Exitosa");
+        
+        ConsultaAutomovil consultaA = new ConsultaAutomovil();
+        consultaA.setVisible(true);
+        consultaA.setLocationRelativeTo(null);
+        
+        this.dispose();
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCamposActionPerformed
@@ -311,7 +328,7 @@ public class ModificarAutomovil extends javax.swing.JFrame {
         txtCantidadPuertas.setText("");
         txtValorAutomovil.setText("");
     }
-    
+
     private void cargarDatosAutos(int idAuto) {
         auto = c_automovil.traerAutomovil(idAuto);
         txtModelo.setText(auto.getModelo());
@@ -321,6 +338,19 @@ public class ModificarAutomovil extends javax.swing.JFrame {
         txtPlaca.setText(auto.getPlaca());
         txtCantidadPuertas.setText(String.valueOf(auto.getCantidadPuertas()));
         txtValorAutomovil.setText(String.valueOf(auto.getValorAutomovil()));
+    }
+    
+     public void MostrarMensaje(String mensaje, String tipo, String titulo){
+        JOptionPane optionpane = new JOptionPane(mensaje);
+        if(tipo.equals("Info")){
+            optionpane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        }
+        else if(tipo.equals("Error")){
+            optionpane.setMessageType(JOptionPane.ERROR_MESSAGE);
+        }
+        JDialog dialog = optionpane.createDialog(titulo);
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -350,5 +380,4 @@ public class ModificarAutomovil extends javax.swing.JFrame {
     private javax.swing.JTextField txtValorAutomovil;
     // End of variables declaration//GEN-END:variables
 
-   
 }
