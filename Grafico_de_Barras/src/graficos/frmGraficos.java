@@ -1,5 +1,9 @@
 package graficos;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
+
 /**
  *
  * @author Bryan
@@ -73,11 +77,14 @@ public class frmGraficos extends javax.swing.JFrame {
                         .addGap(169, 169, 169)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(btnGraficar)
-                            .addComponent(jLabel4))
+                        .addGap(53, 53, 53)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnGraficar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(3, 3, 3)))
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtSegundo, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -101,9 +108,9 @@ public class frmGraficos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtTercero, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addComponent(btnGraficar)
-                .addGap(288, 288, 288))
+                .addGap(214, 214, 214))
         );
 
         pack();
@@ -123,6 +130,47 @@ public class frmGraficos extends javax.swing.JFrame {
             return promedio_dos;
         }else{
             return promedio_tres;
+        }
+    }
+    
+    /* Creando método para gráficar */
+    public void paint(Graphics grafico){
+        super.paint(grafico);
+        try {
+            if(estado == true){
+                String promedio1 = txtPrimero.getText();
+                String promedio2 = txtSegundo.getText();
+                String promedio3 = txtTercero.getText();
+                
+                int valor_promedio1 = Integer.parseInt(promedio1);
+                int valor_promedio2 = Integer.parseInt(promedio2);
+                int valor_promedio3 = Integer.parseInt(promedio3);
+                
+                int mayor_valor = calcularMayorPromedio(valor_promedio1, valor_promedio2, valor_promedio3);
+                
+                int largo_promedio1 = valor_promedio1 * 400 / mayor_valor;
+                int largo_promedio2 = valor_promedio2 * 400 / mayor_valor;
+                int largo_promedio3 = valor_promedio3 * 400 / mayor_valor;
+                
+                /* Gráficamos el primer promedio */
+                grafico.setColor(Color.yellow);
+                grafico.fillRect(150, 350, largo_promedio1, 40);
+                grafico.drawString("1er Promedio", 50, 360);
+                
+                /* Gráficamos el segundo promedio */
+                grafico.setColor(Color.blue);
+                grafico.fillRect(150, 410, largo_promedio2, 40);
+                grafico.drawString("2do Promedio", 50, 420);
+                
+                /* Gráficamos el tercero promedio */
+                grafico.setColor(Color.red);
+                grafico.fillRect(150, 470, largo_promedio3, 40);
+                grafico.drawString("3ro Promedio", 50, 480);
+                
+                
+            }
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
     
