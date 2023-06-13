@@ -84,6 +84,11 @@ public class frmCarrera extends javax.swing.JFrame {
 
         btnIniciarCarrera.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         btnIniciarCarrera.setText("Iniciar Carrera");
+        btnIniciarCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarCarreraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,6 +124,17 @@ public class frmCarrera extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnIniciarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarCarreraActionPerformed
+        lblPrimerAuto.setLocation(0, lblPrimerAuto.getLocation().y);
+        lblSegundoAuto.setLocation(0,lblSegundoAuto.getLocation().y);
+        
+        Carrera auto1 = new Carrera(lblPrimerAuto, this);
+        Carrera auto2 = new Carrera(lblSegundoAuto, this);
+        
+        auto1.start();
+        auto2.start();
+    }//GEN-LAST:event_btnIniciarCarreraActionPerformed
 
     /**
      * @param args the command line arguments
