@@ -44,6 +44,8 @@ public class frmCarrera extends javax.swing.JFrame {
         lblSegundoAuto = new javax.swing.JLabel();
         lblFinal = new javax.swing.JLabel();
         btnIniciarCarrera = new javax.swing.JButton();
+        btnReiniciarCarrera = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,6 +92,22 @@ public class frmCarrera extends javax.swing.JFrame {
             }
         });
 
+        btnReiniciarCarrera.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        btnReiniciarCarrera.setText("Reiniciar Carrera");
+        btnReiniciarCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReiniciarCarreraActionPerformed(evt);
+            }
+        });
+
+        btnSalir.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,13 +120,16 @@ public class frmCarrera extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 325, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(265, 265, 265))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnIniciarCarrera)
-                                .addGap(311, 311, 311))))))
+                        .addComponent(jLabel1)
+                        .addGap(265, 265, 265))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(btnIniciarCarrera)
+                .addGap(34, 34, 34)
+                .addComponent(btnReiniciarCarrera)
+                .addGap(26, 26, 26)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +139,10 @@ public class frmCarrera extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnIniciarCarrera)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIniciarCarrera)
+                    .addComponent(btnReiniciarCarrera)
+                    .addComponent(btnSalir))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -135,6 +159,15 @@ public class frmCarrera extends javax.swing.JFrame {
         auto1.start();
         auto2.start();
     }//GEN-LAST:event_btnIniciarCarreraActionPerformed
+
+    private void btnReiniciarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarCarreraActionPerformed
+         lblPrimerAuto.setLocation(0, lblPrimerAuto.getLocation().y);
+         lblSegundoAuto.setLocation(0,lblSegundoAuto.getLocation().y);
+    }//GEN-LAST:event_btnReiniciarCarreraActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,6 +206,8 @@ public class frmCarrera extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciarCarrera;
+    private javax.swing.JButton btnReiniciarCarrera;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblFinal;
