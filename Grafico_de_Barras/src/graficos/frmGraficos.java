@@ -39,6 +39,8 @@ public class frmGraficos extends javax.swing.JFrame {
         txtSegundo = new javax.swing.JTextField();
         txtTercero = new javax.swing.JTextField();
         btnGraficar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txtCuarto = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +64,8 @@ public class frmGraficos extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("Digite el 4to Dato: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,27 +73,31 @@ public class frmGraficos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel5))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnGraficar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(3, 3, 3)))
+                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtSegundo, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTercero, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtCuarto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addComponent(jLabel2)
                         .addGap(29, 29, 29)
                         .addComponent(txtPrimero, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(169, 169, 169)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnGraficar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(3, 3, 3)))
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtSegundo, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTercero, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(164, Short.MAX_VALUE))
+                        .addComponent(jLabel1)))
+                .addContainerGap(254, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,9 +116,13 @@ public class frmGraficos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtTercero, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCuarto, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addComponent(btnGraficar)
-                .addGap(214, 214, 214))
+                .addGap(117, 117, 117))
         );
 
         pack();
@@ -122,14 +134,16 @@ public class frmGraficos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGraficarActionPerformed
     
     /* creamos el método para hallar el maximo promedio */
-    public static int calcularMayorPromedio(int promedio_uno, int promedio_dos, int promedio_tres){
-        if(promedio_uno > promedio_dos && promedio_uno > promedio_tres){
+    public static int calcularMayorPromedio(int promedio_uno, int promedio_dos, int promedio_tres, int promedio_cuatro){
+        if(promedio_uno > promedio_dos && promedio_uno > promedio_tres && promedio_uno > promedio_cuatro){
             return promedio_uno;
         }
-        else if(promedio_dos > promedio_tres){
+        else if(promedio_dos > promedio_tres && promedio_dos > promedio_cuatro && promedio_dos > promedio_cuatro){
             return promedio_dos;
-        }else{
+        }else if(promedio_tres > promedio_uno && promedio_tres > promedio_dos && promedio_tres > promedio_cuatro){
             return promedio_tres;
+        }else{
+            return promedio_cuatro;
         }
     }
     
@@ -141,16 +155,19 @@ public class frmGraficos extends javax.swing.JFrame {
                 String promedio1 = txtPrimero.getText();
                 String promedio2 = txtSegundo.getText();
                 String promedio3 = txtTercero.getText();
+                String promedio4 = txtCuarto.getText();
                 
                 int valor_promedio1 = Integer.parseInt(promedio1);
                 int valor_promedio2 = Integer.parseInt(promedio2);
                 int valor_promedio3 = Integer.parseInt(promedio3);
+                int valor_promedio4 = Integer.parseInt(promedio4);
                 
-                int mayor_valor = calcularMayorPromedio(valor_promedio1, valor_promedio2, valor_promedio3);
+                int mayor_valor = calcularMayorPromedio(valor_promedio1, valor_promedio2, valor_promedio3, valor_promedio4);
                 
                 int largo_promedio1 = valor_promedio1 * 400 / mayor_valor;
                 int largo_promedio2 = valor_promedio2 * 400 / mayor_valor;
                 int largo_promedio3 = valor_promedio3 * 400 / mayor_valor;
+                int largo_promedio4 = valor_promedio4 * 400 / mayor_valor;
                 
                 /* Gráficamos el primer promedio */
                 grafico.setColor(Color.yellow);
@@ -167,7 +184,10 @@ public class frmGraficos extends javax.swing.JFrame {
                 grafico.fillRect(150, 470, largo_promedio3, 40);
                 grafico.drawString("3ro Promedio", 50, 480);
                 
-                
+                /* Gráficamos el cuarto promedio */
+                grafico.setColor(Color.green);
+                grafico.fillRect(150, 530, largo_promedio4, 40);
+                grafico.drawString("4to Promedio", 50, 540);
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -215,6 +235,8 @@ public class frmGraficos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField txtCuarto;
     private javax.swing.JTextField txtPrimero;
     private javax.swing.JTextField txtSegundo;
     private javax.swing.JTextField txtTercero;
