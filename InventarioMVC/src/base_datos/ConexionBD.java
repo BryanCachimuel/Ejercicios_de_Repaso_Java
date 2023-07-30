@@ -10,7 +10,7 @@ import java.sql.SQLException;
  */
 public class ConexionBD {
     Connection con;
-    String driver = "com.mysql.jdbc.Driver";
+    String driver = "com.mysql.cj.jdbc.Driver";
     String dbName = "inventariomvc";
     String url = "jdbc:mysql://localhost:3307/"+dbName+"?useSSL=false&serverTimezone=UTC";
     String usuario = "root";
@@ -27,3 +27,11 @@ public class ConexionBD {
         return con;
     }
 }
+
+/*class PruebaConexion{
+    public static void main(String[] args) {
+        Connection con;
+        ConexionBD conexion = new ConexionBD();
+        con = conexion.conectarBaseDatos();
+    }
+}*/
