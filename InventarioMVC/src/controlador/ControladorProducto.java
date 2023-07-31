@@ -1,7 +1,11 @@
 package controlador;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import modelo.ProductoDAO;
 import modelo.ProductoDTO;
@@ -33,6 +37,29 @@ public class ControladorProducto implements ActionListener{
         vista.getBtnActualizar().addActionListener(this);
         vista.getBtnBorrar().addActionListener(this);
         vista.getBtnLimpiar().addActionListener(this);
+        vista.getTblProductos().addMouseListener(new MouseAdapter() {     
+            public void mouseClicked(MouseEvent e){
+                llenarCampos(e);
+            }
+        });
+    }
+    
+    private void listarTabla(){
+        String[] titulos = new String[]{"Código", "Nombre", "Precio", "Stock"}; // encabezados de la tabla
+        modeloTabla = new DefaultTableModel(titulos, 0);
+        List<ProductoDTO> listarProductos = productodao.listarProductos();
+        for (ProductoDTO iterarproducto : listarProductos) {
+            modeloTabla.addRow(new Object[]{iterarproducto.getCodigo(),
+                                            iterarproducto.getNombre(),
+                                            iterarproducto.getPrecio(),
+                                            iterarproducto.getStock()});
+        }
+        vista.getTblProductos().setModel(modeloTabla);
+        vista.getTblProductos().setPreferredSize(new Dimension(350, modeloTabla.getRowCount() * 16));
+    }
+    
+    private void llenarCampos(){
+        
     }
       
     @Override
