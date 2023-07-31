@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.ProductoDAO;
 import modelo.ProductoDTO;
@@ -30,6 +31,8 @@ public class ControladorProducto implements ActionListener{
     public ControladorProducto(Inventario vistaInventario) {
         this.vista = vistaInventario;
         vista.setVisible(true);
+        agregarEventos();
+        listarTabla();
     }
     
     private void agregarEventos(){
@@ -58,8 +61,11 @@ public class ControladorProducto implements ActionListener{
         vista.getTblProductos().setPreferredSize(new Dimension(350, modeloTabla.getRowCount() * 16));
     }
     
-    private void llenarCampos(){
-        
+    private void llenarCampos(MouseEvent e){
+        JTable target = (JTable) e.getSource();
+        vista.getTxtNombre().setText(vista.getTblProductos().getModel().getValueAt(target.getSelectedRow(), 1).toString());
+        vista.getTxtPrecio().setText(vista.getTblProductos().getModel().getValueAt(target.getSelectedRow(), 2).toString());
+        vista.getTxtStock().setText(vista.getTblProductos().getModel().getValueAt(target.getSelectedRow(), 3).toString());
     }
       
     @Override
