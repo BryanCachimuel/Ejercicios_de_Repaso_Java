@@ -41,4 +41,17 @@ public class ProductoDAO {
         return lista;
     }
     
+    public void agregarProducto(ProductoDTO producto){
+        String sql = "INSERT INTO productos(nombre,precio,stock) VALUES(?,?,?)";
+        try {
+            con = conexion.conectarBaseDatos();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, producto.getNombre());
+            ps.setDouble(2, producto.getPrecio());
+            ps.setInt(3, producto.getStock());
+            ps.executeQuery();
+        } catch (SQLException e) {
+            System.out.println("Error al agregar el producto: " + e);
+        }
+    }
 }
