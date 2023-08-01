@@ -25,6 +25,12 @@ public class ControladorProducto implements ActionListener{
     /* Instancia de la vista Inventario */
     Inventario vista = new Inventario();
     
+    /* variables globales */
+    private int codigo;
+    private String nombre;
+    private double precio;
+    private int stock;
+    
     /* Para cargar los datos en la tabla de la vista */
     DefaultTableModel modeloTabla = new DefaultTableModel();
     
@@ -78,6 +84,23 @@ public class ControladorProducto implements ActionListener{
         return true;
     }
     
+    /*
+        Método que realiza lo siguiente
+        1. Cargando las variables globales
+        2. Parseando valores (precio y stock)
+        3. Estamos validando que precio y stock sean numéricos
+    */
+    private boolean cargarDatos(){
+        try {
+            nombre = vista.getTxtNombre().getText();
+            precio = Double.parseDouble(vista.getTxtPrecio().getText());
+            stock = Integer.parseInt(vista.getTxtStock().getText());
+            return true;
+        } catch (NumberFormatException e) {
+            System.out.println("Error al Cargar los Datos desde el Formulario: " + e);
+            return false;
+        }
+    }
     
     @Override
     public void actionPerformed(ActionEvent e) {
