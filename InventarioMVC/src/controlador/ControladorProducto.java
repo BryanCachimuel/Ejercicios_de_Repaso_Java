@@ -1,6 +1,7 @@
 package controlador;
 
 import java.awt.Dimension;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -97,26 +98,43 @@ public class ControladorProducto implements ActionListener{
             stock = Integer.parseInt(vista.getTxtStock().getText());
             return true;
         } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Los Campos precio y stock deben ser númericos", "Error", JOptionPane.ERROR_MESSAGE);
             System.out.println("Error al Cargar los Datos desde el Formulario: " + e);
             return false;
         }
     }
     
+    private void limpiarCampos(){
+        vista.getTxtNombre().setText("");
+        vista.getTxtPrecio().setText("");
+        vista.getTxtStock().setText("");
+        codigo = 0;
+        nombre = "";
+        precio = 0;
+        stock = 0;
+    }
+    
     private void crearProducto(){
         try {
             if(validarDatos() == true && cargarDatos() == true){
-                ProductoDTO producto = new ProductoDTO(nombre, precio, stock);
-                productodao.agregarProducto(producto);
+                ProductoDTO productoaniadir = new ProductoDTO(nombre, precio, stock);
+                productodao.agregarProducto(productoaniadir);
                 JOptionPane.showMessageDialog(null, "Producto Registrado Exitosamente");
+                limpiarCampos();
             }
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
             System.out.println("Error al crear un producto: " + e);
+        } finally {
+            listarTabla(); // al final cuando se agrega el producto este se listará en la tabla
         }
     }
     
+    /* Método para dar la funcionalidad a los botones */
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+        if(e.getSource() == vista.getBtnAgregar()){
+            crearProducto();
+        }
     }
     
 }
