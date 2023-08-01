@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.ProductoDAO;
@@ -67,7 +68,17 @@ public class ControladorProducto implements ActionListener{
         vista.getTxtPrecio().setText(vista.getTblProductos().getModel().getValueAt(target.getSelectedRow(), 2).toString());
         vista.getTxtStock().setText(vista.getTblProductos().getModel().getValueAt(target.getSelectedRow(), 3).toString());
     }
-      
+    
+    /**********************************  Validación del Formulario  ********************************************/
+    private boolean validarDatos(){
+        if(vista.getTxtNombre().getText().equals("") || vista.getTxtPrecio().getText().equals("") || vista.getTxtStock().getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Los Campos no pueden ser vacios", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+    
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         
