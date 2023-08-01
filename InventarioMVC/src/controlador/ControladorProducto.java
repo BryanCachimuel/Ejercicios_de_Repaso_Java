@@ -102,6 +102,18 @@ public class ControladorProducto implements ActionListener{
         }
     }
     
+    private void crearProducto(){
+        try {
+            if(validarDatos() == true && cargarDatos() == true){
+                ProductoDTO producto = new ProductoDTO(nombre, precio, stock);
+                productodao.agregarProducto(producto);
+                JOptionPane.showMessageDialog(null, "Producto Registrado Exitosamente");
+            }
+        } catch (Exception e) {
+            System.out.println("Error al crear un producto: " + e);
+        }
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         
