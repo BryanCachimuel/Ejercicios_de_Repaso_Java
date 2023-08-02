@@ -38,6 +38,8 @@ public class ControladorProducto implements ActionListener{
     /* constructor de la clase */
     public ControladorProducto(Inventario vistaInventario) {
         this.vista = vistaInventario;
+        vista.setLocationRelativeTo(null);
+        vista.setTitle("Productos");
         vista.setVisible(true);
         agregarEventos();
         listarTabla();
@@ -151,9 +153,10 @@ public class ControladorProducto implements ActionListener{
                 productodao.eliminarProducto(codigo);
                 JOptionPane.showMessageDialog(null, "Producto Eliminado Exitosamente");
                 limpiarCampos();
+            }else{
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un producto de la tabla de datos de productos", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un producto de la tabla de datos de productos", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (HeadlessException e) {
             System.out.println("No se puede eliminar el producto: " + e);
         } finally {
             listarTabla();
@@ -168,6 +171,12 @@ public class ControladorProducto implements ActionListener{
         }
         if(e.getSource() == vista.getBtnActualizar()){
             actualizaProducto();
+        }
+        if(e.getSource() == vista.getBtnBorrar()){
+            borrarProducto();
+        }
+        if(e.getSource() == vista.getBtnLimpiar()){
+            limpiarCampos();
         }
     }
     
