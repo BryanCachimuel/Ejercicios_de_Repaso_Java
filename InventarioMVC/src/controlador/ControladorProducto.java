@@ -71,6 +71,7 @@ public class ControladorProducto implements ActionListener{
     
     private void llenarCampos(MouseEvent e){
         JTable target = (JTable) e.getSource();
+        codigo = (int) vista.getTblProductos().getModel().getValueAt(target.getSelectedRow(), 0);
         vista.getTxtNombre().setText(vista.getTblProductos().getModel().getValueAt(target.getSelectedRow(), 1).toString());
         vista.getTxtPrecio().setText(vista.getTblProductos().getModel().getValueAt(target.getSelectedRow(), 2).toString());
         vista.getTxtStock().setText(vista.getTblProductos().getModel().getValueAt(target.getSelectedRow(), 3).toString());
@@ -124,6 +125,21 @@ public class ControladorProducto implements ActionListener{
             }
         } catch (HeadlessException e) {
             System.out.println("Error al crear un producto: " + e);
+        } finally {
+            listarTabla(); // al final cuando se agrega el producto este se listará en la tabla
+        }
+    }
+    
+    private void actualizaProducto(){
+        try {
+            if(validarDatos() == true && cargarDatos() == true){
+                ProductoDTO productoactualizar = new ProductoDTO(codigo, nombre, precio, stock);
+                productodao.actualizarProducto(productoactualizar);
+                JOptionPane.showMessageDialog(null, "Producto Actualizado Exitosamente");
+                limpiarCampos();
+            }
+        } catch (HeadlessException e) {
+            System.out.println("No se puede actualizar el producto: " + e);
         } finally {
             listarTabla(); // al final cuando se agrega el producto este se listará en la tabla
         }
