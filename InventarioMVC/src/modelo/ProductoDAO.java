@@ -49,9 +49,24 @@ public class ProductoDAO {
             ps.setString(1, producto.getNombre());
             ps.setDouble(2, producto.getPrecio());
             ps.setInt(3, producto.getStock());
-            ps.executeQuery();
+            ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error al agregar el producto: " + e);
+        }
+    }
+    
+    public void actualizarProducto(ProductoDTO producto){
+        String sql = "UPDATE productos SET nombre=?,precio=?,stock=? WHERE codigo=?";
+        try {
+            con = conexion.conectarBaseDatos();
+            ps = con.prepareStatement(sql);
+             ps.setString(1, producto.getNombre());
+            ps.setDouble(2, producto.getPrecio());
+            ps.setInt(3, producto.getStock());
+            ps.setInt(4, producto.getCodigo());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar el producto: " + e);
         }
     }
 }
