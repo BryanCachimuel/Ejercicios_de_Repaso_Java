@@ -27,7 +27,7 @@ public class ControladorProducto implements ActionListener{
     Inventario vista = new Inventario();
     
     /* variables globales */
-    private int codigo;
+    private int codigo = 0;
     private String nombre;
     private double precio;
     private int stock;
@@ -142,6 +142,21 @@ public class ControladorProducto implements ActionListener{
             System.out.println("No se puede actualizar el producto: " + e);
         } finally {
             listarTabla(); // al final cuando se agrega el producto este se listará en la tabla
+        }
+    }
+    
+    private void borrarProducto(){
+        try {
+            if(codigo != 0){
+                productodao.eliminarProducto(codigo);
+                JOptionPane.showMessageDialog(null, "Producto Eliminado Exitosamente");
+                limpiarCampos();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un producto de la tabla de datos de productos", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println("No se puede eliminar el producto: " + e);
+        } finally {
+            listarTabla();
         }
     }
     
