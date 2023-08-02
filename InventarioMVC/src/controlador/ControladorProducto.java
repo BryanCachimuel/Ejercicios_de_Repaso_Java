@@ -151,6 +151,9 @@ public class ControladorProducto implements ActionListener{
         if(e.getSource() == vista.getBtnAgregar()){
             crearProducto();
         }
+        if(e.getSource() == vista.getBtnActualizar()){
+            actualizaProducto();
+        }
     }
     
 }
