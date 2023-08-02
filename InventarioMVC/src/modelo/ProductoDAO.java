@@ -60,13 +60,24 @@ public class ProductoDAO {
         try {
             con = conexion.conectarBaseDatos();
             ps = con.prepareStatement(sql);
-             ps.setString(1, producto.getNombre());
+            ps.setString(1, producto.getNombre());
             ps.setDouble(2, producto.getPrecio());
             ps.setInt(3, producto.getStock());
             ps.setInt(4, producto.getCodigo());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error al actualizar el producto: " + e);
+        }
+    }
+    
+    public void eliminarProducto(int idproducto){
+        String sql = "DELETE FROM empleados WHERE codigo="+idproducto;
+        try {
+            con  = conexion.conectarBaseDatos();
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Errror al eliminar el producto: " + e);
         }
     }
 }
