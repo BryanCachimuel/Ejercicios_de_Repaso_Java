@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -51,6 +52,7 @@ public class ProductoDAO {
             ps.setInt(3, producto.getStock());
             ps.executeUpdate();
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "El Producto ya existe, no se puede registrar en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
             System.out.println("Error al agregar el producto: " + e);
         }
     }
@@ -71,7 +73,7 @@ public class ProductoDAO {
     }
     
     public void eliminarProducto(int idproducto){
-        String sql = "DELETE FROM empleados WHERE codigo="+idproducto;
+        String sql = "DELETE FROM productos WHERE codigo="+idproducto;
         try {
             con  = conexion.conectarBaseDatos();
             ps = con.prepareStatement(sql);
