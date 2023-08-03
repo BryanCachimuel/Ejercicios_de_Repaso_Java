@@ -168,11 +168,26 @@ public class ControladorProducto implements ActionListener{
         }
     }
     
+    private void buscar(){
+        if(vista.getTxtBuscar().getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Ingrese un Id para buscar al Producto que desee");
+        }else{
+            int id = Integer.parseInt(vista.getTxtBuscar().getText());
+            producto.setCodigo(id);
+            productodao.buscarPorId(producto);
+            vista.getTxtNombreProducto().setText(producto.getNombre());
+            vista.getTxtPrecioProducto().setText(String.valueOf(producto.getPrecio()));
+            vista.getTxtStockProducto().setText(String.valueOf(producto.getStock()));
+            
+            JOptionPane.showMessageDialog(null, "Producto Encontrado con Exito");
+        }
+    }
+    
     /* Método para dar la funcionalidad a los botones */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == vista.getBtnAgregar()){
-            crearProducto();
+            crearProducto();        
         }
         if(e.getSource() == vista.getBtnActualizar()){
             actualizaProducto();
@@ -185,6 +200,9 @@ public class ControladorProducto implements ActionListener{
         }
         if(e.getSource() == vista.getBtnSalir()){
             salir();
+        }
+        if(e.getSource() == vista.getBtnBuscarProducto()){
+            buscar();
         }
     }
     
