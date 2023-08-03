@@ -82,4 +82,22 @@ public class ProductoDAO {
             System.out.println("Errror al eliminar el producto: " + e);
         }
     }
+    
+    public void buscarPorId(ProductoDTO producto){
+        String sql = "SELECT * FROM productos WHERE id=?";
+        try {
+            con = conexion.conectarBaseDatos();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, producto.getCodigo());
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                producto.setNombre(rs.getString("nombre"));
+                producto.setPrecio(rs.getDouble("precio"));
+                producto.setStock(rs.getInt("stock"));
+            }
+        } catch (SQLException e) {
+            System.out.println("No se a podido encontrar el producto");
+        }
+    }
 }
