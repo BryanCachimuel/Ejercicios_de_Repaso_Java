@@ -50,6 +50,7 @@ public class ControladorProducto implements ActionListener{
         vista.getBtnActualizar().addActionListener(this);
         vista.getBtnBorrar().addActionListener(this);
         vista.getBtnLimpiar().addActionListener(this);
+        vista.getBtnSalir().addActionListener(this);
         vista.getTblProductos().addMouseListener(new MouseAdapter() {     
             public void mouseClicked(MouseEvent e){
                 llenarCampos(e);
@@ -117,6 +118,10 @@ public class ControladorProducto implements ActionListener{
         stock = 0;
     }
     
+    private void salir(){
+       System.exit(0);
+    }
+    
     private void crearProducto(){
         try {
             if(validarDatos() == true && cargarDatos() == true){
@@ -177,6 +182,9 @@ public class ControladorProducto implements ActionListener{
         }
         if(e.getSource() == vista.getBtnLimpiar()){
             limpiarCampos();
+        }
+        if(e.getSource() == vista.getBtnSalir()){
+            salir();
         }
     }
     
