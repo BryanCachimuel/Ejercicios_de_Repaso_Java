@@ -18,23 +18,23 @@ import vista.Inventario;
  *
  * @author Bryan
  */
-public class ControladorProducto implements ActionListener{
+public class ControladorProducto implements ActionListener {
 
     ProductoDTO producto = new ProductoDTO();
     ProductoDAO productodao = new ProductoDAO();
-    
+
     /* Instancia de la vista Inventario */
     Inventario vista = new Inventario();
-    
+
     /* variables globales */
     private int codigo = 0;
     private String nombre;
     private double precio;
     private int stock;
-    
+
     /* Para cargar los datos en la tabla de la vista */
     DefaultTableModel modeloTabla = new DefaultTableModel();
-    
+
     /* constructor de la clase */
     public ControladorProducto(Inventario vistaInventario) {
         this.vista = vistaInventario;
@@ -44,58 +44,62 @@ public class ControladorProducto implements ActionListener{
         agregarEventos();
         listarTabla();
     }
-    
-    private void agregarEventos(){
+
+    private void agregarEventos() {
         vista.getBtnAgregar().addActionListener(this);
         vista.getBtnActualizar().addActionListener(this);
         vista.getBtnBorrar().addActionListener(this);
         vista.getBtnLimpiar().addActionListener(this);
         vista.getBtnSalir().addActionListener(this);
-        vista.getTblProductos().addMouseListener(new MouseAdapter() {     
-            public void mouseClicked(MouseEvent e){
+        vista.getBtnBuscarProducto().addActionListener(this);
+        vista.getTblProductos().addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
                 llenarCampos(e);
             }
         });
     }
-    
-    private void listarTabla(){
+
+    private void listarTabla() {
         String[] titulos = new String[]{"Código", "Nombre", "Precio", "Stock"}; // encabezados de la tabla
         modeloTabla = new DefaultTableModel(titulos, 0);
         List<ProductoDTO> listarProductos = productodao.listarProductos();
         for (ProductoDTO iterarproducto : listarProductos) {
             modeloTabla.addRow(new Object[]{iterarproducto.getCodigo(),
-                                            iterarproducto.getNombre(),
-                                            iterarproducto.getPrecio(),
-                                            iterarproducto.getStock()});
+                iterarproducto.getNombre(),
+                iterarproducto.getPrecio(),
+                iterarproducto.getStock()});
         }
         vista.getTblProductos().setModel(modeloTabla);
         vista.getTblProductos().setPreferredSize(new Dimension(350, modeloTabla.getRowCount() * 16));
     }
-    
-    private void llenarCampos(MouseEvent e){
+
+    private void llenarCampos(MouseEvent e) {
         JTable target = (JTable) e.getSource();
         codigo = (int) vista.getTblProductos().getModel().getValueAt(target.getSelectedRow(), 0);
         vista.getTxtNombre().setText(vista.getTblProductos().getModel().getValueAt(target.getSelectedRow(), 1).toString());
         vista.getTxtPrecio().setText(vista.getTblProductos().getModel().getValueAt(target.getSelectedRow(), 2).toString());
         vista.getTxtStock().setText(vista.getTblProductos().getModel().getValueAt(target.getSelectedRow(), 3).toString());
     }
-    
-    /**********************************  Validación del Formulario  ********************************************/
-    private boolean validarDatos(){
-        if(vista.getTxtNombre().getText().equals("") || vista.getTxtPrecio().getText().equals("") || vista.getTxtStock().getText().equals("")){
+
+    /**
+     * ******************************** Validación del Formulario
+     * *******************************************
+     */
+    private boolean validarDatos() {
+        if (vista.getTxtNombre().getText().equals("") || vista.getTxtPrecio().getText().equals("") || vista.getTxtStock().getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Los Campos no pueden ser vacios", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;
     }
-    
+
     /*
         Método que realiza lo siguiente
         1. Cargando las variables globales
         2. Parseando valores (precio y stock)
         3. Estamos validando que precio y stock sean numéricos
-    */
-    private boolean cargarDatos(){
+     */
+    private boolean cargarDatos() {
         try {
             nombre = vista.getTxtNombre().getText();
             precio = Double.parseDouble(vista.getTxtPrecio().getText());
@@ -107,24 +111,27 @@ public class ControladorProducto implements ActionListener{
             return false;
         }
     }
-    
-    private void limpiarCampos(){
+
+    private void limpiarCampos() {
         vista.getTxtNombre().setText("");
         vista.getTxtPrecio().setText("");
         vista.getTxtStock().setText("");
+        vista.getTxtNombreProducto().setText("");
+        vista.getTxtPrecioProducto().setText("");
+        vista.getTxtStockProducto().setText("");
         codigo = 0;
         nombre = "";
         precio = 0;
         stock = 0;
     }
-    
-    private void salir(){
-       System.exit(0);
+
+    private void salir() {
+        System.exit(0);
     }
-    
-    private void crearProducto(){
+
+    private void crearProducto() {
         try {
-            if(validarDatos() == true && cargarDatos() == true){
+            if (validarDatos() == true && cargarDatos() == true) {
                 ProductoDTO productoaniadir = new ProductoDTO(nombre, precio, stock);
                 productodao.agregarProducto(productoaniadir);
                 JOptionPane.showMessageDialog(null, "Producto Registrado Exitosamente");
@@ -136,10 +143,10 @@ public class ControladorProducto implements ActionListener{
             listarTabla(); // al final cuando se agrega el producto este se listará en la tabla
         }
     }
-    
-    private void actualizaProducto(){
+
+    private void actualizaProducto() {
         try {
-            if(validarDatos() == true && cargarDatos() == true){
+            if (validarDatos() == true && cargarDatos() == true) {
                 ProductoDTO productoactualizar = new ProductoDTO(codigo, nombre, precio, stock);
                 productodao.actualizarProducto(productoactualizar);
                 JOptionPane.showMessageDialog(null, "Producto Actualizado Exitosamente");
@@ -151,14 +158,14 @@ public class ControladorProducto implements ActionListener{
             listarTabla(); // al final cuando se agrega el producto este se listará en la tabla
         }
     }
-    
-    private void borrarProducto(){
+
+    private void borrarProducto() {
         try {
-            if(codigo != 0){
+            if (codigo != 0) {
                 productodao.eliminarProducto(codigo);
                 JOptionPane.showMessageDialog(null, "Producto Eliminado Exitosamente");
                 limpiarCampos();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Debe seleccionar un producto de la tabla de datos de productos", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (HeadlessException e) {
@@ -167,43 +174,47 @@ public class ControladorProducto implements ActionListener{
             listarTabla();
         }
     }
-    
-    private void buscar(){
-        if(vista.getTxtBuscar().getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Ingrese un Id para buscar al Producto que desee");
-        }else{
-            int id = Integer.parseInt(vista.getTxtBuscar().getText());
-            producto.setCodigo(id);
-            productodao.buscarPorId(producto);
-            vista.getTxtNombreProducto().setText(producto.getNombre());
-            vista.getTxtPrecioProducto().setText(String.valueOf(producto.getPrecio()));
-            vista.getTxtStockProducto().setText(String.valueOf(producto.getStock()));
-            
-            JOptionPane.showMessageDialog(null, "Producto Encontrado con Exito");
+
+    private void buscar() {
+        try {
+            if (vista.getTxtBuscar().getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Ingrese un Id para buscar al Producto que desee");
+            } else {
+                int id = Integer.parseInt(vista.getTxtBuscar().getText());
+                producto.setCodigo(id);
+                productodao.buscarPorId(producto);
+                vista.getTxtNombreProducto().setText(producto.getNombre());
+                vista.getTxtPrecioProducto().setText(String.valueOf(producto.getPrecio()));
+                vista.getTxtStockProducto().setText(String.valueOf(producto.getStock()));
+
+                JOptionPane.showMessageDialog(null, "Producto Encontrado con Exito");
+            }
+        } catch (HeadlessException | NumberFormatException e) {
+            System.out.println("Se a producido un error: " + e);
         }
     }
-    
+
     /* Método para dar la funcionalidad a los botones */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == vista.getBtnAgregar()){
-            crearProducto();        
+        if (e.getSource() == vista.getBtnAgregar()) {
+            crearProducto();
         }
-        if(e.getSource() == vista.getBtnActualizar()){
+        if (e.getSource() == vista.getBtnActualizar()) {
             actualizaProducto();
         }
-        if(e.getSource() == vista.getBtnBorrar()){
+        if (e.getSource() == vista.getBtnBorrar()) {
             borrarProducto();
         }
-        if(e.getSource() == vista.getBtnLimpiar()){
+        if (e.getSource() == vista.getBtnLimpiar()) {
             limpiarCampos();
         }
-        if(e.getSource() == vista.getBtnSalir()){
+        if (e.getSource() == vista.getBtnSalir()) {
             salir();
         }
-        if(e.getSource() == vista.getBtnBuscarProducto()){
+        if (e.getSource() == vista.getBtnBuscarProducto()) {
             buscar();
         }
     }
-    
+
 }
