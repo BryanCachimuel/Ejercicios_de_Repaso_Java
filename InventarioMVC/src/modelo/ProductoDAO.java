@@ -84,7 +84,7 @@ public class ProductoDAO {
     }
     
     public void buscarPorId(ProductoDTO producto){
-        String sql = "SELECT * FROM productos WHERE id=?";
+        String sql = "SELECT * FROM productos WHERE codigo=?";
         try {
             con = conexion.conectarBaseDatos();
             ps = con.prepareStatement(sql);
