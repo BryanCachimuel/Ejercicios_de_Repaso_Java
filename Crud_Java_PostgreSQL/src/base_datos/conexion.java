@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  */
 public class conexion {
     Connection conn = null;
-    String url = "jdbc:postgresql://localhost:empresa";
+    String url = "jdbc:postgresql://localhost:5432/empresa";
     String usuario = "postgres";
     String clave = "admin1994";
     
