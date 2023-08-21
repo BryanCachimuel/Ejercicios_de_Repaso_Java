@@ -37,7 +37,7 @@ public class crud {
         try {
             Connection conexion = con.conectar();
             st = conexion.createStatement();
-            String sql = "SELECT * FROM empleado WHERE idempleado='"+apellido+"';";
+            String sql = "SELECT * FROM empleados WHERE apellido='"+apellido+"';";
             rs = st.executeQuery(sql);
             if(rs.next()){
                 emp.setIdempleado(rs.getString("idempleado"));
