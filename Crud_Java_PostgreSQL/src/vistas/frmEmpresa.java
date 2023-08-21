@@ -1,5 +1,6 @@
 package vistas;
 
+import Modelo.Empleados;
 import controladores.crud;
 
 /**
@@ -16,6 +17,7 @@ public class frmEmpresa extends javax.swing.JFrame {
     }
     
     crud c = new crud();
+    Empleados emp = new Empleados();
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -138,6 +140,11 @@ public class frmEmpresa extends javax.swing.JFrame {
         jLabel6.setText("Buscar por Apellido: ");
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         jLabel9.setText("Área:");
@@ -253,6 +260,15 @@ public class frmEmpresa extends javax.swing.JFrame {
         txtArea.setText("");
         txtPuesto.setText("");
     }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String apellido = txtBuscarApellido.getText();
+        c.buscar(apellido);
+        txtBusquedaNombre.setText(emp.getNombre());
+        txtBusquedaApellido.setText(emp.getApellido());
+        txtBusquedaArea.setText(emp.getArea());
+        txtBusquedaPuesto.setText(emp.getPuesto());
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
