@@ -61,6 +61,34 @@ public class crud {
         }
     }
     
+    public void buscarporId(String idempleado){
+        try {
+            Connection conexion = con.conectar();
+            st = conexion.createStatement();
+            String sql = "SELECT * FROM empleados WHERE idempleado='"+idempleado+"';";
+            rs = st.executeQuery(sql);
+            if(rs.next()){
+                emp.setIdempleado(rs.getString("idempleado"));
+                emp.setNombre(rs.getString("nombre"));
+                emp.setApellido(rs.getString("apellido"));
+                emp.setArea(rs.getString("area"));
+                emp.setPuesto(rs.getString("puesto"));
+                JOptionPane.showMessageDialog(null, "Registro Encontrado con Exito","Si hay Registro",JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                emp.setIdempleado("");
+                emp.setNombre("");
+                emp.setApellido("");
+                emp.setArea("");
+                emp.setPuesto("");
+                JOptionPane.showMessageDialog(null, "No se encontro el Registro buscado","Sin Registro",JOptionPane.INFORMATION_MESSAGE);
+            }
+            st.close();
+            conexion.close(); 
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en la sección de Busqueda" + e, "Error Busqueda", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     public void actualizar(String nombre, String apellido, String area, String puesto, String idempleado) {
         try {
             Connection conexion = con.conectar();
