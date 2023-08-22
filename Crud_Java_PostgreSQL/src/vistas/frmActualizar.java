@@ -19,6 +19,8 @@ public class frmActualizar extends javax.swing.JFrame {
      */
     public frmActualizar() {
         initComponents();
+        this.setTitle("Actualizanción de Registros");
+        this.setLocationRelativeTo(null);
     }
     
     crud c = new crud();
