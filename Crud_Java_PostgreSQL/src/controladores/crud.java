@@ -60,4 +60,18 @@ public class crud {
             JOptionPane.showMessageDialog(null, "Error en la sección de Busqueda" + e, "Error Busqueda", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    public void actualizar(String nombre, String apellido, String area, String puesto, String idempleado) {
+        try {
+            Connection conexion = con.conectar();
+            st = conexion.createStatement();
+            String sql = "UPDATE empleados SET nombre='"+nombre+"',apellido='"+apellido+"',area='"+area+"',puesto='"+puesto+"' WHERE idempleado='"+idempleado+"';";
+            st.executeUpdate(sql);
+            st.close();
+            conexion.close();
+            JOptionPane.showMessageDialog(null, "Registro Actualizado Exitosamente","Exito",JOptionPane.INFORMATION_MESSAGE);
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en la Actualización","Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }
