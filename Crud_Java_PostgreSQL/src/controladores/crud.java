@@ -29,7 +29,7 @@ public class crud {
             conexion.close();
             JOptionPane.showMessageDialog(null, "Registro Guardado Correctamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         } catch (HeadlessException | SQLException e) {
-            JOptionPane.showMessageDialog(null, "El Registro no se ha Guardado" + e, "Mensaje", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El Registro no se ha Guardado: " + e, "Mensaje", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -57,7 +57,7 @@ public class crud {
             st.close();
             conexion.close();
         } catch (HeadlessException | SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error en la sección de Busqueda" + e, "Error Busqueda", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error en la sección de Busqueda: " + e, "Error Busqueda", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -85,7 +85,7 @@ public class crud {
             st.close();
             conexion.close(); 
         } catch (HeadlessException | SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error en la sección de Busqueda" + e, "Error Busqueda", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error en la sección de Busqueda: " + e, "Error Busqueda", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -99,7 +99,21 @@ public class crud {
             conexion.close();
             JOptionPane.showMessageDialog(null, "Registro Actualizado Exitosamente","Exito",JOptionPane.INFORMATION_MESSAGE);
         } catch (HeadlessException | SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error en la Actualización","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error en la Actualización: "+e,"Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void eliminar(String idempleado){
+        try {
+            Connection conexion = con.conectar();
+            st = conexion.createStatement();
+            String sql = "DELETE FROM empleados WHERE idempleado='"+idempleado+"';";
+            st.executeUpdate(sql);
+            st.close();
+            conexion.close();
+            JOptionPane.showMessageDialog(null, "Registro Eliminado Correctamente","Eliminado",JOptionPane.INFORMATION_MESSAGE);
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en la Eliminación: "+e,"Error",JOptionPane.ERROR_MESSAGE);
         }
     }
 }
