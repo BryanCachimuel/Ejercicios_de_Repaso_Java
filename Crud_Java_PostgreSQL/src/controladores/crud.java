@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -115,5 +117,31 @@ public class crud {
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en la Eliminación: "+e,"Error",JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    public List listar(){
+        List<Empleados> listaempleados = new ArrayList<>();
+        String sql = "SELECT * FROM empleados";
+        try {
+           Connection conexion = con.conectar();
+           st = conexion.createStatement();
+           rs = st.executeQuery(sql);
+           while(rs.next()){
+               Empleados emp = new Empleados();
+               emp.setIdempleado(rs.getString(1));
+               emp.setNombre(rs.getString(2));
+               emp.setApellido(rs.getString(3));
+               emp.setArea(rs.getString(4));
+               emp.setPuesto(rs.getString(5));
+               listaempleados.add(emp);
+           }
+           conexion.close();
+           st.close();
+           rs.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al listar los empleados: "+e,"Error",JOptionPane.ERROR_MESSAGE);
+        }
+        
+        return listaempleados;
     }
 }
