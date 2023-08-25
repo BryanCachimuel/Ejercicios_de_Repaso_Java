@@ -2,6 +2,7 @@ package modelo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -18,9 +19,10 @@ public class Conexion {
         String pass = "admin1994";
         
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url, user, pass);
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("Error en la conexión hacia la base de datos: "+e);
         }
         return con;
     }
