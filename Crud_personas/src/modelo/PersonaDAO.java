@@ -3,6 +3,7 @@ package modelo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +32,8 @@ public class PersonaDAO {
                 p.setTelefono(rs.getString("telefono"));
                 datos.add(p);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println("Se produjo un error al listar los registros: "+e);
         }
         return datos;
     }
@@ -45,7 +47,8 @@ public class PersonaDAO {
             ps.setString(2, p.getCorreo());
             ps.setString(3, p.getTelefono());
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println("Se produjo un error al agregar el registro: "+e);
         }
         return 1;
     }
@@ -66,7 +69,8 @@ public class PersonaDAO {
             }else{
                 return 0;
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println("Se produjo un error al actualizar el registro: "+e);
         }
         return respuesta;
     }
@@ -77,7 +81,8 @@ public class PersonaDAO {
             con = conectar.getConnection();
             ps = con.prepareStatement(sql);
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println("Se produjo un error al eliminar un registro: "+e);
         }
     }
 }
