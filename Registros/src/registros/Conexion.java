@@ -32,7 +32,7 @@ public class Conexion {
             conexion = DriverManager.getConnection(url, username, password);
              /*JOptionPane.showMessageDialog(null, "Conexión hacia la base de datos exitosa" );*/
              return conexion;
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Error : " + e);
         }
         return conexion;
@@ -43,7 +43,7 @@ public class Conexion {
         try {
             conexion.close();
             /*JOptionPane.showMessageDialog(null, "Se cerro la conexión hacia la base de datos");*/
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error : " + e);
             conexion.close();
         }finally{
