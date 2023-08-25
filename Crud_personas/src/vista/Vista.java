@@ -13,6 +13,8 @@ public class Vista extends javax.swing.JFrame {
      */
     public Vista() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("Datos Generales");
     }
 
     /**
