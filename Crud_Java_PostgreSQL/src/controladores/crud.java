@@ -120,20 +120,20 @@ public class crud {
     }
     
     public List listar(){
-        List<Empleados> listaempleados = new ArrayList<>();
-        String sql = "SELECT * FROM empleados";
+        List<Empleados> listaempleados = new ArrayList<>();  
         try {
            Connection conexion = con.conectar();
            st = conexion.createStatement();
+           String sql = "SELECT * FROM empleados";
            rs = st.executeQuery(sql);
            while(rs.next()){
-               Empleados emp = new Empleados();
-               emp.setIdempleado(rs.getString(1));
-               emp.setNombre(rs.getString(2));
-               emp.setApellido(rs.getString(3));
-               emp.setArea(rs.getString(4));
-               emp.setPuesto(rs.getString(5));
-               listaempleados.add(emp);
+               Empleados empl = new Empleados();
+               empl.setIdempleado(rs.getString(1));
+               empl.setNombre(rs.getString(2));
+               empl.setApellido(rs.getString(3));
+               empl.setArea(rs.getString(4));
+               empl.setPuesto(rs.getString(5));
+               listaempleados.add(empl);
            }
            conexion.close();
            st.close();
