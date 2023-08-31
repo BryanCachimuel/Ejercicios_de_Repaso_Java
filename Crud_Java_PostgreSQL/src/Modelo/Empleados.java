@@ -5,18 +5,18 @@ package Modelo;
  * @author Bryan
  */
 public class Empleados {
-    private static int idempleado;
+    private static String idempleado;
     private static String nombre;
     private static String apellido;
     private static String area;
     private static String puesto;
 
-    public int getIdempleado() {
+    public String getIdempleado() {
         return idempleado;
     }
 
-    public void setIdempleado(int idempleado) {
-        this.idempleado = idempleado;
+    public void setIdempleado(String idempleado) {
+        Empleados.idempleado = idempleado;
     }
 
     public String getNombre() {
