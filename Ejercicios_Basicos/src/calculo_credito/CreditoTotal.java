@@ -12,7 +12,8 @@ public class CreditoTotal extends javax.swing.JFrame {
     int precios[] = {1500,375,4000,650,410,1200};
     String imgs[] = {"smart.jpg","celular.jpg","moto.jpg","sala.jpg","comedor.jpg","computadora.jpg"};
     double contado=0, credito=0, descuento=0, seguro=0, garantia=0, total=0, abono=0;
-    int plazo=6;
+    int plazo=6, cantidad=1, index=0;
+    double precio=0;
     
     public CreditoTotal() {
         initComponents();
@@ -34,7 +35,7 @@ public class CreditoTotal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         cboProducto = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
+        lblPrecio = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         spnCantidad = new javax.swing.JSpinner();
@@ -78,10 +79,15 @@ public class CreditoTotal extends javax.swing.JFrame {
         jLabel3.setText("Costo");
 
         cboProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Smart TV", "Celular Huawei", "Moto", "Sala ", "Comedor", "Computadora" }));
+        cboProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboProductoActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("$ 500.00 USD");
+        lblPrecio.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
+        lblPrecio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblPrecio.setText("$ 500.00 USD");
 
         jLabel5.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
@@ -145,7 +151,7 @@ public class CreditoTotal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel6)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                    .addComponent(lblPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                     .addComponent(spnCantidad))
                 .addContainerGap())
         );
@@ -158,7 +164,7 @@ public class CreditoTotal extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cboProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -309,11 +315,11 @@ public class CreditoTotal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(lbllogo, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lbllogo, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -339,6 +345,19 @@ public class CreditoTotal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cboProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboProductoActionPerformed
+        index = cboProducto.getSelectedIndex();
+        calcularCredito();
+    }//GEN-LAST:event_cboProductoActionPerformed
+    
+    public String aMoneda(double precio){
+        return "$ "+Math.round(precio*100.00)/100.00+" USD";
+    }
+    
+    public void calcularCredito(){
+        precio = precios[index];
+        lblPrecio.setText(aMoneda(precio));
+    }
   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -386,7 +405,6 @@ public class CreditoTotal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -394,6 +412,7 @@ public class CreditoTotal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblPrecio;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JRadioButton rad12;
     private javax.swing.JRadioButton rad18;
