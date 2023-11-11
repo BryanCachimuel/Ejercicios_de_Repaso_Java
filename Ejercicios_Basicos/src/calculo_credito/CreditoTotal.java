@@ -14,7 +14,7 @@ public class CreditoTotal extends javax.swing.JFrame {
     String imgs[] = {"smart.png","celular.png","moto.png","sala.jpg","comedor.png","computadora.png"};
     double contado=0, credito=0, descuento=0, seguro=0, garantia=0, total=0, abono=0;
     int plazo=6, cantidad=1, index=0;
-    double precio=0;
+    double precio=0, aumento=1.07;
     
     public CreditoTotal() {
         initComponents();
@@ -22,6 +22,7 @@ public class CreditoTotal extends javax.swing.JFrame {
         Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/credit.png"));
         this.setIconImage(icono);
         this.setLocationRelativeTo(this);
+        rad6.setSelected(true);
         calcularCredito();
     }
 
@@ -109,14 +110,29 @@ public class CreditoTotal extends javax.swing.JFrame {
         buttonGroup1.add(rad6);
         rad6.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
         rad6.setText("6 meses");
+        rad6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rad6ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(rad12);
         rad12.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
         rad12.setText("12 meses");
+        rad12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rad12ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(rad18);
         rad18.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
         rad18.setText("18 meses");
+        rad18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rad18ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
@@ -328,9 +344,9 @@ public class CreditoTotal extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(lbllogo, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblimagenes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblimagenes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
@@ -361,6 +377,21 @@ public class CreditoTotal extends javax.swing.JFrame {
         cantidad = Integer.parseInt(spnCantidad.getValue().toString());
         calcularCredito();
     }//GEN-LAST:event_spnCantidadStateChanged
+
+    private void rad6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rad6ActionPerformed
+        aumento = rad6.isSelected() ? 1.07 : 1.00;
+        calcularCredito();
+    }//GEN-LAST:event_rad6ActionPerformed
+
+    private void rad12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rad12ActionPerformed
+        aumento = rad12.isSelected() ? 1.10 : 1.00;
+        calcularCredito();
+    }//GEN-LAST:event_rad12ActionPerformed
+
+    private void rad18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rad18ActionPerformed
+        aumento = rad18.isSelected() ? 1.125 : 1.00;
+        calcularCredito();
+    }//GEN-LAST:event_rad18ActionPerformed
     
     public String aMoneda(double precio){
         return "$ "+Math.round(precio*100.00)/100.00+" USD";
@@ -372,6 +403,11 @@ public class CreditoTotal extends javax.swing.JFrame {
         lblPrecio.setText(aMoneda(contado));
         Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/"+imgs[index]));
         lblimagenes.setIcon(new ImageIcon(img.getScaledInstance(lblimagenes.getWidth(), lblimagenes.getHeight(), Image.SCALE_SMOOTH)));
+        
+        credito = contado * aumento;
+        
+        txtContado.setText(aMoneda(contado));
+        txtCredito.setText(aMoneda(credito));
     }
   
     public static void main(String args[]) {
