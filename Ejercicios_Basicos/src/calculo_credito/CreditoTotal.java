@@ -2,6 +2,7 @@ package calculo_credito;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -10,7 +11,7 @@ import java.awt.Toolkit;
 public class CreditoTotal extends javax.swing.JFrame {
      
     int precios[] = {1500,375,4000,650,410,1200};
-    String imgs[] = {"smart.jpg","celular.jpg","moto.jpg","sala.jpg","comedor.jpg","computadora.jpg"};
+    String imgs[] = {"smart.png","celular.png","moto.png","sala.jpg","comedor.png","computadora.png"};
     double contado=0, credito=0, descuento=0, seguro=0, garantia=0, total=0, abono=0;
     int plazo=6, cantidad=1, index=0;
     double precio=0;
@@ -21,6 +22,7 @@ public class CreditoTotal extends javax.swing.JFrame {
         Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/credit.png"));
         this.setIconImage(icono);
         this.setLocationRelativeTo(this);
+        calcularCredito();
     }
 
   
@@ -30,7 +32,7 @@ public class CreditoTotal extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         lbllogo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblimagenes = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -66,7 +68,7 @@ public class CreditoTotal extends javax.swing.JFrame {
 
         lbllogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/credit.png"))); // NOI18N
 
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblimagenes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -322,7 +324,7 @@ public class CreditoTotal extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblimagenes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
@@ -332,7 +334,7 @@ public class CreditoTotal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblimagenes, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -357,6 +359,8 @@ public class CreditoTotal extends javax.swing.JFrame {
     public void calcularCredito(){
         precio = precios[index];
         lblPrecio.setText(aMoneda(precio));
+        Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/"+imgs[index]));
+        lblimagenes.setIcon(new ImageIcon(img.getScaledInstance(lblimagenes.getWidth(), lblimagenes.getHeight(), Image.SCALE_SMOOTH)));
     }
   
     public static void main(String args[]) {
@@ -397,7 +401,6 @@ public class CreditoTotal extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -413,6 +416,7 @@ public class CreditoTotal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblPrecio;
+    private javax.swing.JLabel lblimagenes;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JRadioButton rad12;
     private javax.swing.JRadioButton rad18;
