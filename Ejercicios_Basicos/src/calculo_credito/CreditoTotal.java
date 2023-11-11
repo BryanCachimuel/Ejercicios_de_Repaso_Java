@@ -46,9 +46,9 @@ public class CreditoTotal extends javax.swing.JFrame {
         rad12 = new javax.swing.JRadioButton();
         rad18 = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
+        chkdescuento = new javax.swing.JCheckBox();
+        chkseguro = new javax.swing.JCheckBox();
+        chkgarantia = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         txtContado = new javax.swing.JTextField();
@@ -138,14 +138,29 @@ public class CreditoTotal extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Adicionales");
 
-        jCheckBox1.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
-        jCheckBox1.setText("5 % de Descuento");
+        chkdescuento.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
+        chkdescuento.setText("5 % de Descuento");
+        chkdescuento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkdescuentoActionPerformed(evt);
+            }
+        });
 
-        jCheckBox2.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
-        jCheckBox2.setText("Seguro de Vida");
+        chkseguro.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
+        chkseguro.setText("Seguro de Vida");
+        chkseguro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkseguroActionPerformed(evt);
+            }
+        });
 
-        jCheckBox3.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
-        jCheckBox3.setText("Garantía Extendida");
+        chkgarantia.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
+        chkgarantia.setText("Garantía Extendida");
+        chkgarantia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkgarantiaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -167,9 +182,9 @@ public class CreditoTotal extends javax.swing.JFrame {
                             .addComponent(rad12)
                             .addComponent(rad18)
                             .addComponent(jLabel7)
-                            .addComponent(jCheckBox1)
-                            .addComponent(jCheckBox2)
-                            .addComponent(jCheckBox3))))
+                            .addComponent(chkdescuento)
+                            .addComponent(chkseguro)
+                            .addComponent(chkgarantia))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel6)
@@ -205,11 +220,11 @@ public class CreditoTotal extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox1)
+                .addComponent(chkdescuento)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox2)
+                .addComponent(chkseguro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox3)
+                .addComponent(chkgarantia)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -380,18 +395,36 @@ public class CreditoTotal extends javax.swing.JFrame {
 
     private void rad6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rad6ActionPerformed
         aumento = rad6.isSelected() ? 1.07 : 1.00;
+        plazo = 6;
         calcularCredito();
     }//GEN-LAST:event_rad6ActionPerformed
 
     private void rad12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rad12ActionPerformed
         aumento = rad12.isSelected() ? 1.10 : 1.00;
+        plazo = 12;
         calcularCredito();
     }//GEN-LAST:event_rad12ActionPerformed
 
     private void rad18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rad18ActionPerformed
         aumento = rad18.isSelected() ? 1.125 : 1.00;
+        plazo = 18;
         calcularCredito();
     }//GEN-LAST:event_rad18ActionPerformed
+
+    private void chkdescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkdescuentoActionPerformed
+        descuento = chkdescuento.isSelected() ? 0.05 : 0;
+        calcularCredito();
+    }//GEN-LAST:event_chkdescuentoActionPerformed
+
+    private void chkseguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkseguroActionPerformed
+        seguro = chkseguro.isSelected() ? 100 : 0;
+        calcularCredito();
+    }//GEN-LAST:event_chkseguroActionPerformed
+
+    private void chkgarantiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkgarantiaActionPerformed
+        garantia = chkgarantia.isSelected() ? 0.03 : 0;
+        calcularCredito();
+    }//GEN-LAST:event_chkgarantiaActionPerformed
     
     public String aMoneda(double precio){
         return "$ "+Math.round(precio*100.00)/100.00+" USD";
@@ -405,9 +438,15 @@ public class CreditoTotal extends javax.swing.JFrame {
         lblimagenes.setIcon(new ImageIcon(img.getScaledInstance(lblimagenes.getWidth(), lblimagenes.getHeight(), Image.SCALE_SMOOTH)));
         
         credito = contado * aumento;
+        total = credito - (credito * descuento) + seguro + (credito * garantia);
         
         txtContado.setText(aMoneda(contado));
         txtCredito.setText(aMoneda(credito));
+        txtDescuento.setText(aMoneda(credito*descuento));
+        txtSeguro.setText(aMoneda(seguro));
+        txtGarantia.setText(aMoneda(credito*garantia));
+        txtTotal.setText(aMoneda(total));
+        txtMensual.setText(aMoneda(total/plazo));
     }
   
     public static void main(String args[]) {
@@ -445,9 +484,9 @@ public class CreditoTotal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cboProducto;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox chkdescuento;
+    private javax.swing.JCheckBox chkgarantia;
+    private javax.swing.JCheckBox chkseguro;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
