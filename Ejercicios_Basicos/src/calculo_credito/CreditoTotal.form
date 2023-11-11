@@ -27,10 +27,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -38,10 +38,10 @@
                       <Component id="lbllogo" min="-2" pref="417" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="49" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jLabel1" max="32767" attributes="0"/>
                   <Component id="jPanel2" max="32767" attributes="0"/>
+                  <Component id="lblimagenes" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
@@ -53,7 +53,7 @@
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jLabel1" min="-2" pref="222" max="-2" attributes="0"/>
+                      <Component id="lblimagenes" min="-2" pref="222" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -76,7 +76,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="lblimagenes">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -115,9 +115,9 @@
                               <Component id="rad12" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="rad18" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="chkdescuento" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="chkseguro" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="chkgarantia" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -125,7 +125,7 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel4" pref="160" max="32767" attributes="0"/>
+                      <Component id="lblPrecio" pref="160" max="32767" attributes="0"/>
                       <Component id="spnCantidad" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -142,7 +142,7 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jLabel4" max="32767" attributes="0"/>
+                      <Component id="lblPrecio" max="32767" attributes="0"/>
                       <Component id="cboProducto" pref="36" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -164,11 +164,11 @@
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                  <Component id="chkdescuento" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
+                  <Component id="chkseguro" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jCheckBox3" min="-2" max="-2" attributes="0"/>
+                  <Component id="chkgarantia" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -210,11 +210,14 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboProductoActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="lblPrecio">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="sansserif" size="15" style="0"/>
@@ -251,6 +254,9 @@
               <SpinnerModel initial="1" maximum="10" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="spnCantidadStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rad6">
           <Properties>
@@ -262,6 +268,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="6 meses"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rad6ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rad12">
           <Properties>
@@ -273,6 +282,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="12 meses"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rad12ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rad18">
           <Properties>
@@ -284,6 +296,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="18 meses"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rad18ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
@@ -296,29 +311,38 @@
             <Property name="text" type="java.lang.String" value="Adicionales"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+        <Component class="javax.swing.JCheckBox" name="chkdescuento">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="sansserif" size="15" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="5 % de Descuento"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkdescuentoActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox2">
+        <Component class="javax.swing.JCheckBox" name="chkseguro">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="sansserif" size="15" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Seguro de Vida"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkseguroActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox3">
+        <Component class="javax.swing.JCheckBox" name="chkgarantia">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="sansserif" size="15" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Garant&#xed;a Extendida"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkgarantiaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -357,7 +381,7 @@
                       <Component id="txtCredito" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                       <Component id="txtContado" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="11" max="32767" attributes="0"/>
+                  <EmptySpace pref="59" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
