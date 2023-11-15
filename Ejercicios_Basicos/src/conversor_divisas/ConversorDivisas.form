@@ -112,6 +112,7 @@
           <Font name="Arial Black" size="18" style="1"/>
         </Property>
         <Property name="majorTickSpacing" type="int" value="1"/>
+        <Property name="maximum" type="int" value="200"/>
         <Property name="minimum" type="int" value="1"/>
         <Property name="paintTicks" type="boolean" value="true"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -153,10 +154,11 @@
           <Font name="Arial Black" size="18" style="1"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
+          <StringArray count="4">
             <StringItem index="0" value="EUR"/>
             <StringItem index="1" value="USD"/>
             <StringItem index="2" value="MXN"/>
+            <StringItem index="3" value="COP"/>
           </StringArray>
         </Property>
       </Properties>
@@ -187,10 +189,11 @@
           <Font name="Arial Black" size="18" style="1"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
+          <StringArray count="4">
             <StringItem index="0" value="EUR"/>
             <StringItem index="1" value="USD"/>
             <StringItem index="2" value="MXN"/>
+            <StringItem index="3" value="COP"/>
           </StringArray>
         </Property>
       </Properties>
