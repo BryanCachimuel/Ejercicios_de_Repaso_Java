@@ -29,6 +29,7 @@ public class ConversorDivisas extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         cboA = new javax.swing.JComboBox<>();
         lblResultado = new javax.swing.JLabel();
+        btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,6 +85,15 @@ public class ConversorDivisas extends javax.swing.JFrame {
         lblResultado.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         lblResultado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        btnSalir.setBackground(new java.awt.Color(0, 102, 255));
+        btnSalir.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,7 +122,9 @@ public class ConversorDivisas extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(203, 203, 203)
                                 .addComponent(jLabel1))
-                            .addComponent(lblResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -134,7 +146,9 @@ public class ConversorDivisas extends javax.swing.JFrame {
                     .addComponent(cboA, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(lblResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnSalir)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
@@ -155,9 +169,45 @@ public class ConversorDivisas extends javax.swing.JFrame {
         a = cboA.getSelectedItem().toString();
         convertir();
     }//GEN-LAST:event_cboAActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
     
     public void convertir(){
+        switch(de){
+            case "EUR":
+                if(a.equals("USD")){
+                    conversion = cantidad * 1.16;
+                }else if(a.equals("MXN")){
+                    conversion = cantidad * 23.59;
+                }else{
+                    conversion = cantidad;
+                }      
+            break;
+            
+            case "USD":
+                if(a.equals("EUR")){
+                    conversion = cantidad * 0.86;
+                }else if(a.equals("MXN")){
+                    conversion = cantidad * 20.34;
+                }else{
+                    conversion = cantidad;
+                }      
+            break;
+            
+            case "MXN":
+                if(a.equals("EUR")){
+                    conversion = cantidad * 0.042;
+                }else if(a.equals("USD")){
+                    conversion = cantidad * 0.049;
+                }else{
+                    conversion = cantidad;
+                }      
+            break;
+        }
         
+        lblResultado.setText(aMoneda(cantidad, de)+" -> "+aMoneda(conversion, a));
     }
     
     
@@ -197,6 +247,7 @@ public class ConversorDivisas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cboA;
     private javax.swing.JComboBox<String> cboDe;
     private javax.swing.JLabel jLabel1;
