@@ -2,14 +2,12 @@ package conversor_divisas;
 
 public class ConversorDivisas extends javax.swing.JFrame {
 
- 
-    public ConversorDivisas() {
-        
         int cantidad = 0;
         double conversion = 0;
         String de = "EUR";
         String a = "EUR";
-        
+ 
+    public ConversorDivisas() { 
         initComponents();
         this.setTitle("Conversor de Divisas");
         this.setLocationRelativeTo(null);
@@ -63,6 +61,11 @@ public class ConversorDivisas extends javax.swing.JFrame {
         cboDe.setBackground(new java.awt.Color(0, 0, 204));
         cboDe.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         cboDe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EUR", "USD", "MXN" }));
+        cboDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboDeActionPerformed(evt);
+            }
+        });
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 204));
         jLabel4.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
@@ -71,6 +74,11 @@ public class ConversorDivisas extends javax.swing.JFrame {
         cboA.setBackground(new java.awt.Color(0, 0, 204));
         cboA.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         cboA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EUR", "USD", "MXN" }));
+        cboA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboAActionPerformed(evt);
+            }
+        });
 
         lblResultado.setBackground(new java.awt.Color(0, 0, 204));
         lblResultado.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
@@ -133,9 +141,26 @@ public class ConversorDivisas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void spnCantidadStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnCantidadStateChanged
-        
+        cantidad = spnCantidad.getValue();
+        lblCantidad.setText(""+cantidad);
+        convertir();
     }//GEN-LAST:event_spnCantidadStateChanged
 
+    private void cboDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDeActionPerformed
+        de = cboDe.getSelectedItem().toString();
+        convertir();
+    }//GEN-LAST:event_cboDeActionPerformed
+
+    private void cboAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboAActionPerformed
+        a = cboA.getSelectedItem().toString();
+        convertir();
+    }//GEN-LAST:event_cboAActionPerformed
+    
+    public void convertir(){
+        
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
