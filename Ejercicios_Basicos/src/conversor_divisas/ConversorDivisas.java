@@ -40,6 +40,7 @@ public class ConversorDivisas extends javax.swing.JFrame {
         spnCantidad.setBackground(new java.awt.Color(0, 0, 204));
         spnCantidad.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         spnCantidad.setMajorTickSpacing(1);
+        spnCantidad.setMaximum(200);
         spnCantidad.setMinimum(1);
         spnCantidad.setPaintTicks(true);
         spnCantidad.setToolTipText("");
@@ -61,7 +62,7 @@ public class ConversorDivisas extends javax.swing.JFrame {
 
         cboDe.setBackground(new java.awt.Color(0, 0, 204));
         cboDe.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        cboDe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EUR", "USD", "MXN" }));
+        cboDe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EUR", "USD", "MXN", "COP" }));
         cboDe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboDeActionPerformed(evt);
@@ -74,7 +75,7 @@ public class ConversorDivisas extends javax.swing.JFrame {
 
         cboA.setBackground(new java.awt.Color(0, 0, 204));
         cboA.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        cboA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EUR", "USD", "MXN" }));
+        cboA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EUR", "USD", "MXN", "COP" }));
         cboA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboAActionPerformed(evt);
@@ -181,6 +182,8 @@ public class ConversorDivisas extends javax.swing.JFrame {
                     conversion = cantidad * 1.16;
                 }else if(a.equals("MXN")){
                     conversion = cantidad * 23.59;
+                }else if(a.equals("COP")){
+                    conversion = cantidad * 4307.96;
                 }else{
                     conversion = cantidad;
                 }      
@@ -191,6 +194,8 @@ public class ConversorDivisas extends javax.swing.JFrame {
                     conversion = cantidad * 0.86;
                 }else if(a.equals("MXN")){
                     conversion = cantidad * 20.34;
+                }else if(a.equals("COP")){
+                    conversion = cantidad * 3962.00;
                 }else{
                     conversion = cantidad;
                 }      
@@ -201,6 +206,20 @@ public class ConversorDivisas extends javax.swing.JFrame {
                     conversion = cantidad * 0.042;
                 }else if(a.equals("USD")){
                     conversion = cantidad * 0.049;
+                }else if(a.equals("COP")){
+                    conversion = cantidad * 228.21;
+                }else{
+                    conversion = cantidad;
+                }      
+            break;
+            
+            case "COP":
+                if(a.equals("EUR")){
+                    conversion = cantidad * 0.00023;
+                }else if(a.equals("USD")){
+                    conversion = cantidad * 0.00025;
+                }else if(a.equals("MXN")){
+                    conversion = cantidad * 0.0044;
                 }else{
                     conversion = cantidad;
                 }      
