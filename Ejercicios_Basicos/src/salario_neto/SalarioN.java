@@ -49,4 +49,74 @@ public class SalarioN {
                 break;
        }
    }
+   
+   public double getSueldo(){
+       this.sb = horas *  xhora;
+       return getRedondear(sb);
+   }
+   
+   public double getCanasta(){
+       this.cb = sb *  0.06;
+       return getRedondear(cb);
+   }
+   
+   public double getApoyo(){
+       this.a = sb *  0.03;
+       return a;
+   }
+   
+   public double getAsistencia(){
+       this.ayp = sb *  0.025;
+       return getRedondear(ayp);
+   }
+   
+   public double getAntiguedad(){
+       this.an = anios *  150;
+       return getRedondear(an);
+   }
+   
+   public double getISRT(){
+       this.isrt = sb *  0.1;
+       return getRedondear(isrt);
+   }
+   
+   public double getSalud(){
+       this.ss = sb *  0.035;
+       return getRedondear(ss);
+   }
+   
+   public double getAfore(){
+       this.afore = sb *  0.05;
+       return getRedondear(afore);
+   }
+   
+   public double getSistema(){
+       this.sc = sb *  0.03;
+       return getRedondear(sc);
+   }
+   
+   public double getSindicato(){
+       this.sind = sb *  0.01;
+       return getRedondear(sind);
+   }
+   
+   public double getPercepciones(){
+       this.percepciones = sb + cb + a + ayp + an;
+       return getRedondear(percepciones);
+   }
+   
+   public double getDeducciones(){
+       this.deducciones = isrt + ss + afore + sc + sind;
+       return getRedondear(deducciones);
+   }
+   
+   public double getSalarioNeto(){
+       this.sn = percepciones -  deducciones;
+       return getRedondear(sn);
+   }
+   
+   public double getRedondear(double n){
+       double r = Math.round(n * 100)/100;
+       return r;
+   }
 }
