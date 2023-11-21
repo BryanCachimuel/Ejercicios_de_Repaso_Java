@@ -316,7 +316,7 @@ public class Binario extends javax.swing.JFrame {
 
     private void tbtndosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbtndosActionPerformed
         binario[1] = tbtndos.isSelected() ? 1 : 0;
-        tbtnuno.setText(""+binario[1]);
+        tbtndos.setText(""+binario[1]);
         calcularDecimal();
     }//GEN-LAST:event_tbtndosActionPerformed
 
@@ -375,7 +375,11 @@ public class Binario extends javax.swing.JFrame {
     }//GEN-LAST:event_tbtnonceActionPerformed
     
     public void calcularDecimal(){
-        
+        int decimal = 0;
+        for(int i = 0; i < binario.length; i++){
+            decimal += binario[i] * Math.pow(2, i);
+        }
+        lblDecimal.setText(""+decimal);
     }
     /**
      * @param args the command line arguments
