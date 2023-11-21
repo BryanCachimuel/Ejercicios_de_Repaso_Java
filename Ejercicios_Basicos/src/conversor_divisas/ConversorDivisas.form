@@ -73,14 +73,14 @@
                   <Component id="lblCantidad" min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="cboDe" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="cboA" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="cboA" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Component id="lblResultado" min="-2" pref="98" max="-2" attributes="0"/>
@@ -154,11 +154,12 @@
           <Font name="Arial Black" size="18" style="1"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
+          <StringArray count="5">
             <StringItem index="0" value="EUR"/>
             <StringItem index="1" value="USD"/>
             <StringItem index="2" value="MXN"/>
             <StringItem index="3" value="COP"/>
+            <StringItem index="4" value="GBP"/>
           </StringArray>
         </Property>
       </Properties>
@@ -189,11 +190,12 @@
           <Font name="Arial Black" size="18" style="1"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
+          <StringArray count="5">
             <StringItem index="0" value="EUR"/>
             <StringItem index="1" value="USD"/>
             <StringItem index="2" value="MXN"/>
             <StringItem index="3" value="COP"/>
+            <StringItem index="4" value="GBP"/>
           </StringArray>
         </Property>
       </Properties>
