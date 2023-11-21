@@ -268,6 +268,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbtnnueveActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="tbtnonce">
       <Properties>
@@ -281,6 +284,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbtnonceActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="tbtndiez">
       <Properties>
@@ -294,6 +300,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbtndiezActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="tbtnocho">
       <Properties>
@@ -307,6 +316,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbtnochoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="tbtnsiete">
       <Properties>
@@ -320,6 +332,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbtnsieteActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="tbtncinco">
       <Properties>
@@ -333,6 +348,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbtncincoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="tbtnseis">
       <Properties>
@@ -346,6 +364,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbtnseisActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="tbtncuatro">
       <Properties>
@@ -359,6 +380,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbtncuatroActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="tbtntres">
       <Properties>
@@ -372,6 +396,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbtntresActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="tbtndos">
       <Properties>
@@ -385,6 +412,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbtndosActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="tbtnuno">
       <Properties>
@@ -398,6 +428,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbtnunoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel13">
       <Properties>
