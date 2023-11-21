@@ -333,31 +333,45 @@ public class Binario extends javax.swing.JFrame {
     }//GEN-LAST:event_tbtncuatroActionPerformed
 
     private void tbtncincoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbtncincoActionPerformed
-        // TODO add your handling code here:
+        binario[4] = tbtncinco.isSelected() ? 1 : 0;
+        tbtncinco.setText(""+binario[4]);
+        calcularDecimal();
     }//GEN-LAST:event_tbtncincoActionPerformed
 
     private void tbtnseisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbtnseisActionPerformed
-        // TODO add your handling code here:
+        binario[5] = tbtnseis.isSelected() ? 1 : 0;
+        tbtnseis.setText(""+binario[5]);
+        calcularDecimal();
     }//GEN-LAST:event_tbtnseisActionPerformed
 
     private void tbtnsieteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbtnsieteActionPerformed
-        // TODO add your handling code here:
+        binario[6] = tbtnsiete.isSelected() ? 1 : 0;
+        tbtnsiete.setText(""+binario[6]);
+        calcularDecimal();
     }//GEN-LAST:event_tbtnsieteActionPerformed
 
     private void tbtnochoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbtnochoActionPerformed
-        // TODO add your handling code here:
+        binario[7] = tbtnocho.isSelected() ? 1 : 0;
+        tbtnocho.setText(""+binario[7]);
+        calcularDecimal();
     }//GEN-LAST:event_tbtnochoActionPerformed
 
     private void tbtnnueveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbtnnueveActionPerformed
-        // TODO add your handling code here:
+        binario[8] = tbtnnueve.isSelected() ? 1 : 0;
+        tbtnnueve.setText(""+binario[8]);
+        calcularDecimal();
     }//GEN-LAST:event_tbtnnueveActionPerformed
 
     private void tbtndiezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbtndiezActionPerformed
-        // TODO add your handling code here:
+        binario[9] = tbtndiez.isSelected() ? 1 : 0;
+        tbtndiez.setText(""+binario[9]);
+        calcularDecimal();
     }//GEN-LAST:event_tbtndiezActionPerformed
 
     private void tbtnonceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbtnonceActionPerformed
-        // TODO add your handling code here:
+        binario[10] = tbtnonce.isSelected() ? 1 : 0;
+        tbtnonce.setText(""+binario[10]);
+        calcularDecimal();
     }//GEN-LAST:event_tbtnonceActionPerformed
     
     public void calcularDecimal(){
