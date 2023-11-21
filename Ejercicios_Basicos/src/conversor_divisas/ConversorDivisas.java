@@ -62,7 +62,7 @@ public class ConversorDivisas extends javax.swing.JFrame {
 
         cboDe.setBackground(new java.awt.Color(0, 0, 204));
         cboDe.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        cboDe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EUR", "USD", "MXN", "COP" }));
+        cboDe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EUR", "USD", "MXN", "COP", "GBP" }));
         cboDe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboDeActionPerformed(evt);
@@ -75,7 +75,7 @@ public class ConversorDivisas extends javax.swing.JFrame {
 
         cboA.setBackground(new java.awt.Color(0, 0, 204));
         cboA.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        cboA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EUR", "USD", "MXN", "COP" }));
+        cboA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EUR", "USD", "MXN", "COP", "GBP" }));
         cboA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboAActionPerformed(evt);
@@ -138,11 +138,11 @@ public class ConversorDivisas extends javax.swing.JFrame {
                     .addComponent(spnCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cboDe, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboA, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
@@ -184,6 +184,8 @@ public class ConversorDivisas extends javax.swing.JFrame {
                     conversion = cantidad * 23.59;
                 }else if(a.equals("COP")){
                     conversion = cantidad * 4307.96;
+                }else if(a.equals("GBP")){
+                    conversion = cantidad * 0.87;
                 }else{
                     conversion = cantidad;
                 }      
@@ -196,6 +198,8 @@ public class ConversorDivisas extends javax.swing.JFrame {
                     conversion = cantidad * 20.34;
                 }else if(a.equals("COP")){
                     conversion = cantidad * 3962.00;
+                }else if(a.equals("GBP")){
+                    conversion = cantidad * 0.80;
                 }else{
                     conversion = cantidad;
                 }      
@@ -208,6 +212,8 @@ public class ConversorDivisas extends javax.swing.JFrame {
                     conversion = cantidad * 0.049;
                 }else if(a.equals("COP")){
                     conversion = cantidad * 228.21;
+                }else if(a.equals("GBP")){
+                    conversion = cantidad * 0.047;
                 }else{
                     conversion = cantidad;
                 }      
@@ -220,10 +226,26 @@ public class ConversorDivisas extends javax.swing.JFrame {
                     conversion = cantidad * 0.00025;
                 }else if(a.equals("MXN")){
                     conversion = cantidad * 0.0044;
+                }else if(a.equals("GBP")){
+                    conversion = cantidad * 0.00020;
                 }else{
                     conversion = cantidad;
                 }      
             break;
+            
+            case "GBP":
+                if(a.equals("EUR")){
+                    conversion = cantidad * 1.14;
+                }else if(a.equals("USD")){
+                    conversion = cantidad * 1.25;
+                }else if(a.equals("MXN")){
+                    conversion = cantidad * 21.41;
+                }else if(a.equals("COP")){
+                    conversion = cantidad * 5065.25;
+                }else{
+                    conversion = cantidad;
+                }
+                break;
         }
         
         lblResultado.setText(aMoneda(cantidad, de)+" -> "+aMoneda(conversion, a));
