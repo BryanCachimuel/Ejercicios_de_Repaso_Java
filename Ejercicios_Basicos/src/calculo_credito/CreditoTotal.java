@@ -10,8 +10,8 @@ import javax.swing.ImageIcon;
  */
 public class CreditoTotal extends javax.swing.JFrame {
      
-    int precios[] = {1500,375,4000,650,410,1200};
-    String imgs[] = {"smart.png","celular.png","moto.png","sala.jpg","comedor.png","computadora.png"};
+    int precios[] = {1500,375,4000,650,410,1200,740,498};
+    String imgs[] = {"smart.png","celular.png","moto.png","sala.jpg","comedor.png","computadora.png","refrigeradora.png","minicomponente.png"};
     double contado=0, credito=0, descuento=0, seguro=0, garantia=0, total=0, abono=0;
     int plazo=6, cantidad=1, index=0;
     double precio=0, aumento=1.07;
@@ -81,7 +81,7 @@ public class CreditoTotal extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Costo");
 
-        cboProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Smart TV", "Celular Huawei", "Moto", "Sala ", "Comedor", "Computadora" }));
+        cboProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Smart TV", "Celular Huawei", "Moto", "Sala ", "Comedor", "Computadora", "Refrigeradora", "Minicomponente" }));
         cboProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboProductoActionPerformed(evt);
@@ -139,7 +139,7 @@ public class CreditoTotal extends javax.swing.JFrame {
         jLabel7.setText("Adicionales");
 
         chkdescuento.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
-        chkdescuento.setText("5 % de Descuento");
+        chkdescuento.setText("5 % de Descuento(clientes fijos)");
         chkdescuento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkdescuentoActionPerformed(evt);
@@ -147,7 +147,7 @@ public class CreditoTotal extends javax.swing.JFrame {
         });
 
         chkseguro.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
-        chkseguro.setText("Seguro de Vida");
+        chkseguro.setText("Seguro por Daños");
         chkseguro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkseguroActionPerformed(evt);
@@ -236,7 +236,7 @@ public class CreditoTotal extends javax.swing.JFrame {
         txtContado.setEditable(false);
         txtContado.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         txtContado.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtContado.setText("$ 5000.00 USD");
+        txtContado.setText("$ 00.00 USD");
 
         jLabel9.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         jLabel9.setText("Precio Credito: ");
@@ -244,7 +244,7 @@ public class CreditoTotal extends javax.swing.JFrame {
         txtCredito.setEditable(false);
         txtCredito.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         txtCredito.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtCredito.setText("$ 5000.00 USD");
+        txtCredito.setText("$ 00.00 USD");
 
         jLabel10.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         jLabel10.setText("Descuento:");
@@ -252,15 +252,15 @@ public class CreditoTotal extends javax.swing.JFrame {
         txtDescuento.setEditable(false);
         txtDescuento.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         txtDescuento.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtDescuento.setText("$ 5000.00 USD");
+        txtDescuento.setText("$ 00.00 USD");
 
         jLabel11.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
-        jLabel11.setText("Seguro de Vida:");
+        jLabel11.setText("Seguro por Daños:");
 
         txtSeguro.setEditable(false);
         txtSeguro.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         txtSeguro.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtSeguro.setText("$ 5000.00 USD");
+        txtSeguro.setText("$ 00.00 USD");
 
         jLabel12.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         jLabel12.setText("Garantía:");
@@ -268,7 +268,7 @@ public class CreditoTotal extends javax.swing.JFrame {
         txtGarantia.setEditable(false);
         txtGarantia.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         txtGarantia.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtGarantia.setText("$ 5000.00 USD");
+        txtGarantia.setText("$ 00.00 USD");
 
         jLabel13.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         jLabel13.setText("Costo Total:");
@@ -276,7 +276,7 @@ public class CreditoTotal extends javax.swing.JFrame {
         txtTotal.setEditable(false);
         txtTotal.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         txtTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtTotal.setText("$ 5000.00 USD");
+        txtTotal.setText("$ 00.00 USD");
 
         jLabel14.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         jLabel14.setText("Abono Mensual:");
@@ -284,23 +284,22 @@ public class CreditoTotal extends javax.swing.JFrame {
         txtMensual.setEditable(false);
         txtMensual.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         txtMensual.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtMensual.setText("$ 5000.00 USD");
+        txtMensual.setText("$ 00.00 USD");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(44, 44, 44)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(jLabel14))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(47, 47, 47)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtMensual, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -310,7 +309,7 @@ public class CreditoTotal extends javax.swing.JFrame {
                     .addComponent(txtDescuento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCredito, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtContado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
