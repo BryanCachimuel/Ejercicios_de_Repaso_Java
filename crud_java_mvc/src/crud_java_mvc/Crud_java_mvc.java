@@ -1,15 +1,25 @@
 package crud_java_mvc;
+
+import Configuracion.ConexionLocal;
+
 /**
  *
  * @author Bryan
  */
 public class Crud_java_mvc {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        ConexionLocal nConexion = new ConexionLocal();
+        nConexion.conectar();
+        System.out.println("Conectado");
+        
+        System.out.println("");
+        nConexion.desconectar();
+        System.out.println("Desconectado");
+        
+        System.out.println("");
+        nConexion.testearConexion();
+        System.out.println("Testeando");
     }
     
 }
