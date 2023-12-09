@@ -8,12 +8,20 @@ import java.util.Date;
  */
 public class DatosPersonales {
     
-    private String Nombre, Apellido, Correo, Pais, Profesion;
+    private String Cedula, Nombre, Apellido, Correo, Pais, Profesion, Telefono;
     private int Rol_id;
     private Date Fecha_nacimiento;
 
     public DatosPersonales() {}
 
+    public String getCedula() {
+        return Cedula;
+    }
+
+    public void setCedula(String Cedula) {
+        this.Cedula = Cedula;
+    }
+    
     public String getNombre() {
         return Nombre;
     }
@@ -54,6 +62,14 @@ public class DatosPersonales {
         this.Profesion = Profesion;
     }
 
+    public String getTelefono() {
+        return Telefono;
+    }
+
+    public void setTelefono(String Telefono) {
+        this.Telefono = Telefono;
+    }
+    
     public int getRol_id() {
         return Rol_id;
     }
