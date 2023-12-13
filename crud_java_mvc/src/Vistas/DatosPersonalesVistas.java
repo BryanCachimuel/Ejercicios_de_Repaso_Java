@@ -54,6 +54,7 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
         txtBuscarPersona = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         txtTelefono = new javax.swing.JTextField();
+        btnLimpiar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -130,6 +131,16 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
 
         txtTelefono.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
 
+        btnLimpiar.setBackground(new java.awt.Color(0, 153, 153));
+        btnLimpiar.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(0, 0, 0));
+        btnLimpiar.setText("Limpirar Campos");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -183,6 +194,10 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
                                         .addComponent(txtPais)
                                         .addComponent(jdcFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))))
                         .addGap(18, 18, 18))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLimpiar)
+                .addGap(27, 27, 27))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,7 +245,9 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBuscarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del Seguro"));
@@ -422,7 +439,7 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
@@ -482,6 +499,32 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
         String idPersona = txtBuscarPersona.getText();
         if(idPersona.equals("")){
             JOptionPane.showMessageDialog(null, "Error al tratar de Buscar", "Debes Intgresar un ID", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        DatosPersonalesController controladorBuscar = new DatosPersonalesController();
+        DatosPersonales buscarPersona = controladorBuscar.lectura(Integer.parseInt(idPersona));
+        
+        if(buscarPersona != null){
+            txtCedula.setText(buscarPersona.getCedula());
+            txtNombres.setText(buscarPersona.getNombre());
+            txtApellidos.setText(buscarPersona.getApellido());
+            txtCorreo.setText(buscarPersona.getCorreo());
+            txtPais.setText(buscarPersona.getPais());
+            txtProfesion.setText(buscarPersona.getProfesion());
+            txtTelefono.setText(buscarPersona.getTelefono());
+            
+            switch(buscarPersona.getRol_id()){
+                case 1:
+                    cmbRoles.setSelectedIndex(0);
+                    break;
+                 
+                case 2: 
+                    cmbRoles.setSelectedIndex(1);
+                    break;
+            }
+            
+            jdcFechaNacimiento.setDate(buscarPersona.getFecha_nacimiento());
         }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
@@ -497,6 +540,26 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPaisActionPerformed
 
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiarCamposFormulario();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+    
+    public void limpiarCamposFormulario(){
+        txtCedula.setText("");
+        txtNombres.setText("");
+        txtApellidos.setText("");
+        txtCorreo.setText("");
+        txtPais.setText("");
+        txtProfesion.setText("");
+        txtTelefono.setText("");
+        
+        cmbRoles.setSelectedIndex(0);
+        txtBuscarPersona.setEditable(true);
+        Date fechaActual = new Date();
+        jdcFechaNacimiento.setDate(fechaActual);
+        txtBuscarPersona.setText("");
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -537,6 +600,7 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
     private javax.swing.JButton btnCalcular;
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox<String> cmbRoles;
     private javax.swing.JComboBox<String> cmbTipoSeguro;
