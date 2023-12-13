@@ -6,6 +6,7 @@ import Modelos.DatosPersonales;
 import Modelos.Roles;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,18 +14,18 @@ import java.util.List;
  */
 public class DatosPersonalesVistas extends javax.swing.JFrame {
 
-    private String cedula, nombre, apellido, correo, pais, profesion, telefono;
+    private String cedula, nombre, apellidos, correo, pais, profesion, telefono;
     private int rol;
    
     public DatosPersonalesVistas() {
         initComponents();
         
-        /*RollesController rolControl = new RollesController();
+        RollesController rolControl = new RollesController();
         List<Roles> listaRoles = rolControl.obtenerRoles();
         for(Roles rol : listaRoles){
             cmbRoles.addItem(rol.getNombre());
             System.out.println("Roles traidos: " + rol.getNombre());
-        }*/
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -436,7 +437,7 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
         
         cedula = txtCedula.getText();
         nombre = txtNombres.getText();
-        apellido = txtApellidos.getText();
+        apellidos = txtApellidos.getText();
         correo = txtCorreo.getText();
         pais = txtPais.getText();
         profesion = txtProfesion.getText();
@@ -465,7 +466,7 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
         
         registrarPersona.setCedula(cedula);
         registrarPersona.setNombre(nombre);
-        registrarPersona.setApellido(apellido);
+        registrarPersona.setApellido(apellidos);
         registrarPersona.setCorreo(correo);
         registrarPersona.setPais(pais);
         registrarPersona.setProfesion(profesion);
@@ -473,11 +474,15 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
         registrarPersona.setRol_id(rol);
         registrarPersona.setFecha_nacimiento(fechaNacimiento);
         
-        //nuevaPersona.creacion(registrarPersona);
+        nuevaPersona.creacion(registrarPersona);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        
+        txtBuscarPersona.setEditable(false);
+        String idPersona = txtBuscarPersona.getText();
+        if(idPersona.equals("")){
+            JOptionPane.showMessageDialog(null, "Error al tratar de Buscar", "Debes Intgresar un ID", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
