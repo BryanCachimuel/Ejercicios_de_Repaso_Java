@@ -533,7 +533,16 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        txtBuscarPersona.setEditable(false);
+        String idPersona = txtBuscarPersona.getText();
+        if(idPersona.equals("")){
+            JOptionPane.showMessageDialog(null, "Error al tratar de eliminar", "Debes Intgresar un ID", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
+        DatosPersonalesController controladorEliminar = new DatosPersonalesController();
+        controladorEliminar.eliminar(Integer.parseInt(idPersona));
+        limpiarCamposFormulario();
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void txtPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPaisActionPerformed
