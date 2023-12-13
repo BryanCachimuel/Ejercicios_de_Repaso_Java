@@ -78,7 +78,7 @@ public class DatosPersonalesController implements IGestorDatos<DatosPersonales>{
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "No se Encontraron los registros", "Error al recuperar la información", JOptionPane.ERROR_MESSAGE);
             System.out.println("Error de tipo: " + e);
-            System.out.println("Error en la clase DatosPersonales: "+ this.getClass().getName());
+            System.out.println("Error en la clase: "+ this.getClass().getName());
         }
         return personaTraida;
     }
@@ -90,7 +90,24 @@ public class DatosPersonalesController implements IGestorDatos<DatosPersonales>{
 
     @Override
     public void eliminar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       String sql = "DELETE FROM persona WHERE id ='"+id+"'";
+        try {
+            cnnNuevoAdmin.conectar();
+            st = cnnNuevoAdmin.getConexion().prepareStatement(sql);
+            int filasAfectadas = st.executeUpdate();
+            
+            if(filasAfectadas > 0){
+                JOptionPane.showMessageDialog(null, "Datos Eliminados");
+            }else{
+                JOptionPane.showMessageDialog(null, "No se encontraron datos a eliminar");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en el proceso de eliminación");
+            System.out.println("Error: " + e);
+            System.out.println("Error en la clase: " + this.getClass().getName());
+        }finally{
+            cnnNuevoAdmin.desconectar();
+        }
     }
     
    
