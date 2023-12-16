@@ -50,6 +50,8 @@ public class DatosPersonalesController implements IGestorDatos<DatosPersonales>{
         } catch (SQLException e) {
             System.out.println("Error: " + e);
             JOptionPane.showMessageDialog(null, "No se ha realizado el registro", "Por favor compruebe los Datos", JOptionPane.ERROR_MESSAGE);
+        }finally{
+            cnnNuevoAdmin.desconectar();
         }
     }
 
@@ -79,13 +81,38 @@ public class DatosPersonalesController implements IGestorDatos<DatosPersonales>{
             JOptionPane.showMessageDialog(null, "No se Encontraron los registros", "Error al recuperar la información", JOptionPane.ERROR_MESSAGE);
             System.out.println("Error de tipo: " + e);
             System.out.println("Error en la clase: "+ this.getClass().getName());
+        }finally{
+            cnnNuevoAdmin.desconectar();
         }
         return personaTraida;
     }
 
     @Override
     public void actualizar(DatosPersonales objeto, int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "UPDATE persona SET Cedula=?,Nombre=?,Apellidos=?,Correo=?,Fecha_Nacimiento=?,Pais=?,Profesion=?,Telefono=?,rol_id=? WHERE id='"+id+"'";
+        try {
+           // formatear fecha
+           java.sql.Date fechaNacimiento = new java.sql.Date(objeto.getFecha_nacimiento().getTime());
+           
+           cnnNuevoAdmin.conectar();
+           st = cnnNuevoAdmin.getConexion().prepareStatement(sql); 
+           st.setString(1, objeto.getCedula());
+           st.setString(2, objeto.getNombre());
+           st.setString(3, objeto.getApellido());
+           st.setString(4, objeto.getCorreo());
+           st.setDate(5, fechaNacimiento);
+           st.setString(6, objeto.getPais());
+           st.setString(7, objeto.getProfesion());
+           st.setString(8, objeto.getTelefono());
+           st.setInt(9, objeto.getRol_id());
+           st.setInt(10, objeto.getId());
+           
+           st.executeUpdate();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se puede actualizar el registro", "Error al actualizar", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Error de tipo: " + e);
+            System.out.println("Error en la clase: "+ this.getClass().getName());
+        }
     }
 
     @Override
