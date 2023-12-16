@@ -498,7 +498,7 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
         txtBuscarPersona.setEditable(false);
         String idPersona = txtBuscarPersona.getText();
         if(idPersona.equals("")){
-            JOptionPane.showMessageDialog(null, "Error al tratar de Buscar", "Debes Intgresar un ID", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al tratar de Buscar", "Debes Ingresar un ID", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
@@ -529,14 +529,65 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        String idPersona = txtBuscarPersona.getText().trim();
+        if(idPersona.equals("")){
+            JOptionPane.showMessageDialog(null, "Error al tratar de actualizar", "Debes Ingresar un ID", JOptionPane.ERROR_MESSAGE);
+            return;
+        } 
         
+        Date fechaNacimiento = jdcFechaNacimiento.getDate();
+        
+        DatosPersonales actualizarPersona = new DatosPersonales();
+        DatosPersonalesController edicionPersona = new DatosPersonalesController();
+        
+        cedula = txtCedula.getText();
+        nombre = txtNombres.getText();
+        apellidos = txtApellidos.getText();
+        correo = txtCorreo.getText();
+        pais = txtPais.getText();
+        profesion = txtProfesion.getText();
+        telefono = txtTelefono.getText();
+        
+        switch(cmbRoles.getSelectedIndex()){
+            case 0:
+                rol = 1;
+                break;
+                
+            case 1:
+                rol = 2;
+                break;
+            
+            case 2:
+                rol = 3;
+                break;
+                
+            case 3:
+                rol = 4;
+                break;
+                
+            default:
+                rol = 2;
+        }
+        
+        actualizarPersona.setCedula(cedula);
+        actualizarPersona.setNombre(nombre);
+        actualizarPersona.setApellido(apellidos);
+        actualizarPersona.setCorreo(correo);
+        actualizarPersona.setPais(pais);
+        actualizarPersona.setProfesion(profesion);
+        actualizarPersona.setTelefono(telefono);
+        actualizarPersona.setRol_id(rol);
+        actualizarPersona.setFecha_nacimiento(fechaNacimiento);
+        int id_persona = Integer.parseInt(idPersona);
+        
+        edicionPersona.actualizar(actualizarPersona, id_persona);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         txtBuscarPersona.setEditable(false);
         String idPersona = txtBuscarPersona.getText();
         if(idPersona.equals("")){
-            JOptionPane.showMessageDialog(null, "Error al tratar de eliminar", "Debes Intgresar un ID", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al tratar de eliminar", "Debes Ingresar un ID", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
