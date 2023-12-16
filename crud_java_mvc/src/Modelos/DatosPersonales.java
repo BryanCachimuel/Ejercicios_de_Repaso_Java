@@ -8,11 +8,20 @@ import java.util.Date;
  */
 public class DatosPersonales {
     
+    private int id;
     private String Cedula, Nombre, Apellido, Correo, Pais, Profesion, Telefono;
     private int Rol_id;
     private Date Fecha_nacimiento;
 
     public DatosPersonales() {}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getCedula() {
         return Cedula;
