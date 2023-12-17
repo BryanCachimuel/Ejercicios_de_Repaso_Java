@@ -16,13 +16,13 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
 
     private String cedula, nombre, apellidos, correo, pais, profesion, telefono;
     private int rol;
-   
+
     public DatosPersonalesVistas() {
         initComponents();
-        
+
         RollesController rolControl = new RollesController();
-        List<Roles> listaRoles = rolControl.obtenerRoles();
-        for(Roles rol : listaRoles){
+        List<Roles> todosRoles = rolControl.listaRoles();
+        for (Roles rol : todosRoles) {
             cmbRoles.addItem(rol.getNombre());
             System.out.println("Roles traidos: " + rol.getNombre());
         }
@@ -70,6 +70,7 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
         btnConsultar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,37 +100,37 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel8.setText("Rol:");
 
-        txtApellidos.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        txtApellidos.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
 
-        txtNombres.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        txtNombres.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
 
-        txtPais.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        txtPais.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         txtPais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPaisActionPerformed(evt);
             }
         });
 
-        txtCorreo.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        txtCorreo.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
 
-        txtProfesion.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        txtProfesion.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
 
-        cmbRoles.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        cmbRoles.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
 
         jLabel14.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel14.setText("Cédula: ");
 
-        txtCedula.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        txtCedula.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
 
         jLabel13.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel13.setText("Buscar Persona:");
 
-        txtBuscarPersona.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        txtBuscarPersona.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
 
         jLabel15.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel15.setText("Teléfono:");
 
-        txtTelefono.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        txtTelefono.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
 
         btnLimpiar.setBackground(new java.awt.Color(0, 153, 153));
         btnLimpiar.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
@@ -158,41 +159,37 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(jLabel13)
-                                        .addGap(57, 57, 57))
+                                        .addGap(17, 17, 17))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel15)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cmbRoles, 0, 200, Short.MAX_VALUE)
-                                    .addComponent(txtBuscarPersona)
-                                    .addComponent(txtTelefono)))
+                                    .addComponent(cmbRoles, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtTelefono)
+                                    .addComponent(txtBuscarPersona, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
-                                    .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel14)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel14))
+                                    .addGap(70, 70, 70)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtNombres)
+                                        .addComponent(txtCedula)))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel5)
                                         .addComponent(jLabel6)
-                                        .addComponent(jLabel7))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel7)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel3))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtProfesion)
+                                        .addComponent(txtApellidos)
+                                        .addComponent(txtCorreo)
                                         .addComponent(txtPais)
-                                        .addComponent(jdcFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))))
+                                        .addComponent(jdcFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                                        .addComponent(txtProfesion, javax.swing.GroupLayout.Alignment.TRAILING)))))
                         .addGap(18, 18, 18))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -408,6 +405,17 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
+        btnSalir.setBackground(new java.awt.Color(0, 153, 153));
+        btnSalir.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(0, 0, 0));
+        btnSalir.setText("Salir");
+        btnSalir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -422,8 +430,13 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(202, 202, 202))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(202, 202, 202))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -439,19 +452,21 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        
+
         Date fechaNacimiento = jdcFechaNacimiento.getDate();
-        
+
         DatosPersonales registrarPersona = new DatosPersonales();
         DatosPersonalesController nuevaPersona = new DatosPersonalesController();
-        
+
         cedula = txtCedula.getText();
         nombre = txtNombres.getText();
         apellidos = txtApellidos.getText();
@@ -459,28 +474,28 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
         pais = txtPais.getText();
         profesion = txtProfesion.getText();
         telefono = txtTelefono.getText();
-        
-        switch(cmbRoles.getSelectedIndex()){
+
+        switch (cmbRoles.getSelectedIndex()) {
             case 0:
                 rol = 1;
                 break;
-                
+
             case 1:
                 rol = 2;
                 break;
-            
+
             case 2:
                 rol = 3;
                 break;
-                
+
             case 3:
                 rol = 4;
                 break;
-                
+
             default:
                 rol = 2;
         }
-        
+
         registrarPersona.setCedula(cedula);
         registrarPersona.setNombre(nombre);
         registrarPersona.setApellido(apellidos);
@@ -490,22 +505,22 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
         registrarPersona.setTelefono(telefono);
         registrarPersona.setRol_id(rol);
         registrarPersona.setFecha_nacimiento(fechaNacimiento);
-        
+
         nuevaPersona.creacion(registrarPersona);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         txtBuscarPersona.setEditable(false);
         String idPersona = txtBuscarPersona.getText();
-        if(idPersona.equals("")){
+        if (idPersona.equals("")) {
             JOptionPane.showMessageDialog(null, "Error al tratar de Buscar", "Debes Ingresar un ID", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         DatosPersonalesController controladorBuscar = new DatosPersonalesController();
         DatosPersonales buscarPersona = controladorBuscar.lectura(Integer.parseInt(idPersona));
-        
-        if(buscarPersona != null){
+
+        if (buscarPersona != null) {
             txtCedula.setText(buscarPersona.getCedula());
             txtNombres.setText(buscarPersona.getNombre());
             txtApellidos.setText(buscarPersona.getApellido());
@@ -513,33 +528,33 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
             txtPais.setText(buscarPersona.getPais());
             txtProfesion.setText(buscarPersona.getProfesion());
             txtTelefono.setText(buscarPersona.getTelefono());
-            
-            switch(buscarPersona.getRol_id()){
+
+            switch (buscarPersona.getRol_id()) {
                 case 1:
                     cmbRoles.setSelectedIndex(0);
                     break;
-                 
-                case 2: 
+
+                case 2:
                     cmbRoles.setSelectedIndex(1);
                     break;
             }
-            
+
             jdcFechaNacimiento.setDate(buscarPersona.getFecha_nacimiento());
         }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         String idPersona = txtBuscarPersona.getText().trim();
-        if(idPersona.equals("")){
+        if (idPersona.equals("")) {
             JOptionPane.showMessageDialog(null, "Error al tratar de actualizar", "Debes Ingresar un ID", JOptionPane.ERROR_MESSAGE);
             return;
-        } 
-        
+        }
+
         Date fechaNacimiento = jdcFechaNacimiento.getDate();
-        
+
         DatosPersonales actualizarPersona = new DatosPersonales();
         DatosPersonalesController edicionPersona = new DatosPersonalesController();
-        
+
         cedula = txtCedula.getText();
         nombre = txtNombres.getText();
         apellidos = txtApellidos.getText();
@@ -547,28 +562,28 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
         pais = txtPais.getText();
         profesion = txtProfesion.getText();
         telefono = txtTelefono.getText();
-        
-        switch(cmbRoles.getSelectedIndex()){
+
+        switch (cmbRoles.getSelectedIndex()) {
             case 0:
                 rol = 1;
                 break;
-                
+
             case 1:
                 rol = 2;
                 break;
-            
+
             case 2:
                 rol = 3;
                 break;
-                
+
             case 3:
                 rol = 4;
                 break;
-                
+
             default:
                 rol = 2;
         }
-        
+
         actualizarPersona.setCedula(cedula);
         actualizarPersona.setNombre(nombre);
         actualizarPersona.setApellido(apellidos);
@@ -578,19 +593,19 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
         actualizarPersona.setTelefono(telefono);
         actualizarPersona.setRol_id(rol);
         actualizarPersona.setFecha_nacimiento(fechaNacimiento);
+
         int id_persona = Integer.parseInt(idPersona);
-        
         edicionPersona.actualizar(actualizarPersona, id_persona);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         txtBuscarPersona.setEditable(false);
         String idPersona = txtBuscarPersona.getText();
-        if(idPersona.equals("")){
+        if (idPersona.equals("")) {
             JOptionPane.showMessageDialog(null, "Error al tratar de eliminar", "Debes Ingresar un ID", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         DatosPersonalesController controladorEliminar = new DatosPersonalesController();
         controladorEliminar.eliminar(Integer.parseInt(idPersona));
         limpiarCamposFormulario();
@@ -603,8 +618,12 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         limpiarCamposFormulario();
     }//GEN-LAST:event_btnLimpiarActionPerformed
-    
-    public void limpiarCamposFormulario(){
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    public void limpiarCamposFormulario() {
         txtCedula.setText("");
         txtNombres.setText("");
         txtApellidos.setText("");
@@ -612,14 +631,14 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
         txtPais.setText("");
         txtProfesion.setText("");
         txtTelefono.setText("");
-        
+
         cmbRoles.setSelectedIndex(0);
         txtBuscarPersona.setEditable(true);
         Date fechaActual = new Date();
         jdcFechaNacimiento.setDate(fechaActual);
         txtBuscarPersona.setText("");
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -662,6 +681,7 @@ public class DatosPersonalesVistas extends javax.swing.JFrame {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cmbRoles;
     private javax.swing.JComboBox<String> cmbTipoSeguro;
     private javax.swing.JLabel jLabel1;
