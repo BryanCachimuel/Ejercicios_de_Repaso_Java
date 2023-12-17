@@ -5,25 +5,24 @@ package Modelos;
  */
 public class Roles {
     
-    private int Id;
-    private String Nombre;
+    private int id;
+    private String nombre;
 
     public Roles() {}
 
     public int getId() {
-        return Id;
+        return id;
     }
 
-    public void setId(int Id) {
-        this.Id = Id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
-    
 }
