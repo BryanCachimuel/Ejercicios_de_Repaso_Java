@@ -41,4 +41,8 @@ public class RollesController {
         }
         return Collections.emptyList();
     }
+    
+    public List<Roles> listaRoles(){
+        return obtenerRoles();
+    }
 }
