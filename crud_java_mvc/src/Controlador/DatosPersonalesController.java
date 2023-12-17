@@ -68,6 +68,7 @@ public class DatosPersonalesController implements IGestorDatos<DatosPersonales>{
                 personaTraida.setCedula(rs.getString("Cedula"));
                 personaTraida.setNombre(rs.getString("Nombre"));
                 personaTraida.setApellido(rs.getString("Apellidos"));
+                personaTraida.setCorreo(rs.getString("Correo"));
                 personaTraida.setFecha_nacimiento(rs.getDate("Fecha_Nacimiento"));
                 personaTraida.setPais(rs.getString("Pais"));
                 personaTraida.setProfesion(rs.getString("Profesion"));
@@ -105,8 +106,8 @@ public class DatosPersonalesController implements IGestorDatos<DatosPersonales>{
            st.setString(7, objeto.getProfesion());
            st.setString(8, objeto.getTelefono());
            st.setInt(9, objeto.getRol_id());
-           st.setInt(10, objeto.getId());
-           
+           //st.setInt(10, objeto.getId());
+           JOptionPane.showMessageDialog(null, "Sea realizando la actualización al registro", "Actualización exitosa", JOptionPane.INFORMATION_MESSAGE);
            st.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "No se puede actualizar el registro", "Error al actualizar", JOptionPane.ERROR_MESSAGE);
