@@ -7,6 +7,8 @@ public class frmVista extends javax.swing.JFrame {
      */
     public frmVista() {
         initComponents();
+        this.setTitle("Conversor de Monedas");
+        this.setLocationRelativeTo(null);
     }
 
    
