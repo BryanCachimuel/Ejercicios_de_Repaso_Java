@@ -37,6 +37,11 @@ public class frmVista extends javax.swing.JFrame {
         jLabel4.setText("Cambio; ");
 
         btnConvertir.setText("Convertir");
+        btnConvertir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConvertirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,6 +96,37 @@ public class frmVista extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnConvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirActionPerformed
+        Servicio servicio = new Servicio();
+        
+        double moneda = Double.parseDouble(txtMoneda.getText());
+        
+        /* Indezx del combobox */
+        double cambio0, cambio1, cambio2, cambio3;
+        
+        /* Proceso */
+        cambio0 = servicio.BolivianoDolar(moneda);
+        cambio1 = servicio.DolarBoliviano(moneda);
+        cambio2 = servicio.BolivianoEuro(moneda);
+        cambio3 = servicio.EuroBoliviano(moneda);
+        
+        /* Proceso de Combo box */
+        int index = cbxTipoCambio.getSelectedIndex();
+        
+        if(index == 0){
+            txtResultadoCambio.setText(String.valueOf(cambio0));
+        }
+        if(index == 1){
+            txtResultadoCambio.setText(String.valueOf(cambio1));
+        }
+        if(index == 2){
+            txtResultadoCambio.setText(String.valueOf(cambio2));
+        }
+        if(index == 3){
+            txtResultadoCambio.setText(String.valueOf(cambio3));
+        }
+    }//GEN-LAST:event_btnConvertirActionPerformed
 
     /**
      * @param args the command line arguments
