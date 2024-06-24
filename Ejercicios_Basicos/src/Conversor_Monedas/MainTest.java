@@ -16,22 +16,31 @@ public class MainTest {
         
         cambio = servicio.BolivianoDolar(moneda);
         //System.out.println("El Cambio de Bolivar a Dolar es: " + cambio);
-        System.out.println("El Cambio de Bolivar a Dolar es: " + Math.round(cambio * 100) / 100d);
+        System.out.println("El Cambio de Boliviano a Dolar es: " + Math.round(cambio * 100) / 100d);
         System.out.println("\n"); 
         
         cambio = servicio.DolarBoliviano(moneda);
         //System.out.println("El Cambio de Bolivar a Dolar es: " + cambio);
-        System.out.println("El Cambio de Bolivar a Dolar es: " + Math.round(cambio * 100) / 100d);
+        System.out.println("El Cambio de Dolar a Boliviano es: " + Math.round(cambio * 100) / 100d);
         System.out.println("\n");
         
         cambio = servicio.BolivianoEuro(moneda);
         System.out.println("El Cambio de Bolivar a Dolar es: " + Math.round(cambio * 100) / 100d);
-        //System.out.println("El Cambio de Bolivar a Dolar es: " + cambio);
+        //System.out.println("El Cambio de Boliviano a Euro es: " + cambio);
         System.out.println("\n");
         
         cambio = servicio.EuroBoliviano(moneda);
         System.out.println("El Cambio de Bolivar a Dolar es: " + Math.round(cambio * 100) / 100d);
-        //System.out.println("El Cambio de Bolivar a Dolar es: " + cambio);
+        //System.out.println("El Cambio de Euro a Boliviano es: " + cambio);
+        System.out.println("\n");
+        
+        cambio = servicio.BolivianoLibras(moneda);
+        System.out.println("El Cambio de Boliviano a Libra Esterlina es: " + Math.round(cambio * 100) / 100d);
+        System.out.println("\n");
+        
+        cambio = servicio.LibrasBoliviano(moneda);
+        System.out.println("El Cambio fr Libra Esterlina a Boliviano es: " + Math.round(cambio * 100) / 100d);
+        System.out.println("\n");
    }
     
 }
