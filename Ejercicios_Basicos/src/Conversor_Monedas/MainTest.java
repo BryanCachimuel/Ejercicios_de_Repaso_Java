@@ -39,7 +39,11 @@ public class MainTest {
         System.out.println("\n");
         
         cambio = servicio.LibrasBoliviano(moneda);
-        System.out.println("El Cambio fr Libra Esterlina a Boliviano es: " + Math.round(cambio * 100) / 100d);
+        System.out.println("El Cambio de Libra Esterlina a Boliviano es: " + Math.round(cambio * 100) / 100d);
+        System.out.println("\n");
+        
+        cambio = servicio.BolivianoSoles(moneda);
+        System.out.println("El Cambio de Boliviano a Soles es: " + Math.round(cambio * 100) / 100d);
         System.out.println("\n");
    }
     
