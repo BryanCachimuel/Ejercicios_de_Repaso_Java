@@ -62,4 +62,14 @@ public class Servicio {
         return cambio;
     }
     
+    public double BolivianoSoles(double moneda){
+        double cambio = 0;
+        try {
+            cambio = moneda * 0.55;
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return cambio;
+    }
+    
 }
