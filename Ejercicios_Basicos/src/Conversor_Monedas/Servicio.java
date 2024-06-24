@@ -52,4 +52,14 @@ public class Servicio {
         return cambio;
     }
     
+    public double LibrasBoliviano(double moneda){
+        double cambio = 0;
+        try {
+            cambio = moneda * 8.72;
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return cambio;
+    }
+    
 }
