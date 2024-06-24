@@ -46,7 +46,7 @@ public class frmVista extends javax.swing.JFrame {
 
         jLabel3.setText("Tipo de Cambio:");
 
-        cbxTipoCambio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boliviano a Dólares", "Dólares a Boliviano", "Boliviano a Euros", "Euros a Boliviano" }));
+        cbxTipoCambio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boliviano a Dólares", "Dólares a Boliviano", "Boliviano a Euros", "Euros a Boliviano", "Boliviano a Libras", "Libras a Boliviano" }));
 
         btnConvertir.setText("Convertir");
         btnConvertir.addActionListener(new java.awt.event.ActionListener() {
@@ -158,19 +158,23 @@ public class frmVista extends javax.swing.JFrame {
         double moneda = Double.parseDouble(txtMoneda.getText());
         
         /* Indezx del combobox */
-        double cambio0, cambio1, cambio2, cambio3;
-        double redondeoCambio0,redondeoCambio1,redondeoCambio2,redondeoCambio3;
+        double cambio0, cambio1, cambio2, cambio3, cambio4, cambio5;
+        double redondeoCambio0, redondeoCambio1, redondeoCambio2, redondeoCambio3, redondeoCambio4, redondeoCambio5;
         
         /* Proceso */
         cambio0 = servicio.BolivianoDolar(moneda);
         cambio1 = servicio.DolarBoliviano(moneda);
         cambio2 = servicio.BolivianoEuro(moneda);
         cambio3 = servicio.EuroBoliviano(moneda);
+        cambio4 = servicio.BolivianoLibras(moneda);
+        cambio5 = servicio.LibrasBoliviano(moneda);
         
         redondeoCambio0 = Math.round(cambio0 * 100)/100d;
         redondeoCambio1 = Math.round(cambio1 * 100)/100d;
         redondeoCambio2 = Math.round(cambio2 * 100)/100d;
         redondeoCambio3 = Math.round(cambio3 * 100)/100d;
+        redondeoCambio4 = Math.round(cambio4 * 100)/100d;
+        redondeoCambio5 = Math.round(cambio5 * 100)/100d;
         
         /* Proceso de Combo box */
         int index = cbxTipoCambio.getSelectedIndex();
@@ -186,6 +190,12 @@ public class frmVista extends javax.swing.JFrame {
         }
         if(index == 3){
             txtResultadoCambio.setText(String.valueOf(redondeoCambio3));
+        }
+        if(index == 4){
+            txtResultadoCambio.setText(String.valueOf(redondeoCambio4));
+        }
+        if(index == 5){
+            txtResultadoCambio.setText(String.valueOf(redondeoCambio5));
         }
     }//GEN-LAST:event_btnConvertirActionPerformed
 
