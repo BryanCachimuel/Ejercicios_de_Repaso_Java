@@ -160,10 +160,11 @@ public class frmVista extends javax.swing.JFrame {
         /* Indezx del combobox */
         double cambio0, cambio1, cambio2, cambio3, 
                cambio4, cambio5, cambio6, cambio7,
-               cambio8;
+               cambio8, cambio9;
         double redondeoCambio0, redondeoCambio1, redondeoCambio2, 
                redondeoCambio3, redondeoCambio4, redondeoCambio5,
-               redondeoCambio6, redondeoCambio7, redondeoCambio8;
+               redondeoCambio6, redondeoCambio7, redondeoCambio8,
+               redondeoCambio9;
         
         /* Proceso */
         cambio0 = servicio.BolivianoDolar(moneda);
@@ -175,6 +176,7 @@ public class frmVista extends javax.swing.JFrame {
         cambio6 = servicio.BolivianoSoles(moneda);
         cambio7 = servicio.SolesBoliviano(moneda);
         cambio8 = servicio.BolivianoGuarani(moneda);
+        cambio9 = servicio.GuaraniBoliviano(moneda);
         
         redondeoCambio0 = Math.round(cambio0 * 100)/100d;
         redondeoCambio1 = Math.round(cambio1 * 100)/100d;
@@ -185,6 +187,7 @@ public class frmVista extends javax.swing.JFrame {
         redondeoCambio6 = Math.round(cambio6 * 100)/100d;
         redondeoCambio7 = Math.round(cambio7 * 100)/100d;
         redondeoCambio8 = Math.round(cambio8 * 100)/100d;
+        redondeoCambio9 = Math.round(cambio9 * 100)/100d;
         
         /* Proceso de Combo box */
         int index = cbxTipoCambio.getSelectedIndex();
@@ -213,8 +216,11 @@ public class frmVista extends javax.swing.JFrame {
         if(index == 7){
             txtResultadoCambio.setText(String.valueOf(redondeoCambio7));
         }
-         if(index == 8){
+        if(index == 8){
             txtResultadoCambio.setText(String.valueOf(redondeoCambio8));
+        }
+        if(index == 9){
+            txtResultadoCambio.setText(String.valueOf(redondeoCambio9));
         }
     }//GEN-LAST:event_btnConvertirActionPerformed
 
