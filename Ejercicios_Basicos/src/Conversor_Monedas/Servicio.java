@@ -82,4 +82,13 @@ public class Servicio {
         return cambio;
     }
     
+    public double BolivianoGuarani(double moneda){
+        double cambio = 0;
+        try {
+            cambio = moneda * 1090.75;
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return cambio;
+    }
 }
