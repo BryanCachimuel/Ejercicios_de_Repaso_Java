@@ -49,6 +49,10 @@ public class MainTest {
         cambio = servicio.SolesBoliviano(moneda);
         System.out.println("El Cambio de Soles a Boliviano es: " + Math.round(cambio * 100) / 100d);
         System.out.println("\n");
+        
+        cambio = servicio.BolivianoGuarani(moneda);
+        System.out.println("El Cambio de Boliviano a Guaraní es: " + Math.round(cambio * 100) / 100d);
+        System.out.println("\n");
    }
     
 }
