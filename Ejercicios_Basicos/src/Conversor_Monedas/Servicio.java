@@ -91,4 +91,14 @@ public class Servicio {
         }
         return cambio;
     }
+    
+    public double GuaraniBoliviano(double moneda){
+        double cambio = 0;
+        try {
+            cambio = moneda * 0.00092;
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return cambio;
+    }
 }
