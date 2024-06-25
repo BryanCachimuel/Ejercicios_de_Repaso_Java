@@ -146,13 +146,14 @@
         <Component class="javax.swing.JComboBox" name="cbxTipoCambio">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="6">
+              <StringArray count="7">
                 <StringItem index="0" value="Boliviano a D&#xf3;lares"/>
                 <StringItem index="1" value="D&#xf3;lares a Boliviano"/>
                 <StringItem index="2" value="Boliviano a Euros"/>
                 <StringItem index="3" value="Euros a Boliviano"/>
                 <StringItem index="4" value="Boliviano a Libras"/>
                 <StringItem index="5" value="Libras a Boliviano"/>
+                <StringItem index="6" value="Boliviano a Soles"/>
               </StringArray>
             </Property>
           </Properties>
