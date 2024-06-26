@@ -46,7 +46,7 @@ public class frmVista extends javax.swing.JFrame {
 
         jLabel3.setText("Tipo de Cambio:");
 
-        cbxTipoCambio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boliviano a Dólares", "Dólares a Boliviano", "Boliviano a Euros", "Euros a Boliviano", "Boliviano a Libras", "Libras a Boliviano", "Boliviano a Soles", "Soles a Boliviano", "Boliviano a Guaroni", "Guarani a Boliviano" }));
+        cbxTipoCambio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boliviano a Dólares", "Dólares a Boliviano", "Boliviano a Euros", "Euros a Boliviano", "Boliviano a Libras", "Libras a Boliviano", "Boliviano a Soles", "Soles a Boliviano", "Boliviano a Guaroni", "Guarani a Boliviano", "Boliviano a Quetzal" }));
 
         btnConvertir.setText("Convertir");
         btnConvertir.addActionListener(new java.awt.event.ActionListener() {
@@ -160,11 +160,11 @@ public class frmVista extends javax.swing.JFrame {
         /* Indezx del combobox */
         double cambio0, cambio1, cambio2, cambio3, 
                cambio4, cambio5, cambio6, cambio7,
-               cambio8, cambio9;
+               cambio8, cambio9, cambio10;
         double redondeoCambio0, redondeoCambio1, redondeoCambio2, 
                redondeoCambio3, redondeoCambio4, redondeoCambio5,
                redondeoCambio6, redondeoCambio7, redondeoCambio8,
-               redondeoCambio9;
+               redondeoCambio9, redondeoCambio10;
         
         /* Proceso */
         cambio0 = servicio.BolivianoDolar(moneda);
@@ -177,6 +177,7 @@ public class frmVista extends javax.swing.JFrame {
         cambio7 = servicio.SolesBoliviano(moneda);
         cambio8 = servicio.BolivianoGuarani(moneda);
         cambio9 = servicio.GuaraniBoliviano(moneda);
+        cambio10 = servicio.BolivianoQuetzal(moneda);
         
         redondeoCambio0 = Math.round(cambio0 * 100)/100d;
         redondeoCambio1 = Math.round(cambio1 * 100)/100d;
@@ -188,6 +189,7 @@ public class frmVista extends javax.swing.JFrame {
         redondeoCambio7 = Math.round(cambio7 * 100)/100d;
         redondeoCambio8 = Math.round(cambio8 * 100)/100d;
         redondeoCambio9 = Math.round(cambio9 * 100)/100d;
+        redondeoCambio10 = Math.round(cambio10 * 100)/100d;
         
         /* Proceso de Combo box */
         int index = cbxTipoCambio.getSelectedIndex();
@@ -221,6 +223,9 @@ public class frmVista extends javax.swing.JFrame {
         }
         if(index == 9){
             txtResultadoCambio.setText(String.valueOf(redondeoCambio9));
+        }
+        if(index == 10){
+            txtResultadoCambio.setText(String.valueOf(redondeoCambio10));
         }
     }//GEN-LAST:event_btnConvertirActionPerformed
 
