@@ -61,6 +61,11 @@ public class MainTest {
         cambio = servicio.BolivianoQuetzal(moneda);
         System.out.println("El Cambio de Boliviano a Quetzal es: " + Math.round(cambio * 100) / 100d);
         System.out.println("\n");
+        
+         cambio = servicio.QuetzalBoliviano(moneda);
+        System.out.println("El Cambio de Quetzal a Boliviano es: " + Math.round(cambio * 100) / 100d);
+        System.out.println("\n");
+        
    }
     
 }
