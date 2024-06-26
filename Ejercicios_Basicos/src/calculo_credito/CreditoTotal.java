@@ -65,6 +65,7 @@ public class CreditoTotal extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         txtMensual = new javax.swing.JTextField();
         btnSalir = new javax.swing.JButton();
+        btnNuevaConsulta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,7 +94,7 @@ public class CreditoTotal extends javax.swing.JFrame {
             }
         });
 
-        lblPrecio.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
+        lblPrecio.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         lblPrecio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPrecio.setText("$ 500.00 USD");
 
@@ -191,11 +192,11 @@ public class CreditoTotal extends javax.swing.JFrame {
                             .addComponent(chkseguro)
                             .addComponent(chkgarantia))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jLabel3)
-                    .addComponent(lblPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                    .addComponent(spnCantidad))
+                    .addComponent(spnCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPrecio, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -362,17 +363,29 @@ public class CreditoTotal extends javax.swing.JFrame {
             }
         });
 
+        btnNuevaConsulta.setBackground(new java.awt.Color(0, 0, 204));
+        btnNuevaConsulta.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        btnNuevaConsulta.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevaConsulta.setText("Nueva Consulta");
+        btnNuevaConsulta.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        btnNuevaConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevaConsultaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnNuevaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -398,7 +411,9 @@ public class CreditoTotal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnNuevaConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -451,6 +466,17 @@ public class CreditoTotal extends javax.swing.JFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnNuevaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaConsultaActionPerformed
+        txtContado.setText("$ 00.00 USD");
+        txtCredito.setText("$ 00.00 USD");
+        txtDescuento.setText("$ 00.00 USD");
+        txtSeguro.setText("$ 00.00 USD");
+        txtGarantia.setText("$ 00.00 USD");
+        txtTotal.setText("$ 00.00 USD");
+        txtMensual.setText("$ 00.00 USD");
+        lblPrecio.setText("$ 00.00 USD");
+    }//GEN-LAST:event_btnNuevaConsultaActionPerformed
     
     public String aMoneda(double precio){
         return "$ "+Math.round(precio*100.00)/100.00+" USD";
@@ -508,6 +534,7 @@ public class CreditoTotal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnNuevaConsulta;
     private javax.swing.JButton btnSalir;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cboProducto;
