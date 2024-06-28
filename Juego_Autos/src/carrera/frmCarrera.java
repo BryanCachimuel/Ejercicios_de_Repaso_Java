@@ -25,6 +25,10 @@ public class frmCarrera extends javax.swing.JFrame {
         return lblSegundoAuto;
     }
     
+    public JLabel getTercerAuto(){
+        return lblTercerAuto;
+    }
+    
     public JLabel getFinal(){
         return lblFinal;
     }
@@ -43,6 +47,7 @@ public class frmCarrera extends javax.swing.JFrame {
         lblPrimerAuto = new javax.swing.JLabel();
         lblSegundoAuto = new javax.swing.JLabel();
         lblFinal = new javax.swing.JLabel();
+        lblTercerAuto = new javax.swing.JLabel();
         btnIniciarCarrera = new javax.swing.JButton();
         btnReiniciarCarrera = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
@@ -62,15 +67,23 @@ public class frmCarrera extends javax.swing.JFrame {
         lblFinal.setBackground(new java.awt.Color(0, 153, 204));
         lblFinal.setOpaque(true);
 
+        lblTercerAuto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tercero.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblPrimerAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSegundoAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblPrimerAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(lblSegundoAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblTercerAuto)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -79,9 +92,11 @@ public class frmCarrera extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblPrimerAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(lblSegundoAuto)
-                .addContainerGap())
+                .addGap(30, 30, 30)
+                .addComponent(lblTercerAuto)
+                .addGap(40, 40, 40))
             .addComponent(lblFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -154,17 +169,21 @@ public class frmCarrera extends javax.swing.JFrame {
     private void btnIniciarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarCarreraActionPerformed
         lblPrimerAuto.setLocation(0, lblPrimerAuto.getLocation().y);
         lblSegundoAuto.setLocation(0,lblSegundoAuto.getLocation().y);
+        lblTercerAuto.setLocation(0, lblTercerAuto.getLocation().y);
         
         Carrera auto1 = new Carrera(lblPrimerAuto, this);
         Carrera auto2 = new Carrera(lblSegundoAuto, this);
+        Carrera auto3 = new Carrera(lblTercerAuto, this);
         
         auto1.start();
         auto2.start();
+        auto3.start();
     }//GEN-LAST:event_btnIniciarCarreraActionPerformed
 
     private void btnReiniciarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarCarreraActionPerformed
          lblPrimerAuto.setLocation(0, lblPrimerAuto.getLocation().y);
          lblSegundoAuto.setLocation(0,lblSegundoAuto.getLocation().y);
+         lblTercerAuto.setLocation(0, lblTercerAuto.getLocation().y);
     }//GEN-LAST:event_btnReiniciarCarreraActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -215,5 +234,6 @@ public class frmCarrera extends javax.swing.JFrame {
     private javax.swing.JLabel lblFinal;
     private javax.swing.JLabel lblPrimerAuto;
     private javax.swing.JLabel lblSegundoAuto;
+    private javax.swing.JLabel lblTercerAuto;
     // End of variables declaration//GEN-END:variables
 }
