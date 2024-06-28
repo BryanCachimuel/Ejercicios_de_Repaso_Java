@@ -25,14 +25,16 @@ public class Carrera extends Thread {
 
         int auto1 = 0;
         int auto2 = 0;
+        int auto3 = 0;
 
         while (true) {
             try {
                 sleep((int) (Math.random() * 1000));
                 auto1 = auto.getPrimerAuto().getLocation().x;
                 auto2 = auto.getSegundoAuto().getLocation().x;
+                auto3 = auto.getTercerAuto().getLocation().x;
 
-                if (auto1 < auto.getFinal().getLocation().x - 125 && auto2 < auto.getFinal().getLocation().x - 125) {
+                if (auto1 < auto.getFinal().getLocation().x - 125 && auto2 < auto.getFinal().getLocation().x - 125 && auto3 < auto.getFinal().getLocation().x - 125) {
                     etiqueta.setLocation(etiqueta.getLocation().x + 10, etiqueta.getLocation().y);
                     auto.repaint();
                 } else {
@@ -43,11 +45,14 @@ public class Carrera extends Thread {
             }
         }
         if(etiqueta.getLocation().x >= auto.getFinal().getLocation().x - 125){
-            if(auto1 > auto2){
+            if(auto1 > auto2 && auto1 > auto3){
                 JOptionPane.showMessageDialog(null, "El Ganador es el Primer Auto");
             }
-            else if(auto2 > auto1){
+            else if(auto2 > auto1 && auto2 > auto1){
                 JOptionPane.showMessageDialog(null, "El Ganador es el Segundo Auto");
+            }
+            else if(auto3 > auto1 && auto3 > auto2){
+                JOptionPane.showMessageDialog(null, "El Ganador es el Tercer Auto");
             }
             else{
                 JOptionPane.showMessageDialog(null, "Los Autos quedaron Empatados");
