@@ -50,6 +50,7 @@ public class frmCarrera extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 26)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 102, 153));
         jLabel1.setText("Carrera de Autos");
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -84,6 +85,7 @@ public class frmCarrera extends javax.swing.JFrame {
             .addComponent(lblFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        btnIniciarCarrera.setBackground(new java.awt.Color(0, 153, 0));
         btnIniciarCarrera.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         btnIniciarCarrera.setText("Iniciar Carrera");
         btnIniciarCarrera.addActionListener(new java.awt.event.ActionListener() {
@@ -92,6 +94,7 @@ public class frmCarrera extends javax.swing.JFrame {
             }
         });
 
+        btnReiniciarCarrera.setBackground(new java.awt.Color(0, 0, 255));
         btnReiniciarCarrera.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         btnReiniciarCarrera.setText("Reiniciar Carrera");
         btnReiniciarCarrera.addActionListener(new java.awt.event.ActionListener() {
@@ -100,6 +103,7 @@ public class frmCarrera extends javax.swing.JFrame {
             }
         });
 
+        btnSalir.setBackground(new java.awt.Color(255, 0, 51));
         btnSalir.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -114,14 +118,8 @@ public class frmCarrera extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 325, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(265, 265, 265))))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(160, 160, 160)
                 .addComponent(btnIniciarCarrera)
@@ -129,7 +127,11 @@ public class frmCarrera extends javax.swing.JFrame {
                 .addComponent(btnReiniciarCarrera)
                 .addGap(26, 26, 26)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 108, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(285, 285, 285))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
