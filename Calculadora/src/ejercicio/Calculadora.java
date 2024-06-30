@@ -93,6 +93,7 @@ public class Calculadora extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
+        btnBorrarTodo.setBackground(new java.awt.Color(0, 102, 204));
         btnBorrarTodo.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnBorrarTodo.setText("CE");
         btnBorrarTodo.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +102,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnBorrarUno.setBackground(new java.awt.Color(0, 102, 204));
         btnBorrarUno.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnBorrarUno.setText("C");
         btnBorrarUno.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +111,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnDividir.setBackground(new java.awt.Color(0, 102, 102));
         btnDividir.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnDividir.setText("/");
         btnDividir.addActionListener(new java.awt.event.ActionListener() {
@@ -117,6 +120,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnMultiplicar.setBackground(new java.awt.Color(0, 102, 102));
         btnMultiplicar.setFont(new java.awt.Font("sansserif", 0, 28)); // NOI18N
         btnMultiplicar.setText("*");
         btnMultiplicar.addActionListener(new java.awt.event.ActionListener() {
@@ -125,6 +129,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnSuma.setBackground(new java.awt.Color(0, 102, 102));
         btnSuma.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnSuma.setText("+");
         btnSuma.addActionListener(new java.awt.event.ActionListener() {
@@ -133,6 +138,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnNueve.setBackground(new java.awt.Color(0, 51, 153));
         btnNueve.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnNueve.setText("9");
         btnNueve.addActionListener(new java.awt.event.ActionListener() {
@@ -141,6 +147,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnOcho.setBackground(new java.awt.Color(0, 51, 153));
         btnOcho.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnOcho.setText("8");
         btnOcho.addActionListener(new java.awt.event.ActionListener() {
@@ -149,6 +156,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnSiete.setBackground(new java.awt.Color(0, 51, 153));
         btnSiete.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnSiete.setText("7");
         btnSiete.addActionListener(new java.awt.event.ActionListener() {
@@ -157,6 +165,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnCuatro.setBackground(new java.awt.Color(0, 51, 153));
         btnCuatro.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnCuatro.setText("4");
         btnCuatro.addActionListener(new java.awt.event.ActionListener() {
@@ -165,6 +174,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnCinco.setBackground(new java.awt.Color(0, 51, 153));
         btnCinco.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnCinco.setText("5");
         btnCinco.addActionListener(new java.awt.event.ActionListener() {
@@ -173,6 +183,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnSeis.setBackground(new java.awt.Color(0, 51, 153));
         btnSeis.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnSeis.setText("6");
         btnSeis.addActionListener(new java.awt.event.ActionListener() {
@@ -181,6 +192,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnResta.setBackground(new java.awt.Color(0, 102, 102));
         btnResta.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnResta.setText("-");
         btnResta.addActionListener(new java.awt.event.ActionListener() {
@@ -189,6 +201,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnTres.setBackground(new java.awt.Color(0, 51, 153));
         btnTres.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnTres.setText("3");
         btnTres.addActionListener(new java.awt.event.ActionListener() {
@@ -197,6 +210,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnUno.setBackground(new java.awt.Color(0, 51, 153));
         btnUno.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnUno.setText("1");
         btnUno.addActionListener(new java.awt.event.ActionListener() {
@@ -205,6 +219,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnDos.setBackground(new java.awt.Color(0, 51, 153));
         btnDos.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnDos.setText("2");
         btnDos.addActionListener(new java.awt.event.ActionListener() {
@@ -213,6 +228,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnIgual.setBackground(new java.awt.Color(0, 102, 102));
         btnIgual.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnIgual.setText("=");
         btnIgual.addActionListener(new java.awt.event.ActionListener() {
@@ -221,6 +237,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnPotencia.setBackground(new java.awt.Color(0, 102, 102));
         btnPotencia.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnPotencia.setText("^");
         btnPotencia.addActionListener(new java.awt.event.ActionListener() {
@@ -229,6 +246,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnPunto.setBackground(new java.awt.Color(0, 102, 102));
         btnPunto.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnPunto.setText(".");
         btnPunto.addActionListener(new java.awt.event.ActionListener() {
@@ -237,6 +255,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnCero.setBackground(new java.awt.Color(0, 51, 153));
         btnCero.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnCero.setText("0");
         btnCero.addActionListener(new java.awt.event.ActionListener() {
@@ -245,6 +264,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnPorcentaje.setBackground(new java.awt.Color(0, 102, 102));
         btnPorcentaje.setFont(new java.awt.Font("sansserif", 0, 25)); // NOI18N
         btnPorcentaje.setText("%");
         btnPorcentaje.addActionListener(new java.awt.event.ActionListener() {
@@ -253,6 +273,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        btnExit.setBackground(new java.awt.Color(255, 0, 51));
         btnExit.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
         btnExit.setText("OFF");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
