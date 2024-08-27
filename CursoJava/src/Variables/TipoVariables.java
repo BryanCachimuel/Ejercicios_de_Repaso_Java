@@ -15,6 +15,13 @@ public class TipoVariables {
         
         miVariableCadena = "Adios";
         System.out.println(miVariableCadena);
+        
+        /* var - Inferencia de tipos de datos */
+        var miVariableEnteraConVar = 100;
+        System.out.println(miVariableEnteraConVar);
+        
+        var miVariableCadenaConVar = "Probando la variable cadena con Var";
+        System.out.println(miVariableCadenaConVar);
     }
     
 }
