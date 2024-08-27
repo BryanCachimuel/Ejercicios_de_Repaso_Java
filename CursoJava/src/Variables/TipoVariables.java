@@ -22,6 +22,15 @@ public class TipoVariables {
         
         var miVariableCadenaConVar = "Probando la variable cadena con Var";
         System.out.println(miVariableCadenaConVar);
+        
+        /* Valores permitidos en el nombre de las variables */
+        var variableNumerica = 1;
+        var _variableNumerica = 2;
+        var $variableNumerica = 3;
+        
+        /* Valores no permitidos en el nombre de las variables */
+        var áVariable = 4; /* No se recomoendo utilizar por el juego de caracteres */
+        /*var #miVariable = 5; no se permite utilizar caracteres especiales */
     }
     
 }
