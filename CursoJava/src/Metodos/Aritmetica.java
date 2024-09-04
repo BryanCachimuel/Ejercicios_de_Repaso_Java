@@ -19,4 +19,18 @@ public class Aritmetica {
         return resultado;*/
         return a + b;
     }
+    
+    public int sumarConArgumentos(int valor1, int valor2){
+        a = valor1;
+        b = valor2;
+        return a + b;
+        /*return valor1 + valor2;*/
+    }
+    
+    /* se consume el método sumarConRetorno */
+     public int sumarConsumiendo(int valor1, int valor2){
+        a = valor1;
+        b = valor2;
+        return sumarConRetorno();
+    }
 }
