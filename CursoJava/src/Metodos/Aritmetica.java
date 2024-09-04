@@ -8,6 +8,15 @@ public class Aritmetica {
     int a;
     int b;
     
+    // constructor vacio biene por defecto
+    public Aritmetica(){}
+    
+    // sobrecarga de constructores
+    public Aritmetica(int a, int b){
+        this.a = a;
+        this.b = b;
+    }
+    
     // método de clase
     public void sumar(){
         int resultado = a + b;
