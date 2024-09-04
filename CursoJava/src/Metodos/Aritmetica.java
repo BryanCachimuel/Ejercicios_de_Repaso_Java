@@ -27,10 +27,12 @@ public class Aritmetica {
         /*return valor1 + valor2;*/
     }
     
-    /* se consume el método sumarConRetorno */
-     public int sumarConsumiendo(int valor1, int valor2){
-        a = valor1;
-        b = valor2;
-        return sumarConRetorno();
+    /* se consume el método sumarConRetorno 
+        this -> hace refrencia a que un atributo de esa clase
+    */
+     public int sumarConsumiendo(int a, int b){
+        this.a = a; // El argumento a se asigna al atributo this.a
+        this.b = b; // El argumento b se asigna al atributo this.b
+        return this.sumarConRetorno();
     }
 }
