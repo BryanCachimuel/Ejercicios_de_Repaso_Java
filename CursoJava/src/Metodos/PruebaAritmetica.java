@@ -25,6 +25,11 @@ public class PruebaAritmetica {
         
         int resultado3 = aritmetica2.sumarConsumiendo(v1, v2);
         System.out.println("Resultado con método que consume otro método: " + resultado3);
+        
+        System.out.println("\n");
+        
+        Aritmetica aritmetica3 = new Aritmetica(69, 18);
+        aritmetica3.sumar();
     }
     
 }
