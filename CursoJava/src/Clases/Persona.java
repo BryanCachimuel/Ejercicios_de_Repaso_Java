@@ -5,8 +5,8 @@ package Clases;
 public class Persona {
     
     // atributos de la clase
-    String nombre;
-    String apellido;
+    public String nombre;
+    public String apellido;
 
     /* métodos de clase */
     public void desplegarInformacion(){
