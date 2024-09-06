@@ -7,13 +7,18 @@ public class Persona {
 
     private int idPersona;
     private String nombre;
+    private int edad;
     private static int contadorPersonas;
     
     // constructor
-    public Persona(String nombre){
+    public Persona(String nombre, int edad){
         this.nombre = nombre;
-        // Incrementar el contador por cada objeto nuevo y aumentando el nuevo valor a la variable idPersona
-       this.idPersona = Persona.contadorPersonas++;
+        this.edad = edad;
+        
+        //Incrementar el contador por cada objeto nuevo
+        Persona.contadorPersonas++;
+        // Aumentando el nuevo valor a la variable idPersona
+       this.idPersona = Persona.contadorPersonas;
     }
 
     public int getIdPersona() {
@@ -32,6 +37,14 @@ public class Persona {
         this.nombre = nombre;
     }
     
+    public int getEdad(){
+        return edad;
+    }
+    
+    public void setEdad(int edad){
+        this.edad = edad;
+    }
+    
     public static int getContadorPersonas() {
         return contadorPersonas;
     }
@@ -42,7 +55,7 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" + "idPersona=" + idPersona + ", nombre=" + nombre + '}';
+        return "Persona{" + "idPersona=" + idPersona + ", nombre=" + nombre + ", edad=" + edad + '}';
     }
    
 }
