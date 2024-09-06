@@ -25,7 +25,8 @@ public class Persona {
         return this.sueldo;
     }
     
-    public boolean getEliminado(){
+    // los métodos boolean no se les pone get si no is
+    public boolean isEliminado(){
         return this.eliminado;
     }
     
@@ -40,5 +41,11 @@ public class Persona {
     
     public void setEliminado(boolean eliminado){
         this.eliminado = eliminado;
+    }
+    
+    public String toString(){
+        return "Persona [nombre: "+ this.nombre + 
+                ", sueldo:  " + this.sueldo + 
+                ", eliminado: " + this.eliminado + "]";
     }
 }
