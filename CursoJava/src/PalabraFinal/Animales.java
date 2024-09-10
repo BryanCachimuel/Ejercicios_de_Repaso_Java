@@ -11,6 +11,17 @@ public class Animales {
     // es conocida como una constante cuando se une las palabras final y static y también el nombre de la constante se debe poner en mayuscula
     public final static String MI_CONSTANTE = "constante en java";
     
+    private String tipoAnimal;
+
+    public String getTipoAnimal() {
+        return tipoAnimal;
+    }
+
+    public void setTipoAnimal(String tipoAnimal) {
+        this.tipoAnimal = tipoAnimal;
+    }
+
+  
     public final void imprimir(){
         System.out.println("Método Imprimir");
     }
