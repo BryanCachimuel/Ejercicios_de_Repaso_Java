@@ -11,6 +11,10 @@ public class TestFinal {
         System.out.println("miVariable = " + miVariable);
         
         // miVariable = 15; -> esto no se puede hacer
+        
+        // no puede ser modificado el valor de la constante ya que tiene la palabra reservada final
+        //Animales.MI_CONSTANTE = "constante desde la clase test";
+        System.out.println("Mi constante: " + Animales.MI_CONSTANTE);
     }
     
 }
