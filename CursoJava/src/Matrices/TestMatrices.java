@@ -22,6 +22,16 @@ public class TestMatrices {
                 System.out.println("edades " + fila + "-" + columnas + ": " + edades[fila][columnas]);
             }
         }
+        
+        System.out.println("\n");
+        
+        String frutas[][] = {{"naranja","limon"},{"mora","frutilla"},{"babaco","papaya","guaba"}};
+        
+        for(int fil = 0; fil < frutas.length; fil++){
+            for(int col = 0; col < frutas[fil].length; col++){
+                System.out.println("frutas " + col + "-" + fil + ": " + frutas[fil][col]);
+            }
+        }
                 
     }
  
