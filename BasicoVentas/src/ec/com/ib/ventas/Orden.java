@@ -12,5 +12,13 @@ public class Orden {
         this.productos = new Producto[MAX_PRODUCTOS]; // instanciando la clase Producto para darle un valor paraa los productos totales para el arreglo
     }
     
-    
+    public void agregarProducto(Producto producto){
+        /*validación para no pasarnos del maximo de productos definidos */
+        if(this.contadorProductos < MAX_PRODUCTOS){
+            productos[contadorProductos++] = producto;
+        }
+        else{
+            System.out.println("Se ha superado el máximo de productos");
+        }
+    }
 }
