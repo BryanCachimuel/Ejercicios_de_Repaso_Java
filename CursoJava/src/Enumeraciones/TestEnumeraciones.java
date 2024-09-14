@@ -3,9 +3,12 @@ package Enumeraciones;
 public class TestEnumeraciones {
     
     public static void main(String[] args) {
-        System.out.println("Día 1: " + Dias.LUNES);
-        
-        indicarDiaSemana(Dias.DOMINGO);
+//        System.out.println("Día 1: " + Dias.LUNES);
+//        
+//        indicarDiaSemana(Dias.DOMINGO);
+
+        System.out.println("Continente no. 4: " + Continentes.AMERICA);
+        System.out.println("Continente no. 4: " + Continentes.AMERICA + " con " + Continentes.AMERICA.getHabitantes() + " de habitantes");
     }
     
     private static void indicarDiaSemana(Dias dias){
