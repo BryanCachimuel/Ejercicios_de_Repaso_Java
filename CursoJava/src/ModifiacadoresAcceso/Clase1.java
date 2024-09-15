@@ -1,14 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ModifiacadoresAcceso;
 
-/**
- *
- * @author Bryan
+/*
+    Modificadores de Acceso
  */
 public class Clase1 {
     
+    public String atributoPublico = "Valor atributo público";
+    
+    public Clase1(){
+        System.out.println("Constructor Público");
+    }
+    
+    public void metodoPublico(){
+        System.out.println("Método Público");
+    }
 }
