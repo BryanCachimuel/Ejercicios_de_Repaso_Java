@@ -12,6 +12,12 @@ public class TestForeach {
         for(String mes: meses){
             System.out.println("Meses: " + mes);
         }
+        
+        Ciudad ciudades[] = {new Ciudad("Ibarra"), new Ciudad("Quito"), new Ciudad("Cuenca")};
+        
+        for(Ciudad ciudad: ciudades){
+            System.out.println("Ciudades: " + ciudad);
+        }
     }
     
 }
