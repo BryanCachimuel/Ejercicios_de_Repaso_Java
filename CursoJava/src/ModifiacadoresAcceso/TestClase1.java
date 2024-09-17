@@ -18,6 +18,15 @@ public class TestClase1 {
         
         ClaseHija claseHija = new ClaseHija();
         System.out.println("claseHija = " + claseHija);
+        
+        Clase1 claseDefault = new Clase1("Valor1", "Valor2");
+        clase1.atributoDefault = "Cambio desde la prueba";
+        System.out.println("Clase1 atributo default = " + clase1.atributoDefault);
+        claseDefault.metodoDefault();
+        
+        Clase1 clasePrivate = new Clase1();
+        clase1.setAtributoPrivado("Atributo Privado");
+        System.out.println("atributo privado = "  + clasePrivate.getAtributoPrivado());
     }
     
 }
