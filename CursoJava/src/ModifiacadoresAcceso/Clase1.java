@@ -24,4 +24,35 @@ public class Clase1 {
     protected void metodoProtected(){
         System.out.println("Método Protected");
     }
+    
+    String atributoDefault = "Valor atributo Default";
+    
+    Clase1(String args, String args2){
+        System.out.println("Contructor Default");
+    }
+    
+    void metodoDefault(){
+        System.out.println("Método Default");
+    }
+    
+    private String atributoPrivado = "Valor atributo Privado";
+    
+    private Clase1(String atributo, String valor, String valor2){
+        this();
+        System.out.println("Constructor Privado");
+    }
+    
+    private void metodoPrivate(){
+        System.out.println("Método Privado");
+    }
+
+    public String getAtributoPrivado() {
+        return atributoPrivado;
+    }
+
+    public void setAtributoPrivado(String atributoPrivado) {
+        this.atributoPrivado = atributoPrivado;
+    }
+    
+    
 }
