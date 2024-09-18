@@ -33,5 +33,10 @@ public class Empleado {
     public String obtenerDetalles(){
         return "Nombre: " + this.nombre + ", sueldo: " + this.sueldo;
     }
+
+    @Override
+    public String toString() {
+        return "Empleado{" + "nombre=" + nombre + ", sueldo=" + sueldo + '}';
+    }  
     
 }
