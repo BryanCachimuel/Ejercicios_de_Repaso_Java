@@ -1,4 +1,4 @@
-package SobreescrituraMetodos;
+package InstanceOf;
 
 public class Gerente extends Empleado{
     
@@ -12,6 +12,14 @@ public class Gerente extends Empleado{
     @Override
     public String obtenerDetalles() {
         return super.obtenerDetalles() + ", departamento: " + this.departamento;
+    }
+
+    public String getDepartamento() {
+        return this.departamento;
+    }
+
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
     }
     
     
