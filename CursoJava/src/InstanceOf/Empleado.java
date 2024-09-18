@@ -1,7 +1,7 @@
-package SobreescrituraMetodos;
+package InstanceOf;
 
 /*
-    Sobreescritura de métodos
+    Instance of
  */
 
 public class Empleado {
