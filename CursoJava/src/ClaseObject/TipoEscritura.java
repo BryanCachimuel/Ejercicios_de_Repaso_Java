@@ -1,4 +1,4 @@
-package ConversionObjetos;
+package ClaseObject;
 
 public enum TipoEscritura {
     

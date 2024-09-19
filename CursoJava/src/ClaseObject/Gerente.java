@@ -1,6 +1,4 @@
-package ConversionObjetos;
-
-import InstanceOf.*;
+package ClaseObject;
 
 public class Gerente extends Empleado{
     
