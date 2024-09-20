@@ -13,17 +13,17 @@ public class ImplementacionMySql implements IAccesoDatos{
 
     @Override
     public void listar() {
-        
+        System.out.println("Listar desde MySql");
     }
 
     @Override
     public void actualizar() {
-        
+        System.out.println("Actualizar desde MySQL");
     }
 
     @Override
     public void eliminar() {
-        
+        System.out.println("Eliminar desde MySQL");
     }
     
     
