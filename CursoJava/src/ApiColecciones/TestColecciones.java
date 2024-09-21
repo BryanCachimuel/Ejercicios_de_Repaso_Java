@@ -29,6 +29,19 @@ public class TestColecciones {
         miSet.add("Domingo");
         
         imprimir(miSet);
+        
+        Map miMapa = new HashMap();
+        miMapa.put("Valor1", "Enero");
+        miMapa.put("Valor2", "Febrero");
+        miMapa.put("Valor3", "Marzo");
+        miMapa.put("Valor4", "Abril");
+        miMapa.put("Valor5", "Mayo");
+        
+        String elemento = (String)miMapa.get("Valor4");
+        System.out.println("Elemento = " + elemento);
+        
+        imprimir(miMapa.keySet()); // imprime todos los valores de las llaves de los elementos
+        imprimir(miMapa.values()); // imprime todos los valores del mapa
     }
     
     public static void imprimir(Collection coleccion){
