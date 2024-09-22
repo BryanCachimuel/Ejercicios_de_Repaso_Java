@@ -20,7 +20,7 @@ public class TestColeccionesGenericas {
         //System.out.println("Elemento = " + elemento);
         
         /* Se imprimen los elementos se importar el orden dado por el usuario */
-        Set miSet = new HashSet();
+        Set<String> miSet = new HashSet<>();
         miSet.add("Lunes");
         miSet.add("Miercóles");
         miSet.add("Viernes");
@@ -29,23 +29,28 @@ public class TestColeccionesGenericas {
         
         //imprimir(miSet);
         
-        Map miMapa = new HashMap();
+        Map<String, String> miMapa = new HashMap<>();
         miMapa.put("Valor1", "Enero");
         miMapa.put("Valor2", "Febrero");
         miMapa.put("Valor3", "Marzo");
         miMapa.put("Valor4", "Abril");
         miMapa.put("Valor5", "Mayo");
+        miMapa.put("Valor5", "Junio");  
         
-        //String elemento = (String)miMapa.get("Valor4");
-        //System.out.println("Elemento = " + elemento);
+        String elementoMapa = miMapa.get("Valor5"); // se imprime le ultimo valor establecido de acuerdo a su clave
+        System.out.println("Elemento = " + elementoMapa);
         
         //imprimir(miMapa.keySet()); // imprime todos los valores de las llaves de los elementos
         //imprimir(miMapa.values()); // imprime todos los valores del mapa
     }
     
     public static void imprimir(Collection<String> coleccion){
-        coleccion.forEach(elemento -> {
+        /*coleccion.forEach(elemento -> {
             System.out.println("elemento = " + elemento);
-        });
+        });*/
+        
+        for(String elemento : coleccion){
+            System.out.println("Elemento = " + elemento);
+        }
     }
 }
