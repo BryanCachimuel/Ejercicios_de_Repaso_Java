@@ -11,6 +11,8 @@ public class TestManejoArchivos {
         /*escribirArchivo(nombreArchivo, "agregando mas texto para el archivo");*/
         anexarArchivo(nombreArchivo, "Texto referencias para anexar información");
         anexarArchivo(nombreArchivo, "anexando otra línea al escrito");
+        
+        leerArchivo(nombreArchivo);
     }
     
 }
