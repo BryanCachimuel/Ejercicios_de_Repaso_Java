@@ -4,7 +4,7 @@ import ec.com.ib.peliculas.domain.Pelicula;
 import ec.com.ib.peliculas.excepciones.*;
 import java.util.List;
 
-public interface AccesoDatos {
+public interface IAccesoDatos {
     
     boolean existe(String nombreRecurso) throws AccesoDatosEx;
     
