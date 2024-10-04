@@ -4,6 +4,8 @@ import ec.com.ib.peliculas.domain.Pelicula;
 import ec.com.ib.peliculas.excepciones.*;
 import java.io.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AccesoDatosImpl implements IAccesoDatos{
 
@@ -40,7 +42,16 @@ public class AccesoDatosImpl implements IAccesoDatos{
 
     @Override
     public void escribir(Pelicula pelicula, String nombreRecurso, boolean anexar) throws EscrituraDatosEx {
-        
+        File archivo = new File(nombreRecurso);
+        try {
+            PrintWriter salida = new PrintWriter(new FileWriter(archivo, anexar));
+            salida.println(pelicula.toString());
+            salida.close();
+            System.out.println("Se ha escrito información al archivo: " + pelicula);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            throw new EscrituraDatosEx("Excepcion al escribir peliculas: " + ex.getMessage());
+        }
     }
 
     @Override
