@@ -44,7 +44,11 @@ public class CatalogoPeliculasImpl implements ICatalogoPeliculas{
     public void buscarPelicula(String buscar) {
         String resultado = null;
         try {
-            resultado = this.datos.buscar(NOMBRE_RECURSO, buscar);
+            if(resultado == null){
+                System.out.println("La película que esta buscando no existe, busque otra");
+            }else{
+                resultado = this.datos.buscar(NOMBRE_RECURSO, buscar);
+            }
         } catch (AccesoDatosEx ex) {
             System.out.println("Error de acceso a datos");
             ex.printStackTrace(System.out);

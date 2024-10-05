@@ -21,7 +21,7 @@ public class Pelicula {
 
     @Override
     public String toString() {
-        return "El nombre de la película es: " + this.nombre;
+        return this.nombre;
     }
     
 }
