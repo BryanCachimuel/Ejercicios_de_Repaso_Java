@@ -3,8 +3,6 @@ package datos;
 import domain.Persona;
 import java.sql.*;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class PersonaDAO {
     
@@ -35,6 +33,16 @@ public class PersonaDAO {
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         }
+        finally{
+            try {
+                Conexion.close(rs);
+                Conexion.close(psmtm);
+                Conexion.close(conn);
+            } catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
+        }
+        
         return personas;
     }
     
