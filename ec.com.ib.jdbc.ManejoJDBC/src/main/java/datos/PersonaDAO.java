@@ -3,11 +3,14 @@ package datos;
 import domain.Persona;
 import java.sql.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PersonaDAO {
 
     private static final String SQL_SELECT = "SELECT id_persona, nombre,apellido, email, telefono FROM persona";
     private static final String SQL_INSERT = "INSERT INTO persona(nombre, apellido, email, telefono) VALUES(?, ?, ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE persona SET nombre=?, apellido=?, email=?, telefono=? WHERE id_persona=?";
 
     public List<Persona> seleccionar() {
         Connection conn = null;
@@ -72,5 +75,33 @@ public class PersonaDAO {
 
         }
         return registros;
+    }
+
+    public int actualizar(Persona persona) {
+        Connection conn = null;
+        PreparedStatement psmtm = null;
+        int registroActualizado = 0;
+        
+        try {
+            conn = Conexion.getConnection();
+            psmtm = conn.prepareStatement(SQL_UPDATE);
+            psmtm.setString(1, persona.getNombre());
+            psmtm.setString(2, persona.getApellido());
+            psmtm.setString(3, persona.getEmail());
+            psmtm.setString(4, persona.getTelefono());
+            psmtm.setInt(5, persona.getIdPersona());
+            registroActualizado = psmtm.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }finally{
+            try {
+                Conexion.close(conn);
+                Conexion.close(psmtm);
+            } catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
+        }
+        
+        return registroActualizado;
     }
 }
