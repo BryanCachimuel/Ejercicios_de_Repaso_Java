@@ -18,13 +18,17 @@ public class TestManejoPersonas {
             System.out.println("Persona: " + persona);
         }*/
         
-        /* Insertando un nuevo objeto de tipo persona 
-        Persona personaNueva = new Persona("Richard", "Tarupí", "rftc@gmail.com", "0974365872");
+        /*Insertando un nuevo objeto de tipo persona 
+        Persona personaNueva = new Persona("Maritza", "Paspuezan", "mp@yahoo.com", "0945793652");
         personaDao.insertar(personaNueva);*/
         
-        /* Modificar un objeto de persona ya existente */
+        /* Modificar un objeto de persona ya existente 
         Persona personaActualizar = new Persona(4, "Kevin", "Rodriguez", "kdrb@outlook.com", "0984526973");
-        personaDao.actualizar(personaActualizar);
+        personaDao.actualizar(personaActualizar);*/
+        
+        /* eliminar un registro */
+        Persona personaEliminada = new Persona(3);
+        personaDao.eliminar(personaEliminada);
         
         List<Persona> personas = personaDao.seleccionar();
         /* es recomendable usar una función lamda */
