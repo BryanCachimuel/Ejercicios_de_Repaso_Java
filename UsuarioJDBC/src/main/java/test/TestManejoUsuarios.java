@@ -10,8 +10,14 @@ public class TestManejoUsuarios {
         
         UsuarioDAO usuarioDao = new UsuarioDAO();
         
-        Usuario usuarioNuevo = new Usuario("Fernando", "4862864");
-        usuarioDao.insertar(usuarioNuevo);
+        /*Usuario usuarioNuevo = new Usuario("Marlene", "5101520");
+        usuarioDao.insertar(usuarioNuevo);*/
+        
+        /*Usuario usuarioActualizar = new Usuario(5, "Michelle", "987654321");
+        usuarioDao.actualizar(usuarioActualizar);*/
+        
+        Usuario usuarioEliminar = new Usuario(2);
+        usuarioDao.eliminar(usuarioEliminar);
         
         List<Usuario> usuarios = usuarioDao.listarUsuarios();
         
