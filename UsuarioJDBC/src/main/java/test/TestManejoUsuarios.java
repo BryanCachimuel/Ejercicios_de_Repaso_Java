@@ -9,11 +9,15 @@ public class TestManejoUsuarios {
     public static void main(String[] args) {
         
         UsuarioDAO usuarioDao = new UsuarioDAO();
+        
+        Usuario usuarioNuevo = new Usuario("Fernando", "4862864");
+        usuarioDao.insertar(usuarioNuevo);
+        
         List<Usuario> usuarios = usuarioDao.listarUsuarios();
         
-        for(Usuario usuario : usuarios){
+        usuarios.forEach(usuario -> {
             System.out.println("Usuarios: " + usuario);
-        }
+        });
         
     }
     
