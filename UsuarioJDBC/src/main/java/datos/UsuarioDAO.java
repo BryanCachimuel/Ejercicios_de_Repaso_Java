@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 public class UsuarioDAO {
     
     private static final String SQL_SELECT = "SELECT id_usuario, usuario, password FROM usuario";
+    private static final String SQL_INSERT = "INSERT INTO usuario(usuario, password) VALUES(?,?)";
     
     public List<Usuario> listarUsuarios(){
         Connection conn = null;
@@ -42,6 +43,30 @@ public class UsuarioDAO {
             }
         }
         return usuarios;
+    }
+    
+    public int insertar(Usuario usuario){
+        Connection conn = null;
+        PreparedStatement psmtm = null;
+        int registros = 0;
+        
+        try {
+            conn = getConnection();
+            psmtm = conn.prepareStatement(SQL_INSERT);
+            psmtm.setString(1, usuario.getUsuario());
+            psmtm.setString(2, usuario.getPassword());
+            registros = psmtm.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }finally{
+            try {
+                close(psmtm);
+                close(conn);
+            } catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
+        }
+        return registros;
     }
     
 }
