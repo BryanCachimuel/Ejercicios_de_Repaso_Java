@@ -2,13 +2,14 @@ package test;
 
 import datos.Conexion;
 import datos.UsuarioDAO;
-import domain.Usuario;
+import datos.UsuarioDaoJDBC;
+import domain.UsuarioDTO;
 import java.sql.*;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class TestTransaccional {
+public class TestManejoUsuarios {
 
     public static void main(String[] args) {
 
@@ -20,19 +21,14 @@ public class TestTransaccional {
                 conexion.setAutoCommit(false);
             }
 
-            UsuarioDAO usuarioDao = new UsuarioDAO(conexion);
-            Usuario actualizarUsuario = new Usuario(9, "Joseph", "8974563");
+            UsuarioDAO usuarioDao = new UsuarioDaoJDBC(conexion);
+           
 
-            usuarioDao.actualizar(actualizarUsuario);
+            List<UsuarioDTO> usuarios = usuarioDao.select();
 
-            /*Usuario nuevoUsuario = new Usuario("Franklin", "907456983");
-            usuarioDao.insertar(nuevoUsuario);*/
-
-            List<Usuario> usuarios = usuarioDao.listarUsuarios();
-
-            usuarios.forEach(usuario -> {
-                System.out.println("Usuarios: " + usuario);
-            });
+            for(UsuarioDTO usuario :  usuarios){
+                System.out.println("UsuarioDTO : " + usuario);
+            }
 
             conexion.commit();
             System.out.println("Se ha hecho el commit de la transacción");
