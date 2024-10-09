@@ -9,10 +9,19 @@ import java.util.logging.Logger;
 
 public class UsuarioDAO {
     
+    private Connection conexionTransaccional;
+    
     private static final String SQL_SELECT = "SELECT id_usuario, usuario, password FROM usuario";
     private static final String SQL_INSERT = "INSERT INTO usuario(usuario, password) VALUES(?,?)";
     private static final String SQL_UPDATE = "UPDATE usuario SET usuario = ?, password = ? WHERE id_usuario = ?";
     private static final String SQL_DELETE = "DELETE FROM usuario WHERE id_usuario = ?";
+
+    public UsuarioDAO() {
+    }
+
+    public UsuarioDAO(Connection conexionTransaccional) {
+        this.conexionTransaccional = conexionTransaccional;
+    }
     
     public List<Usuario> listarUsuarios(){
         Connection conn = null;
@@ -39,7 +48,9 @@ public class UsuarioDAO {
             try {
                 close(rs);
                 close(psmtm);
-                close(conn);
+                if(this.conexionTransaccional == null){
+                    close(conn);
+                }
             } catch (SQLException ex) {
                ex.printStackTrace(System.out);
             }
@@ -63,7 +74,9 @@ public class UsuarioDAO {
         }finally{
             try {
                 close(psmtm);
-                close(conn);
+                if(this.conexionTransaccional == null){
+                    close(conn);
+                }
             } catch (SQLException ex) {
                 ex.printStackTrace(System.out);
             }
@@ -88,7 +101,9 @@ public class UsuarioDAO {
         }finally{
             try {
                 close(psmtm);
-                close(conn);
+                if(this.conexionTransaccional == null){
+                    close(conn);
+                }
             } catch (SQLException ex) {
                ex.printStackTrace(System.out);
             }
@@ -111,7 +126,9 @@ public class UsuarioDAO {
         }finally{
             try {
                 close(psmtm);
-                close(conn);
+                if(this.conexionTransaccional == null){
+                    close(conn);
+                }
             } catch (SQLException ex) {
                ex.printStackTrace(System.out);
             }
