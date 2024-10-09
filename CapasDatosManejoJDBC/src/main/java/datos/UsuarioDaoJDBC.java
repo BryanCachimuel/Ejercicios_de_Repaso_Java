@@ -1,13 +1,11 @@
 package datos;
 
 import static datos.Conexion.*;
-import domain.Usuario;
+import domain.UsuarioDTO;
 import java.sql.*;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class UsuarioDAO {
+public class UsuarioDaoJDBC implements UsuarioDAO{
     
     private Connection conexionTransaccional;
     
@@ -16,19 +14,20 @@ public class UsuarioDAO {
     private static final String SQL_UPDATE = "UPDATE usuario SET usuario = ?, password = ? WHERE id_usuario = ?";
     private static final String SQL_DELETE = "DELETE FROM usuario WHERE id_usuario = ?";
 
-    public UsuarioDAO() {
+    public UsuarioDaoJDBC() {
     }
 
-    public UsuarioDAO(Connection conexionTransaccional) {
+    public UsuarioDaoJDBC(Connection conexionTransaccional) {
         this.conexionTransaccional = conexionTransaccional;
     }
     
-    public List<Usuario> listarUsuarios(){
+    @Override
+    public List<UsuarioDTO> select() throws SQLException{
         Connection conn = null;
         PreparedStatement psmtm = null;
         ResultSet rs = null;
-        Usuario usuario;
-        List<Usuario> usuarios = new ArrayList<>();
+        UsuarioDTO usuario;
+        List<UsuarioDTO> usuarios = new ArrayList<>();
         
         try {
             conn = getConnection();
@@ -39,7 +38,7 @@ public class UsuarioDAO {
                 String usuarioNombre = rs.getString("usuario");
                 String password = rs.getString("password");
                 
-                usuario = new Usuario(idUsuario, usuarioNombre, password);
+                usuario = new UsuarioDTO(idUsuario, usuarioNombre, password);
                 usuarios.add(usuario);
             }
         } catch (SQLException ex) {
@@ -58,7 +57,8 @@ public class UsuarioDAO {
         return usuarios;
     }
     
-    public int insertar(Usuario usuario){
+    @Override
+    public int insert(UsuarioDTO usuario) throws SQLException{
         Connection conn = null;
         PreparedStatement psmtm = null;
         int registros = 0;
@@ -84,7 +84,8 @@ public class UsuarioDAO {
         return registros;
     }
     
-    public int actualizar(Usuario usuario){
+    @Override
+    public int update(UsuarioDTO usuario) throws SQLException{
         Connection conn = null;
         PreparedStatement psmtm = null;
         int registroActualizado = 0;
@@ -111,7 +112,8 @@ public class UsuarioDAO {
         return registroActualizado;
     }
     
-    public int eliminar(Usuario usuario){
+    @Override
+    public int delete(UsuarioDTO usuario) throws SQLException{
         Connection conn = null;
         PreparedStatement psmtm = null;
         int registroEliminar = 0;

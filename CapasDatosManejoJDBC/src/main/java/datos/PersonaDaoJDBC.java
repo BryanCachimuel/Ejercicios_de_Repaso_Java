@@ -1,10 +1,10 @@
 package datos;
 
-import domain.Persona;
+import domain.PersonaDTO;
 import java.sql.*;
 import java.util.*;
 
-public class PersonaJDBC {
+public class PersonaDaoJDBC implements PersonaDAO{
 
     private Connection conexionTransaccional;
 
@@ -13,19 +13,20 @@ public class PersonaJDBC {
     private static final String SQL_UPDATE = "UPDATE persona SET nombre=?, apellido=?, email=?, telefono=? WHERE id_persona=?";
     private static final String SQL_DELETE = "DELETE FROM persona WHERE id_persona = ?";
 
-    public PersonaJDBC() {
+    public PersonaDaoJDBC() {
     }
 
-    public PersonaJDBC(Connection conexionTransaccional) {
+    public PersonaDaoJDBC(Connection conexionTransaccional) {
         this.conexionTransaccional = conexionTransaccional;
     }
 
-    public List<Persona> seleccionar() throws SQLException {
+    @Override
+    public List<PersonaDTO> select() throws SQLException {
         Connection conn = null;
         PreparedStatement psmtm = null;
         ResultSet rs = null;
-        Persona persona;
-        List<Persona> personas = new ArrayList<>();
+        PersonaDTO persona;
+        List<PersonaDTO> personas = new ArrayList<>();
 
         try {
             conn = this.conexionTransaccional != null ? this.conexionTransaccional : Conexion.getConnection();
@@ -39,7 +40,7 @@ public class PersonaJDBC {
                 String telefono = rs.getString("telefono");
 
                 // se usa el constructor con toda la información para agregar una persona
-                persona = new Persona(idPersona, nombre, apellido, email, telefono);
+                persona = new PersonaDTO(idPersona, nombre, apellido, email, telefono);
                 personas.add(persona);
             }
         } finally {
@@ -57,7 +58,8 @@ public class PersonaJDBC {
         return personas;
     }
 
-    public int insertar(Persona persona) throws SQLException {
+    @Override
+    public int insert(PersonaDTO persona) throws SQLException {
         Connection conn = null;
         PreparedStatement psmtm = null;
         int registros = 0;
@@ -85,7 +87,8 @@ public class PersonaJDBC {
         return registros;
     }
 
-    public int actualizar(Persona persona) throws SQLException {
+    @Override
+    public int update(PersonaDTO persona) throws SQLException {
         Connection conn = null;
         PreparedStatement psmtm = null;
         int registroActualizado = 0;
@@ -114,7 +117,8 @@ public class PersonaJDBC {
         return registroActualizado;
     }
 
-    public int eliminar(Persona persona) throws SQLException {
+    @Override
+    public int delete(PersonaDTO persona) throws SQLException {
         Connection conn = null;
         PreparedStatement psmtm = null;
         int registroEliminar = 0;
