@@ -1,40 +1,45 @@
 package test;
 
+import datos.Conexion;
 import datos.PersonaJDBC;
 import domain.Persona;
-import java.util.List;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TestManejoPersonas {
     
     public static void main(String[] args) {
-        PersonaJDBC personaDao = new PersonaJDBC();
         
+        Connection conexion = null;
         
-        /* se puede usar los dos procesos
-         personas.forEach(persona -> {
-            System.out.println("Persona: " + persona);
-        });
-        for(Persona persona : personas){
-            System.out.println("Persona: " + persona);
-        }*/
+        try {  
+            conexion = Conexion.getConnection();
+            if(conexion.getAutoCommit()){
+                conexion.setAutoCommit(false);
+            }
+            
+            PersonaJDBC personaJdbc = new PersonaJDBC(conexion);
+            Persona actualizarPersona = new Persona(1, "Bryan", "Cachimuel", "blcl@gmail.com", "0974859635");
+  
+            personaJdbc.actualizar(actualizarPersona);
+            
+            //Persona nuevaPersona = new Persona("Adriana", "Díaz88888888888888888888888888888888888888888888888888888888888888888888", "amdc@yahoo.com", "0987245639");
+            Persona nuevaPersona = new Persona("Adriana", "Díaz", "amdc@yahoo.com", "0987245639");
+            personaJdbc.insertar(nuevaPersona);
+            
+            conexion.commit();
+            System.out.println("Se ha hecho commit de la transacción");
+        } catch (SQLException ex) {
+            try {
+                ex.printStackTrace(System.out);
+                System.out.println("Entramos al rollback");
+                conexion.rollback();
+            } catch (SQLException ex1) {
+                ex1.printStackTrace(System.out);
+            }
+        }
         
-        /*Insertando un nuevo objeto de tipo persona 
-        Persona personaNueva = new Persona("Maritza", "Paspuezan", "mp@yahoo.com", "0945793652");
-        personaDao.insertar(personaNueva);*/
-        
-        /* Modificar un objeto de persona ya existente 
-        Persona personaActualizar = new Persona(4, "Kevin", "Rodriguez", "kdrb@outlook.com", "0984526973");
-        personaDao.actualizar(personaActualizar);*/
-        
-        /* eliminar un registro */
-        Persona personaEliminada = new Persona(3);
-        personaDao.eliminar(personaEliminada);
-        
-        List<Persona> personas = personaDao.seleccionar();
-        /* es recomendable usar una función lamda */
-        personas.forEach(persona -> {
-            System.out.println("Persona: " + persona);
-        });
     }
     
 }
