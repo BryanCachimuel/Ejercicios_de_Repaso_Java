@@ -55,3 +55,9 @@ Registro_Maven/target/test-classes/
 /CatalogoPeliculas/build/
 /IntroduccionJDBC/target/
 /ec.com.ib.jdbc.ManejoJDBC/target/
+/UsuarioJDBC/target/
+/TransaccionesManejoJDBC/target/
+/CapasDatosManejoJDBC/target/
+/PoolConexionesManejoJDBC/target/
+/HolaMundoJavaWeb/target/
+/HolaMundoServlets/target/
