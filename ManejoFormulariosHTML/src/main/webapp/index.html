@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Start Page</title>
+        <title>Ejercicio Formulario</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="recursos/estilos.css"/>
+        <script type="text/javascript" src="recursos/funciones.js"></script>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <form name="form1" action="/ManejoFormulariosHTML/Servlet" method="post" onsubmit="return validarForma(this)">
+            <input type="hidden" name="oculto" value="valorOculto"/>
+            
+            <table width="200" id="enfasis-columna">
+                <caption>
+                    Formulario Registro de Datos
+                </caption>
+                <tr>
+                    <td class="columna">
+                        Usuario: (*)
+                    </td>
+                    <td>
+                        <input class="default" type="text" name="usuario" value="Escribir usuario" onfocus="this.select()"/> 
+                    </td>
+                </tr>
+                <tr>
+                    
+                </tr>
+            </table>
+        </form>
     </body>
 </html>
