@@ -37,6 +37,34 @@ public class Servlet extends HttpServlet{
         out.print("</td>");
         out.print("</tr>");
         
+        out.print("<tr>");
+        out.print("<td>");
+        out.print("Contraseña");
+        out.print("<td>");
+        out.print(password);
+        out.print("</td>");
+        out.print("</tr>");
+        
+        out.print("<tr>");
+        out.print("<td>");
+        out.print("Tecnologias");
+        out.print("<td>");
+        /* como es un tipo de dato arreglo se manda a imprimir de la siguiente forma */
+        for(String tecnologia : tecnologias){
+            out.print(tecnologia);
+            out.print(" / ");
+        }
+        out.print("</td>");
+        out.print("</tr>");
+      
+        out.print("<tr>");
+        out.print("<td>");
+        out.print("Género");
+        out.print("<td>");
+        out.print(genero);
+        out.print("</td>");
+        out.print("</tr>");
+        
         out.print("</table>");
         out.print("</body>");
         out.print("</html>");
