@@ -1,12 +1,13 @@
 function validarForma(forma){
-    var usuario = forma.usuario;
     
-    if(usuario.value = "" || usuario.value == "Escribir Usuario"){
+    var usuario = forma.usuario;
+    if(usuario.value == "" || usuario.value == "Escribir usuario"){
         alert("Debe proporcionar un nombre de usuario");
         usuario.focus();
         usuario.select();
         return false;
     }
+
     
     var password = forma.password;
     if(password.value == "" || password.value.length < 3){
@@ -45,11 +46,11 @@ function validarForma(forma){
     }
     
     var ocupacion = forma.ocupacion;
-    if(ocupacion.value = ""){
-        alert("Debe seleccionar una ocupación");
+    if(ocupacion.value == ""){
+        alert("Debe seleccionar una ocupacion");
         return false;
     }
-    
+
     // formulario es valido
     alert("Formulario valido, enviando datos al servidor");
     return true;
