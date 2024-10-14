@@ -21,7 +21,25 @@ public class Servlet extends HttpServlet{
         String musica[] = request.getParameterValues("musica");
         String comentario = request.getParameter("comentarios");
         
+        out.print("<html>");
+        out.print("<head>");
+        out.print("<title>Resultado Servlet</title>");
+        out.print("</head>");
+        out.print("<body>");
+        out.print("<h1>Parametros procesados por el Servlet:</h1>");
+        out.print("<table border='1'>");
         
+        out.print("<tr>");
+        out.print("<td>");
+        out.print("Usuario");
+        out.print("<td>");
+        out.print(usuario);
+        out.print("</td>");
+        out.print("</tr>");
+        
+        out.print("</table>");
+        out.print("</body>");
+        out.print("</html>");
     }
     
 }
