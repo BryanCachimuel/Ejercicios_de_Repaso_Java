@@ -19,7 +19,7 @@ public class Servlet extends HttpServlet{
         String genero = request.getParameter("genero");
         String ocupacion = request.getParameter("ocupacion");
         String musica[] = request.getParameterValues("musica");
-        String comentario = request.getParameter("comentarios");
+        String comentarios = request.getParameter("comentarios");
         
         out.print("<html>");
         out.print("<head>");
@@ -62,6 +62,38 @@ public class Servlet extends HttpServlet{
         out.print("Género");
         out.print("<td>");
         out.print(genero);
+        out.print("</td>");
+        out.print("</tr>");
+        
+        out.print("<tr>");
+        out.print("<td>");
+        out.print("Ocupación");
+        out.print("<td>");
+        out.print(ocupacion);
+        out.print("</td>");
+        out.print("</tr>");
+        
+        out.print("<tr>");
+        out.print("<td>");
+        out.print("Música Favorita");
+        out.print("<td>");
+        if(musica != null){
+            /* como es un tipo de dato arreglo se manda a imprimir de la siguiente forma */
+            for(String musicas : musica){
+                out.print(musicas);
+                out.print(" / ");
+            }
+        }else{
+            out.print("Valor no Proporcionado");
+        }
+        out.print("</td>");
+        out.print("</tr>");
+        
+         out.print("<tr>");
+        out.print("<td>");
+        out.print("Comentarios");
+        out.print("<td>");
+        out.print(comentarios);
         out.print("</td>");
         out.print("</tr>");
         
