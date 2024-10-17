@@ -20,10 +20,10 @@ public class GeneracionExcelServlet extends HttpServlet{
         
         // desplegar la información al cliente
         PrintWriter out = response.getWriter();
-        out.print("\tValores");
-        out.print("\t1");
-        out.print("\t2");
-        out.print("Total\t=SUMA(b2:b3)");
+        out.println("\tValores");
+        out.println("\t1");
+        out.println("\t2");
+        out.println("Total\t=SUMA(b2:b3)");
         out.close();
     }
 }
