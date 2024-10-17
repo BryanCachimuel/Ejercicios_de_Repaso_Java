@@ -21,7 +21,7 @@ public class HoraServlet extends HttpServlet{
         
         // desplegar la información al cliente
         PrintWriter out = response.getWriter();
-        out.print("Hora Actualziada: " + horaConFormato);
+        out.print(horaConFormato);
         out.close();
     }
     
