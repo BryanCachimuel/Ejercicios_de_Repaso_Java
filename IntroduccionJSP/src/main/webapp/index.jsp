@@ -23,6 +23,6 @@
         <br/>
         Valor de usuario por medio del método: <%= this.getUsuario() %>
         <br/>
-        Contador de Visitas <%= this.contadorVisitas++ %>
+        Contador de Visitas: <%= this.contadorVisitas++ %>
     </body>
 </html>
