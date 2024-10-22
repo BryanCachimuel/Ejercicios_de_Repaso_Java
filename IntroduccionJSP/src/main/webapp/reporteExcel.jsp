@@ -1,8 +1,14 @@
+<%@page errorPage="/WEB-INF/manejoErrores.jsp"%>
 <%@page import="utilerias.Conversiones, java.util.Date"%>
 <%@page contentType="application/vnd.ms-excel" %>
 <%
     String nameArchivo = "reporte.xls";
+    /*
+    Para descargar el archivo excel
     response.setHeader("Content-Disposition", "attachment;filename=" + nameArchivo);
+    */
+    /*inline -> permite redirigir a un archivo en caso de error*/
+     response.setHeader("Content-Disposition", "inline;filename=" + nameArchivo);
 %>
 <!DOCTYPE html>
 <html>
@@ -31,6 +37,13 @@
                 <td>Pondremos en práctica conceptos de la programación orientada a objetos</td>
                 <td>
                     <%= Conversiones.format(new Date()) %>
+                </td>
+            </tr>
+            <tr>
+                <td>3. Programación Web con JavaEE</td>
+                <td>Proceso introductorio a Java Web con Java Enterprise Edition</td>
+                <td>
+                    <%= Conversiones.format("500") %>
                 </td>
             </tr>
         </table>
