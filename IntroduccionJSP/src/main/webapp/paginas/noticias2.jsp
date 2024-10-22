@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<!-- No se necesita agregar los tags de inicio de html -->
+<h4>Global Mentoring</h4>
+<a href="http://www.globalmentoring.com.mx" target="_blank">Click para mas detalles</a>
