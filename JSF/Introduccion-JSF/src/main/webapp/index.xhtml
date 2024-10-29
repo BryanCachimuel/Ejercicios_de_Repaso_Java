@@ -6,6 +6,21 @@
     </head>
     <body>
         <!-- para eliminar de tajo una linea de codigo utiliza: CTRL + E -->
-        <h:outputLabel value="Hola Mundo desde JSF"/>
+        <h:form>
+            <table>
+                <tr>
+                    <td>
+                        <h:outputLabel for="nombre" value="Nombre:"></h:outputLabel>
+                    </td>
+                    <td>
+                        <h:inputText id="nombre" value="#{candidato.nombre}"></h:inputText>
+                    </td>
+                    <td>
+                        <h:message for="nombre"></h:message>
+                    </td>
+                </tr>
+            </table>
+            <h:commandButton action="#{vacanteForm.enviar}" value="Enviar"></h:commandButton>
+        </h:form>
     </body>
 </html>
