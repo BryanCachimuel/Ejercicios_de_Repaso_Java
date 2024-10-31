@@ -18,11 +18,10 @@
             <version>8.0.1</version>
             <scope>provided</scope>
         </dependency>
-        <!-- Librería para ejecutar el cliente EJB -->
         <dependency>
             <groupId>org.glassfish.main.appclient</groupId>
             <artifactId>gf-client</artifactId>
-            <version>5.0</version>
+            <version>5.1.0</version>
         </dependency>
     </dependencies>
 </project>
