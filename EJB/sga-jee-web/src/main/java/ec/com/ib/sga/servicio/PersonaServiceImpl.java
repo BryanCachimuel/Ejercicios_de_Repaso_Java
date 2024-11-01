@@ -10,7 +10,7 @@ import javax.ejb.Stateless;
 */
 
 @Stateless
-public class PersonaServiceImpl implements PersonaServiceRemote{
+public class PersonaServiceImpl implements PersonaServiceRemote, PersonaService{
 
     Persona persona1 = new Persona(1, "Lennin", "Loyo", "ll@gmaill.com", "0958741256");
     Persona persona2 = new Persona(2, "Brandon", "Lotton", "bl@gmail.com", "0985256339");
