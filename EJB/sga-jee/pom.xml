@@ -11,6 +11,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <exec.mainClass>SgaJee</exec.mainClass>
     </properties>
+    <!-- PRIMER PASO: Se instalan las depencias con las cuales se podrá ejecutar el proyecto -->
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
