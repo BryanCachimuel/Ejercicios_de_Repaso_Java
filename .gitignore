@@ -86,3 +86,6 @@ Registro_Maven/target/test-classes/
 /JSF/BolsaTrabajoV9/target/
 /EJB/HolaMundoEJB/target/
 /EJB/IntroduccionEJB/target/
+/EJB/sga-jee/target/
+/EJB/sga-jee-web/target/
+/JPA/IntroduccionJPA/target/
