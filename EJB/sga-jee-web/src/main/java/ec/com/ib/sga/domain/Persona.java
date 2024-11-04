@@ -9,6 +9,11 @@ import javax.persistence.*;
     mediante la notación @Entity
  */
 @Entity
+                    // query para obtener todos los datos de la base de datos como objetos
+@NamedQueries({
+    @NamedQuery(name="Persona.findAll", query="SELECT p FROM Persona p ORDER BY p.idPersona")
+})
+@Table(name="persona")  // en caso de que la entidad en la base tenga otro nombre se la define así
 public class Persona implements Serializable {
 
     private static final long serialVersionUID = 1L;  // esta variable es una implementación necesaria que viene de la interface Serializable
