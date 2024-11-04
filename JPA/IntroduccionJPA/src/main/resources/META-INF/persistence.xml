@@ -6,7 +6,7 @@
     http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd" version="2.2" >
     
     <persistence-unit name="PersonaPU" transaction-type="RESOURCE_LOCAL">
-        <class>ec.com.ib.sga.domain/Persona</class>                     <!-- aquí se agregan todas las clases de persistencia del proyecto -->
+        <class>ec.com.ib.sga.domain.Persona</class>                     <!-- aquí se agregan todas las clases de persistencia del proyecto -->
         
         <properties>                                                    <!-- aquí se agrega la configuración de la conexión hacia la base de datos -->
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3307/sgatest?useSSL=false&amp;useTimezone=true&amp;serverTimezone=UTC" />
