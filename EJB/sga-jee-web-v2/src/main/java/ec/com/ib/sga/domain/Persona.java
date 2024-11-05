@@ -1,20 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.com.ib.sga.domain;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 /**
@@ -37,19 +25,32 @@ public class Persona implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_persona")
     private Integer idPersona;
+    
     @Size(max = 45)
     private String nombre;
+    
     @Size(max = 45)
     private String apellido;
+    
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 55)
     private String email;
+    
     @Size(max = 10)
     private String telefono;
+    
+    /* aplicando la relación que va a tener con usuario */
     @OneToMany(mappedBy = "persona")
     private List<Usuario> usuarioList;
 
     public Persona() {
+    }
+
+    public Persona(String nombre, String apellido, String email, String telefono) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.telefono = telefono;
     }
 
     public Persona(Integer idPersona) {
@@ -126,7 +127,10 @@ public class Persona implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.com.ib.sga.domain.Persona[ idPersona=" + idPersona + " ]";
+        return "Persona: " + "idPersona=" + idPersona 
+                           + ", nombre=" + nombre 
+                           + ", apellido=" + apellido 
+                           + ", email=" + email 
+                           + ", telefono=" + telefono + '}';
     }
-    
 }
