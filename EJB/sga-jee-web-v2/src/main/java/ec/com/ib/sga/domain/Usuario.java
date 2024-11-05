@@ -1,20 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.com.ib.sga.domain;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 /**
@@ -34,11 +21,16 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_usuario")
+    
     private Integer idUsuario;
     @Size(max = 45)
+    
     private String username;
     @Size(max = 45)
+  
     private String password;
+    
+    /* aplicando la relación con persona que en este caso es muchos a uno */
     @JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
     @ManyToOne
     private Persona persona;
@@ -48,6 +40,11 @@ public class Usuario implements Serializable {
 
     public Usuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public Usuario(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public Integer getIdUsuario() {
@@ -104,7 +101,10 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.com.ib.sga.domain.Usuario[ idUsuario=" + idUsuario + " ]";
+        return "Usuario: " + "idUsuario=" + idUsuario 
+                           + ", username=" + username 
+                           + ", password=" + password 
+                           + ", persona=" + persona + '}';
     }
-    
+
 }
