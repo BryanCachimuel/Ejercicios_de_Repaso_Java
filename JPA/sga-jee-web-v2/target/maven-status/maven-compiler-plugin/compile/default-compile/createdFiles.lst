@@ -1,0 +1,8 @@
+ec\com\ib\sga\servicio\PersonaService.class
+ec\com\ib\sga\servicio\PersonaServiceImpl.class
+ec\com\ib\sga\datos\PersonaDao.class
+ec\com\ib\sga\domain\Persona.class
+ec\com\ib\sga\domain\Usuario.class
+ec\com\ib\sga\web\PersonaServlet.class
+ec\com\ib\sga\datos\PersonaDaoImpl.class
+ec\com\ib\sga\servicio\PersonaServiceRemote.class
