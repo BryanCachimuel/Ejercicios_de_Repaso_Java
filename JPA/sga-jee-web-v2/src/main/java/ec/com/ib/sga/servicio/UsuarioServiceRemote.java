@@ -2,16 +2,16 @@ package ec.com.ib.sga.servicio;
 
 import ec.com.ib.sga.domain.Usuario;
 import java.util.List;
-import javax.ejb.Local;
+import javax.ejb.Remote;
 
 /*
-    En la clase pasada se usaba un entorno remoto para la interfaz pero para este caso se usará una forma Local
+    Se crea la Interfaz UsuarioServiceRemote, para acceder a esta interfaz de manera remota se pone el notación Remote
 */
 
-@Local
-public interface UsuarioService {
+@Remote
+public interface UsuarioServiceRemote {
     
-    public List<Usuario> listarUsuarios();
+    public List<Usuario> listarUsuario();
     
     public Usuario encontrarUsuarioPorId(Usuario usuario);
     
