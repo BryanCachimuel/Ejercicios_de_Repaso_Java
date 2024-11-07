@@ -5,11 +5,11 @@ import java.util.List;
 
 public interface UsuarioDao {
     
-     public List<Usuario> findAllUsuario();
+    public List<Usuario> findAllUsuario();
     
     public Usuario findUsuarioById(Usuario usuario);
     
-    public Usuario findUsuarioByEmail(Usuario usuario);
+    public Usuario findUsuarioByUsername(Usuario usuario);
     
     public void insertUsuario(Usuario usuario);
     
