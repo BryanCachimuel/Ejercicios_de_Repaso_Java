@@ -11,7 +11,7 @@ import javax.ejb.Remote;
 @Remote
 public interface UsuarioServiceRemote {
     
-    public List<Usuario> listarUsuario();
+    public List<Usuario> listarUsuarios();
     
     public Usuario encontrarUsuarioPorId(Usuario usuario);
     
