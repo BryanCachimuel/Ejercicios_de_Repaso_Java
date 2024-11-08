@@ -2,17 +2,19 @@ package ec.com.ib.sga.datos;
 
 import ec.com.ib.sga.domain.Usuario;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.*;
 
 /*
     Esta clase debe ser un EJB para que pueda injectarse el EntityManager de JPA el persistence-util
 */
 
+@Stateless 
 public class UsuarioDaoImpl implements UsuarioDao{
     
     // Inyectando la unidad de persistencia
     // Inyectar la unidad de persistencia mediante el api de JPA
-    @PersistenceContext(unitName="UsuarioPU")
+    @PersistenceContext(unitName="SgaPU")
     EntityManager em;
 
     @Override

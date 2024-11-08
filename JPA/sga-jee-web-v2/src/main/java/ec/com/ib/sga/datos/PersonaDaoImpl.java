@@ -14,7 +14,7 @@ public class PersonaDaoImpl implements PersonaDao{
     
     // Inyectando la unidad de persistencia
     // Inyectar la unidad de persistencia mediante el api de JPA
-    @PersistenceContext(unitName="PersonaPU")
+    @PersistenceContext(unitName="SgaPU")
     EntityManager em;
 
     @Override
