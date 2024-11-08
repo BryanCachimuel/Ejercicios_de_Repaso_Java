@@ -1,8 +1,14 @@
+C:\Users\Bryan\Documents\NetBeansProjects\JPA\sga-jee-web-v2\src\main\java\ec\com\ib\sga\datos\UsuarioDao.java
 C:\Users\Bryan\Documents\NetBeansProjects\JPA\sga-jee-web-v2\src\main\java\ec\com\ib\sga\web\PersonaServlet.java
+C:\Users\Bryan\Documents\NetBeansProjects\JPA\sga-jee-web-v2\src\main\java\ec\com\ib\sga\servicio\UsuarioServiceRemote.java
+C:\Users\Bryan\Documents\NetBeansProjects\JPA\sga-jee-web-v2\src\main\java\ec\com\ib\sga\servicio\UsuarioServiceImpl.java
 C:\Users\Bryan\Documents\NetBeansProjects\JPA\sga-jee-web-v2\src\main\java\ec\com\ib\sga\servicio\PersonaServiceRemote.java
-C:\Users\Bryan\Documents\NetBeansProjects\JPA\sga-jee-web-v2\src\main\java\ec\com\ib\sga\datos\PersonaDaoImpl.java
 C:\Users\Bryan\Documents\NetBeansProjects\JPA\sga-jee-web-v2\src\main\java\ec\com\ib\sga\servicio\PersonaService.java
-C:\Users\Bryan\Documents\NetBeansProjects\JPA\sga-jee-web-v2\src\main\java\ec\com\ib\sga\datos\PersonaDao.java
 C:\Users\Bryan\Documents\NetBeansProjects\JPA\sga-jee-web-v2\src\main\java\ec\com\ib\sga\domain\Persona.java
+C:\Users\Bryan\Documents\NetBeansProjects\JPA\sga-jee-web-v2\src\main\java\ec\com\ib\sga\web\UsuarioServlet.java
+C:\Users\Bryan\Documents\NetBeansProjects\JPA\sga-jee-web-v2\src\main\java\ec\com\ib\sga\servicio\UsuarioService.java
+C:\Users\Bryan\Documents\NetBeansProjects\JPA\sga-jee-web-v2\src\main\java\ec\com\ib\sga\datos\PersonaDaoImpl.java
+C:\Users\Bryan\Documents\NetBeansProjects\JPA\sga-jee-web-v2\src\main\java\ec\com\ib\sga\datos\UsuarioDaoImpl.java
+C:\Users\Bryan\Documents\NetBeansProjects\JPA\sga-jee-web-v2\src\main\java\ec\com\ib\sga\datos\PersonaDao.java
 C:\Users\Bryan\Documents\NetBeansProjects\JPA\sga-jee-web-v2\src\main\java\ec\com\ib\sga\domain\Usuario.java
 C:\Users\Bryan\Documents\NetBeansProjects\JPA\sga-jee-web-v2\src\main\java\ec\com\ib\sga\servicio\PersonaServiceImpl.java
