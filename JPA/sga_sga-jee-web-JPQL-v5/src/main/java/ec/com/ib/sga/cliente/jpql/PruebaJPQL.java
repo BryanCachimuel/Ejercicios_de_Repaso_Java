@@ -7,11 +7,11 @@ import javax.persistence.*;
 import org.apache.logging.log4j.*;
 
 public class PruebaJPQL {
-    
+
     static Logger log = LogManager.getRootLogger();
-    
+
     public static void main(String[] args) {
-        
+
         String jpql = null;
         Query q = null;
         List<Persona> personas = null;
@@ -20,45 +20,57 @@ public class PruebaJPQL {
         Object[] tupla = null;
         List<String> nombres = null;
         List<Usuario> usuarios = null;
-        
+
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SgaPU");
         EntityManager em = emf.createEntityManager();
-        
+
         // 1. Consulta de todos los objetos de tipo persona
         log.debug("\n1. Consulta todas las personas");
         jpql = "select p from Persona p";
         personas = em.createQuery(jpql).getResultList();
         //mostrarPersonas(personas);
-        
+
         // Consulta de la persona con id=2
         log.debug("\n2. Consulta de la persona con id=2");
         jpql = "select p from Persona p where p.idPersona = 2";
         persona = (Persona) em.createQuery(jpql).getSingleResult();
         //log.debug(persona);
-        
+
         // 3. Consulta de la persona por nombre
         jpql = "select p from Persona p where p.nombre = 'Cinthya'";
         personas = em.createQuery(jpql).getResultList();
         //mostrarPersonas(personas);
-        
+
         // 4. Consulta de datos individuales, se crea un arreglo(tupla) de tipo object de 3 columnas
         log.debug("\n4. Consulta de datos individuales, se crea un arreglo(tupla) de tipo object de 3 columnas");
         jpql = "select p.nombre as Nombre, p.apellido as Apellido, p.email as Email from Persona p";
         iter = em.createQuery(jpql).getResultList().iterator();
-        while(iter.hasNext()){
+        while (iter.hasNext()) {
             tupla = (Object[]) iter.next();
             String nombre = (String) tupla[0];
             String apellido = (String) tupla[1];
             String email = (String) tupla[2];
             log.debug("nombre:" + nombre + ", apellido: " + apellido + ", email: " + email);
         }
-        
+
+        ///5. Obtiene el objeto Persona y el id, se crea un arreglo de tipo Object con 2 columnas
+        log.debug("\n. Obtiene el objeto Persona y el id, se crea un arreglo de tipo Object con 2 columnas");
+        jpql = "select p, p.idPersona from Persona p ";
+        iter = em.createQuery(jpql).getResultList().iterator();
+        while (iter.hasNext()) {
+            tupla = (Object[]) iter.next();
+            persona = (Persona) tupla[0];
+            int idPersona = (int) tupla[1];
+            log.debug("Objeto persona:" + persona);
+            log.debug("id persona:" + idPersona);
+        }
+
     }
 
     private static void mostrarPersonas(List<Persona> personas) {
-        for(Persona p: personas){
+        for (Persona p : personas) {
             log.debug(p);
         }
     }
-    
+
 }
