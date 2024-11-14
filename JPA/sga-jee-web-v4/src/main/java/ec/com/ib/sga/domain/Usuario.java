@@ -27,7 +27,7 @@ public class Usuario implements Serializable {
     private String password;
     
     @JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Persona persona;
 
     public Usuario() {
@@ -40,6 +40,12 @@ public class Usuario implements Serializable {
     public Usuario(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public Usuario(String username, String password, Persona persona) {
+        this.username = username;
+        this.password = password;
+        this.persona = persona;
     }
     
     public Integer getIdUsuario() {
