@@ -28,6 +28,17 @@ public class PruebaJPQL {
         log.debug("\n1. Consulta todas las personas");
         jpql = "select p from Persona p";
         personas = em.createQuery(jpql).getResultList();
+        //mostrarPersonas(personas);
+        
+        // Consulta de la persona con id=2
+        log.debug("\n2. Consulta de la persona con id=2");
+        jpql = "select p from Persona p where p.idPersona = 2";
+        persona = (Persona) em.createQuery(jpql).getSingleResult();
+        //log.debug(persona);
+        
+        // 3. Consulta de la persona por nombre
+        jpql = "select p from Persona p where p.nombre = 'Cinthya'";
+        personas = em.createQuery(jpql).getResultList();
         mostrarPersonas(personas);
     }
 
