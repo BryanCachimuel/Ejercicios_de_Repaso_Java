@@ -69,7 +69,7 @@ public class PruebaJPQL {
         log.debug("\n. Consulta de todas las personas");
         jpql = "select new ec.com.ib.sga.domain.Persona(p.idPersona) from Persona p";
         personas = em.createQuery(jpql).getResultList();
-        mostrarPersonas(personas);
+        //mostrarPersonas(personas);
         
         // 7. Regresa el valor mínimo y máximo del idPersona (scaler result)
         log.debug("\n. Regresa el valor mínimo y máximo del idPersona (scaler result)");
@@ -80,9 +80,22 @@ public class PruebaJPQL {
             Integer idMin = (Integer) tupla[0];
             Integer idMax = (Integer) tupla[1];
             Long count = (Long) tupla[2];
-            log.debug("idMin: " + idMin + ", idMax: " + idMax + ", count: " + count);
+            //log.debug("idMin: " + idMin + ", idMax: " + idMax + ", count: " + count);
         }
-
+        
+        // 8. Cuenta los nombres de las personas que son distintos
+        log.debug("\n. Cuenta los nombres de las personas que son distintos");
+        jpql = "select count(distinct p.nombre) from Persona p";
+        Long contador = (Long) em.createQuery(jpql).getSingleResult();
+        //log.debug("No. de personas con nombre distinto: " + contador);
+        
+        // 9. Concatena y convierte a mayuscula los nombres y apellidos 
+         log.debug("\n. Concatena y convierte a mayuscula los nombres y apellidos ");
+         jpql = "select CONCAT(p.nombre, ' ', p.apellido) as Nombres from Persona p";
+         nombres = em.createQuery(jpql).getResultList();
+         for(String nombreCompleto : nombres){
+             log.debug(nombreCompleto);
+         }
     }
 
     private static void mostrarPersonas(List<Persona> personas) {
