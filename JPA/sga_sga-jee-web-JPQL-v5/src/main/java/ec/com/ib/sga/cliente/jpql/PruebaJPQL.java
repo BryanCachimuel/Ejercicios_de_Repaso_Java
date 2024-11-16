@@ -54,7 +54,7 @@ public class PruebaJPQL {
         }
 
         // 5. Obtiene el objeto Persona y el id, se crea un arreglo de tipo Object con 2 columnas
-        log.debug("\n. Obtiene el objeto Persona y el id, se crea un arreglo de tipo Object con 2 columnas");
+        log.debug("\n5. Obtiene el objeto Persona y el id, se crea un arreglo de tipo Object con 2 columnas");
         jpql = "select p, p.idPersona from Persona p ";
         iter = em.createQuery(jpql).getResultList().iterator();
         while (iter.hasNext()) {
@@ -66,13 +66,13 @@ public class PruebaJPQL {
         }
         
         // 6. Consulta de todas las personas
-        log.debug("\n. Consulta de todas las personas");
+        log.debug("\n6. Consulta de todas las personas");
         jpql = "select new ec.com.ib.sga.domain.Persona(p.idPersona) from Persona p";
         personas = em.createQuery(jpql).getResultList();
         //mostrarPersonas(personas);
         
         // 7. Regresa el valor mínimo y máximo del idPersona (scaler result)
-        log.debug("\n. Regresa el valor mínimo y máximo del idPersona (scaler result)");
+        log.debug("\n7. Regresa el valor mínimo y máximo del idPersona (scaler result)");
         jpql = "select min(p.idPersona) as MinId, max(p.idPersona) as MaxId, count(p.idPersona) as Contador from Persona p";
         iter = em.createQuery(jpql).getResultList().iterator();
         while(iter.hasNext()){
@@ -84,18 +84,36 @@ public class PruebaJPQL {
         }
         
         // 8. Cuenta los nombres de las personas que son distintos
-        log.debug("\n. Cuenta los nombres de las personas que son distintos");
+        log.debug("\n8. Cuenta los nombres de las personas que son distintos");
         jpql = "select count(distinct p.nombre) from Persona p";
         Long contador = (Long) em.createQuery(jpql).getSingleResult();
         //log.debug("No. de personas con nombre distinto: " + contador);
         
         // 9. Concatena y convierte a mayuscula los nombres y apellidos 
-         log.debug("\n. Concatena y convierte a mayuscula los nombres y apellidos ");
-         jpql = "select CONCAT(p.nombre, ' ', p.apellido) as Nombres from Persona p";
+         log.debug("\n9. Concatena y convierte a mayuscula los nombres y apellidos ");
+         jpql = "select CONCAT(UPPER(p.nombre), ' ', UPPER(p.apellido)) as Nombres from Persona p";
          nombres = em.createQuery(jpql).getResultList();
          for(String nombreCompleto : nombres){
-             log.debug(nombreCompleto);
+             //log.debug(nombreCompleto);
          }
+         
+         // 10. Obtiene el objeto persona con id igual al parámetro proporcionado
+         log.debug("\n10. Obtiene el objeto persona con id igual al parámetro proporcionado");
+         int idPersona = 5;
+         jpql = "select p from Persona p where p.idPersona = :id";
+         q = em.createQuery(jpql);
+         q.setParameter("id", idPersona);
+         persona = (Persona) q.getSingleResult();
+         //log.debug(persona);
+         
+         //11. Obtiene las personas que contengan una letra a en el nombre, sin importar si es mayuscula o minuscula
+         log.debug("\n11. Obtiene las personas que contengan una letra a en el nombre, sin importar si es mayuscula o minuscula");
+         jpql = "select p from Persona p where upper(p.nombre) like upper(:parametro)";
+         String parametroString = "%o%";    // es el caracter que utilizamos para el like
+         q = em.createQuery(jpql);
+         q.setParameter("parametro", parametroString);
+         personas = q.getResultList();
+         mostrarPersonas(personas);
     }
 
     private static void mostrarPersonas(List<Persona> personas) {
