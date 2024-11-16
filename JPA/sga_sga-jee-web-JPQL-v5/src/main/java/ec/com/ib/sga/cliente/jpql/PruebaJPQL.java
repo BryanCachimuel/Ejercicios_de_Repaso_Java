@@ -119,19 +119,43 @@ public class PruebaJPQL {
          log.debug("\n12. Uso de between");
          jpql = "select p from Persona p where p.idPersona between 1 and 4";
          personas = em.createQuery(jpql).getResultList();
-         mostrarPersonas(personas);
+         //mostrarPersonas(personas);
          
          //13. Uso de Ordenamiento
          log.debug("\n13. Uso de Ordenamiento");
          jpql = "select p from Persona p where p.idPersona > 3 order by p.nombre desc, p.apellido desc";
          personas = em.createQuery(jpql).getResultList();
+         //mostrarPersonas(personas);
+         
+         //14. Uso de subquery
+         log.debug("\n14. Uso de subquery");
+         jpql = "select p from Persona p where p.idPersona in (select min(p1.idPersona) from Persona p1)";
+         personas = em.createQuery(jpql).getResultList();
          mostrarPersonas(personas);
+         
+         //15. Uso de join con lazy loading
+         log.debug("\n15. Uso de join con lazy loading");
+         jpql = "select u from Usuario u join u.persona p";
+         usuarios = em.createQuery(jpql).getResultList();
+         mostrarUsuarios(usuarios);
+         
+         //16. Uso de left join con eager loading
+         log.debug("\n16. Uso de left join con eager loading");
+         jpql = "select u from Usuario u left join fetch u.persona";
+         usuarios = em.createQuery(jpql).getResultList();
+         mostrarUsuarios(usuarios);
     }
 
     private static void mostrarPersonas(List<Persona> personas) {
         for (Persona p : personas) {
             log.debug(p);
         }
+    }
+
+    private static void mostrarUsuarios(List<Usuario> usuarios) {
+     for(Usuario u: usuarios){
+         log.debug(u);
+     }   
     }
 
 }
