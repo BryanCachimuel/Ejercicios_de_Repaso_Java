@@ -53,7 +53,7 @@ public class PruebaJPQL {
             log.debug("nombre:" + nombre + ", apellido: " + apellido + ", email: " + email);
         }
 
-        ///5. Obtiene el objeto Persona y el id, se crea un arreglo de tipo Object con 2 columnas
+        // 5. Obtiene el objeto Persona y el id, se crea un arreglo de tipo Object con 2 columnas
         log.debug("\n. Obtiene el objeto Persona y el id, se crea un arreglo de tipo Object con 2 columnas");
         jpql = "select p, p.idPersona from Persona p ";
         iter = em.createQuery(jpql).getResultList().iterator();
@@ -61,8 +61,26 @@ public class PruebaJPQL {
             tupla = (Object[]) iter.next();
             persona = (Persona) tupla[0];
             int idPersona = (int) tupla[1];
-            log.debug("Objeto persona:" + persona);
-            log.debug("id persona:" + idPersona);
+            //log.debug("Objeto persona:" + persona);
+            //log.debug("id persona:" + idPersona);
+        }
+        
+        // 6. Consulta de todas las personas
+        log.debug("\n. Consulta de todas las personas");
+        jpql = "select new ec.com.ib.sga.domain.Persona(p.idPersona) from Persona p";
+        personas = em.createQuery(jpql).getResultList();
+        mostrarPersonas(personas);
+        
+        // 7. Regresa el valor mínimo y máximo del idPersona (scaler result)
+        log.debug("\n. Regresa el valor mínimo y máximo del idPersona (scaler result)");
+        jpql = "select min(p.idPersona) as MinId, max(p.idPersona) as MaxId, count(p.idPersona) as Contador from Persona p";
+        iter = em.createQuery(jpql).getResultList().iterator();
+        while(iter.hasNext()){
+            tupla = (Object[]) iter.next();
+            Integer idMin = (Integer) tupla[0];
+            Integer idMax = (Integer) tupla[1];
+            Long count = (Long) tupla[2];
+            log.debug("idMin: " + idMin + ", idMax: " + idMax + ", count: " + count);
         }
 
     }
