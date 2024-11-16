@@ -113,6 +113,18 @@ public class PruebaJPQL {
          q = em.createQuery(jpql);
          q.setParameter("parametro", parametroString);
          personas = q.getResultList();
+         //mostrarPersonas(personas);
+         
+         //12. Uso de between
+         log.debug("\n12. Uso de between");
+         jpql = "select p from Persona p where p.idPersona between 1 and 4";
+         personas = em.createQuery(jpql).getResultList();
+         mostrarPersonas(personas);
+         
+         //13. Uso de Ordenamiento
+         log.debug("\n13. Uso de Ordenamiento");
+         jpql = "select p from Persona p where p.idPersona > 3 order by p.nombre desc, p.apellido desc";
+         personas = em.createQuery(jpql).getResultList();
          mostrarPersonas(personas);
     }
 
