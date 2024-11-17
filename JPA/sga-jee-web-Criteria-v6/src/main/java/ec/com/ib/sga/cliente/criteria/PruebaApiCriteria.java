@@ -44,7 +44,18 @@ public class PruebaApiCriteria {
         // Paso 6. Ejecutamos la consulta
         personas = query.getResultList();
         
-        mostrarPersonas(personas);
+        //mostrarPersonas(personas);
+        
+        //2-a. Consulta de la persona con id = 6
+        // jpql = "select p from Persona p where p.idPersona = 6"
+        log.debug("\n2-a. Consulta de la persona con id = 6");
+        cb = em.getCriteriaBuilder();
+        criteriaQuery = cb.createQuery(Persona.class);
+        fromPersona = criteriaQuery.from(Persona.class);
+        criteriaQuery.select(fromPersona).where(cb.equal(fromPersona.get("idPersona"),6));  // forma de realizar la consulta con criteria
+        persona = em.createQuery(criteriaQuery).getSingleResult();
+        
+        log.debug(persona);
     }
 
     private static void mostrarPersonas(List<Persona> personas) {
