@@ -1,6 +1,7 @@
 package ec.com.ib.sga.cliente.criteria;
 
 import ec.com.ib.sga.domain.Persona;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 import javax.persistence.criteria.*;
@@ -55,6 +56,38 @@ public class PruebaApiCriteria {
         criteriaQuery.select(fromPersona).where(cb.equal(fromPersona.get("idPersona"),6));  // forma de realizar la consulta con criteria
         persona = em.createQuery(criteriaQuery).getSingleResult();
         
+        log.debug(persona);
+        
+        // Utilización de predicados para obtener varios criterios
+        //2-b. Consulta de la persona con id = 6
+        log.debug("\n2-b. Consulta de la persona con id = 6");
+        cb = em.getCriteriaBuilder();
+        criteriaQuery = cb.createQuery(Persona.class);
+        criteriaQuery.select(fromPersona);
+        
+        // La clase Predicate permite agregar varios criterios dinamicamente
+        List<Predicate> criterios = new ArrayList<Predicate>();
+        
+        // Verificamos si tenemos criterios que agregar
+        Integer idPersonaParam = 6;
+        ParameterExpression<Integer> parameter = cb.parameter(Integer.class, "idPersona");
+        criterios.add(cb.equal(fromPersona.get("idPersona"),parameter));
+        
+        // Se agregan los criterios 
+        if(criterios.isEmpty()){
+            throw new RuntimeException("Sin Criterios");
+        }
+        else if(criterios.size() == 1){
+            criteriaQuery.where(criterios.get(0));
+        }
+        else{
+            CriteriaQuery<Persona> where = criteriaQuery.where(cb.and(criterios.toArray(new Predicate[0])));
+        }
+        query = em.createQuery(criteriaQuery);
+        query.setParameter("idPersona", idPersonaParam);
+        
+        // Se ejecuta el query
+        persona = query.getSingleResult();
         log.debug(persona);
     }
 
