@@ -6,6 +6,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import ec.com.ib.sga.datos.PersonaDao;
 import ec.com.ib.sga.domain.Persona;
+import javax.annotation.Resource;
+import javax.ejb.SessionContext;
 
 /*
     PASO CUARTO: Se crea la clase PersonaServiceImpl(Impl-> implementación), esta clase tiene la notación Stateless que la convierte en un ejb
@@ -17,6 +19,9 @@ public class PersonaServiceImpl implements PersonaServiceRemote, PersonaService{
     // con esta notación tenemos acceso completo hacia la capa de datos
     @Inject
     private PersonaDao personaDao;
+    
+    @Resource
+    private SessionContext contexto;
     
     @Override
     public List<Persona> listarPersonas() {
@@ -40,7 +45,12 @@ public class PersonaServiceImpl implements PersonaServiceRemote, PersonaService{
 
     @Override
     public void modificarPersona(Persona persona) {
-        personaDao.updatePersona(persona);
+        try {
+            personaDao.updatePersona(persona);
+        } catch (Throwable t) {
+            contexto.setRollbackOnly();
+            t.printStackTrace(System.out);
+        }
     }
 
     @Override
