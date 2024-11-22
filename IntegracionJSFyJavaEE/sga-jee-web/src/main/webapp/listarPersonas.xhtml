@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Sistema SGA - Listado de Personas</title>
+    </h:head>
+    <h:body>
+        <!-- se muestra el status de lo que estamos haciendo -->
+        <p:ajaxStatus style="width: 16px;height: 16px;" id="ajaxStatusPanel">
+            <f:facet name="start">
+                <h:graphicImage library="images" name="ajaxloading.gif"/>
+            </f:facet>
+            <f:facet name="complete">
+                <h:outputText value=""/>
+            </f:facet>
+        </p:ajaxStatus>
+        
+        <!-- prependId="false" para que no agrege el nombre del formulario en cada uno de los elementos si no que maneje cada uno de los elementos del formulario directamente -->
+        <h:form prependId="false">
+            <p:growl id="messager" showDetail="true"/> <!-- para que se muestre los mensajes en caso de que se presente alguno -->
+            
+            <p:dataTable value="#{personaBean.personas}" var="persona" editable="true">
+                
+                <f:facet name="header">
+                    Listado Personas
+                </f:facet>
+                
+                <p:column headerText="Nombre">
+                    <p:cellEditor>
+                        
+                        <f:facet name="output">
+                            <h:outputText value="#{persona.nombre}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{persona.nombre}"/>
+                        </f:facet>
+                        
+                    </p:cellEditor>
+                </p:column>
+                
+                 <p:column headerText="Apellido">
+                    <p:cellEditor>
+                        
+                        <f:facet name="output">
+                            <h:outputText value="#{persona.apellido}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{persona.apellido}"/>
+                        </f:facet>
+                        
+                    </p:cellEditor>
+                </p:column>
+                
+                 <p:column headerText="Email">
+                    <p:cellEditor>
+                        
+                        <f:facet name="output">
+                            <h:outputText value="#{persona.email}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{persona.email}"/>
+                        </f:facet>
+                        
+                    </p:cellEditor>
+                </p:column>
+                
+                 <p:column headerText="Teléfono">
+                    <p:cellEditor>
+                        
+                        <f:facet name="output">
+                            <h:outputText value="#{persona.telefono}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{persona.telefono}"/>
+                        </f:facet>
+                        
+                    </p:cellEditor>
+                </p:column>
+                
+                <f:facet name="footer">
+                    <h:commandButton value="Regresar" action="index"/>
+                </f:facet>
+                
+                <p:column headerText="Opciones" style="width: 50px">
+                    <p:rowEditor/>  <!-- esto es suficiente como para poder editar cualquier campo de está tabla -->
+                </p:column>
+                
+                <p:ajax event="rowEdit" listener="#{personaBean.editListener}"/>
+                
+            </p:dataTable>
+            
+        </h:form>
+    </h:body>
+</html>
