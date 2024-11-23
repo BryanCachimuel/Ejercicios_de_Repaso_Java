@@ -57,5 +57,19 @@ public class PersonaBean {
         this.personas = personas;
     }
     
+    public void agregarPersona(){
+        this.personaService.registrarPersona(personaSeleccionada);
+        this.personas.add(personaSeleccionada);
+        this.personaSeleccionada = null;
+    }
     
+    public void eliminarPersona(){
+        this.personaService.eliminarPersona(personaSeleccionada);
+        this.personas.remove(personaSeleccionada);
+        this.personaSeleccionada = null;
+    }
+    
+    public void reiniciarPersonaSeleccionada(){
+        this.personaSeleccionada = new Persona();
+    }
 }
