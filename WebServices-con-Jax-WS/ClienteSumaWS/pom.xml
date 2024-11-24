@@ -46,11 +46,12 @@
                                 <wsdlUrl>http://localhost:8095/ServicioSumaImplService/ServicioSumaImpl?wsdl</wsdlUrl>
                             </wsdlUrls>
                             <packageName>clientews.servicio</packageName>
-                            <sourceDestDir>${baseDir}/src/main/java</sourceDestDir>
+                            <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
+
 </project>
