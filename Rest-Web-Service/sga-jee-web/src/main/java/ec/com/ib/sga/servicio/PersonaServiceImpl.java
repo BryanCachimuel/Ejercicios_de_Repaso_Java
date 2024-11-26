@@ -8,13 +8,15 @@ import ec.com.ib.sga.datos.PersonaDao;
 import ec.com.ib.sga.domain.Persona;
 import javax.annotation.Resource;
 import javax.ejb.SessionContext;
+import javax.jws.WebService;
 
 /*
     PASO CUARTO: Se crea la clase PersonaServiceImpl(Impl-> implementación), esta clase tiene la notación Stateless que la convierte en un ejb
 */
 
 @Stateless
-public class PersonaServiceImpl implements PersonaServiceRemote, PersonaService{
+@WebService(endpointInterface = "ec.com.ib.sga.servicio.PersonaServiceWs")
+public class PersonaServiceImpl implements PersonaServiceRemote, PersonaService, PersonaServiceWs{
     
     // con esta notación tenemos acceso completo hacia la capa de datos
     @Inject
