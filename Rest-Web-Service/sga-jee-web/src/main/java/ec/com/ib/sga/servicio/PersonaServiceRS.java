@@ -58,4 +58,16 @@ public class PersonaServiceRS {
             return Response.status(Status.INTERNAL_SERVER_ERROR).build();
         }
     }
+    
+    @DELETE
+    @Path("{id}")
+    public Response eliminarPersonaPorId(@PathParam("id") int id){
+        try {
+            personaService.eliminarPersona(new Persona(id));
+            return Response.ok().build();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            return Response.status(404).build();
+        }
+    }
 }
