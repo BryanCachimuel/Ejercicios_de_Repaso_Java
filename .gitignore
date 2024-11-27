@@ -100,3 +100,9 @@ Registro_Maven/target/test-classes/
 /JPA/sga-jee-cliente-transacciones/target/
 /IntegracionJSFyJavaEE/sga-jee-web-Transacciones-v7/target/
 /IntegracionJSFyJavaEE/sga-jee-web/target/
+/WebServices-con-Jax-WS/IntroduccionJAX-WS/target/
+/WebServices-con-Jax-WS/ClienteSumaWS/target/
+/WebServices-con-Jax-WS/sga-jee-web/target/
+/EJB/ClienteSgaWs/target/
+/Rest-Web-Service/sga-jee-web/target/
+/Rest-Web-Service/sga-jee-web-Rest/target/
