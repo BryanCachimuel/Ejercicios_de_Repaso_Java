@@ -42,6 +42,39 @@ public class PersonaServiceRS {
             return Response.status(Status.INTERNAL_SERVER_ERROR).build();
         }
     }
+    
+    @PUT
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Path("{id}")
+    public Response modificarPersona(@PathParam("id") int id, Persona personaModificada){
+        try {
+            Persona persona = personaService.encontrarPersonaPorId(new Persona(id));
+            if(persona != null){
+                personaService.modificarPersona(personaModificada);
+                return Response.ok().entity(personaModificada).build();
+            }else{
+                return Response.status(Status.NOT_FOUND).build();
+            }
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    
+    @DELETE
+    @Path("{id}")
+    public Response eliminarPersonaPorId(@PathParam("id") int id){
+        try {
+            personaService.eliminarPersona(new Persona(id));
+            return Response.ok().build();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            //return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+            return Response.status(404).build();
+        }
+    }
+    
 }
 
 
