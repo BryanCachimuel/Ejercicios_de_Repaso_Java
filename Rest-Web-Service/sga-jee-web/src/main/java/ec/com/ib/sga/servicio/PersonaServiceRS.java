@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.*;
+import javax.ws.rs.core.Response.Status;
 
 @Path("/personas")
 @Stateless
@@ -28,6 +30,18 @@ public class PersonaServiceRS {
         return personaService.encontrarPersonaPorId(new Persona(id));
     }
     
+    @POST
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Response agregarPersona(Persona persona){
+        try {
+             personaService.registrarPersona(persona);
+            return Response.ok().entity(persona).build();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }
 
 
