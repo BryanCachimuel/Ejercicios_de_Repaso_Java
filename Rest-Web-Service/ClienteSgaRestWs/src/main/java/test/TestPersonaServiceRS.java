@@ -32,6 +32,23 @@ public class TestPersonaServiceRS {
         personas = webTarget.request(MediaType.APPLICATION_XML).get(Response.class).readEntity(new GenericType<List<Persona>>(){});
         System.out.println("Personas Recuperadas");
         imprimirPersonas(personas);
+        
+        System.out.println("\n");
+        
+        // Agregar una persona (método post)
+        Persona nuevaPersona = new Persona();
+        nuevaPersona.setNombre("Melanie");
+        nuevaPersona.setApellido("Castro");
+        nuevaPersona.setEmail("kmc@gmail.com");
+        nuevaPersona.setTelefono("0947364712");
+        
+        invocationBuilder = webTarget.request(MediaType.APPLICATION_XML);
+        response = invocationBuilder.post(Entity.entity(nuevaPersona, MediaType.APPLICATION_XML));
+        System.out.println(response.getStatus());
+        
+        // Recuperamos la persona recien agregada
+        Persona personaRecuperada = response.readEntity(Persona.class);
+        System.out.println("Persona agregada: " + personaRecuperada);
     }
 
     private static void imprimirPersonas(List<Persona> personas) {
