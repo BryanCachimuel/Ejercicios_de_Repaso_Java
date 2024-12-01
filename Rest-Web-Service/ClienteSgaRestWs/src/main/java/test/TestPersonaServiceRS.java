@@ -38,10 +38,10 @@ public class TestPersonaServiceRS {
         
         //Agregar una persona (método post)
         Persona nuevaPersona = new Persona();
-        nuevaPersona.setNombre("Richard");
-        nuevaPersona.setApellido("Tarupí");
-        nuevaPersona.setEmail("rtc@gmail.com");
-        nuevaPersona.setTelefono("0981245368");
+        nuevaPersona.setNombre("Josue");
+        nuevaPersona.setApellido("Alba");
+        nuevaPersona.setEmail("jan@gmail.com");
+        nuevaPersona.setTelefono("0923647956");
         
         invocationBuilder = webTarget.request(MediaType.APPLICATION_XML);
         response = invocationBuilder.post(Entity.entity(nuevaPersona, MediaType.APPLICATION_XML));
@@ -55,13 +55,24 @@ public class TestPersonaServiceRS {
         
         // Modificar la persona (método put)
         Persona personaModificar = personaRecuperada;
-        personaModificar.setNombre("Fernando");
+        personaModificar.setNombre("Alexander");
         String pathId = "/" + personaModificar.getIdPersona();
         invocationBuilder = webTarget.path(pathId).request(MediaType.APPLICATION_XML);
         response = invocationBuilder.put(Entity.entity(personaModificar, MediaType.APPLICATION_XML));
         
         System.out.println("response: " + response.getStatus());
         System.out.println("Persona modificada: " + response.readEntity(Persona.class));
+        
+        System.out.println("\n");
+        
+        // Eliminar una persona
+        Persona personaEliminar = personaRecuperada;
+        String pathEliminarId = "/" + personaEliminar.getIdPersona();
+        invocationBuilder = webTarget.path(pathEliminarId).request(MediaType.APPLICATION_XML);
+        response = invocationBuilder.delete();
+        
+        System.out.println("response: " + response.getStatus());
+        System.out.println("Persona eliminada: " + personaEliminar);
     }
 
     private static void imprimirPersonas(List<Persona> personas) {
