@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.*;
 
+
 public class TestPersonaServiceRS {
     
     /* Variables que vamos a utilizar */
@@ -35,12 +36,12 @@ public class TestPersonaServiceRS {
         
         System.out.println("\n");
         
-        // Agregar una persona (método post)
+        //Agregar una persona (método post)
         Persona nuevaPersona = new Persona();
-        nuevaPersona.setNombre("Melanie");
-        nuevaPersona.setApellido("Castro");
-        nuevaPersona.setEmail("kmc@gmail.com");
-        nuevaPersona.setTelefono("0947364712");
+        nuevaPersona.setNombre("Richard");
+        nuevaPersona.setApellido("Tarupí");
+        nuevaPersona.setEmail("rtc@gmail.com");
+        nuevaPersona.setTelefono("0981245368");
         
         invocationBuilder = webTarget.request(MediaType.APPLICATION_XML);
         response = invocationBuilder.post(Entity.entity(nuevaPersona, MediaType.APPLICATION_XML));
@@ -49,6 +50,18 @@ public class TestPersonaServiceRS {
         // Recuperamos la persona recien agregada
         Persona personaRecuperada = response.readEntity(Persona.class);
         System.out.println("Persona agregada: " + personaRecuperada);
+        
+        System.out.println("\n");
+        
+        // Modificar la persona (método put)
+        Persona personaModificar = personaRecuperada;
+        personaModificar.setNombre("Fernando");
+        String pathId = "/" + personaModificar.getIdPersona();
+        invocationBuilder = webTarget.path(pathId).request(MediaType.APPLICATION_XML);
+        response = invocationBuilder.put(Entity.entity(personaModificar, MediaType.APPLICATION_XML));
+        
+        System.out.println("response: " + response.getStatus());
+        System.out.println("Persona modificada: " + response.readEntity(Persona.class));
     }
 
     private static void imprimirPersonas(List<Persona> personas) {
