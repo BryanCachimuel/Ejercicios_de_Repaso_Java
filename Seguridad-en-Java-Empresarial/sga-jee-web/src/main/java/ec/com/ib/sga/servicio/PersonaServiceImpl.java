@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import ec.com.ib.sga.datos.PersonaDao;
 import ec.com.ib.sga.domain.Persona;
 import javax.annotation.Resource;
+import javax.annotation.security.DeclareRoles;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.SessionContext;
 import javax.jws.WebService;
 
@@ -16,6 +18,9 @@ import javax.jws.WebService;
 
 @Stateless
 @WebService(endpointInterface = "ec.com.ib.sga.servicio.PersonaServiceWs")
+// anotaciones para restringir a los clientes
+@DeclareRoles({"ROLE_ADMIN","ROLE_USER"})
+@RolesAllowed({"ROLE_ADMIN","ROLE_USER"})
 public class PersonaServiceImpl implements PersonaServiceRemote, PersonaService, PersonaServiceWs{
     
     // con esta notación tenemos acceso completo hacia la capa de datos
@@ -56,6 +61,7 @@ public class PersonaServiceImpl implements PersonaServiceRemote, PersonaService,
     }
 
     @Override
+    @RolesAllowed("ROLE_ADMIN")
     public void eliminarPersona(Persona persona) {
         personaDao.deletePersona(persona);
     }
