@@ -10,12 +10,12 @@
     </h:head>
     <h:body>
         <h1>Sistema SGA</h1>
-        Bienvenido: <h:outputText value="#{p:userPrincipal()}"/>  
+        Bienvenido: <h:outputText value="#{p:userPrincipal().name}"/>  
         <h:form>
             <p:messages/>
-            <p:panelGrid columns="1" rendered="#{p:ifGranted('ROLE_ADMIN') || P:ifGranted('ROLE_USER')}">
-                <h:commandButton value="Listar Personas" action="listarPersonas"/>
-            </p:panelGrid>    
+            <p:panelGrid columns="1" rendered="#{p:ifGranted('ROLE_ADMIN') || p:ifGranted('ROLE_USER')}">
+                <h:commandButton value="Listar Personas" action="listarPersonas" />
+            </p:panelGrid>  
         </h:form>
     </h:body>
 </html>
