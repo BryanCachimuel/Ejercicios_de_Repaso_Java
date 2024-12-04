@@ -4,6 +4,8 @@ import domain.Persona;
 import java.util.List;
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.*;
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 
 
 public class TestPersonaServiceRS {
@@ -18,8 +20,14 @@ public class TestPersonaServiceRS {
     private static Response response;
     
     public static void main(String[] args) {
-        cliente = ClientBuilder.newClient();
         
+        HttpAuthenticationFeature feature = HttpAuthenticationFeature.basicBuilder().nonPreemptive().credentials("admin", "admin").build();
+        
+        ClientConfig clienteConfig = new ClientConfig();
+        clienteConfig.register(feature);
+        
+        Client cliente = ClientBuilder.newClient(clienteConfig);
+
         //Leer una persona (método get) 
         webTarget = cliente.target(URL_BASE).path("/personas");
         
@@ -38,10 +46,10 @@ public class TestPersonaServiceRS {
         
         //Agregar una persona (método post)
         Persona nuevaPersona = new Persona();
-        nuevaPersona.setNombre("Josue");
-        nuevaPersona.setApellido("Alba");
-        nuevaPersona.setEmail("jan@gmail.com");
-        nuevaPersona.setTelefono("0923647956");
+        nuevaPersona.setNombre("Franklin");
+        nuevaPersona.setApellido("Vallejo");
+        nuevaPersona.setEmail("fwvr@gmail.com");
+        nuevaPersona.setTelefono("0987639875");
         
         invocationBuilder = webTarget.request(MediaType.APPLICATION_XML);
         response = invocationBuilder.post(Entity.entity(nuevaPersona, MediaType.APPLICATION_XML));
@@ -55,7 +63,7 @@ public class TestPersonaServiceRS {
         
         // Modificar la persona (método put)
         Persona personaModificar = personaRecuperada;
-        personaModificar.setNombre("Alexander");
+        personaModificar.setNombre("Wladimir");
         String pathId = "/" + personaModificar.getIdPersona();
         invocationBuilder = webTarget.path(pathId).request(MediaType.APPLICATION_XML);
         response = invocationBuilder.put(Entity.entity(personaModificar, MediaType.APPLICATION_XML));
