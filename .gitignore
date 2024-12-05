@@ -107,3 +107,7 @@ Registro_Maven/target/test-classes/
 /Rest-Web-Service/sga-jee-web/target/
 /Rest-Web-Service/sga-jee-web-Rest/target/
 /Rest-Web-Service/ClienteSgaRestWs/target/
+/Seguridad-en-Java-Empresarial/sga-jee-web/target/
+/Seguridad-en-Java-Empresarial/ClienteEJBSeguridad/target/
+/Seguridad-en-Java-Empresarial/ClienteSgaRestWs/target/
+/Seguridad-en-Java-Empresarial/ClienteSgaWs/target/
