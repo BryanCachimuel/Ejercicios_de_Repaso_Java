@@ -25,7 +25,14 @@ public class OperacionesHibernateJPA {
         
         personaModificada.setNombre("Richard");
         personaModificada.setEmail("rftc@outlook.com");
-        personaDao.modificar(personaModificada);
+        //personaDao.modificar(personaModificada);
+        
+        /* Para eliminar un registro */
+        Persona personaEliminada = new Persona();
+        personaEliminada.setIdPersona(6);
+        
+        personaModificada = personaDao.buscarPersonaPorId(personaEliminada);
+        personaDao.eliminar(personaEliminada);
         
         personaDao.listar();
     }
