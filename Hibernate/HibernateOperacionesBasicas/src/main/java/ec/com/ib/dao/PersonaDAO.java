@@ -34,11 +34,11 @@ public class PersonaDAO {
             em.getTransaction().rollback();
         }
         /* esto se hace ya que se está trabajando de manera local ya con un servidor esto se realizaría automaticamente */
-        finally{
+        /*finally{
             if(em != null){
                 em.close();
             }
-        }
+        }*/
     }
     
     public void modificar(Persona persona){
@@ -50,11 +50,15 @@ public class PersonaDAO {
             ex.printStackTrace(System.out);
             em.getTransaction().rollback();
         }
-        finally{
+        /*finally{
             if(em != null){
                 em.close();
             }
-        }
+        }*/
+    }
+    
+    public Persona buscarPersonaPorId(Persona p){
+        return em.find(Persona.class, p.getIdPersona());
     }
     
 }
