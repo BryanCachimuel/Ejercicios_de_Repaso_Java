@@ -57,6 +57,22 @@ public class PersonaDAO {
         }*/
     }
     
+    public void eliminar(Persona persona){
+        try {
+            em.getTransaction().begin();  // inicio de la transacción
+            em.remove(em.merge(persona));
+            em.getTransaction().commit(); // fin de la transacción
+        } catch (Exception ex) {
+            ex.printStackTrace(System.out);
+            em.getTransaction().rollback();
+        }
+        /*finally{
+            if(em != null){
+                em.close();
+            }
+        }*/
+    }
+    
     public Persona buscarPersonaPorId(Persona p){
         return em.find(Persona.class, p.getIdPersona());
     }
