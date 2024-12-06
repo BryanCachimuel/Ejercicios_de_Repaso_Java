@@ -33,6 +33,28 @@ public class PersonaDAO {
             ex.printStackTrace(System.out);
             em.getTransaction().rollback();
         }
+        /* esto se hace ya que se está trabajando de manera local ya con un servidor esto se realizaría automaticamente */
+        finally{
+            if(em != null){
+                em.close();
+            }
+        }
+    }
+    
+    public void modificar(Persona persona){
+        try {
+            em.getTransaction().begin();  // inicio de la transacción
+            em.merge(persona);
+            em.getTransaction().commit(); // fin de la transacción
+        } catch (Exception ex) {
+            ex.printStackTrace(System.out);
+            em.getTransaction().rollback();
+        }
+        finally{
+            if(em != null){
+                em.close();
+            }
+        }
     }
     
 }
