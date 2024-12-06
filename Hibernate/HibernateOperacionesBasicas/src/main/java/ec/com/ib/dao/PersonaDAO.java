@@ -24,4 +24,15 @@ public class PersonaDAO {
         }
     }
     
+    public void insertar(Persona persona){
+        try {
+            em.getTransaction().begin();  // inicio de la transacción
+            em.persist(persona);
+            em.getTransaction().commit(); // fin de la transacción
+        } catch (Exception ex) {
+            ex.printStackTrace(System.out);
+            em.getTransaction().rollback();
+        }
+    }
+    
 }
