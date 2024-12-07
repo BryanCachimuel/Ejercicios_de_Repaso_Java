@@ -1,9 +1,7 @@
 package ec.com.ib.domain;
 
-import jakarta.persistence.*;
-import jakarta.persistence.Entity;
 import java.io.Serializable;
-
+import javax.persistence.*;
 
 @Entity
 @Table(name = "persona")  // se pone esta notación para el caso de que el nombre de la entidad sea diferente al nombre de esta clase
