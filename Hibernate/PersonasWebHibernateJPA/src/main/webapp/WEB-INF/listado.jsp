@@ -6,16 +6,16 @@
         <title>Listado de Personas</title>
     </head>
     <body>
-        <table>
+        <table border="1">
             <caption>Listado de Personas</caption>
             <tr>
-                <th>Id Personas</th>
+                <th>Id Persona</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Email</th>
                 <th>Teléfono</th>
             </tr>
-            <c:forEach var="persona" items="${personas}">
+            <c:forEach var="persona" items="${personas}" >
                 <tr>
                     <td>${persona.idPersona}</td>
                     <td>${persona.nombre}</td>
@@ -25,5 +25,6 @@
                 </tr>
             </c:forEach>
         </table>
+        
     </body>
 </html>

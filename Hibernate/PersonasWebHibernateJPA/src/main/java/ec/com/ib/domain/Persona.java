@@ -4,8 +4,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "persona")  // se pone esta notación para el caso de que el nombre de la entidad sea diferente al nombre de esta clase
-public class Persona implements Serializable{
+@Table(name = "persona")
+public class Persona implements Serializable {
     
     private static final long serialVersionUID = 1L;
     
@@ -13,17 +13,18 @@ public class Persona implements Serializable{
     @Id
     private int idPersona;
     
-    /* como los nombres de estos atributos coinciden con los de la base de datos no es necesario poner la notación @Column tal y como esta puesto para el id */
     private String nombre;
+    
     private String apellido;
+    
     private String email;
+    
     private String telefono;
-
-    public Persona() {
-    }
+    
+    public Persona(){}
 
     public int getIdPersona() {
-        return this.idPersona;
+        return idPersona;
     }
 
     public void setIdPersona(int idPersona) {
@@ -31,7 +32,7 @@ public class Persona implements Serializable{
     }
 
     public String getNombre() {
-        return this.nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
@@ -39,7 +40,7 @@ public class Persona implements Serializable{
     }
 
     public String getApellido() {
-        return this.apellido;
+        return apellido;
     }
 
     public void setApellido(String apellido) {
@@ -47,7 +48,7 @@ public class Persona implements Serializable{
     }
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public void setEmail(String email) {
@@ -55,7 +56,7 @@ public class Persona implements Serializable{
     }
 
     public String getTelefono() {
-        return this.telefono;
+        return telefono;
     }
 
     public void setTelefono(String telefono) {
@@ -64,13 +65,7 @@ public class Persona implements Serializable{
 
     @Override
     public String toString() {
-        return "Persona: " + "idPersona=" + idPersona 
-                           + ", nombre=" + nombre 
-                           + ", apellido=" + apellido 
-                           + ", email=" + email 
-                           + ", telefono=" + telefono;
+        return "Persona{" + "idPersona=" + idPersona + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", telefono=" + telefono + '}';
     }
-    
-    
     
 }

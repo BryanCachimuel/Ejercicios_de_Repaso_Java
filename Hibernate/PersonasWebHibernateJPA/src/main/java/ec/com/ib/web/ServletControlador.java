@@ -1,7 +1,5 @@
 package ec.com.ib.web;
 
-import ec.com.ib.domain.Persona;
-import ec.com.ib.servicio.ServicioPersonas;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -9,10 +7,11 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import ec.com.ib.domain.Persona;
+import ec.com.ib.servicio.ServicioPersonas;
 
 @WebServlet("/ServletControlador")
 public class ServletControlador extends HttpServlet{
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response){
         ServicioPersonas servicioPersonas = new ServicioPersonas();
