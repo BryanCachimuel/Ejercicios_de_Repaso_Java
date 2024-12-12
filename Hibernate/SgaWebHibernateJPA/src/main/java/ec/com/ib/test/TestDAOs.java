@@ -13,23 +13,23 @@ public class TestDAOs {
         
         /*AlumnoDAO alumnoDao = new AlumnoDAO();
         System.out.println("Alumnos: ");
-        imprimir(alumnoDao.listar());
+        imprimir(alumnoDao.listar());*/
         
-        DomicilioDAO domicilioDao = new DomicilioDAO();
+        /*DomicilioDAO domicilioDao = new DomicilioDAO();
         System.out.println("Domicilio: ");
-        imprimir(domicilioDao.listar());
+        imprimir(domicilioDao.listar());*/
         
-        CursoDAO cursoDao = new CursoDAO();
+        /*CursoDAO cursoDao = new CursoDAO();
         System.out.println("Curso: ");
-        imprimir(cursoDao.listar());
+        imprimir(cursoDao.listar());*/
         
         ContactoDAO contactoDao = new ContactoDAO();
         System.out.println("Contacto: ");
-        imprimir(contactoDao.listar());*/
+        imprimir(contactoDao.listar());
         
-        AsignacionDAO asignacionDao = new AsignacionDAO();
+        /*AsignacionDAO asignacionDao = new AsignacionDAO();
         System.out.println("Contacto: ");
-        imprimir(asignacionDao.listar());
+        imprimir(asignacionDao.listar());*/
         
         
     }
