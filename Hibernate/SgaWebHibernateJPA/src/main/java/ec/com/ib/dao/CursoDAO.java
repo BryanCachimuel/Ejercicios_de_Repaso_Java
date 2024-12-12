@@ -10,7 +10,7 @@ public class CursoDAO extends GenericDAO{
      public List<Curso> listar(){
         String consulta = "SELECT c FROM Curso c";
         em = getEntityManager();
-        Query query = em.createNamedQuery(consulta);
+        Query query = em.createQuery(consulta);
         return query.getResultList();
     }
     

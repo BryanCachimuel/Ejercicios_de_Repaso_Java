@@ -4,16 +4,16 @@ import ec.com.ib.domain.Domicilio;
 import java.util.List;
 import javax.persistence.Query;
 
-public class DomicilioDAO extends GenericDAO{
-    
-    public List<Domicilio> listar(){
+public class DomicilioDAO extends GenericDAO {
+
+    public List<Domicilio> listar() {
         String consulta = "SELECT d FROM Domicilio d";
         em = getEntityManager();
-        Query query = em.createNamedQuery(consulta);
+        Query query = em.createQuery(consulta);
         return query.getResultList();
     }
-    
-    public void insertar(Domicilio domicilio){
+
+    public void insertar(Domicilio domicilio) {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
@@ -21,15 +21,14 @@ public class DomicilioDAO extends GenericDAO{
             em.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
-        }
-        finally{
-            if(em != null){
+        } finally {
+            if (em != null) {
                 em.close();
             }
         }
     }
-    
-    public void actualizar(Domicilio domicilio){
+
+    public void actualizar(Domicilio domicilio) {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
@@ -37,15 +36,14 @@ public class DomicilioDAO extends GenericDAO{
             em.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
-        }
-        finally{
-            if(em != null){
+        } finally {
+            if (em != null) {
                 em.close();
             }
         }
     }
-    
-    public void eliminar(Domicilio domicilio){
+
+    public void eliminar(Domicilio domicilio) {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
@@ -53,16 +51,16 @@ public class DomicilioDAO extends GenericDAO{
             em.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
-        }
-        finally{
-            if(em != null){
+        } finally {
+            if (em != null) {
                 em.close();
             }
         }
     }
-    
-    public Object buscarPoId(Domicilio domicilio){
+
+    public Object buscarPorId(Domicilio domicilio) {
         em = getEntityManager();
         return em.find(Domicilio.class, domicilio.getIdDomicilio());
     }
+
 }

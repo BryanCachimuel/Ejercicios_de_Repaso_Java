@@ -11,7 +11,8 @@ public abstract class GenericDAO {
     private static EntityManagerFactory emf;
     private static final String PU = "HibernateJpaPU";
 
-    public GenericDAO() {
+
+    public GenericDAO(){
         if(emf == null){
             emf = Persistence.createEntityManagerFactory(PU);
         }
