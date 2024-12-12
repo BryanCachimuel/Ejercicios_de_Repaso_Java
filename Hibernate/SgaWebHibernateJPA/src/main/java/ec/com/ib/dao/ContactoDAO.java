@@ -9,7 +9,7 @@ public class ContactoDAO extends GenericDAO{
     public List<Contacto> listar(){
         String consulta = "SELECT c FROM Contacto c";
         em = getEntityManager();
-        Query query =  em.createNamedQuery(consulta);
+        Query query =  em.createQuery(consulta);
         return query.getResultList();
     }
     

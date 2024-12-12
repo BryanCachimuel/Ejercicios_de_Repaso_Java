@@ -5,16 +5,16 @@ import ec.com.ib.domain.Alumno;
 import java.util.List;
 import javax.persistence.Query;
 
-public class AlumnoDAO extends GenericDAO{
-    
-     public List<Alumno> listar(){
+public class AlumnoDAO extends GenericDAO {
+
+    public List<Alumno> listar() {
         String consulta = "SELECT a FROM Alumno a";
         em = getEntityManager();
-        Query query = em.createNamedQuery(consulta);
+        Query query = em.createQuery(consulta);
         return query.getResultList();
     }
-    
-    public void insertar(Alumno alumno){
+
+    public void insertar(Alumno alumno) {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
@@ -22,15 +22,14 @@ public class AlumnoDAO extends GenericDAO{
             em.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
-        }
-        finally{
-            if(em != null){
+        } finally {
+            if (em != null) {
                 em.close();
             }
         }
     }
-    
-    public void actualizar(Alumno alumno){
+
+    public void actualizar(Alumno alumno) {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
@@ -38,15 +37,14 @@ public class AlumnoDAO extends GenericDAO{
             em.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
-        }
-        finally{
-            if(em != null){
+        } finally {
+            if (em != null) {
                 em.close();
             }
         }
     }
-    
-    public void eliminar(Alumno alumno){
+
+    public void eliminar(Alumno alumno) {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
@@ -54,17 +52,16 @@ public class AlumnoDAO extends GenericDAO{
             em.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
-        }
-        finally{
-            if(em != null){
+        } finally {
+            if (em != null) {
                 em.close();
             }
         }
     }
-    
-    public Object buscarPoId(Alumno alumno){
+
+    public Object buscarPorId(Alumno alumno) {
         em = getEntityManager();
         return em.find(Alumno.class, alumno.getIdAlumno());
     }
-    
+
 }

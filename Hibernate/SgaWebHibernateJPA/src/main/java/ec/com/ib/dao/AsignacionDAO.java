@@ -10,7 +10,7 @@ public class AsignacionDAO extends GenericDAO{
      public List<Asignacion> listar(){
         String consulta = "SELECT a FROM Asignacion a";
         em = getEntityManager();
-        Query query = em.createNamedQuery(consulta);
+        Query query = em.createQuery(consulta);
         return query.getResultList();
     }
     
