@@ -10,10 +10,10 @@ public class Alumno implements Serializable{
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_alumno")
     private Integer idAlumno;
-    
+
     private String nombre;
     
     private String apellido;
@@ -21,13 +21,14 @@ public class Alumno implements Serializable{
     private Integer edad;
     
     /* Definiendo las relaciones con las entidades Contacto y Domicilio */
-    @JoinColumn(name = "id_domicilio",referencedColumnName = "id_domicilio")
+    @JoinColumn(name="id_domicilio", referencedColumnName = "id_domicilio")
     @ManyToOne
     private Domicilio domicilio;
     
-    @JoinColumn(name = "id_contacto",referencedColumnName = "id_contacto")
+    @JoinColumn(name="id_contacto", referencedColumnName = "id_contacto")
     @ManyToOne
     private Contacto contacto;
+
     
     /* Relación con la entidad Asignación */
     @OneToMany(mappedBy = "alumno")
