@@ -114,3 +114,6 @@ Registro_Maven/target/test-classes/
 /Hibernate/IntroduccionHibernate/target/
 /Hibernate/HibernateOperacionesBasicas/target/
 /Hibernate/PersonasWebHibernateJPA/target/
+/Hibernate/SgaWebHibernateJPA/target/
+/Hibernate/SgaWebHibernateCicloVidaJPA/target/
+/Hibernate/SgaWebHibernatePersistenciaCascadaJPA/target/
