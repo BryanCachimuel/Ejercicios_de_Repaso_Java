@@ -27,7 +27,8 @@ public class Estado3ModificarObjetoPersistente {
         em.getTransaction().begin();
         
          // 2. persistente
-        em.persist(contacto);
+        //em.persist(contacto);
+        em.merge(contacto);
     
         em.getTransaction().commit();
         
