@@ -15,19 +15,19 @@ public class PersistenciaCascadaTest {
         EntityManager em = emf.createEntityManager();
         
         Domicilio domicilio = new Domicilio();
-        domicilio.setCalle("Obispo Mosquera");
-        domicilio.setNoCasa("5-96");
+        domicilio.setCalle("Alfredo Perez");
+        domicilio.setNoCasa("10-04");
         domicilio.setCiudad("Ibarra");
         
         Contacto contacto = new Contacto();
-        contacto.setNombre("Nelson Cacoango");
-        contacto.setEmail("nccc@gmail.com");
-        contacto.setTelefono("0987659873");
+        contacto.setNombre("Kevin Rodriguez");
+        contacto.setEmail("kdrb@gmail.com");
+        contacto.setTelefono("0987423659");
         
         Alumno alumno = new Alumno();
-        alumno.setNombre("Camilo");
-        alumno.setApellido("Cacoango");
-        alumno.setEdad(10);
+        alumno.setNombre("David");
+        alumno.setApellido("Rodriguez");
+        alumno.setEdad(18);
         alumno.setDomicilio(domicilio);
         alumno.setContacto(contacto);
         
