@@ -62,7 +62,7 @@ public class AsignacionDAO extends GenericDAO{
         }
     }
     
-    public Object buscarPoId(Asignacion asignacion){
+    public Asignacion buscarPoId(Asignacion asignacion){
         em = getEntityManager();
         return em.find(Asignacion.class, asignacion.getIdAsignacion());
     }

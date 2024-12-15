@@ -62,7 +62,7 @@ public class CursoDAO extends GenericDAO{
         }
     }
     
-    public Object buscarPoId(Curso curso){
+    public Curso buscarPoId(Curso curso){
         em = getEntityManager();
         return em.find(Curso.class, curso.getIdCurso());
     }
