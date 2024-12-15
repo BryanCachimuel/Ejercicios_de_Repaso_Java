@@ -22,11 +22,13 @@ public class Alumno implements Serializable{
     
     /* Definiendo las relaciones con las entidades Contacto y Domicilio */
     @JoinColumn(name="id_domicilio", referencedColumnName = "id_domicilio")
-    @ManyToOne
+    /* Proceso para realizar la persistencia en cascada */
+    @ManyToOne(cascade = CascadeType.ALL)
     private Domicilio domicilio;
     
     @JoinColumn(name="id_contacto", referencedColumnName = "id_contacto")
-    @ManyToOne
+     /* Proceso para realizar la persistencia en cascada */
+    @ManyToOne(cascade = CascadeType.ALL)
     private Contacto contacto;
 
     
