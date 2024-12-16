@@ -25,7 +25,7 @@
             
             Datos de Contacto:
             <br/>
-            Nombre: <input type="text" name="nombre"/>
+            Nombre: <input type="text" name="nombreContacto"/>
             <br/>
             Télefono: <input type="tel" name="telefono"/>
             <br/>
