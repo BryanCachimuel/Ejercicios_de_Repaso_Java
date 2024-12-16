@@ -6,8 +6,12 @@
         <title>Listado de Alumnos</title>
     </head>
     <body>
+        <h1>Listar Alumnos</h1>
+        <br/>
+        <!-- pageContext.request.contextPath: obtiene el nombre de la aplicación -->
+        <a href="${pageContext.request.contextPath}/ServletRedireccionar">Agregar</a>
+        <br/>
         <table border="1">
-            <caption>Listar Alumnos</caption>
             <tr>
                 <th>Alumno ID</th>
                 <th>Nombre</th>
