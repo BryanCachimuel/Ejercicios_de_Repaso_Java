@@ -20,7 +20,7 @@ public class Estado3ModificarObjetoPersistente {
         contacto = em.find(Contacto.class, 3);
         
         // Modificamos el objeto
-        contacto.setNombre("Lene Otavalo");
+        contacto.setNombreContacto("Lene Otavalo");
         contacto.setTelefono("0984129876");
         contacto.setEmail("lo@outlook.com");
         

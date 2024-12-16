@@ -20,7 +20,7 @@ public class PersistenciaCascadaTest {
         domicilio.setCiudad("Ibarra");
         
         Contacto contacto = new Contacto();
-        contacto.setNombre("Kevin Rodriguez");
+        contacto.setNombreContacto("Kevin Rodriguez");
         contacto.setEmail("kdrb@gmail.com");
         contacto.setTelefono("0987423659");
         

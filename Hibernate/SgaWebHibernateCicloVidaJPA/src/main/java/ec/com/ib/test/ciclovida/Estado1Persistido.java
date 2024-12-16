@@ -11,7 +11,7 @@ public class Estado1Persistido {
         
         // 1. Estado transitivo
         Contacto contacto = new Contacto();
-        contacto.setNombre("Marlene Otavalo");
+        contacto.setNombreContacto("Marlene Otavalo");
         contacto.setEmail("mo@gmail.com");
         contacto.setTelefono("0985736982");
         
