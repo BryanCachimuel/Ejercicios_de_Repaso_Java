@@ -1,4 +1,4 @@
-package ec.com.ib.servicio;
+package ec.com.ib.web;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
