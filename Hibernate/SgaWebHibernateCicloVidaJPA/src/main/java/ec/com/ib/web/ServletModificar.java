@@ -33,35 +33,47 @@ public class ServletModificar extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
-        Integer edad = Integer.parseInt(request.getParameter("edad"));
-
-        String calle = request.getParameter("calle");
-        String noCasa = request.getParameter("noCasa");
-        String ciudad = request.getParameter("ciudad");
-
-        String nombreContacto = request.getParameter("nombreContacto");
-        String email = request.getParameter("email");
-        String telefono = request.getParameter("telefono");
-
-        HttpSession sesion = request.getSession();
-        Alumno alumno = (Alumno) sesion.getAttribute("alumno");   // se obtiene todos los datos de alumno mediante la sesión iniciada
-
-        alumno.setNombre(nombre);
-        alumno.setApellido(apellido);
-        alumno.setEdad(edad);
-        alumno.getDomicilio().setCalle(calle);
-        alumno.getDomicilio().setNoCasa(noCasa);
-        alumno.getDomicilio().setCiudad(ciudad);
-        alumno.getContacto().setNombreContacto(nombreContacto);
-        alumno.getContacto().setEmail(email);
-        alumno.getContacto().setTelefono(telefono);
 
         ServicioAlumno servicioAlumno = new ServicioAlumno();
-        servicioAlumno.guardarAlumno(alumno);
-        
-        sesion.removeAttribute("alumno");
+
+        String actualizar = request.getParameter("Actualizar");
+
+        if (actualizar != null) {
+            String nombre = request.getParameter("nombre");
+            String apellido = request.getParameter("apellido");
+            Integer edad = Integer.parseInt(request.getParameter("edad"));
+
+            String calle = request.getParameter("calle");
+            String noCasa = request.getParameter("noCasa");
+            String ciudad = request.getParameter("ciudad");
+
+            String nombreContacto = request.getParameter("nombreContacto");
+            String email = request.getParameter("email");
+            String telefono = request.getParameter("telefono");
+
+            HttpSession sesion = request.getSession();
+            Alumno alumno = (Alumno) sesion.getAttribute("alumno");   // se obtiene todos los datos de alumno mediante la sesión iniciada
+
+            alumno.setNombre(nombre);
+            alumno.setApellido(apellido);
+            alumno.setEdad(edad);
+            alumno.getDomicilio().setCalle(calle);
+            alumno.getDomicilio().setNoCasa(noCasa);
+            alumno.getDomicilio().setCiudad(ciudad);
+            alumno.getContacto().setNombreContacto(nombreContacto);
+            alumno.getContacto().setEmail(email);
+            alumno.getContacto().setTelefono(telefono);
+
+            servicioAlumno.guardarAlumno(alumno);
+
+            sesion.removeAttribute("alumno");
+        } else {
+            // caso de eliminar
+            String idAlumnoS = request.getParameter("idAlumno");
+            Integer idAlumno = Integer.parseInt(idAlumnoS);
+            Alumno alumno = new Alumno(idAlumno);
+            servicioAlumno.eliminarAlumno(alumno);
+        }
 
         request.getRequestDispatcher("/index.jsp").forward(request, response);
 
