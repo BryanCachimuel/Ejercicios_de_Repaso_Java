@@ -23,11 +23,11 @@ public class CursoDAO extends GenericDAO{
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
         }
-        finally{
-            if(em != null){
-                em.close();
-            }
-        }
+//        finally{
+//            if(em != null){
+//                em.close();
+//            }
+//        }
     }
     
     public void actualizar(Curso curso){
@@ -39,11 +39,11 @@ public class CursoDAO extends GenericDAO{
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
         }
-        finally{
-            if(em != null){
-                em.close();
-            }
-        }
+//        finally{
+//            if(em != null){
+//                em.close();
+//            }
+//        }
     }
     
     public void eliminar(Curso curso){
@@ -55,11 +55,11 @@ public class CursoDAO extends GenericDAO{
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
         }
-        finally{
-            if(em != null){
-                em.close();
-            }
-        }
+//        finally{
+//            if(em != null){
+//                em.close();
+//            }
+//        }
     }
     
     public Curso buscarPoId(Curso curso){
