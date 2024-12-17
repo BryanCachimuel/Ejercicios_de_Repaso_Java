@@ -5,28 +5,27 @@ import ec.com.ib.domain.Alumno;
 import java.util.List;
 
 public class ServicioAlumno {
-    
+
     private AlumnoDAO alumnoDao = new AlumnoDAO();
-    
-    public List<Alumno> listarAlumnos(){
+
+    public List<Alumno> listarAlumnos() {
         return alumnoDao.listar();
     }
-    
+
     /* Método que servira tanto para guardar como modificar un alumno */
-    public void guardarAlumno(Alumno alumno){
-        if(alumno != null && alumno.getIdAlumno() == null){
+    public void guardarAlumno(Alumno alumno) {
+        if (alumno != null && alumno.getIdAlumno() == null) {
             alumnoDao.insertar(alumno);
-        }
-        else{
+        } else {
             alumnoDao.actualizar(alumno);
         }
     }
-    
-    public void eliminarAlumno(Alumno alumno){
+
+    public void eliminarAlumno(Alumno alumno) {
         alumnoDao.eliminar(alumno);
     }
-    
-    public Alumno encontrarAlumno(Alumno alumno){
+
+    public Alumno encontrarAlumno(Alumno alumno) {
         return alumnoDao.buscarPorId(alumno);
     }
 }
