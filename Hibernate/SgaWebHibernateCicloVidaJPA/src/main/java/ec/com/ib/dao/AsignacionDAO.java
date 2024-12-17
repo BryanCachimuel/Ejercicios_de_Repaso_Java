@@ -23,11 +23,11 @@ public class AsignacionDAO extends GenericDAO{
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
         }
-        finally{
-            if(em != null){
-                em.close();
-            }
-        }
+//        finally{
+//            if(em != null){
+//                em.close();
+//            }
+//        }
     }
     
     public void actualizar(Asignacion asignacion){
@@ -39,11 +39,11 @@ public class AsignacionDAO extends GenericDAO{
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
         }
-        finally{
-            if(em != null){
-                em.close();
-            }
-        }
+//        finally{
+//            if(em != null){
+//                em.close();
+//            }
+//        }
     }
     
     public void eliminar(Asignacion asignacion){
@@ -55,11 +55,11 @@ public class AsignacionDAO extends GenericDAO{
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
         }
-        finally{
-            if(em != null){
-                em.close();
-            }
-        }
+//        finally{
+//            if(em != null){
+//                em.close();
+//            }
+//        }
     }
     
     public Asignacion buscarPoId(Asignacion asignacion){
