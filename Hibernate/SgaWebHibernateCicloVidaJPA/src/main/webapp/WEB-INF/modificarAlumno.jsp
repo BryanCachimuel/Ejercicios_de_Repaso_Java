@@ -2,11 +2,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Modificar Alumno</title>
+        <title>Actualizar Alumno</title>
     </head>
     <body>
-        <h1>Modificar Alumno</h1>
+        <h1>Actualizar Alumno</h1>
         <form name="form1" action="${pageContext.request.contextPath}/ServletModificar" method="post" autocomplete="off">
+            <input type="hidden" name="idAlumno" value="${alumno.idAlumno}"/>
+  
             Nombre: <input type="text" name="nombre" value="${alumno.nombre}"/>
             <br/>
             Apellido: <input type="text" name="apellido" value="${alumno.apellido}"/>
@@ -16,7 +18,7 @@
             
             Datos Domicilio:
             <br/>
-            Calle: <input type="text" name="calle" value="${almno.domicilio.calle}"/>
+            Calle: <input type="text" name="calle" value="${alumno.domicilio.calle}"/>
             <br/>
             Nro Casa: <input type="text" name="noCasa" value="${alumno.domicilio.noCasa}"/>
             <br/>
@@ -32,6 +34,7 @@
             Email: <input type="email" name="email" value="${alumno.contacto.email}"/>
             <br/>
             <input type="submit" name="Actualizar" value="Actualizar"/>
+            <input type="submit" name="Eliminar" value="Eliminar"/>
         </form>
     </body>
 </html>
